@@ -33,18 +33,45 @@
   </PropertyGroup>
   <ItemGroup>
     <TypeScriptCompile Include="app.ts" />
+    <Content Include="GlobalTypeMappings2.json" />
+    <Content Include="LICENSE" />
     <Content Include="ValidateTypeData.ps1" />
     <Content Include="GlobalTypeMappings.json" />
     <Content Include="package.json" />
     <Content Include="README.md" />
     <Content Include="TableTypes.json" />
     <Content Include="tsconfig.json" />
-    <TypeScriptCompile Include="base.d.ts">
+    <TypeScriptCompile Include="CMDB.d.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="getTableInfo.ts">
+    <TypeScriptCompile Include="DictionaryBase.d.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="GlideBase.d.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="index.d.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="JavaAPI.d.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Rhino.d.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ServiceCatalog.d.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="x_44813_phys_net\index.d.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="x_44813_sec_clsif\index.d.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="x_44813_sec_clsif\" />
+    <Folder Include="x_44813_phys_net\" />
   </ItemGroup>
   <!-- Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them. -->
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="False" />
