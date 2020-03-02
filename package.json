@@ -1,11 +1,18 @@
 {
   "name": "servicenow-server-global-dts",
   "version": "0.1.0",
-  "description": "JavaScript Typings for globally-scoped ServiceNow server-side development",
-  "main": "app.js",
+  "description": "TypeScript definitions for globally-scoped ServiceNow server-side development",
+  "main": "",
   "author": {
     "name": "Leonard T. Erwine"
   },
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/erwinel/sn_typings_server_global.git"
+  },
+  "typeScriptVersion": "2.7",
+  "types": "index.d.ts",
   "devDependencies": {
     "@types/node": "^8.0.14",
     "typescript": "^3.8.2"

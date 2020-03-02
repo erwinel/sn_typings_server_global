@@ -2,12 +2,12 @@
   "compilerOptions": {
     "module": "none",
     "target": "es3",
-    "lib": [ "es2015" ],
-    "sourceMap": true
+    "lib": [ "es2015" ]
   },
   "exclude": [
     "node_modules",
     "**/*.spec.ts",
-    "**/*.js"
+    "**/*.js",
+    "app.*"
   ]
 }

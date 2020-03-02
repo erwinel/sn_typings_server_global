@@ -1,2 +1,3 @@
 # sn_typings_server_global
-ServiceNow Server Globally-Scoped Typings
+
+TypeScript definitions for globally-scoped ServiceNow server-side development
