@@ -1,3 +1,5 @@
+/// <reference path="../index.d.ts" />
+
 /**
  * GlideElement values from the Physical Network table.
  * @interface x_44813_phys_net_networkFields

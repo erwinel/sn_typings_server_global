@@ -69,6 +69,9 @@
     <TypeScriptCompile Include="x_44813_sec_clsif\index.d.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="x_44813_usasoc_cst\index.d.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="x_44813_sec_clsif\" />

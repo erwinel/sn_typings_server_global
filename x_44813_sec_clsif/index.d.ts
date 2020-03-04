@@ -1,3 +1,5 @@
+/// <reference path="../index.d.ts" />
+
 /**
  * GlideElement values from the Security Classification table.
  * @interface Ix_44813_sec_clsif_definitionFields
