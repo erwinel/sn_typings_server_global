@@ -1,11 +1,196 @@
-/// <reference path="JavaAPI.d.ts" />
-/// <reference path="Rhino.d.ts" />
+/// <reference path="./Packages.d.ts" />
+/// <reference path="./$$rhino.d.ts" />
+/**
+ *
+ * @type {("not requested" | "cancelled" | "requested" | "duplicate" | "not_required" | "approved" | "rejected")}
+ */
+declare type TaskAppproval = "not requested" | "cancelled" | "requested" | "duplicate" | "not_required" | "approved" | "rejected";
+
+/**
+ * email=Email; endpoint_security=Endpoint Security; ids_ips=IDS/IPS; network_monitoring=Network Monitoring; phone=Phone; self-service=Self-service; siem=SIEM; virtual_agent=Virtual Agent; vulnerability_response=Vulnerability Response; walk-in=Walk-in
+ * @type {("email" | "endpoint_security" | "ids_ips" | "network_monitoring" | "phone" | "self-service" | "siem" | "virtual_agent" | "vulnerability_response" | "walk-in")}
+ */
+declare type TaskContactType = "email" | "endpoint_security" | "ids_ips" | "network_monitoring" | "phone" | "self-service" | "siem" | "virtual_agent" | "vulnerability_response" | "walk-in";
+
+/**
+ *
+ */
+declare type TaskEscalationValue = 0 | 1 | 2 | 3;
+declare type TaskEscalationString = "0" | "1" | "2" | "3";
+declare type TaskEscalation = TaskEscalationValue | TaskEscalationString;
+
+/**
+ *
+ * @description 1="1 - High"; 2="2 - Medium"; 3="3 - Low"
+ */
+declare type Task3ScaleValue = 1 | 2 | 3;
+declare type Task3ScaleString = "1" | "2" | "3";
+declare type Task3Scale = Task3ScaleValue | Task3ScaleString;
+
+/**
+ *
+ */
+declare type TaskPriorityValue = 1 | 2 | 3 | 4 | 5;
+declare type TaskPriorityString = "1" | "2" | "3" | "4" | "5";
+declare type TaskPriority = TaskPriorityValue | TaskPriorityString;
+
+/**
+ *
+ * @description -5="Pending"; 1="Open"; 2="Work in Progress"; 3="Closed Complete"; 4="Closed Incomplete"; 7="Closed Skipped"
+ */
+declare type TaskStateValue = -5 | 1 | 2 | 3 | 4 | 7;
+declare type TaskStateString = "-5" | "1" | "2" | "3" | "4" | "7";
+declare type TaskState = TaskStateValue | TaskStateString;
+
+/**
+ *
+ * @type {("Solved (Work Around)" | "Solved (Permanently)" | "Solved Remotely (Work Around)" | "Solved Remotely (Permanently)" | "Not Solved (Not Reproducible)" | "Not Solved (Too Costly)" | "Closed/Resolved by Caller")}
+ */
+declare type IncidentCloseCode = "Solved (Work Around)" | "Solved (Permanently)" | "Solved Remotely (Work Around)" | "Solved Remotely (Permanently)" | "Not Solved (Not Reproducible)" | "Not Solved (Too Costly)" | "Closed/Resolved by Caller";
+
+/**
+ *
+ * @description 1="Awaiting Caller"; 5="Awaiting Change"; 3="Awaiting Problem"; 4="Awaiting Vendor"
+ */
+declare type IncidentHoldReasonValue = 1 | 5 | 3 | 4;
+declare type IncidentHoldReasonString = "1" | "5" | "3" | "4";
+declare type IncidentHoldReason = IncidentHoldReasonValue | IncidentHoldReasonString;
+
+/**
+ *
+ * @description 1="New"; 2="In Progress"; 3="On Hold"; 6="Resolved"; 7="Closed"; 8="Canceled"
+ */
+declare type IncidentStateValue = 1 | 2 | 3 | 6 | 7 | 8;
+declare type IncidentStateString = "1" | "2" | "3" | "6" | "7" | "8";
+declare type IncidentState = IncidentStateValue | IncidentStateString;
+
+/**
+ *
+ */
+declare type IncidentNotifyValue = 1 | 2 | 3;
+declare type IncidentNotifyString = "1" | "2" | "3";
+declare type IncidentNotify = IncidentNotifyValue | IncidentNotifyString;
+
+/**
+ *
+ * @description 1="Success"; 2="Fail"
+ */
+declare type ChangeReviewStatusValue = 1 | 2;
+declare type ChangeReviewStatusString = "1" | "2";
+declare type ChangeReviewStatus = ChangeReviewStatusValue | ChangeReviewStatusString;
+
+/**
+ *
+ * @description 2="High"; 3="Moderate"; 4="Low"
+ */
+declare type ChangeRiskValue = 2 | 3 | 4;
+declare type ChangeRiskString = "2" | "3" | "4";
+declare type ChangeRisk = ChangeRiskValue | ChangeRiskString;
+
+/**
+ *
+ * @description 1="Massive"; 2="Large"; 3="Medium"; 4="Small"; 5="Tiny"
+ */
+declare type ChangeScopeValue = 1 | 2 | 3 | 4 | 5;
+declare type ChangeScopeString = "1" | "2" | "3" | "4" | "5";
+declare type ChangeScope = ChangeScopeValue | ChangeScopeString;
+
+/**
+ *
+ */
+declare type ChangeType = "standard" | "normal" | "emergency";
+
+/**
+ *
+ * @type {("successful" | "successful_issues" | "unsuccessful")}
+ * @description "successful"="Successful"; "successful_issues"="Successful with issues"; "unsuccessful"="Unsuccessful"
+ */
+declare type ChangeCloseCode = "successful" | "successful_issues" | "unsuccessful";
+
+/**
+ *
+ * @description 1="Open"; 3="Pending Change"; 2="Known Error"; 4="Closed/Resolved"
+ */
+declare type ProblemStateValue = 1 | 3 | 2 | 4;
+declare type ProblemStateString = "1" | "3" | "2" | "4";
+declare type ProblemState = ProblemStateValue | ProblemStateString;
+
+/**
+ *
+ * @type {("starting" | "running" | "complete" | "cancelled" | "unknown")}
+ */
+declare type GlideProgressWorkerState = "starting" | "running" | "complete" | "cancelled" | "unknown";
+
+/**
+ *
+ * @type {("success" | "cancelled" | "error")}
+ */
+declare type GlideProgressWorkerCompletionCode = "success" | "cancelled" | "error";
+
+/**
+ *
+ * @type {("requested" | "in_process" | "closed_complete" | "closed_incomplete" | "closed_cancelled" | "closed_rejected" | "closed_skipped")}
+ * @description "requested"="Pending Approval"; "in_process"="Approved"; "closed_complete"="Closed Complete"; "closed_incomplete"="Closed Incomplete"; "closed_cancelled"="Closed Cancelled"; "closed_rejected"="Closed Rejected"; "closed_skipped"="Closed Skipped"
+ */
+declare type IRequestState = "requested" | "in_process" | "closed_complete" | "closed_incomplete" | "closed_cancelled" | "closed_rejected" | "closed_skipped";
+
+/**
+ * Defines members that are common to both GlideRecord and GlideElement objects
+ * @export
+ * @interface IDbObject
+ */
+export interface IDbObject {
+    /**
+     * Determines if the user's role permits the creation of new records in this field.
+     * @memberof IDbObject
+     * @returns {boolean} True if the field can be created, false otherwise.
+     */
+    canCreate(): boolean;
+    /**
+     * Indicates whether the user's role permits them to read the associated GlideRecord.
+     * @memberof IDbObject
+     * @returns {boolean} True if the field can be read, false otherwise.
+     */
+    canRead(): boolean;
+    /**
+     * Determines whether the user's role permits them to write to the associated GlideRecord.
+     * @memberof IDbObject
+     * @returns {boolean} True if the user can write to the field, false otherwise.
+     */
+    canWrite(): boolean;
+    /**
+     * Returns the value of the specified attribute from the dictionary.
+     * @memberof IDbObject
+     * @param {string} attributeName - Attribute name
+     * @returns {string} Attribute value.
+     * @description 
+     */
+    getAttribute(attributeName: string): string;
+    /**
+     * Returns the element's descriptor.
+     * @memberof IDbObject
+     * @returns {GlideElementDescriptor} Element's descriptor.
+     */
+    getED(): GlideElementDescriptor;
+    /**
+     * Returns the object label.
+     * @memberof IDbObject
+     * @returns {string} Object label.
+     */
+    getLabel(): string;
+    /**
+     * Returns for Element objects, returns the name of the table on which the field resides; Otherwise, retrieves the name of the table associated with the GlideRecord.
+     * @memberof IDbObject
+     * @returns {string} Name of the table. The returned value may be different from the table Class that the record is in. See Tables and Classes in the product documentation.
+     */
+    getTableName(): string;
+}
 
 /**
  * The Scoped GlideElement API provides a number of convenient script methods for dealing with fields and their values. Scoped GlideElement methods are available for the fields of the current GlideRecord.
  * @interface IGlideElement
  */
-declare interface IGlideElement extends $$element.IDbObject {
+declare interface IGlideElement extends IDbObject {
     /**
      * Determines if the current field has been modified. This functionality is available for all available data types, except Journal fields.
      * @memberof GlideElement
@@ -139,9 +324,8 @@ declare interface IGlideElement extends $$element.IDbObject {
     setValue(value: any): void;
 }
 
-declare class QuestionList extends Packages.java.util.ArrayList<Question> {
+declare type QuestionList = Packages.java.util.ArrayList<Question>;
 
-}
 declare interface IQuestionSet {
     getMandatoryName(): Packages.java.lang.String;
     getLabelClass(): Packages.java.lang.String;
@@ -241,7 +425,34 @@ declare class Choice {
     isReference(): $$rhino.Boolean;
     isMissing(): $$rhino.Boolean;
 }
-declare class ChoiceList extends Packages.java.util.ArrayList<Choice> {
+declare class ChoiceList implements Packages.java.util.ArrayList<Choice> {
+    add(e: Choice): $$rhino.Boolean;
+    add(index: $$rhino.Number, element: Choice): void;
+    addAll(c: Packages.java.util.Collection<Choice>): $$rhino.Boolean;
+    addAll(index: $$rhino.Number, c: Packages.java.util.Collection<Choice>): $$rhino.Boolean;
+    clear(): void;
+    clone(): Packages.java.lang.Object;
+    contains(o: any): $$rhino.Boolean;
+    ensureCapacity(minCapacity: $$rhino.Number): void;
+    get(index: $$rhino.Number): Choice;
+    isEmpty(): $$rhino.Boolean;
+    iterator(): Packages.java.util.Iterator<Choice>;
+    lastIndexOf(o: any): $$rhino.Number;
+    listIterator(): Packages.java.util.ListIterator<Choice>;
+    listIterator(index: $$rhino.Number): Packages.java.util.ListIterator<Choice>;
+    remove(index: $$rhino.Number): Choice;
+    remove(o: any): $$rhino.Boolean;
+    removeAll(c: Packages.java.util.Collection<any>): $$rhino.Boolean;
+    retainAll(c: Packages.java.util.Collection<any>): $$rhino.Boolean;
+    set(index: $$rhino.Number, element: Choice): Choice;
+    size(): $$rhino.Number;
+    subList(fromIndex: $$rhino.Number, toIndex: $$rhino.Number): Packages.java.util.List<Choice>;
+    toArray();
+    trimToSize(): void;
+    hashCode(): $$rhino.Number;
+    containsAll(c: Packages.java.util.Collection<any>): $$rhino.Boolean;
+    toString(): $$rhino.String;
+    equals(obj: any): $$rhino.Boolean;
     sort(): void;
     getChoice(i: $$rhino.Number | $$rhino.String): Choice;
     getChoiceNoTrim(i: $$rhino.String): Choice;
@@ -1090,257 +1301,1181 @@ declare class GlideTime {
  * The Scoped GlideElement API provides a number of convenient script methods for dealing with fields and their values. Scoped GlideElement methods are available for the fields of the current GlideRecord.
  * @class GlideElement
  */
-declare class GlideElement extends $$element.StringBased<string, GlideElement, string> { protected constructor(); }
-declare class GlideElementBoolean extends Packages.java.lang.Boolean implements $$element.IValueSpecific<boolean, GlideElementBoolean, $$rhino.BooleanString> {
+declare class GlideElement implements IGlideElement { // sys_dictionary.comments
     protected constructor();
-
-    /**
-     * Determines if the user's role permits the creation of new records in this field.
-     * @memberof GlideElementBoolean
-     * @returns {boolean} True if the field can be created, false otherwise.
-     */
-    canCreate(): boolean;
-    /**
-     * Indicates whether the user's role permits them to read the associated GlideRecord.
-     * @memberof GlideElementBoolean
-     * @returns {boolean} True if the field can be read, false otherwise.
-     */
-    canRead(): boolean;
-    /**
-     * Determines whether the user's role permits them to write to the associated GlideRecord.
-     * @memberof GlideElementBoolean
-     * @returns {boolean} True if the user can write to the field, false otherwise.
-     */
-    canWrite(): boolean;
-    /**
-     * Determines if the current field has been modified. This functionality is available for all available data types, except Journal fields.
-     * @memberof GlideElementBoolean
-     * @returns {boolean} True if the fields have been changed, false if the field has not.
-     * @description 
-     */
     changes(): boolean;
-    /**
-     * Determines if the previous value of the current field matches the specified object.
-     * @memberof GlideElementBoolean
-     * @param {$$rhino.Nilable<$$property.Boolean>} o - An object value to check against the previous value of the current field.
-     * @returns {boolean} True if the previous value matches, false if it does not.
-     * @description 
-     */
-    changesFrom(o: $$rhino.Nilable<$$property.Boolean>): boolean;
-    /**
-     * Determines if the new value of a field, after a change, matches the specified object.
-     * @memberof GlideElementBoolean
-     * @param {$$rhino.Nilable<$$property.Boolean>} o - An object value to check against the new value of the current field.
-     * @returns {boolean} True if the previous value matches, false if it does not.
-     * @description 
-     */
-    changesTo(o: $$rhino.Nilable<$$property.Boolean>): boolean;
-    /**
-     * Returns the number of milliseconds since January 1, 1970, 00:00:00 GMT for a duration field. Does not require the creation of a GlideDateTime object because the duration field is already a GlideDateTime object.
-     * @memberof GlideElementBoolean
-     * @returns {number} Number of milliseconds since January 1, 1970, 00:00:00 GMT.
-     */
+    changesFrom(o: any): boolean;
+    changesTo(o: any): boolean;
     dateNumericValue(): number;
-    /**
-     * Returns the value of the specified attribute from the dictionary.
-     * @memberof GlideElementBoolean
-     * @param {string} attributeName - Attribute name
-     * @returns {string} Attribute value.
-     * @description 
-     */
-    getAttribute(attributeName: string): string;
-    /**
-     * Returns the Boolean value of the specified attribute from the dictionary.
-     * @memberof GlideElementBoolean
-     * @param {string} attributeName - Attribute name
-     * @returns {boolean} Boolean value of the attribute. Returns false if the attribute does not exist.
-     * @description 
-     */
     getBooleanAttribute(attributeName: string): boolean;
-    /**
-     * Generates a choice list for a field.
-     * @memberof GlideElementBoolean
-     * @param {string} [dependent] - A dependent value
-     * @returns {Array<*>} An array list of choices.
-     */
-    getChoices(dependent?: string): any[];
-    /**
-     * Returns the choice label for the current choice.
-     * @memberof GlideElementBoolean
-     * @returns {string} The selected choice's label.
-     * @description 
-     */
+    getChoices(dependent?: string | undefined): any[];
     getChoiceValue(): string;
-    /**
-     * Returns the clear text value for Password (2 way encrypted) fields in scoped applications.
-     * @memberof GlideElementBoolean
-     * @returns {string} The clear text password.
-     */
     getDecryptedValue(): string;
-    /**
-     * Gets the formatted display value of the field.
-     * @memberof GlideElementBoolean
-     * @param {number} [maxCharacters] - Maximum characters desired
-     * @returns {string} The display value of the field.
-     */
-    getDisplayValue(maxCharacters?: number): string;
-    /**
-     * Returns the element's descriptor.
-     * @memberof GlideElementBoolean
-     * @returns {GlideElementDescriptor} Element's descriptor.
-     */
-    getED(): GlideElementDescriptor;
-    /**
-     * Returns the phone number in international format.
-     * @memberof GlideElementBoolean
-     * @returns {string} The phone number in international format.
-     */
+    getDisplayValue(maxCharacters?: number | undefined): string;
     getGlobalDisplayValue(): string;
-    /**
-     * Returns the HTML value of a field.
-     * @memberof GlideElementBoolean
-     * @param {number} [maxChars] - Maximum number of characters to return.
-     * @returns {string} HTML value for the field.
-     */
-    getHTMLValue(maxChars?: number): string;
-    /**
-     * Returns either the most recent journal entry or all journal entries.
-     * @memberof GlideElementBoolean
-     * @param {number} mostRecent - If 1, returns the most recent entry. If -1, returns all journal entries.
-     * @returns {string} For the most recent entry, returns a string that contains the field label, timestamp, and user display name of the journal entry.For all journal entries, returns the same information for all journal entries ever entered as a single string with each entry delimited by "\n\n".
-     */
+    getHTMLValue(maxChars?: number | undefined): string;
     getJournalEntry(mostRecent: number): string;
-    /**
-     * Returns the object label.
-     * @memberof GlideElementBoolean
-     * @returns {string} Object label.
-     */
-    getLabel(): string;
-    /**
-     * Returns the name of the field.
-     * @memberof GlideElementBoolean
-     * @returns {string} Field name.
-     */
     getName(): string;
-    /**
-     * Returns the name of the table on which the field resides.
-     * @memberof GlideElementBoolean
-     * @returns {string} Name of the table. The returned value may be different from the table Class that the record is in. See Tables and Classes in the product documentation.
-     */
-    getTableName(): string;
-    /**
-     * Determines if a field is null.
-     * @memberof GlideElementBoolean
-     * @returns {boolean} True if the field is null or an empty string, false if not.
-     */
     nil(): boolean;
-    /**
-     * Sets the value of a date/time element to the specified number of milliseconds since January 1, 1970 00:00:00 GMT.
-     * @memberof GlideElementBoolean
-     * @param {number} milliseconds - Number of milliseconds since 1/1/1970
-     * @description 
-     */
     setDateNumericValue(milliseconds: number): void;
-    /**
-     * Sets the display value of the field.
-     * @memberof GlideElementBoolean
-     * @param {*} value - The value to set for the field.
-     */
     setDisplayValue(value: any): void;
-    /**
-     * Adds an error message. Available in Fuji patch 3.
-     * @memberof GlideElementBoolean
-     * @param {string} errorMessage - The error message.
-     */
     setError(errorMessage: string): void;
-    /**
-     * Sets the field to the specified phone number.
-     * @memberof GlideElementBoolean
-     * @param {*} phoneNumber - The phone number to set. This can be in either the international or local format.
-     * @param {boolean} strict - When true, specifies that the number specified must match the correct format. When false, the system attempts to correct an improperly formatted phone number.
-     * @returns {boolean} True if the value was set.
-     * @description 
-     */
     setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
-    /**
-     * Sets the value of a field.
-     * @memberof GlideElementBoolean
-     * @param {$$rhino.Nilable<$$property.Boolean>} value - Object value to set the field to.
-     * @description 
-     */
-    setValue(value: $$rhino.Nilable<$$property.Boolean>): void;
+    setValue(value: any): void;
+    canCreate(): boolean;
+    canRead(): boolean;
+    canWrite(): boolean;
+    getAttribute(attributeName: string): string;
+    getED(): GlideElementDescriptor;
+    getLabel(): string;
+    getTableName(): string;
 }
-declare class GlideElementBreakdownElement extends $$element.StringBased<string, GlideElementBreakdownElement, string> { protected constructor(); }
-declare class GlideElementCompressed extends $$element.StringBased<string, GlideElementCompressed, string> { protected constructor(); }
-declare class GlideElementConditions extends $$element.StringBased<string, GlideElementConditions, string> { protected constructor(); }
-declare class GlideElementCounter extends $$element.StringBased<number, GlideElementCounter, string> { protected constructor(); }
-declare class GlideElementCurrency extends $$element.StringBased<string, GlideElementCurrency, string> { protected constructor(); }
-declare class GlideElementDataObject extends $$element.StringBased<string, GlideElementDataObject, string> { protected constructor(); }
-declare class GlideElementDocumentation extends $$element.StringBased<string, GlideElementDocumentation, string> { protected constructor(); }
-declare class GlideElementDocumentId extends $$element.StringBased<string, GlideElementDocumentId, string> { protected constructor(); }
-declare class GlideElementDomainId extends $$element.StringBased<string, GlideElementDomainId, string> { protected constructor(); }
-declare class GlideElementFullUTF8 extends $$element.StringBased<string, GlideElementFullUTF8, string> { protected constructor(); }
-declare class GlideElementGlideObject extends $$element.StringBased<string, GlideElementGlideObject, string> { protected constructor(); }
-declare class GlideElementGlideVar extends $$element.StringBased<string, GlideElementGlideVar, string> { protected constructor(); }
-declare class GlideElementIcon extends $$element.StringBased<string, GlideElementIcon, string> { protected constructor(); }
-declare class GlideElementInternalType extends $$element.StringBased<string, GlideElementInternalType, string> { protected constructor(); }
-declare class GlideElementNameValue extends $$element.StringBased<string, GlideElementNameValue, string> { protected constructor(); }
-declare class GlideElementNumeric extends $$element.StringBased<number, GlideElementNumeric, string> implements $$element.IValueSpecific<number, GlideElementNumeric, string> { protected constructor(); }
-declare class GlideElementPassword extends $$element.StringBased<string, GlideElementPassword, string> { protected constructor(); }
-declare class GlideElementPassword2 extends $$element.StringBased<string, GlideElementPassword2, string> { protected constructor(); }
-declare class GlideElementPrice extends $$element.StringBased<number, GlideElementPrice, string> { protected constructor(); }
+
+declare class GlideElementBoolean implements IGlideElement { // sys_dictionary.audit
+    protected constructor();
+    changes(): boolean;
+    changesFrom(o: any): boolean;
+    changesTo(o: any): boolean;
+    dateNumericValue(): number;
+    getBooleanAttribute(attributeName: string): boolean;
+    getChoices(dependent?: string | undefined): any[];
+    getChoiceValue(): string;
+    getDecryptedValue(): string;
+    getDisplayValue(maxCharacters?: number | undefined): string;
+    getGlobalDisplayValue(): string;
+    getHTMLValue(maxChars?: number | undefined): string;
+    getJournalEntry(mostRecent: number): string;
+    getName(): string;
+    nil(): boolean;
+    setDateNumericValue(milliseconds: number): void;
+    setDisplayValue(value: any): void;
+    setError(errorMessage: string): void;
+    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
+    setValue(value: any): void;
+    canCreate(): boolean;
+    canRead(): boolean;
+    canWrite(): boolean;
+    getAttribute(attributeName: string): string;
+    getED(): GlideElementDescriptor;
+    getLabel(): string;
+    getTableName(): string;
+}
+
+declare class GlideElementGlideObject implements IGlideElement { // incident.sys_created_on
+    protected constructor();
+    changes(): boolean;
+    changesFrom(o: any): boolean;
+    changesTo(o: any): boolean;
+    dateNumericValue(): number;
+    getBooleanAttribute(attributeName: string): boolean;
+    getChoices(dependent?: string | undefined): any[];
+    getChoiceValue(): string;
+    getDecryptedValue(): string;
+    getDisplayValue(maxCharacters?: number | undefined): string;
+    getGlobalDisplayValue(): string;
+    getHTMLValue(maxChars?: number | undefined): string;
+    getJournalEntry(mostRecent: number): string;
+    getName(): string;
+    nil(): boolean;
+    setDateNumericValue(milliseconds: number): void;
+    setDisplayValue(value: any): void;
+    setError(errorMessage: string): void;
+    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
+    setValue(value: any): void;
+    canCreate(): boolean;
+    canRead(): boolean;
+    canWrite(): boolean;
+    getAttribute(attributeName: string): string;
+    getED(): GlideElementDescriptor;
+    getLabel(): string;
+    getTableName(): string;
+}
+
+declare class GlideElementNumeric implements IGlideElement { // sys_dictionary.defaultsort
+    protected constructor();
+    changes(): boolean;
+    changesFrom(o: any): boolean;
+    changesTo(o: any): boolean;
+    dateNumericValue(): number;
+    getBooleanAttribute(attributeName: string): boolean;
+    getChoices(dependent?: string | undefined): any[];
+    getChoiceValue(): string;
+    getDecryptedValue(): string;
+    getDisplayValue(maxCharacters?: number | undefined): string;
+    getGlobalDisplayValue(): string;
+    getHTMLValue(maxChars?: number | undefined): string;
+    getJournalEntry(mostRecent: number): string;
+    getName(): string;
+    nil(): boolean;
+    setDateNumericValue(milliseconds: number): void;
+    setDisplayValue(value: any): void;
+    setError(errorMessage: string): void;
+    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
+    setValue(value: any): void;
+    canCreate(): boolean;
+    canRead(): boolean;
+    canWrite(): boolean;
+    getAttribute(attributeName: string): string;
+    getED(): GlideElementDescriptor;
+    getLabel(): string;
+    getTableName(): string;
+}
+
+declare type GlideElementHierarchicalVariables = GlideElement;
+
+declare class GlideElementSysClassName implements IGlideElement { // sys_dictionary.sys_class_name
+    protected constructor();
+    changes(): boolean;
+    changesFrom(o: any): boolean;
+    changesTo(o: any): boolean;
+    dateNumericValue(): number;
+    getBooleanAttribute(attributeName: string): boolean;
+    getChoices(dependent?: string | undefined): any[];
+    getChoiceValue(): string;
+    getDecryptedValue(): string;
+    getDisplayValue(maxCharacters?: number | undefined): string;
+    getGlobalDisplayValue(): string;
+    getHTMLValue(maxChars?: number | undefined): string;
+    getJournalEntry(mostRecent: number): string;
+    getName(): string;
+    nil(): boolean;
+    setDateNumericValue(milliseconds: number): void;
+    setDisplayValue(value: any): void;
+    setError(errorMessage: string): void;
+    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
+    setValue(value: any): void;
+    canCreate(): boolean;
+    canRead(): boolean;
+    canWrite(): boolean;
+    getAttribute(attributeName: string): string;
+    getED(): GlideElementDescriptor;
+    getLabel(): string;
+    getTableName(): string;
+}
+
+declare class GlideElementDocumentId implements IGlideElement { // incident.origin_id
+    protected constructor();
+    changes(): boolean;
+    changesFrom(o: any): boolean;
+    changesTo(o: any): boolean;
+    dateNumericValue(): number;
+    getBooleanAttribute(attributeName: string): boolean;
+    getChoices(dependent?: string | undefined): any[];
+    getChoiceValue(): string;
+    getDecryptedValue(): string;
+    getDisplayValue(maxCharacters?: number | undefined): string;
+    getGlobalDisplayValue(): string;
+    getHTMLValue(maxChars?: number | undefined): string;
+    getJournalEntry(mostRecent: number): string;
+    getName(): string;
+    nil(): boolean;
+    setDateNumericValue(milliseconds: number): void;
+    setDisplayValue(value: any): void;
+    setError(errorMessage: string): void;
+    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
+    setValue(value: any): void;
+    canCreate(): boolean;
+    canRead(): boolean;
+    canWrite(): boolean;
+    getAttribute(attributeName: string): string;
+    getED(): GlideElementDescriptor;
+    getLabel(): string;
+    getTableName(): string;
+}
+
+declare class GlideElementDomainId implements IGlideElement { // incident.sys_domain
+    protected constructor();
+    changes(): boolean;
+    changesFrom(o: any): boolean;
+    changesTo(o: any): boolean;
+    dateNumericValue(): number;
+    getBooleanAttribute(attributeName: string): boolean;
+    getChoices(dependent?: string | undefined): any[];
+    getChoiceValue(): string;
+    getDecryptedValue(): string;
+    getDisplayValue(maxCharacters?: number | undefined): string;
+    getGlobalDisplayValue(): string;
+    getHTMLValue(maxChars?: number | undefined): string;
+    getJournalEntry(mostRecent: number): string;
+    getName(): string;
+    nil(): boolean;
+    setDateNumericValue(milliseconds: number): void;
+    setDisplayValue(value: any): void;
+    setError(errorMessage: string): void;
+    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
+    setValue(value: any): void;
+    canCreate(): boolean;
+    canRead(): boolean;
+    canWrite(): boolean;
+    getAttribute(attributeName: string): string;
+    getED(): GlideElementDescriptor;
+    getLabel(): string;
+    getTableName(): string;
+}
+
+declare class GlideElementRelatedTags implements IGlideElement { // incident.sys_tags
+    protected constructor();
+    changes(): boolean;
+    changesFrom(o: any): boolean;
+    changesTo(o: any): boolean;
+    dateNumericValue(): number;
+    getBooleanAttribute(attributeName: string): boolean;
+    getChoices(dependent?: string | undefined): any[];
+    getChoiceValue(): string;
+    getDecryptedValue(): string;
+    getDisplayValue(maxCharacters?: number | undefined): string;
+    getGlobalDisplayValue(): string;
+    getHTMLValue(maxChars?: number | undefined): string;
+    getJournalEntry(mostRecent: number): string;
+    getName(): string;
+    nil(): boolean;
+    setDateNumericValue(milliseconds: number): void;
+    setDisplayValue(value: any): void;
+    setError(errorMessage: string): void;
+    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
+    setValue(value: any): void;
+    canCreate(): boolean;
+    canRead(): boolean;
+    canWrite(): boolean;
+    getAttribute(attributeName: string): string;
+    getED(): GlideElementDescriptor;
+    getLabel(): string;
+    getTableName(): string;
+}
+
+declare class GlideElementTranslatedField implements IGlideElement { // sys_glide_object.label
+    protected constructor();
+    changes(): boolean;
+    changesFrom(o: any): boolean;
+    changesTo(o: any): boolean;
+    dateNumericValue(): number;
+    getBooleanAttribute(attributeName: string): boolean;
+    getChoices(dependent?: string | undefined): any[];
+    getChoiceValue(): string;
+    getDecryptedValue(): string;
+    getDisplayValue(maxCharacters?: number | undefined): string;
+    getGlobalDisplayValue(): string;
+    getHTMLValue(maxChars?: number | undefined): string;
+    getJournalEntry(mostRecent: number): string;
+    getName(): string;
+    nil(): boolean;
+    setDateNumericValue(milliseconds: number): void;
+    setDisplayValue(value: any): void;
+    setError(errorMessage: string): void;
+    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
+    setValue(value: any): void;
+    canCreate(): boolean;
+    canRead(): boolean;
+    canWrite(): boolean;
+    getAttribute(attributeName: string): string;
+    getED(): GlideElementDescriptor;
+    getLabel(): string;
+    getTableName(): string;
+}
+
+declare class GlideElementDocumentation implements IGlideElement { // sys_dictionary.column_label
+    protected constructor();
+    changes(): boolean;
+    changesFrom(o: any): boolean;
+    changesTo(o: any): boolean;
+    dateNumericValue(): number;
+    getBooleanAttribute(attributeName: string): boolean;
+    getChoices(dependent?: string | undefined): any[];
+    getChoiceValue(): string;
+    getDecryptedValue(): string;
+    getDisplayValue(maxCharacters?: number | undefined): string;
+    getGlobalDisplayValue(): string;
+    getHTMLValue(maxChars?: number | undefined): string;
+    getJournalEntry(mostRecent: number): string;
+    getName(): string;
+    nil(): boolean;
+    setDateNumericValue(milliseconds: number): void;
+    setDisplayValue(value: any): void;
+    setError(errorMessage: string): void;
+    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
+    setValue(value: any): void;
+    canCreate(): boolean;
+    canRead(): boolean;
+    canWrite(): boolean;
+    getAttribute(attributeName: string): string;
+    getED(): GlideElementDescriptor;
+    getLabel(): string;
+    getTableName(): string;
+}
+
+declare class GlideElementScript implements IGlideElement { // sys_dictionary.calculation
+    protected constructor();
+    changes(): boolean;
+    changesFrom(o: any): boolean;
+    changesTo(o: any): boolean;
+    dateNumericValue(): number;
+    getBooleanAttribute(attributeName: string): boolean;
+    getChoices(dependent?: string | undefined): any[];
+    getChoiceValue(): string;
+    getDecryptedValue(): string;
+    getDisplayValue(maxCharacters?: number | undefined): string;
+    getGlobalDisplayValue(): string;
+    getHTMLValue(maxChars?: number | undefined): string;
+    getJournalEntry(mostRecent: number): string;
+    getName(): string;
+    nil(): boolean;
+    setDateNumericValue(milliseconds: number): void;
+    setDisplayValue(value: any): void;
+    setError(errorMessage: string): void;
+    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
+    setValue(value: any): void;
+    canCreate(): boolean;
+    canRead(): boolean;
+    canWrite(): boolean;
+    getAttribute(attributeName: string): string;
+    getED(): GlideElementDescriptor;
+    getLabel(): string;
+    getTableName(): string;
+}
+
+declare class GlideElementConditions implements IGlideElement { // sys_dictionary.reference_qual_condition
+    protected constructor();
+    changes(): boolean;
+    changesFrom(o: any): boolean;
+    changesTo(o: any): boolean;
+    dateNumericValue(): number;
+    getBooleanAttribute(attributeName: string): boolean;
+    getChoices(dependent?: string | undefined): any[];
+    getChoiceValue(): string;
+    getDecryptedValue(): string;
+    getDisplayValue(maxCharacters?: number | undefined): string;
+    getGlobalDisplayValue(): string;
+    getHTMLValue(maxChars?: number | undefined): string;
+    getJournalEntry(mostRecent: number): string;
+    getName(): string;
+    nil(): boolean;
+    setDateNumericValue(milliseconds: number): void;
+    setDisplayValue(value: any): void;
+    setError(errorMessage: string): void;
+    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
+    setValue(value: any): void;
+    canCreate(): boolean;
+    canRead(): boolean;
+    canWrite(): boolean;
+    getAttribute(attributeName: string): string;
+    getED(): GlideElementDescriptor;
+    getLabel(): string;
+    getTableName(): string;
+}
+
+declare class GlideElementVariables implements IGlideElement { // incident.variables
+    protected constructor();
+    changes(): boolean;
+    changesFrom(o: any): boolean;
+    changesTo(o: any): boolean;
+    dateNumericValue(): number;
+    getBooleanAttribute(attributeName: string): boolean;
+    getChoices(dependent?: string | undefined): any[];
+    getChoiceValue(): string;
+    getDecryptedValue(): string;
+    getDisplayValue(maxCharacters?: number | undefined): string;
+    getGlobalDisplayValue(): string;
+    getHTMLValue(maxChars?: number | undefined): string;
+    getJournalEntry(mostRecent: number): string;
+    getName(): string;
+    nil(): boolean;
+    setDateNumericValue(milliseconds: number): void;
+    setDisplayValue(value: any): void;
+    setError(errorMessage: string): void;
+    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
+    setValue(value: any): void;
+    canCreate(): boolean;
+    canRead(): boolean;
+    canWrite(): boolean;
+    getAttribute(attributeName: string): string;
+    getED(): GlideElementDescriptor;
+    getLabel(): string;
+    getTableName(): string;
+}
+
+declare class GlideElementPassword implements IGlideElement { // sys_user.user_password
+    protected constructor();
+    changes(): boolean;
+    changesFrom(o: any): boolean;
+    changesTo(o: any): boolean;
+    dateNumericValue(): number;
+    getBooleanAttribute(attributeName: string): boolean;
+    getChoices(dependent?: string | undefined): any[];
+    getChoiceValue(): string;
+    getDecryptedValue(): string;
+    getDisplayValue(maxCharacters?: number | undefined): string;
+    getGlobalDisplayValue(): string;
+    getHTMLValue(maxChars?: number | undefined): string;
+    getJournalEntry(mostRecent: number): string;
+    getName(): string;
+    nil(): boolean;
+    setDateNumericValue(milliseconds: number): void;
+    setDisplayValue(value: any): void;
+    setError(errorMessage: string): void;
+    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
+    setValue(value: any): void;
+    canCreate(): boolean;
+    canRead(): boolean;
+    canWrite(): boolean;
+    getAttribute(attributeName: string): string;
+    getED(): GlideElementDescriptor;
+    getLabel(): string;
+    getTableName(): string;
+}
+
+declare class GlideElementUserImage implements IGlideElement { // sys_user.photo
+    protected constructor();
+    changes(): boolean;
+    changesFrom(o: any): boolean;
+    changesTo(o: any): boolean;
+    dateNumericValue(): number;
+    getBooleanAttribute(attributeName: string): boolean;
+    getChoices(dependent?: string | undefined): any[];
+    getChoiceValue(): string;
+    getDecryptedValue(): string;
+    getDisplayValue(maxCharacters?: number | undefined): string;
+    getGlobalDisplayValue(): string;
+    getHTMLValue(maxChars?: number | undefined): string;
+    getJournalEntry(mostRecent: number): string;
+    getName(): string;
+    nil(): boolean;
+    setDateNumericValue(milliseconds: number): void;
+    setDisplayValue(value: any): void;
+    setError(errorMessage: string): void;
+    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
+    setValue(value: any): void;
+    canCreate(): boolean;
+    canRead(): boolean;
+    canWrite(): boolean;
+    getAttribute(attributeName: string): string;
+    getED(): GlideElementDescriptor;
+    getLabel(): string;
+    getTableName(): string;
+}
+
+declare class GlideElementTranslatedText implements IGlideElement { // sys_ux_event.description
+    protected constructor();
+    changes(): boolean;
+    changesFrom(o: any): boolean;
+    changesTo(o: any): boolean;
+    dateNumericValue(): number;
+    getBooleanAttribute(attributeName: string): boolean;
+    getChoices(dependent?: string | undefined): any[];
+    getChoiceValue(): string;
+    getDecryptedValue(): string;
+    getDisplayValue(maxCharacters?: number | undefined): string;
+    getGlobalDisplayValue(): string;
+    getHTMLValue(maxChars?: number | undefined): string;
+    getJournalEntry(mostRecent: number): string;
+    getName(): string;
+    nil(): boolean;
+    setDateNumericValue(milliseconds: number): void;
+    setDisplayValue(value: any): void;
+    setError(errorMessage: string): void;
+    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
+    setValue(value: any): void;
+    canCreate(): boolean;
+    canRead(): boolean;
+    canWrite(): boolean;
+    getAttribute(attributeName: string): string;
+    getED(): GlideElementDescriptor;
+    getLabel(): string;
+    getTableName(): string;
+}
+
+declare class GlideElementCounter implements IGlideElement { // sys_update_xml.sys_recorded_at
+    protected constructor();
+    changes(): boolean;
+    changesFrom(o: any): boolean;
+    changesTo(o: any): boolean;
+    dateNumericValue(): number;
+    getBooleanAttribute(attributeName: string): boolean;
+    getChoices(dependent?: string | undefined): any[];
+    getChoiceValue(): string;
+    getDecryptedValue(): string;
+    getDisplayValue(maxCharacters?: number | undefined): string;
+    getGlobalDisplayValue(): string;
+    getHTMLValue(maxChars?: number | undefined): string;
+    getJournalEntry(mostRecent: number): string;
+    getName(): string;
+    nil(): boolean;
+    setDateNumericValue(milliseconds: number): void;
+    setDisplayValue(value: any): void;
+    setError(errorMessage: string): void;
+    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
+    setValue(value: any): void;
+    canCreate(): boolean;
+    canRead(): boolean;
+    canWrite(): boolean;
+    getAttribute(attributeName: string): string;
+    getED(): GlideElementDescriptor;
+    getLabel(): string;
+    getTableName(): string;
+}
+
+declare class GlideElementCurrency implements IGlideElement { // sc_cat_item.list_price
+    protected constructor();
+    changes(): boolean;
+    changesFrom(o: any): boolean;
+    changesTo(o: any): boolean;
+    dateNumericValue(): number;
+    getBooleanAttribute(attributeName: string): boolean;
+    getChoices(dependent?: string | undefined): any[];
+    getChoiceValue(): string;
+    getDecryptedValue(): string;
+    getDisplayValue(maxCharacters?: number | undefined): string;
+    getGlobalDisplayValue(): string;
+    getHTMLValue(maxChars?: number | undefined): string;
+    getJournalEntry(mostRecent: number): string;
+    getName(): string;
+    nil(): boolean;
+    setDateNumericValue(milliseconds: number): void;
+    setDisplayValue(value: any): void;
+    setError(errorMessage: string): void;
+    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
+    setValue(value: any): void;
+    canCreate(): boolean;
+    canRead(): boolean;
+    canWrite(): boolean;
+    getAttribute(attributeName: string): string;
+    getED(): GlideElementDescriptor;
+    getLabel(): string;
+    getTableName(): string;
+}
+
+declare class GlideElementPrice implements IGlideElement { // sc_cat_item.recurring_price
+    protected constructor();
+    changes(): boolean;
+    changesFrom(o: any): boolean;
+    changesTo(o: any): boolean;
+    dateNumericValue(): number;
+    getBooleanAttribute(attributeName: string): boolean;
+    getChoices(dependent?: string | undefined): any[];
+    getChoiceValue(): string;
+    getDecryptedValue(): string;
+    getDisplayValue(maxCharacters?: number | undefined): string;
+    getGlobalDisplayValue(): string;
+    getHTMLValue(maxChars?: number | undefined): string;
+    getJournalEntry(mostRecent: number): string;
+    getName(): string;
+    nil(): boolean;
+    setDateNumericValue(milliseconds: number): void;
+    setDisplayValue(value: any): void;
+    setError(errorMessage: string): void;
+    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
+    setValue(value: any): void;
+    canCreate(): boolean;
+    canRead(): boolean;
+    canWrite(): boolean;
+    getAttribute(attributeName: string): string;
+    getED(): GlideElementDescriptor;
+    getLabel(): string;
+    getTableName(): string;
+}
+
+declare class GlideElementShortFieldName implements IGlideElement { // sys_history_line.field
+    protected constructor();
+    changes(): boolean;
+    changesFrom(o: any): boolean;
+    changesTo(o: any): boolean;
+    dateNumericValue(): number;
+    getBooleanAttribute(attributeName: string): boolean;
+    getChoices(dependent?: string | undefined): any[];
+    getChoiceValue(): string;
+    getDecryptedValue(): string;
+    getDisplayValue(maxCharacters?: number | undefined): string;
+    getGlobalDisplayValue(): string;
+    getHTMLValue(maxChars?: number | undefined): string;
+    getJournalEntry(mostRecent: number): string;
+    getName(): string;
+    nil(): boolean;
+    setDateNumericValue(milliseconds: number): void;
+    setDisplayValue(value: any): void;
+    setError(errorMessage: string): void;
+    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
+    setValue(value: any): void;
+    canCreate(): boolean;
+    canRead(): boolean;
+    canWrite(): boolean;
+    getAttribute(attributeName: string): string;
+    getED(): GlideElementDescriptor;
+    getLabel(): string;
+    getTableName(): string;
+}
+
+declare class GlideElementAudio implements IGlideElement { // db_audio.audio
+    protected constructor();
+    changes(): boolean;
+    changesFrom(o: any): boolean;
+    changesTo(o: any): boolean;
+    dateNumericValue(): number;
+    getBooleanAttribute(attributeName: string): boolean;
+    getChoices(dependent?: string | undefined): any[];
+    getChoiceValue(): string;
+    getDecryptedValue(): string;
+    getDisplayValue(maxCharacters?: number | undefined): string;
+    getGlobalDisplayValue(): string;
+    getHTMLValue(maxChars?: number | undefined): string;
+    getJournalEntry(mostRecent: number): string;
+    getName(): string;
+    nil(): boolean;
+    setDateNumericValue(milliseconds: number): void;
+    setDisplayValue(value: any): void;
+    setError(errorMessage: string): void;
+    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
+    setValue(value: any): void;
+    canCreate(): boolean;
+    canRead(): boolean;
+    canWrite(): boolean;
+    getAttribute(attributeName: string): string;
+    getED(): GlideElementDescriptor;
+    getLabel(): string;
+    getTableName(): string;
+}
+
+declare class GlideElementReplicationPayload implements IGlideElement { // sys_replication_queue1.payload
+    protected constructor();
+    changes(): boolean;
+    changesFrom(o: any): boolean;
+    changesTo(o: any): boolean;
+    dateNumericValue(): number;
+    getBooleanAttribute(attributeName: string): boolean;
+    getChoices(dependent?: string | undefined): any[];
+    getChoiceValue(): string;
+    getDecryptedValue(): string;
+    getDisplayValue(maxCharacters?: number | undefined): string;
+    getGlobalDisplayValue(): string;
+    getHTMLValue(maxChars?: number | undefined): string;
+    getJournalEntry(mostRecent: number): string;
+    getName(): string;
+    nil(): boolean;
+    setDateNumericValue(milliseconds: number): void;
+    setDisplayValue(value: any): void;
+    setError(errorMessage: string): void;
+    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
+    setValue(value: any): void;
+    canCreate(): boolean;
+    canRead(): boolean;
+    canWrite(): boolean;
+    getAttribute(attributeName: string): string;
+    getED(): GlideElementDescriptor;
+    getLabel(): string;
+    getTableName(): string;
+}
+
+declare class GlideElementBreakdownElement implements IGlideElement { // pa_widgets.element
+    protected constructor();
+    changes(): boolean;
+    changesFrom(o: any): boolean;
+    changesTo(o: any): boolean;
+    dateNumericValue(): number;
+    getBooleanAttribute(attributeName: string): boolean;
+    getChoices(dependent?: string | undefined): any[];
+    getChoiceValue(): string;
+    getDecryptedValue(): string;
+    getDisplayValue(maxCharacters?: number | undefined): string;
+    getGlobalDisplayValue(): string;
+    getHTMLValue(maxChars?: number | undefined): string;
+    getJournalEntry(mostRecent: number): string;
+    getName(): string;
+    nil(): boolean;
+    setDateNumericValue(milliseconds: number): void;
+    setDisplayValue(value: any): void;
+    setError(errorMessage: string): void;
+    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
+    setValue(value: any): void;
+    canCreate(): boolean;
+    canRead(): boolean;
+    canWrite(): boolean;
+    getAttribute(attributeName: string): string;
+    getED(): GlideElementDescriptor;
+    getLabel(): string;
+    getTableName(): string;
+}
+
+declare class GlideElementCompressed implements IGlideElement { // wf_workflow_version.activity_stages
+    protected constructor();
+    changes(): boolean;
+    changesFrom(o: any): boolean;
+    changesTo(o: any): boolean;
+    dateNumericValue(): number;
+    getBooleanAttribute(attributeName: string): boolean;
+    getChoices(dependent?: string | undefined): any[];
+    getChoiceValue(): string;
+    getDecryptedValue(): string;
+    getDisplayValue(maxCharacters?: number | undefined): string;
+    getGlobalDisplayValue(): string;
+    getHTMLValue(maxChars?: number | undefined): string;
+    getJournalEntry(mostRecent: number): string;
+    getName(): string;
+    nil(): boolean;
+    setDateNumericValue(milliseconds: number): void;
+    setDisplayValue(value: any): void;
+    setError(errorMessage: string): void;
+    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
+    setValue(value: any): void;
+    canCreate(): boolean;
+    canRead(): boolean;
+    canWrite(): boolean;
+    getAttribute(attributeName: string): string;
+    getED(): GlideElementDescriptor;
+    getLabel(): string;
+    getTableName(): string;
+}
+
+declare class GlideElementTranslatedHTML implements IGlideElement { // sys_script.message
+    protected constructor();
+    changes(): boolean;
+    changesFrom(o: any): boolean;
+    changesTo(o: any): boolean;
+    dateNumericValue(): number;
+    getBooleanAttribute(attributeName: string): boolean;
+    getChoices(dependent?: string | undefined): any[];
+    getChoiceValue(): string;
+    getDecryptedValue(): string;
+    getDisplayValue(maxCharacters?: number | undefined): string;
+    getGlobalDisplayValue(): string;
+    getHTMLValue(maxChars?: number | undefined): string;
+    getJournalEntry(mostRecent: number): string;
+    getName(): string;
+    nil(): boolean;
+    setDateNumericValue(milliseconds: number): void;
+    setDisplayValue(value: any): void;
+    setError(errorMessage: string): void;
+    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
+    setValue(value: any): void;
+    canCreate(): boolean;
+    canRead(): boolean;
+    canWrite(): boolean;
+    getAttribute(attributeName: string): string;
+    getED(): GlideElementDescriptor;
+    getLabel(): string;
+    getTableName(): string;
+}
+
+declare class GlideElementURL implements IGlideElement { // v_plugin.help
+    protected constructor();
+    changes(): boolean;
+    changesFrom(o: any): boolean;
+    changesTo(o: any): boolean;
+    dateNumericValue(): number;
+    getBooleanAttribute(attributeName: string): boolean;
+    getChoices(dependent?: string | undefined): any[];
+    getChoiceValue(): string;
+    getDecryptedValue(): string;
+    getDisplayValue(maxCharacters?: number | undefined): string;
+    getGlobalDisplayValue(): string;
+    getHTMLValue(maxChars?: number | undefined): string;
+    getJournalEntry(mostRecent: number): string;
+    getName(): string;
+    nil(): boolean;
+    setDateNumericValue(milliseconds: number): void;
+    setDisplayValue(value: any): void;
+    setError(errorMessage: string): void;
+    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
+    setValue(value: any): void;
+    canCreate(): boolean;
+    canRead(): boolean;
+    canWrite(): boolean;
+    getAttribute(attributeName: string): string;
+    getED(): GlideElementDescriptor;
+    getLabel(): string;
+    getTableName(): string;
+}
+
+declare class GlideElementWorkflowConditions implements IGlideElement { // sys_template.template    
+    protected constructor();
+    changes(): boolean;
+    changesFrom(o: any): boolean;
+    changesTo(o: any): boolean;
+    dateNumericValue(): number;
+    getBooleanAttribute(attributeName: string): boolean;
+    getChoices(dependent?: string | undefined): any[];
+    getChoiceValue(): string;
+    getDecryptedValue(): string;
+    getDisplayValue(maxCharacters?: number | undefined): string;
+    getGlobalDisplayValue(): string;
+    getHTMLValue(maxChars?: number | undefined): string;
+    getJournalEntry(mostRecent: number): string;
+    getName(): string;
+    nil(): boolean;
+    setDateNumericValue(milliseconds: number): void;
+    setDisplayValue(value: any): void;
+    setError(errorMessage: string): void;
+    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
+    setValue(value: any): void;
+    canCreate(): boolean;
+    canRead(): boolean;
+    canWrite(): boolean;
+    getAttribute(attributeName: string): string;
+    getED(): GlideElementDescriptor;
+    getLabel(): string;
+    getTableName(): string;
+}
+
+declare class GlideElementShortTableName implements IGlideElement { // sys_email.target_table    
+    protected constructor();
+    changes(): boolean;
+    changesFrom(o: any): boolean;
+    changesTo(o: any): boolean;
+    dateNumericValue(): number;
+    getBooleanAttribute(attributeName: string): boolean;
+    getChoices(dependent?: string | undefined): any[];
+    getChoiceValue(): string;
+    getDecryptedValue(): string;
+    getDisplayValue(maxCharacters?: number | undefined): string;
+    getGlobalDisplayValue(): string;
+    getHTMLValue(maxChars?: number | undefined): string;
+    getJournalEntry(mostRecent: number): string;
+    getName(): string;
+    nil(): boolean;
+    setDateNumericValue(milliseconds: number): void;
+    setDisplayValue(value: any): void;
+    setError(errorMessage: string): void;
+    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
+    setValue(value: any): void;
+    canCreate(): boolean;
+    canRead(): boolean;
+    canWrite(): boolean;
+    getAttribute(attributeName: string): string;
+    getED(): GlideElementDescriptor;
+    getLabel(): string;
+    getTableName(): string;
+}
+
+declare class GlideElementDataObject implements IGlideElement { // wf_activity.input    
+    protected constructor();
+    changes(): boolean;
+    changesFrom(o: any): boolean;
+    changesTo(o: any): boolean;
+    dateNumericValue(): number;
+    getBooleanAttribute(attributeName: string): boolean;
+    getChoices(dependent?: string | undefined): any[];
+    getChoiceValue(): string;
+    getDecryptedValue(): string;
+    getDisplayValue(maxCharacters?: number | undefined): string;
+    getGlobalDisplayValue(): string;
+    getHTMLValue(maxChars?: number | undefined): string;
+    getJournalEntry(mostRecent: number): string;
+    getName(): string;
+    nil(): boolean;
+    setDateNumericValue(milliseconds: number): void;
+    setDisplayValue(value: any): void;
+    setError(errorMessage: string): void;
+    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
+    setValue(value: any): void;
+    canCreate(): boolean;
+    canRead(): boolean;
+    canWrite(): boolean;
+    getAttribute(attributeName: string): string;
+    getED(): GlideElementDescriptor;
+    getLabel(): string;
+    getTableName(): string;
+}
+
+declare class GlideElementFullUTF8 implements IGlideElement { // sys_email.subject    
+    protected constructor();
+    changes(): boolean;
+    changesFrom(o: any): boolean;
+    changesTo(o: any): boolean;
+    dateNumericValue(): number;
+    getBooleanAttribute(attributeName: string): boolean;
+    getChoices(dependent?: string | undefined): any[];
+    getChoiceValue(): string;
+    getDecryptedValue(): string;
+    getDisplayValue(maxCharacters?: number | undefined): string;
+    getGlobalDisplayValue(): string;
+    getHTMLValue(maxChars?: number | undefined): string;
+    getJournalEntry(mostRecent: number): string;
+    getName(): string;
+    nil(): boolean;
+    setDateNumericValue(milliseconds: number): void;
+    setDisplayValue(value: any): void;
+    setError(errorMessage: string): void;
+    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
+    setValue(value: any): void;
+    canCreate(): boolean;
+    canRead(): boolean;
+    canWrite(): boolean;
+    getAttribute(attributeName: string): string;
+    getED(): GlideElementDescriptor;
+    getLabel(): string;
+    getTableName(): string;
+}
+
+declare class GlideElementIcon implements IGlideElement { // sys_run_level.icon    
+    protected constructor();
+    changes(): boolean;
+    changesFrom(o: any): boolean;
+    changesTo(o: any): boolean;
+    dateNumericValue(): number;
+    getBooleanAttribute(attributeName: string): boolean;
+    getChoices(dependent?: string | undefined): any[];
+    getChoiceValue(): string;
+    getDecryptedValue(): string;
+    getDisplayValue(maxCharacters?: number | undefined): string;
+    getGlobalDisplayValue(): string;
+    getHTMLValue(maxChars?: number | undefined): string;
+    getJournalEntry(mostRecent: number): string;
+    getName(): string;
+    nil(): boolean;
+    setDateNumericValue(milliseconds: number): void;
+    setDisplayValue(value: any): void;
+    setError(errorMessage: string): void;
+    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
+    setValue(value: any): void;
+    canCreate(): boolean;
+    canRead(): boolean;
+    canWrite(): boolean;
+    getAttribute(attributeName: string): string;
+    getED(): GlideElementDescriptor;
+    getLabel(): string;
+    getTableName(): string;
+}
+
+declare class GlideElementGlideVar implements IGlideElement { // sys_script_validator.internal_type    
+    protected constructor();
+    changes(): boolean;
+    changesFrom(o: any): boolean;
+    changesTo(o: any): boolean;
+    dateNumericValue(): number;
+    getBooleanAttribute(attributeName: string): boolean;
+    getChoices(dependent?: string | undefined): any[];
+    getChoiceValue(): string;
+    getDecryptedValue(): string;
+    getDisplayValue(maxCharacters?: number | undefined): string;
+    getGlobalDisplayValue(): string;
+    getHTMLValue(maxChars?: number | undefined): string;
+    getJournalEntry(mostRecent: number): string;
+    getName(): string;
+    nil(): boolean;
+    setDateNumericValue(milliseconds: number): void;
+    setDisplayValue(value: any): void;
+    setError(errorMessage: string): void;
+    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
+    setValue(value: any): void;
+    canCreate(): boolean;
+    canRead(): boolean;
+    canWrite(): boolean;
+    getAttribute(attributeName: string): string;
+    getED(): GlideElementDescriptor;
+    getLabel(): string;
+    getTableName(): string;
+}
+
+declare class GlideElementInternalType implements IGlideElement { // wf_activity.vars    
+    protected constructor();
+    changes(): boolean;
+    changesFrom(o: any): boolean;
+    changesTo(o: any): boolean;
+    dateNumericValue(): number;
+    getBooleanAttribute(attributeName: string): boolean;
+    getChoices(dependent?: string | undefined): any[];
+    getChoiceValue(): string;
+    getDecryptedValue(): string;
+    getDisplayValue(maxCharacters?: number | undefined): string;
+    getGlobalDisplayValue(): string;
+    getHTMLValue(maxChars?: number | undefined): string;
+    getJournalEntry(mostRecent: number): string;
+    getName(): string;
+    nil(): boolean;
+    setDateNumericValue(milliseconds: number): void;
+    setDisplayValue(value: any): void;
+    setError(errorMessage: string): void;
+    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
+    setValue(value: any): void;
+    canCreate(): boolean;
+    canRead(): boolean;
+    canWrite(): boolean;
+    getAttribute(attributeName: string): string;
+    getED(): GlideElementDescriptor;
+    getLabel(): string;
+    getTableName(): string;
+}
+
+declare class GlideElementSimpleNameValue implements IGlideElement { // syslog.context_map    
+    protected constructor();
+    changes(): boolean;
+    changesFrom(o: any): boolean;
+    changesTo(o: any): boolean;
+    dateNumericValue(): number;
+    getBooleanAttribute(attributeName: string): boolean;
+    getChoices(dependent?: string | undefined): any[];
+    getChoiceValue(): string;
+    getDecryptedValue(): string;
+    getDisplayValue(maxCharacters?: number | undefined): string;
+    getGlobalDisplayValue(): string;
+    getHTMLValue(maxChars?: number | undefined): string;
+    getJournalEntry(mostRecent: number): string;
+    getName(): string;
+    nil(): boolean;
+    setDateNumericValue(milliseconds: number): void;
+    setDisplayValue(value: any): void;
+    setError(errorMessage: string): void;
+    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
+    setValue(value: any): void;
+    canCreate(): boolean;
+    canRead(): boolean;
+    canWrite(): boolean;
+    getAttribute(attributeName: string): string;
+    getED(): GlideElementDescriptor;
+    getLabel(): string;
+    getTableName(): string;
+}
+
+declare class GlideElementNameValue implements IGlideElement { // wf_context.return_value    
+    protected constructor();
+    changes(): boolean;
+    changesFrom(o: any): boolean;
+    changesTo(o: any): boolean;
+    dateNumericValue(): number;
+    getBooleanAttribute(attributeName: string): boolean;
+    getChoices(dependent?: string | undefined): any[];
+    getChoiceValue(): string;
+    getDecryptedValue(): string;
+    getDisplayValue(maxCharacters?: number | undefined): string;
+    getGlobalDisplayValue(): string;
+    getHTMLValue(maxChars?: number | undefined): string;
+    getJournalEntry(mostRecent: number): string;
+    getName(): string;
+    nil(): boolean;
+    setDateNumericValue(milliseconds: number): void;
+    setDisplayValue(value: any): void;
+    setError(errorMessage: string): void;
+    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
+    setValue(value: any): void;
+    canCreate(): boolean;
+    canRead(): boolean;
+    canWrite(): boolean;
+    getAttribute(attributeName: string): string;
+    getED(): GlideElementDescriptor;
+    getLabel(): string;
+    getTableName(): string;
+}
+
+declare class GlideElementSourceName implements IGlideElement { // sys_update_version.record_name    
+    protected constructor();
+    changes(): boolean;
+    changesFrom(o: any): boolean;
+    changesTo(o: any): boolean;
+    dateNumericValue(): number;
+    getBooleanAttribute(attributeName: string): boolean;
+    getChoices(dependent?: string | undefined): any[];
+    getChoiceValue(): string;
+    getDecryptedValue(): string;
+    getDisplayValue(maxCharacters?: number | undefined): string;
+    getGlobalDisplayValue(): string;
+    getHTMLValue(maxChars?: number | undefined): string;
+    getJournalEntry(mostRecent: number): string;
+    getName(): string;
+    nil(): boolean;
+    setDateNumericValue(milliseconds: number): void;
+    setDisplayValue(value: any): void;
+    setError(errorMessage: string): void;
+    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
+    setValue(value: any): void;
+    canCreate(): boolean;
+    canRead(): boolean;
+    canWrite(): boolean;
+    getAttribute(attributeName: string): string;
+    getED(): GlideElementDescriptor;
+    getLabel(): string;
+    getTableName(): string;
+}
+
+declare class GlideElementSourceTable implements IGlideElement { // sys_update_log.set_table    
+    protected constructor();
+    changes(): boolean;
+    changesFrom(o: any): boolean;
+    changesTo(o: any): boolean;
+    dateNumericValue(): number;
+    getBooleanAttribute(attributeName: string): boolean;
+    getChoices(dependent?: string | undefined): any[];
+    getChoiceValue(): string;
+    getDecryptedValue(): string;
+    getDisplayValue(maxCharacters?: number | undefined): string;
+    getGlobalDisplayValue(): string;
+    getHTMLValue(maxChars?: number | undefined): string;
+    getJournalEntry(mostRecent: number): string;
+    getName(): string;
+    nil(): boolean;
+    setDateNumericValue(milliseconds: number): void;
+    setDisplayValue(value: any): void;
+    setError(errorMessage: string): void;
+    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
+    setValue(value: any): void;
+    canCreate(): boolean;
+    canRead(): boolean;
+    canWrite(): boolean;
+    getAttribute(attributeName: string): string;
+    getED(): GlideElementDescriptor;
+    getLabel(): string;
+    getTableName(): string;
+}
+
+declare class GlideElementPassword2 implements IGlideElement { // sys_data_source.jdbc_password    
+    protected constructor();
+    changes(): boolean;
+    changesFrom(o: any): boolean;
+    changesTo(o: any): boolean;
+    dateNumericValue(): number;
+    getBooleanAttribute(attributeName: string): boolean;
+    getChoices(dependent?: string | undefined): any[];
+    getChoiceValue(): string;
+    getDecryptedValue(): string;
+    getDisplayValue(maxCharacters?: number | undefined): string;
+    getGlobalDisplayValue(): string;
+    getHTMLValue(maxChars?: number | undefined): string;
+    getJournalEntry(mostRecent: number): string;
+    getName(): string;
+    nil(): boolean;
+    setDateNumericValue(milliseconds: number): void;
+    setDisplayValue(value: any): void;
+    setError(errorMessage: string): void;
+    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
+    setValue(value: any): void;
+    canCreate(): boolean;
+    canRead(): boolean;
+    canWrite(): boolean;
+    getAttribute(attributeName: string): string;
+    getED(): GlideElementDescriptor;
+    getLabel(): string;
+    getTableName(): string;
+}
 
 /**
  * A Glide element that references another GlideRecord.
  * @class GlideElementReference
  * @todo Verify whether Packages.com.glide.script.glide_elements.GlideReference exists
  */
-declare class GlideElementReference extends $$element.StringBased<string, GlideElementReference, string> implements $$element.IReference<IGlideTableProperties, GlideRecord>, IGlideTableProperties {
+declare class GlideElementReference implements IGlideElement { // sys_dictionary.internal_type
     protected constructor();
-    /**
-     * Created by
-     * @type {$$property.Element}
-     * @memberof GlideElementReference
-     */
-    sys_created_by: $$property.Element;
-
-    /**
-     * Created
-     * @type {$$property.GlideObject}
-     * @memberof GlideElementReference
-     * @description Internal type is "glide_date_time"
-     */
-    sys_created_on: $$property.GlideObject;
-
-    /**
-     * Sys ID
-     * @type {$$property.Element}
-     * @memberof GlideElementReference
-     * @description Internal type is "GUID"
-     */
-    sys_id: $$property.Element;
-
-    /**
-     * Updates
-     * @type {$$property.Numeric}
-     * @memberof GlideElementReference
-     */
-    sys_mod_count: $$property.Numeric;
-
-    /**
-     * Updated by
-     * @type {$$property.Element}
-     * @memberof GlideElementReference
-     */
-    sys_updated_by: $$property.Element;
-
-    /**
-     * Updated
-     * @type {$$property.GlideObject}
-     * @memberof GlideElementReference
-     * @description Internal type is "glide_date_time"
-     */
-    sys_updated_on: $$property.GlideObject;
+    changes(): boolean;
+    changesFrom(o: any): boolean;
+    changesTo(o: any): boolean;
+    dateNumericValue(): number;
+    getBooleanAttribute(attributeName: string): boolean;
+    getChoices(dependent?: string | undefined): any[];
+    getChoiceValue(): string;
+    getDecryptedValue(): string;
+    getDisplayValue(maxCharacters?: number | undefined): string;
+    getGlobalDisplayValue(): string;
+    getHTMLValue(maxChars?: number | undefined): string;
+    getJournalEntry(mostRecent: number): string;
+    getName(): string;
+    nil(): boolean;
+    setDateNumericValue(milliseconds: number): void;
+    setDisplayValue(value: any): void;
+    setError(errorMessage: string): void;
+    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
+    setValue(value: any): void;
+    canCreate(): boolean;
+    canRead(): boolean;
+    canWrite(): boolean;
+    getAttribute(attributeName: string): string;
+    getED(): GlideElementDescriptor;
+    getLabel(): string;
+    getTableName(): string;
     /**
      * Gets the table name for a reference element.
      * @memberof GlideElementReference
@@ -1354,104 +2489,168 @@ declare class GlideElementReference extends $$element.StringBased<string, GlideE
      * @description
      */
     getRefRecord(): GlideRecord | null | undefined;
-    /**
-     * Determines if the previous value of the current field matches the specified object.
-     * @memberof GlideElementReference
-     * @param {GlideRecord | $$rhino.Nilable<$$property.Reference>} o - An object value to check against the previous value of the current field.
-     * @returns {boolean} True if the previous value matches, false if it does not.
-     * @description 
-     */
-    changesFrom(o: GlideRecord | $$rhino.Nilable<$$property.Reference>): boolean;
-    /**
-     * Determines if the new value of a field, after a change, matches the specified object.
-     * @memberof GlideElementReference
-     * @param {GlideRecord | $$rhino.Nilable<$$property.Reference>} o - An object value to check against the new value of the current field.
-     * @returns {boolean} True if the previous value matches, false if it does not.
-     * @description 
-     */
-    changesTo(o: GlideRecord | $$rhino.Nilable<$$property.Reference>): boolean;
-    /**
-     * Sets the value of a field.
-     * @memberof GlideElementReference
-     * @param {GlideRecord | $$rhino.Nilable<$$property.Reference>} value - Object value to set the field to.
-     * @description
-     */
-    setValue(value: GlideRecord | $$rhino.Nilable<$$property.Reference>): void;
+}
+
+declare class GlideElementWikiText implements IGlideElement { // sys_ui_help.wiki_text    
+    protected constructor();
+    changes(): boolean;
+    changesFrom(o: any): boolean;
+    changesTo(o: any): boolean;
+    dateNumericValue(): number;
+    getBooleanAttribute(attributeName: string): boolean;
+    getChoices(dependent?: string | undefined): any[];
+    getChoiceValue(): string;
+    getDecryptedValue(): string;
+    getDisplayValue(maxCharacters?: number | undefined): string;
+    getGlobalDisplayValue(): string;
+    getHTMLValue(maxChars?: number | undefined): string;
+    getJournalEntry(mostRecent: number): string;
+    getName(): string;
+    nil(): boolean;
+    setDateNumericValue(milliseconds: number): void;
+    setDisplayValue(value: any): void;
+    setError(errorMessage: string): void;
+    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
+    setValue(value: any): void;
+    canCreate(): boolean;
+    canRead(): boolean;
+    canWrite(): boolean;
+    getAttribute(attributeName: string): string;
+    getED(): GlideElementDescriptor;
+    getLabel(): string;
+    getTableName(): string;
+}
+
+declare class GlideElementWorkflow implements IGlideElement { // sc_req_item.stage    
+    protected constructor();
+    changes(): boolean;
+    changesFrom(o: any): boolean;
+    changesTo(o: any): boolean;
+    dateNumericValue(): number;
+    getBooleanAttribute(attributeName: string): boolean;
+    getChoices(dependent?: string | undefined): any[];
+    getChoiceValue(): string;
+    getDecryptedValue(): string;
+    getDisplayValue(maxCharacters?: number | undefined): string;
+    getGlobalDisplayValue(): string;
+    getHTMLValue(maxChars?: number | undefined): string;
+    getJournalEntry(mostRecent: number): string;
+    getName(): string;
+    nil(): boolean;
+    setDateNumericValue(milliseconds: number): void;
+    setDisplayValue(value: any): void;
+    setError(errorMessage: string): void;
+    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
+    setValue(value: any): void;
+    canCreate(): boolean;
+    canRead(): boolean;
+    canWrite(): boolean;
+    getAttribute(attributeName: string): string;
+    getED(): GlideElementDescriptor;
+    getLabel(): string;
+    getTableName(): string;
 }
 
 declare interface IGlideElementVariables extends IGlideElement {
 
 }
 
-declare class GlideElementScript extends $$element.StringBased<string, GlideElementScript, string> { protected constructor(); }
-declare class GlideElementShortFieldName extends $$element.StringBased<string, GlideElementShortFieldName, string> { protected constructor(); }
-declare class GlideElementShortTableName extends $$element.StringBased<string, GlideElementShortTableName, string> { protected constructor(); }
-declare class GlideElementSourceId extends $$element.StringBased<string, GlideElementSourceId, string> { protected constructor(); }
-declare class GlideElementSourceName extends $$element.StringBased<string, GlideElementSourceName, string> { protected constructor(); }
-declare class GlideElementSourceTable extends $$element.StringBased<string, GlideElementSourceTable, string> { protected constructor(); }
-declare class GlideElementSysClassName extends $$element.StringBased<string, GlideElementSysClassName, string> { protected constructor(); }
-declare class GlideElementTranslatedField extends $$element.StringBased<string, GlideElementTranslatedField, string> { protected constructor(); }
-declare class GlideElementTranslatedHTML extends $$element.StringBased<string, GlideElementTranslatedHTML, string> { protected constructor(); }
-declare class GlideElementTranslatedText extends $$element.StringBased<string, GlideElementTranslatedText, string> { protected constructor(); }
-declare class GlideElementURL extends $$element.StringBased<string, GlideElementURL, string> { protected constructor(); }
-declare class GlideElementUserImage extends $$element.StringBased<string, GlideElementUserImage, string> { protected constructor(); }
-declare class GlideElementVariableConditions extends $$element.StringBased<string, GlideElementVariableConditions, string> { protected constructor(); }
-declare class GlideElementVariables extends $$element.StringBased<string, GlideElementVariables, string> { protected constructor(); }
-declare class GlideElementVariable extends $$element.StringBased<string, GlideElementVariable, string> { protected constructor(); }
-declare class GlideElementWikiText extends $$element.StringBased<string, GlideElementWikiText, string> { protected constructor(); }
-declare class GlideElementWorkflow extends $$element.StringBased<string, GlideElementWorkflow, string> { protected constructor(); }
-declare class GlideElementWorkflowConditions extends $$element.StringBased<string, GlideElementWorkflowConditions, string> { protected constructor(); }
+declare class GlideElementSourceId implements IGlideElement {
+    protected constructor();
+    changes(): boolean;
+    changesFrom(o: any): boolean;
+    changesTo(o: any): boolean;
+    dateNumericValue(): number;
+    getBooleanAttribute(attributeName: string): boolean;
+    getChoices(dependent?: string | undefined): any[];
+    getChoiceValue(): string;
+    getDecryptedValue(): string;
+    getDisplayValue(maxCharacters?: number | undefined): string;
+    getGlobalDisplayValue(): string;
+    getHTMLValue(maxChars?: number | undefined): string;
+    getJournalEntry(mostRecent: number): string;
+    getName(): string;
+    nil(): boolean;
+    setDateNumericValue(milliseconds: number): void;
+    setDisplayValue(value: any): void;
+    setError(errorMessage: string): void;
+    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
+    setValue(value: any): void;
+    canCreate(): boolean;
+    canRead(): boolean;
+    canWrite(): boolean;
+    getAttribute(attributeName: string): string;
+    getED(): GlideElementDescriptor;
+    getLabel(): string;
+    getTableName(): string;
+}
+
+declare class GlideElementVariableConditions implements IGlideElement {
+    protected constructor();
+    changes(): boolean;
+    changesFrom(o: any): boolean;
+    changesTo(o: any): boolean;
+    dateNumericValue(): number;
+    getBooleanAttribute(attributeName: string): boolean;
+    getChoices(dependent?: string | undefined): any[];
+    getChoiceValue(): string;
+    getDecryptedValue(): string;
+    getDisplayValue(maxCharacters?: number | undefined): string;
+    getGlobalDisplayValue(): string;
+    getHTMLValue(maxChars?: number | undefined): string;
+    getJournalEntry(mostRecent: number): string;
+    getName(): string;
+    nil(): boolean;
+    setDateNumericValue(milliseconds: number): void;
+    setDisplayValue(value: any): void;
+    setError(errorMessage: string): void;
+    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
+    setValue(value: any): void;
+    canCreate(): boolean;
+    canRead(): boolean;
+    canWrite(): boolean;
+    getAttribute(attributeName: string): string;
+    getED(): GlideElementDescriptor;
+    getLabel(): string;
+    getTableName(): string;
+}
+
+declare class GlideElementVariable implements IGlideElement {
+    protected constructor();
+    changes(): boolean;
+    changesFrom(o: any): boolean;
+    changesTo(o: any): boolean;
+    dateNumericValue(): number;
+    getBooleanAttribute(attributeName: string): boolean;
+    getChoices(dependent?: string | undefined): any[];
+    getChoiceValue(): string;
+    getDecryptedValue(): string;
+    getDisplayValue(maxCharacters?: number | undefined): string;
+    getGlobalDisplayValue(): string;
+    getHTMLValue(maxChars?: number | undefined): string;
+    getJournalEntry(mostRecent: number): string;
+    getName(): string;
+    nil(): boolean;
+    setDateNumericValue(milliseconds: number): void;
+    setDisplayValue(value: any): void;
+    setError(errorMessage: string): void;
+    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
+    setValue(value: any): void;
+    canCreate(): boolean;
+    canRead(): boolean;
+    canWrite(): boolean;
+    getAttribute(attributeName: string): string;
+    getED(): GlideElementDescriptor;
+    getLabel(): string;
+    getTableName(): string;
+}
 
 /**
  * Scoped GlideRecord is used for database operations.
  * @class GlideRecord
  * @description A GlideRecord contains both records and fields. For information about GlideRecordSecure, which is a class inherited from GlideRecord that performs the same functions as GlideRecord, and also enforces ACLs, see the GlideServer APIs .Always test queries on a sub-production instance prior to deploying them on a production instance. An incorrectly constructed encoded query, such as including an invalid field name, produces an invalid query. When the invalid query is run, the invalid part of the query condition is dropped, and the results are based on the valid part of the query, which may return all records from the table. Using an insert(), update(), deleteRecord(), or deleteMultiple() method on bad query results can result in data loss.You can set the glide.invalid_query.returns_no_rows system property to true to have queries with invalid encoded queries return no records.
  */
-declare class GlideRecord implements IGlideTableProperties, $$element.IDbObject {
-    /**
-     * Created by
-     * @type {$$property.Element}
-     * @memberof GlideRecord
-     */
-    sys_created_by: $$property.Element;
-
-    /**
-     * Created
-     * @type {$$property.GlideObject}
-     * @memberof GlideRecord
-     * @description Internal type is "glide_date_time"
-     */
-    sys_created_on: $$property.GlideObject;
-
-    /**
-     * Sys ID
-     * @type {$$property.Element}
-     * @memberof GlideRecord
-     * @description Internal type is "GUID"
-     */
-    sys_id: $$property.Element;
-
-    /**
-     * Updates
-     * @type {$$property.Numeric}
-     * @memberof GlideRecord
-     */
-    sys_mod_count: $$property.Numeric;
-
-    /**
-     * Updated by
-     * @type {$$property.Element}
-     * @memberof GlideRecord
-     */
-    sys_updated_by: $$property.Element;
-
-    /**
-     * Updated
-     * @type {$$property.GlideObject}
-     * @memberof GlideRecord
-     * @description Internal type is "glide_date_time"
-     */
-    sys_updated_on: $$property.GlideObject;
+declare class GlideRecord implements IDbObject {
     /**
      * Adds a filter to return active records.
      * @memberof GlideRecord
@@ -1581,11 +2780,11 @@ declare class GlideRecord implements IGlideTableProperties, $$element.IDbObject 
     /**
      * Returns the specified record in an instantiated GlideRecord object.
      * @memberof GlideRecord
-     * @param {$$property.Element} sys_id - sys_id to match.
+     * @param {$$rhino.String} sys_id - sys_id to match.
      * @returns {boolean} Flag that indicates whether the requested record was located - true: Record was found; false: Record was not found.
      * @description 
      */
-    get(sys_id: $$property.Element): boolean;
+    get(sys_id: $$rhino.String): boolean;
     /**
      * Returns the specified record in an instantiated GlideRecord object.
      * @memberof GlideRecord
@@ -3076,399 +4275,3 @@ declare class GlideUser {
 }
 
 declare var gs: GlideSystem;
-
-//#region Class.create
-
-//#region Base definitions
-
-declare interface ICustomClassBase<B extends ICustomClassBase<B, N>, N extends string> {
-    /**
-     * The type name of the class.
-     * @type {N}
-     * @memberof ICustomClass
-     */
-    type: N;
-}
-
-// #endregion
-
-//#region Prototype definitions
-
-/**
- * Prototype for objects whose constructor has no arguments.
- * @interface ICustomClassPrototype0
- * @template B - The base type shared by the prototype and the object instance.
- * @template P - The type of prototype (self-referencing type)
- * @template N - The value of the name property for objects constructed with this prototype.
- */
-declare interface ICustomClassPrototype0<B extends ICustomClassBase<B, N>, P extends B & ICustomClassPrototype0<B, P, N>, N extends string> extends ICustomClassBase<B, N> {
-    /**
-     * Called by {@see Class#create} to initialize the newly instantiated object
-     * @this {P} The current "this" object.
-     * @memberof ICustomClassPrototype0
-     */
-    initialize(this: P): void;
-}
-
-/**
- * Prototype for objects whose constructor has one argument.
- * @interface ICustomClassPrototype1
- * @template B - The base type shared by the prototype and the object instance.
- * @template P - The type of prototype (self-referencing type)
- * @template N - The value of the type property for objects constructed with this prototype.
- * @template A - The argument type.
- */
-declare interface ICustomClassPrototype1<B extends ICustomClassBase<B, N>, P extends B & ICustomClassPrototype1<B, P, N, A>, N extends string, A> extends ICustomClassBase<B, N> {
-    /**
-     * Called by {@see Class#create} to initialize the newly instantiated object
-     * @this {P} The current "this" object.
-     * @param {A} arg - The argument provided to the constructor.
-     * @memberof ICustomClassPrototype1
-     */
-    initialize(this: P, arg: A): void;
-}
-
-/**
- * Prototype for objects whose constructor has 2 arguments.
- * @interface ICustomClassPrototype2
- * @template B - The base type shared by the prototype and the object instance.
- * @template P - The type of prototype (self-referencing type)
- * @template N - The value of the type property for objects constructed with this prototype.
- * @template A0 - The first argument type.
- * @template A1 - The second argument type.
- */
-declare interface ICustomClassPrototype2<B extends ICustomClassBase<B, N>, P extends B & ICustomClassPrototype2<B, P, N, A0, A1>, N extends string, A0, A1> extends ICustomClassBase<B, N> {
-    /**
-     * Called by {@see Class#create} to initialize the newly instantiated object
-     * @this {P} The current "this" object.
-     * @param {A0} arg0 - The first argument provided to the constructor.
-     * @param {A1} arg1 - The second argument provided to the constructor.
-     * @memberof ICustomClassPrototype2
-     */
-    initialize(this: P, arg0: A0, arg1: A1): void;
-}
-
-/**
- * Prototype for objects whose constructor has 3 arguments.
- * @interface ICustomClassPrototype3
- * @template B - The base type shared by the prototype and the object instance.
- * @template P - The type of prototype (self-referencing type)
- * @template N - The value of the type property for objects constructed with this prototype.
- * @template A0 - The first argument type.
- * @template A1 - The second argument type.
- * @template A2 - The third argument type.
- */
-declare interface ICustomClassPrototype3<B extends ICustomClassBase<B, N>, P extends B & ICustomClassPrototype3<B, P, N, A0, A1, A2>, N extends string, A0, A1, A2> extends ICustomClassBase<B, N> {
-    /**
-     * Called by {@see Class#create} to initialize the newly instantiated object
-     * @this {P} The current "this" object.
-     * @param {A0} arg0 - The first argument provided to the constructor.
-     * @param {A1} arg1 - The second argument provided to the constructor.
-     * @param {A2} arg2 - The third argument provided to the constructor.
-     * @memberof ICustomClassPrototype3
-     */
-    initialize(this: P, arg0: A0, arg1: A1, arg2: A2): void;
-}
-
-/**
- * Prototype for objects whose constructor has 4 arguments.
- * @interface ICustomClassPrototype4
- * @template B - The base type shared by the prototype and the object instance.
- * @template P - The type of prototype (self-referencing type)
- * @template N - The value of the type property for objects constructed with this prototype.
- * @template A0 - The first argument type.
- * @template A1 - The second argument type.
- * @template A2 - The third argument type.
- * @template A3 - The fourth argument type.
- */
-declare interface ICustomClassPrototype4<B extends ICustomClassBase<B, N>, P extends B & ICustomClassPrototype4<B, P, N, A0, A1, A2, A3>, N extends string, A0, A1, A2, A3> extends ICustomClassBase<B, N> {
-    /**
-     * Called by {@see Class#create} to initialize the newly instantiated object
-     * @this {P} The current "this" object.
-     * @param {A0} arg0 - The first argument provided to the constructor.
-     * @param {A1} arg1 - The second argument provided to the constructor.
-     * @param {A2} arg2 - The third argument provided to the constructor.
-     * @param {A3} arg3 - The fourth argument provided to the constructor.
-     * @memberof ICustomClassPrototype4
-     */
-    initialize(this: P, arg0: A0, arg1: A1, arg2: A2, arg3: A3): void;
-}
-
-/**
- * Prototype for objects whose constructor has a variable nubmer of arguments.
- * @interface ICustomClassPrototypeN
- * @template B - The base type shared by the prototype and the object instance.
- * @template P - The type of prototype (self-referencing type)
- * @template N - The value of the type property for objects constructed with this prototype.
- */
-declare interface ICustomClassPrototypeN<B extends ICustomClassBase<B, N>, P extends B & ICustomClassPrototypeN<B, P, N>, N extends string> extends ICustomClassBase<B, N> {
-    /**
-     * Called by {@see Class#create} to initialize the newly instantiated object
-     * @this {P} The current "this" object.
-     * @param {...any[]} args- The arguments provided to the constructor.
-     * @memberof ICustomClassPrototypeN
-     */
-    initialize(this: P, ...args: any[]): void;
-}
-
-// #endregion
-
-//#region Constructor definitions
-
-/**
- * A class constructor that has no arguments.
- * @interface CustomClassConstructor0
- * @template B - The base type shared by the prototype and the object instance.
- * @template P - The type of prototype.
- * @template I - The constructed object type.
- */
-declare interface CustomClassConstructor0<B extends ICustomClassBase<B, string>, P extends B & ICustomClassPrototype0<B, P, string>, I extends B> {
-    /**
-     * Creates an instance of CustomClassConstructor0.
-     * @param {A} arg - The constructor argument.
-     * @memberof CustomClassConstructor0
-     */
-    new(): I;
-
-    /**
-     * Creates an instance of CustomClassConstructor0.
-     * @param {A} arg - The constructor argument.
-     * @memberof CustomClassConstructor0
-     */
-    (): I;
-
-    /**
-     * The prototype that will be used to create the new object.
-     * @type {P}
-     * @memberof CustomClassConstructor0
-     */
-    prototype: P;
-}
-
-/**
- * A class constructor that has 1 argument.
- * @interface CustomClassConstructor1
- * @template B - The base type shared by the prototype and the object instance.
- * @template P - The type of prototype.
- * @template I - The constructed object type.
- * @template A - The constructor argument type.
- */
-declare interface CustomClassConstructor1<B extends ICustomClassBase<B, string>, P extends B & ICustomClassPrototype1<B, P, string, A>, I extends B, A> {
-    /**
-     * Creates an instance of CustomClassConstructor1.
-     * @param {A} arg - The constructor argument.
-     * @memberof CustomClassConstructor1
-     * @returns {I} - The new object instance.
-     */
-    new(arg: A): I;
-
-    /**
-     * Creates an instance of CustomClassConstructor1.
-     * @param {A} arg - The constructor argument.
-     * @memberof CustomClassConstructor1
-     * @returns {I} - The new object instance.
-     */
-    (arg: A): I;
-
-    /**
-     * The prototype that will be used to create the new object.
-     * @type {P}
-     * @memberof CustomClassConstructor1
-     */
-    prototype: P;
-}
-
-/**
- * A class constructor that has 2 arguments.
- * @interface CustomClassConstructor2
- * @template B - The base type shared by the prototype and the object instance.
- * @template P - The type of prototype.
- * @template I - The constructed object type.
- * @template A0 - The argument type for the first constructor argument.
- * @template A1 - The argument type for the second constructor argument.
- */
-declare interface CustomClassConstructor2<B extends ICustomClassBase<B, string>, P extends B & ICustomClassPrototype2<B, P, string, A0, A1>, I extends B, A0, A1> {
-    /**
-     * Creates an instance of CustomClassConstructor2.
-     * @param {A0} arg0 - The first constructor argument.
-     * @param {A1} arg1 - The second constructor argument.
-     * @memberof CustomClassConstructor2
-     * @returns {I} - The new object instance.
-     */
-    new(arg0: A0, arg1: A1): I;
-
-    /**
-     * Creates an instance of CustomClassConstructor2.
-     * @param {A0} arg0 - The first constructor argument.
-     * @param {A1} arg1 - The second constructor argument.
-     * @memberof CustomClassConstructor2
-     * @returns {I} - The new object instance.
-     */
-    (arg0: A0, arg1: A1): I;
-
-    /**
-     * The prototype that will be used to create the new object.
-     * @type {P}
-     * @memberof CustomClassConstructor2
-     */
-    prototype: P;
-}
-
-/**
- * A class constructor that has 3 arguments.
- * @interface CustomClassConstructor3
- * @template B - The base type shared by the prototype and the object instance.
- * @template P - The type of prototype.
- * @template I - The constructed object type.
- * @template A0 - The argument type for the first constructor argument.
- * @template A1 - The argument type for the second constructor argument.
- * @template A2 - The argument type for the third constructor argument.
- */
-declare interface CustomClassConstructor3<B extends ICustomClassBase<B, string>, P extends B & ICustomClassPrototype3<B, P, string, A0, A1, A2>, I extends B, A0, A1, A2> {
-    /**
-     * Creates an instance of CustomClassConstructor3.
-     * @param {A0} arg0 - The first constructor argument.
-     * @param {A1} arg1 - The second constructor argument.
-     * @param {A2} arg2 - The third constructor argument.
-     * @memberof CustomClassConstructor3
-     * @returns {I} - The new object instance.
-     */
-    new(arg0: A0, arg1: A1, arg2: A2): I;
-
-    /**
-     * Creates an instance of CustomClassConstructor3.
-     * @param {A0} arg0 - The first constructor argument.
-     * @param {A1} arg1 - The second constructor argument.
-     * @param {A2} arg2 - The third constructor argument.
-     * @memberof CustomClassConstructor3
-     * @returns {I} - The new object instance.
-     */
-    (arg0: A0, arg1: A1, arg2: A2): I;
-
-    /**
-     * The prototype that will be used to create the new object.
-     * @type {P}
-     * @memberof CustomClassConstructor3
-     */
-    prototype: P;
-}
-
-/**
- * A class constructor that has 4 arguments.
- * @interface CustomClassConstructor4
- * @template B - The base type shared by the prototype and the object instance.
- * @template P - The type of prototype.
- * @template I - The constructed object type.
- * @template A0 - The argument type for the first constructor argument.
- * @template A1 - The argument type for the second constructor argument.
- * @template A2 - The argument type for the third constructor argument.
- * @template A3 - The argument type for the fourth constructor argument.
- */
-declare interface CustomClassConstructor4<B extends ICustomClassBase<B, string>, P extends B & ICustomClassPrototype4<B, P, string, A0, A1, A2, A3>, I extends B, A0, A1, A2, A3> {
-    /**
-     * Creates an instance of CustomClassConstructor4.
-     * @param {A0} arg0 - The first constructor argument.
-     * @param {A1} arg1 - The second constructor argument.
-     * @param {A2} arg2 - The third constructor argument.
-     * @param {A3} arg3 - The fourth constructor argument.
-     * @memberof CustomClassConstructor4
-     * @returns {I} - The new object instance.
-     */
-    new(arg0: A0, arg1: A1, arg2: A2, arg3: A3): I;
-
-    /**
-     * Creates an instance of CustomClassConstructor4.
-     * @param {A0} arg0 - The first constructor argument.
-     * @param {A1} arg1 - The second constructor argument.
-     * @param {A2} arg2 - The third constructor argument.
-     * @param {A3} arg3 - The fourth constructor argument.
-     * @memberof CustomClassConstructor4
-     * @returns {I} - The new object instance.
-     */
-    (arg0: A0, arg1: A1, arg2: A2, arg3: A3): I;
-
-    /**
-     * The prototype that will be used to create the new object.
-     * @type {P}
-     * @memberof CustomClassConstructor4
-     */
-    prototype: P;
-}
-
-/**
- * A class constructor that has a variable number arguments.
- * @interface CustomClassConstructorN
- * @template B - The base type shared by the prototype and the object instance.
- * @template P - The type of prototype.
- * @template I - The constructed object type.
- */
-declare interface CustomClassConstructorN<B extends ICustomClassBase<B, string>, P extends B & ICustomClassPrototypeN<B, P, string>, I extends B> {
-    /**
-     * Creates an instance of CustomClassConstructorN.
-     * @param {...any[]} args - The constructor arguments.
-     * @memberof CustomClassConstructorN
-     * @returns {I} - The new object instance.
-     */
-    new(...args: any[]): I;
-
-    /**
-     * Creates an instance of CustomClassConstructorN.
-     * @param {...any[]} args - The constructor arguments.
-     * @memberof CustomClassConstructorN
-     * @returns {I} - The new object instance.
-     */
-    (): I;
-
-    /**
-     * The prototype that will be used to create the new object.
-     * @type {P}
-     * @memberof CustomClassConstructorN
-     */
-    prototype: P;
-}
-
-// #endregion
-
-declare var Class: {
-    /**
-     * Creates a ServiceNow-compatible object constructor.
-     * @template B - The base type shared by the prototype and the object instance.
-     * @template C - The constructor type.
-     * @returns {C} - The ServiceNow-compatible object constructor.
-     */
-    create<B extends ICustomClassBase<B, string>, C extends CustomClassConstructor0<B, any, any> | CustomClassConstructor1<B, any, any, any> |
-        CustomClassConstructor2<B, any, any, any, any> | CustomClassConstructor3<B, any, any, any, any, any> | CustomClassConstructor4<B, any, any, any, any, any, any> |
-        CustomClassConstructorN<B, any, any>>(): C;
-    create2<C extends CustomClassConstructor0<any, ICustomClassPrototype0<any, any, string>, ICustomClassPrototype0<any, any, string>> |
-        CustomClassConstructor1<any, ICustomClassPrototype1<any, any, string, any>, ICustomClassPrototype1<any, any, string, any>, any> |
-        CustomClassConstructor2<any, ICustomClassPrototype2<any, any, string, any, any>, ICustomClassPrototype2<any, any, string, any, any>, any, any> |
-        CustomClassConstructor3<any, ICustomClassPrototype3<any, any, string, any, any, any>, ICustomClassPrototype3<any, any, string, any, any, any>, any, any, any> |
-        CustomClassConstructor4<any, ICustomClassPrototype4<any, any, string, any, any, any, any>, ICustomClassPrototype4<any, any, string, any, any, any, any>, any, any, any, any> |
-        CustomClassConstructorN<any, ICustomClassPrototypeN<any, any, string>, ICustomClassPrototypeN<any, any, string>>>(): C;
-};
-
-declare interface ObjectConstructor {
-    extendsObject<B, E extends Omit<ICustomClassPrototype0<any, any, string>, "initialize">, P extends Omit<B, "type"> & E>(base: B, proto: E): P;
-}
-
-declare interface IAbstractAjaxProcessor {
-    CALLABLE_PREFIX: 'ajaxFunction_';
-    process(): any;
-    newItem(name: string): Packages.org.w3c.dom.Element;
-    getParameter(name: string): $$rhino.String;
-    getDocument(): XMLDocument;
-    getRootElement(): Packages.org.w3c.dom.Element;
-    getName(): $$rhino.String;
-    getType(): $$rhino.String;
-    getChars(): $$rhino.String;
-    setAnswer(value: any): void;
-    setError(error: any): void;
-    type: "AbstractAjaxProcessor";
-}
-declare interface AbstractAjaxProcessorConstructor {
-    new(value?: any): IAbstractAjaxProcessor;
-    (): any;
-    (value: any): any;
-}
-
-// #endregion

@@ -1,46 +1,89 @@
+/// <reference path="$$rhino.d.ts" />
+
+declare type GlideRecordOperationType = "delete" | "insert" | "update";
+
+/**
+ * Type representing Java packages.
+ * Since access to Packages.* is not allowed in scoped apps, all classes will be represented as interfaces.
+ * This was done to avoid a scenario where the source code may reference a Java class using Packages.* and transpile
+ * successfully, but fail when used in ServiceNow.
+ * @namespace Packages
+ */
 declare namespace Packages {
+    /**
+     * Represents a Java array.
+     * @typedef {(ArrayLike<E> & java.lang.Object)} Array
+     * @template E - The type of elements in this array.
+     */
+    export type Array<E> = ArrayLike<E> & java.lang.Object;
+
     export namespace java {
+        export namespace io {
+            /**
+             * Represents the "InputStream" class.
+             * @export
+             * @interface InputStream
+             * @extends {java.lang.Object}
+             */
+            export interface InputStream extends java.lang.Object {
+                read(): $$rhino.Number;
+                close(): void;
+                reset(): void;
+            }
+        }
+
         export namespace lang {
             /**
-             * Base Java object.
+             * Represents the base Java object class.
              * @export
-             * @class Object
+             * @interface Object
+             * @see {@link https://docs.oracle.com/javase/10/docs/api/java/lang/Object.html}
              */
-            export class Object {
-                protected constructor();
+            export interface Object {
                 /**
                  * Indicates whether some other object is "equal to" this one.
-                 * @param obj {object}
-                 * @returns {Boolean}
+                 * @param obj {*}
+                 * @returns {$$rhino.Boolean}
                  */
-                equals(obj: object): Boolean;
+                equals(obj: any): $$rhino.Boolean;
 
                 /**
                  * Returns a hash code value for the object.
-                 * @returns {Integer}
+                 * @returns {$$rhino.Number}
                  */
-                hashCode(): Integer;
+                hashCode(): $$rhino.Number;
 
                 /**
                  * Returns a string representation of the object.
-                 * @returns {String}
+                 * @returns {$$rhino.String}
                  */
-                toString(): String;
+                toString(): $$rhino.String;
             }
+
+            /**
+             * This interface imposes a total ordering on the objects of each class that implements it.
+             * @export
+             * @interface Comparable
+             * @template T - The type of objects that this object may be compared to.
+             * @see {@link https://docs.oracle.com/javase/10/docs/api/java/lang/Comparable.html}
+             */
             export interface Comparable<T> {
                 /**
                  * Compares this object with the specified object for order.
-                 * @param o {T}
-                 * @returns {Integer}
+                 * @param o {T} The object to be compared.
+                 * @returns {$$rhino.Number} A negative value if this object is less than the specified object;
+                 * A non-zero positive number if this object is grater than the specified object;
+                 * otherwise, zero if this object is equal to the specified object.
                  */
-                compareTo(o: T): Integer;
-
-                /**
-                 * Converts this Date object to a String of the form:
-                 * @returns {lang.String}
-                 */
-                toString(): lang.String;
+                compareTo(o: T): $$rhino.Number;
             }
+
+            /**
+             * A readable sequence of char values.
+             * @export
+             * @interface CharSequence
+             * @see {@link https://docs.oracle.com/javase/10/docs/api/java/lang/CharSequence.html}
+             */
             export interface CharSequence {
                 /**
                  * Returns the char value at the specified index.
@@ -51,9 +94,9 @@ declare namespace Packages {
 
                 /**
                  * Returns the length of this character sequence.
-                 * @returns {Integer}
+                 * @returns {$$rhino.Number}
                  */
-                length(): Integer;
+                length(): $$rhino.Number;
 
                 /**
                  * Returns a new CharSequence that is a subsequence of this sequence.
@@ -65,10 +108,18 @@ declare namespace Packages {
 
                 /**
                  * Returns a string containing the characters in this sequence in the same order as this sequence.
-                 * @returns {String}
+                 * @returns {$$rhino.String}
                  */
-                toString(): String;
+                toString(): $$rhino.String;
             }
+
+            /**
+             * Allows an object to be the target of the "for-each loop" statement.
+             * @export
+             * @interface Iterable
+             * @template T - The type of elements returned by the iterator.
+             * @see {@link https://docs.oracle.com/javase/10/docs/api/java/lang/Iterable.html}
+             */
             export interface Iterable<T> {
                 /**
                  * Returns an iterator over the elements in this collection in proper sequence.
@@ -76,8 +127,16 @@ declare namespace Packages {
                  */
                 iterator(): util.Iterator<T>;
             }
-            export class Character extends Object implements Comparable<Character> {
-                protected constructor();
+
+            /**
+             * Represents a java.lang.Character class or the primitive java char type.
+             * @export
+             * @interface Character
+             * @extends {Object}
+             * @extends {Comparable<Character>}
+             * @see {@link https://docs.oracle.com/javase/10/docs/api/java/lang/Character.html}
+             */
+            export interface Character extends Object, Comparable<Character> {
                 /**
                  * Returns the value of this Character object.
                  * @returns {Character}
@@ -87,18 +146,21 @@ declare namespace Packages {
                 /**
                  * Compares two Character objects numerically.
                  * @param anotherCharacter {$$rhino.String}
-                 * @returns {Integer}
+                 * @returns {$$rhino.Number}
                  */
-                compareTo(anotherCharacter: $$rhino.String): Integer;
+                compareTo(anotherCharacter: $$rhino.StringLike): $$rhino.Number;
             }
+
             /**
-             * Java String object.
+             * Represents the java.lang.String class.
              * @export
-             * @class String
+             * @interface String
              * @extends {Object}
+             * @extends {Comparable<String>}
+             * @extends {CharSequence}
+             * @see {@link https://docs.oracle.com/javase/10/docs/api/java/lang/String.html}
              */
-            export class String extends Object implements Comparable<String>, CharSequence {
-                protected constructor();
+            export interface String extends Object, Comparable<String>, CharSequence {
                 /**
                  * Returns the char value at the specified index.
                  * @param index {$$rhino.Number}
@@ -109,195 +171,195 @@ declare namespace Packages {
                 /**
                  * Returns the character (Unicode code point) at the specified index.
                  * @param index {$$rhino.Number}
-                 * @returns {Integer}
+                 * @returns {$$rhino.Number}
                  */
-                codePointAt(index: $$rhino.Number): Integer;
+                codePointAt(index: $$rhino.Number): $$rhino.Number;
 
                 /**
                  * Returns the character (Unicode code point) before the specified index.
                  * @param index {$$rhino.Number}
-                 * @returns {Integer}
+                 * @returns {$$rhino.Number}
                  */
-                codePointBefore(index: $$rhino.Number): Integer;
+                codePointBefore(index: $$rhino.Number): $$rhino.Number;
 
                 /**
                  * Returns the number of Unicode code points in the specified text range of this String.
                  * @param beginIndex {$$rhino.Number}
                  * @param endIndex {$$rhino.Number}
-                 * @returns {Integer}
+                 * @returns {$$rhino.Number}
                  */
-                codePointCount(beginIndex: $$rhino.Number, endIndex: $$rhino.Number): Integer;
+                codePointCount(beginIndex: $$rhino.Number, endIndex: $$rhino.Number): $$rhino.Number;
 
                 /**
                  * Compares two strings lexicographically.
                  * @param anotherString {$$rhino.String}
-                 * @returns {Integer}
+                 * @returns {$$rhino.Number}
                  */
-                compareTo(anotherString: $$rhino.String): Integer;
+                compareTo(anotherString: $$rhino.String): $$rhino.Number;
 
                 /**
                  * Compares two strings lexicographically, ignoring case differences.
                  * @param str {$$rhino.String}
-                 * @returns {Integer}
+                 * @returns {$$rhino.Number}
                  */
-                compareToIgnoreCase(str: $$rhino.String): Integer;
+                compareToIgnoreCase(str: $$rhino.String): $$rhino.Number;
 
                 /**
                  * Concatenates the specified string to the end of this string.
                  * @param str {$$rhino.String}
-                 * @returns {String}
+                 * @returns {$$rhino.String}
                  */
-                concat(str: $$rhino.String): String;
+                concat(str: $$rhino.String): $$rhino.String;
 
                 /**
                  * Returns true if and only if this string contains the specified sequence of char values.
                  * @param s {CharSequence}
-                 * @returns {Boolean}
+                 * @returns {$$rhino.Boolean}
                  */
-                contains(s: CharSequence): Boolean;
+                contains(s: CharSequence): $$rhino.Boolean;
 
                 /**
                  * Compares this string to the specified CharSequence.
                  * @param cs {CharSequence}
-                 * @returns {Boolean}
+                 * @returns {$$rhino.Boolean}
                  */
-                contentEquals(cs: CharSequence): Boolean;
+                contentEquals(cs: CharSequence): $$rhino.Boolean;
 
                 /**
                  * Compares this string to the specified StringBuffer.
                  * @param sb {StringBuffer}
-                 * @returns {Boolean}
+                 * @returns {$$rhino.Boolean}
                  */
-                contentEquals(sb: StringBuffer): Boolean;
+                contentEquals(sb: StringBuffer): $$rhino.Boolean;
 
                 /**
                  * Tests if this string ends with the specified suffix.
                  * @param suffix {$$rhino.String}
-                 * @returns {Boolean}
+                 * @returns {$$rhino.Boolean}
                  */
-                endsWith(suffix: $$rhino.String): Boolean;
+                endsWith(suffix: $$rhino.String): $$rhino.Boolean;
 
                 /**
                  * Compares this String to another String, ignoring case considerations.
                  * @param anotherString {$$rhino.String}
-                 * @returns {Boolean}
+                 * @returns {$$rhino.Boolean}
                  */
-                equalsIgnoreCase(anotherString: $$rhino.String): Boolean;
+                equalsIgnoreCase(anotherString: $$rhino.String): $$rhino.Boolean;
 
                 /**
                  * Encodes this String into a sequence of bytes using the platform's default charset, storing the result into a new byte array.
-                 * @returns {IJavaArray<Byte>}
+                 * @returns {Array<Byte>}
                  */
-                getBytes(): IJavaArray<Byte>;
+                getBytes(): Array<Byte>;
 
                 /**
                  * Encodes this String into a sequence of bytes using the named charset, storing the result into a new byte array.
                  * @param charsetName {$$rhino.String}
-                 * @returns {IJavaArray<Byte>}
+                 * @returns {Array<Byte>}
                  */
-                getBytes(charsetName: $$rhino.String): IJavaArray<Byte>;
+                getBytes(charsetName: $$rhino.String): Array<Byte>;
 
                 /**
                  * Copies characters from this string into the destination character array.
                  * @param srcBegin {$$rhino.Number}
                  * @param srcEnd {$$rhino.Number}
-                 * @param dst {IJavaArray<$$rhino.String>}
+                 * @param dst {Array<$$rhino.String>}
                  * @param dstBegin {$$rhino.Number}
                  */
-                getChars(srcBegin: $$rhino.Number, srcEnd: $$rhino.Number, dst: IJavaArray<$$rhino.String>, dstBegin: $$rhino.Number): void;
+                getChars(srcBegin: $$rhino.Number, srcEnd: $$rhino.Number, dst: Array<$$rhino.String>, dstBegin: $$rhino.Number): void;
 
                 /**
                  * Returns the index within this string of the first occurrence of the specified character.
                  * @param ch {$$rhino.Number}
-                 * @returns {Integer}
+                 * @returns {$$rhino.Number}
                  */
-                indexOf(ch: $$rhino.Number): Integer;
+                indexOf(ch: $$rhino.Number): $$rhino.Number;
 
                 /**
                  * Returns the index within this string of the first occurrence of the specified character, starting the search at the specified index.
                  * @param ch {$$rhino.Number}
                  * @param fromIndex {$$rhino.Number}
-                 * @returns {Integer}
+                 * @returns {$$rhino.Number}
                  */
-                indexOf(ch: $$rhino.Number, fromIndex: $$rhino.Number): Integer;
+                indexOf(ch: $$rhino.Number, fromIndex: $$rhino.Number): $$rhino.Number;
 
                 /**
                  * Returns the index within this string of the first occurrence of the specified substring.
                  * @param str {$$rhino.String}
-                 * @returns {Integer}
+                 * @returns {$$rhino.Number}
                  */
-                indexOf(str: $$rhino.String): Integer;
+                indexOf(str: $$rhino.String): $$rhino.Number;
 
                 /**
                  * Returns the index within this string of the first occurrence of the specified substring, starting at the specified index.
                  * @param str {$$rhino.String}
                  * @param fromIndex {$$rhino.Number}
-                 * @returns {Integer}
+                 * @returns {$$rhino.Number}
                  */
-                indexOf(str: $$rhino.String, fromIndex: $$rhino.Number): Integer;
+                indexOf(str: $$rhino.String, fromIndex: $$rhino.Number): $$rhino.Number;
 
                 /**
                  * Returns a canonical representation for the string object.
-                 * @returns {String}
+                 * @returns {$$rhino.String}
                  */
-                intern(): String;
+                intern(): $$rhino.String;
 
                 /**
                  * Returns true if, and only if, length() is 0.
-                 * @returns {Boolean}
+                 * @returns {$$rhino.Boolean}
                  */
-                isEmpty(): Boolean;
+                isEmpty(): $$rhino.Boolean;
 
                 /**
                  * Returns the index within this string of the last occurrence of the specified character.
                  * @param ch {$$rhino.Number}
-                 * @returns {Integer}
+                 * @returns {$$rhino.Number}
                  */
-                lastIndexOf(ch: $$rhino.Number): Integer;
+                lastIndexOf(ch: $$rhino.Number): $$rhino.Number;
 
                 /**
                  * Returns the index within this string of the last occurrence of the specified character, searching backward starting at the specified index.
                  * @param ch {$$rhino.Number}
                  * @param fromIndex {$$rhino.Number}
-                 * @returns {Integer}
+                 * @returns {$$rhino.Number}
                  */
-                lastIndexOf(ch: $$rhino.Number, fromIndex: $$rhino.Number): Integer;
+                lastIndexOf(ch: $$rhino.Number, fromIndex: $$rhino.Number): $$rhino.Number;
 
                 /**
                  * Returns the index within this string of the last occurrence of the specified substring.
                  * @param str {$$rhino.String}
-                 * @returns {Integer}
+                 * @returns {$$rhino.Number}
                  */
-                lastIndexOf(str: $$rhino.String): Integer;
+                lastIndexOf(str: $$rhino.String): $$rhino.Number;
 
                 /**
                  * Returns the index within this string of the last occurrence of the specified substring, searching backward starting at the specified index.
                  * @param str {$$rhino.String}
                  * @param fromIndex {$$rhino.Number}
-                 * @returns {Integer}
+                 * @returns {$$rhino.Number}
                  */
-                lastIndexOf(str: $$rhino.String, fromIndex: $$rhino.Number): Integer;
+                lastIndexOf(str: $$rhino.String, fromIndex: $$rhino.Number): $$rhino.Number;
 
                 /**
                  * Returns the length of this string.
-                 * @returns {Integer}
+                 * @returns {$$rhino.Number}
                  */
-                length(): Integer;
+                length(): $$rhino.Number;
 
                 /**
                  * Tells whether or not this string matches the given regular expression.
                  * @param regex {$$rhino.String}
-                 * @returns {Boolean}
+                 * @returns {$$rhino.Boolean}
                  */
-                matches(regex: $$rhino.String): Boolean;
+                matches(regex: $$rhino.String): $$rhino.Boolean;
 
                 /**
                  * Returns the index within this String that is offset from the given index by codePointOffset code points.
                  * @param index {$$rhino.Number}
                  * @param codePointOffset {$$rhino.Number}
-                 * @returns {Integer}
+                 * @returns {$$rhino.Number}
                  */
-                offsetByCodePoints(index: $$rhino.Number, codePointOffset: $$rhino.Number): Integer;
+                offsetByCodePoints(index: $$rhino.Number, codePointOffset: $$rhino.Number): $$rhino.Number;
 
                 /**
                  * Tests if two string regions are equal.
@@ -306,9 +368,9 @@ declare namespace Packages {
                  * @param other {$$rhino.String}
                  * @param ooffset {$$rhino.Number}
                  * @param len {$$rhino.Number}
-                 * @returns {Boolean}
+                 * @returns {$$rhino.Boolean}
                  */
-                regionMatches(ignoreCase: $$rhino.Boolean, toffset: $$rhino.Number, other: $$rhino.String, ooffset: $$rhino.Number, len: $$rhino.Number): Boolean;
+                regionMatches(ignoreCase: $$rhino.Boolean, toffset: $$rhino.Number, other: $$rhino.String, ooffset: $$rhino.Number, len: $$rhino.Number): $$rhino.Boolean;
 
                 /**
                  * Tests if two string regions are equal.
@@ -316,71 +378,71 @@ declare namespace Packages {
                  * @param other {$$rhino.String}
                  * @param ooffset {$$rhino.Number}
                  * @param len {$$rhino.Number}
-                 * @returns {Boolean}
+                 * @returns {$$rhino.Boolean}
                  */
-                regionMatches(toffset: $$rhino.Number, other: $$rhino.String, ooffset: $$rhino.Number, len: $$rhino.Number): Boolean;
+                regionMatches(toffset: $$rhino.Number, other: $$rhino.String, ooffset: $$rhino.Number, len: $$rhino.Number): $$rhino.Boolean;
 
                 /**
                  * Returns a new string resulting from replacing all occurrences of oldChar in this string with newChar.
                  * @param oldChar {$$rhino.String}
                  * @param newChar {$$rhino.String}
-                 * @returns {String}
+                 * @returns {$$rhino.String}
                  */
-                replace(oldChar: $$rhino.String, newChar: $$rhino.String): String;
+                replace(oldChar: $$rhino.String, newChar: $$rhino.String): $$rhino.String;
 
                 /**
                  * Replaces each substring of this string that matches the literal target sequence with the specified literal replacement sequence.
                  * @param target {CharSequence}
                  * @param replacement {CharSequence}
-                 * @returns {String}
+                 * @returns {$$rhino.String}
                  */
-                replace(target: CharSequence, replacement: CharSequence): String;
+                replace(target: CharSequence, replacement: CharSequence): $$rhino.String;
 
                 /**
                  * Replaces each substring of this string that matches the given regular expression with the given replacement.
                  * @param regex {$$rhino.String}
                  * @param replacement {$$rhino.String}
-                 * @returns {String}
+                 * @returns {$$rhino.String}
                  */
-                replaceAll(regex: $$rhino.String, replacement: $$rhino.String): String;
+                replaceAll(regex: $$rhino.String, replacement: $$rhino.String): $$rhino.String;
 
                 /**
                  * Replaces the first substring of this string that matches the given regular expression with the given replacement.
                  * @param regex {$$rhino.String}
                  * @param replacement {$$rhino.String}
-                 * @returns {String}
+                 * @returns {$$rhino.String}
                  */
-                replaceFirst(regex: $$rhino.String, replacement: $$rhino.String): String;
+                replaceFirst(regex: $$rhino.String, replacement: $$rhino.String): $$rhino.String;
 
                 /**
                  * Splits this string around matches of the given regular expression.
                  * @param regex {$$rhino.String}
-                 * @returns {IJavaArray<String>}
+                 * @returns {Array<$$rhino.String>}
                  */
-                split(regex: $$rhino.String): IJavaArray<String>;
+                split(regex: $$rhino.String): Array<$$rhino.String>;
 
                 /**
                  * Splits this string around matches of the given regular expression.
                  * @param regex {$$rhino.String}
                  * @param limit {$$rhino.Number}
-                 * @returns {IJavaArray<String>}
+                 * @returns {Array<$$rhino.String>}
                  */
-                split(regex: $$rhino.String, limit: $$rhino.Number): IJavaArray<String>;
+                split(regex: $$rhino.String, limit: $$rhino.Number): Array<$$rhino.String>;
 
                 /**
                  * Tests if this string starts with the specified prefix.
                  * @param prefix {$$rhino.String}
-                 * @returns {Boolean}
+                 * @returns {$$rhino.Boolean}
                  */
-                startsWith(prefix: $$rhino.String): Boolean;
+                startsWith(prefix: $$rhino.String): $$rhino.Boolean;
 
                 /**
                  * Tests if the substring of this string beginning at the specified index starts with the specified prefix.
                  * @param prefix {$$rhino.String}
                  * @param toffset {$$rhino.Number}
-                 * @returns {Boolean}
+                 * @returns {$$rhino.Boolean}
                  */
-                startsWith(prefix: $$rhino.String, toffset: $$rhino.Number): Boolean;
+                startsWith(prefix: $$rhino.String, toffset: $$rhino.Number): $$rhino.Boolean;
 
                 /**
                  * Returns a new character sequence that is a subsequence of this sequence.
@@ -393,63 +455,65 @@ declare namespace Packages {
                 /**
                  * Returns a new string that is a substring of this string.
                  * @param beginIndex {$$rhino.Number}
-                 * @returns {String}
+                 * @returns {$$rhino.String}
                  */
-                substring(beginIndex: $$rhino.Number): String;
+                substring(beginIndex: $$rhino.Number): $$rhino.String;
 
                 /**
                  * Returns a new string that is a substring of this string.
                  * @param beginIndex {$$rhino.Number}
                  * @param endIndex {$$rhino.Number}
-                 * @returns {String}
+                 * @returns {$$rhino.String}
                  */
-                substring(beginIndex: $$rhino.Number, endIndex: $$rhino.Number): String;
+                substring(beginIndex: $$rhino.Number, endIndex: $$rhino.Number): $$rhino.String;
 
                 /**
                  * Converts this string to a new character array.
-                 * @returns {IJavaArray<Character>}
+                 * @returns {Array<Character>}
                  */
-                toCharArray(): IJavaArray<Character>;
+                toCharArray(): Array<Character>;
 
                 /**
-                 * Converts all of the characters in this String to lower case using the rules of the default locale.
-                 * @returns {String}
+                 * Converts all of the characters in this string to lower case using the rules of the default locale.
+                 * @returns {$$rhino.String}
                  */
-                toLowerCase(): String;
+                toLowerCase(): $$rhino.String;
 
                 /**
-                 * Converts all of the characters in this String to lower case using the rules of the given Locale.
+                 * Converts all of the characters in this string to lower case using the rules of the given Locale.
                  * @param locale {Locale}
-                 * @returns {String}
+                 * @returns {$$rhino.String}
                  */
-                toLowerCase(locale: util.Locale): String;
+                toLowerCase(locale: util.Locale): $$rhino.String;
 
                 /**
-                 * Converts all of the characters in this String to upper case using the rules of the default locale.
-                 * @returns {String}
+                 * Converts all of the characters in this string to upper case using the rules of the default locale.
+                 * @returns {$$rhino.String}
                  */
-                toUpperCase(): String;
+                toUpperCase(): $$rhino.String;
 
                 /**
-                 * Converts all of the characters in this String to upper case using the rules of the given Locale.
+                 * Converts all of the characters in this string to upper case using the rules of the given Locale.
                  * @param locale {Locale}
-                 * @returns {String}
+                 * @returns {$$rhino.String}
                  */
-                toUpperCase(locale: util.Locale): String;
+                toUpperCase(locale: util.Locale): $$rhino.String;
 
                 /**
                  * Returns a copy of the string, with leading and trailing whitespace omitted.
-                 * @returns {String}
+                 * @returns {$$rhino.String}
                  */
-                trim(): String;
+                trim(): $$rhino.String;
             }
+
             /**
-             * Java Number base object.
+             * Represents the java.lang.Number class or a primitive java number type.
              * @export
-             * @class Object
+             * @interface Number
+             * @extends {Object}
+             * @see {@link https://docs.oracle.com/javase/10/docs/api/java/lang/Number.html}
              */
-            export abstract class Number extends Object {
-                protected constructor();
+            export interface Number extends Object {
                 /**
                  * Returns the value of the specified number as a byte.
                  * @returns {Byte}
@@ -486,147 +550,168 @@ declare namespace Packages {
                  */
                 shortValue(): Short;
             }
-            export class Boolean extends Object {
-                protected constructor();
+
+            /**
+             * Represents the java.lang.Boolean class or the primitive java $$rhino.Boolean type.
+             * @export
+             * @interface Boolean
+             * @extends {Object}
+             * @see {@link https://docs.oracle.com/javase/10/docs/api/java/lang/Boolean.html}
+             */
+            export interface Boolean extends Object {
                 /**
-                 * Returns the value of this Boolean object as a boolean primitive.
-                 * @returns {boolean}
+                 * Returns the value of this Boolean object as a $$rhino.Boolean primitive.
+                 * @returns {$$rhino.Boolean}
                  * @memberof {Boolean}
                  */
-                booleanValue(): boolean;
+                booleanValue(): $$rhino.Boolean;
+
                 /**
                  * Compares this Boolean instance with another.
                  * @param {Boolean} b -
-                 * @returns {number}
+                 * @returns {$$rhino.Number}
                  * @memberof {Boolean}
                  */
-                compareTo(b: Boolean): number;
+                compareTo(b: Boolean): $$rhino.Number;
             }
-            /**
-             * Java Integer object.
-             * @export
-             * @class Integer
-             * @extends {Object}
-             */
-            export class Integer extends Number implements Comparable<Integer> {
-                protected constructor();
 
+            /**
+             * Represents the java.lang.Integer class or the primitive java int type.
+             * @export
+             * @interface Integer
+             * @extends {Number}
+             * @extends {Comparable<Integer>}
+             * @see {@link https://docs.oracle.com/javase/10/docs/api/java/lang/Integer.html}
+             */
+            export interface Integer extends Number, Comparable<Integer> {
                 /**
                  * Compares two Integer objects numerically.
                  * @param anotherInteger {$$rhino.Number}
-                 * @returns {Integer}
+                 * @returns {$$rhino.Number}
                  */
-                compareTo(anotherInteger: $$rhino.Number): Integer;
+                compareTo(anotherInteger: $$rhino.Number): $$rhino.Number;
             }
-            /**
-             * Java Long object.
-             * @export
-             * @class Long
-             * @extends {Object}
-             */
-            export class Long extends Number implements Comparable<Long> {
-                protected constructor();
 
+            /**
+             * Represents the java.lang.Long class or the primitive java long type.
+             * @export
+             * @interface Long
+             * @extends {Number}
+             * @extends {Comparable<Long>}
+             * @see {@link https://docs.oracle.com/javase/10/docs/api/java/lang/Long.html}
+             */
+            export interface Long extends Number, Comparable<Long> {
                 /**
                  * Compares two Long objects numerically.
                  * @param anotherLong {$$rhino.Number}
-                 * @returns {Integer}
+                 * @returns {$$rhino.Number}
                  */
-                compareTo(anotherLong: $$rhino.Number): Integer;
+                compareTo(anotherLong: $$rhino.Number): $$rhino.Number;
             }
-            /**
-             * Java Double object.
-             * @export
-             * @class Double
-             * @extends {Object}
-             */
-            export class Double extends Number implements Comparable<Double> {
-                protected constructor();
 
+            /**
+             * Represents the java.lang.Double class or the primitive java double type.
+             * @export
+             * @interface Double
+             * @extends {Number}
+             * @extends {Comparable<Double>}
+             * @see {@link https://docs.oracle.com/javase/10/docs/api/java/lang/Double.html}
+             */
+            export interface Double extends Number, Comparable<Double> {
                 /**
                  * Compares two Double objects numerically.
                  * @param anotherDouble {$$rhino.Number}
-                 * @returns {Integer}
+                 * @returns {$$rhino.Number}
                  */
-                compareTo(anotherDouble: $$rhino.Number): Integer;
+                compareTo(anotherDouble: $$rhino.Number): $$rhino.Number;
 
                 /**
                  * Returns true if this Double value is infinitely large in magnitude, false otherwise.
-                 * @returns {Boolean}
+                 * @returns {$$rhino.Boolean}
                  */
-                isInfinite(): Boolean;
+                isInfinite(): $$rhino.Boolean;
 
                 /**
                  * Returns true if this Double value is a Not-a-Number (NaN), false otherwise.
-                 * @returns {Boolean}
+                 * @returns {$$rhino.Boolean}
                  */
-                isNaN(): Boolean;
+                isNaN(): $$rhino.Boolean;
             }
-            /**
-             * Java Byte object.
-             * @export
-             * @class InteByteger
-             * @extends {Object}
-             */
-            export class Byte extends Number implements Comparable<Byte> {
-                protected constructor();
 
+            /**
+             * Represents the java.lang.Byte class or the primitive java byte type.
+             * @export
+             * @interface Byte
+             * @extends {Number}
+             * @extends {Comparable<Byte>}
+             * @see {@link https://docs.oracle.com/javase/10/docs/api/java/lang/Byte.html}
+             */
+            export interface Byte extends Number, Comparable<Byte> {
                 /**
                  * Compares two Byte objects numerically.
                  * @param anotherByte {$$rhino.Number}
-                 * @returns {Integer}
+                 * @returns {$$rhino.Number}
                  */
-                compareTo(anotherByte: $$rhino.Number): Integer;
+                compareTo(anotherByte: $$rhino.Number): $$rhino.Number;
             }
-            /**
-             * Java Float object.
-             * @export
-             * @class Float
-             * @extends {Object}
-             */
-            export class Float extends Number implements Comparable<Float> {
-                protected constructor();
 
+            /**
+             * Represents the java.lang.Float class or the primitive java float type.
+             * @export
+             * @interface Float
+             * @extends {Number}
+             * @extends {Comparable<Float>}
+             * @see {@link https://docs.oracle.com/javase/10/docs/api/java/lang/Float.html}
+             */
+            export interface Float extends Number, Comparable<Float> {
                 /**
                  * Compares two Float objects numerically.
                  * @param anotherFloat {$$rhino.Number}
-                 * @returns {Integer}
+                 * @returns {$$rhino.Number}
                  */
-                compareTo(anotherFloat: $$rhino.Number): Integer;
+                compareTo(anotherFloat: $$rhino.Number): $$rhino.Number;
 
                 /**
                  * Returns true if this Float value is infinitely large in magnitude, false otherwise.
-                 * @returns {Boolean}
+                 * @returns {$$rhino.Boolean}
                  */
-                isInfinite(): Boolean;
+                isInfinite(): $$rhino.Boolean;
 
                 /**
                  * Returns true if this Float value is a Not-a-Number (NaN), false otherwise.
-                 * @returns {Boolean}
+                 * @returns {$$rhino.Boolean}
                  */
-                isNaN(): Boolean;
+                isNaN(): $$rhino.Boolean;
             }
-            /**
-             * Java Short object.
-             * @export
-             * @class Short
-             * @extends {Object}
-             */
-            export class Short extends Number implements Comparable<Short> {
-                protected constructor();
 
+            /**
+             * Represents the java.lang.Short class or the primitive java short type.
+             * @export
+             * @interface Short
+             * @extends {Number}
+             * @extends {Comparable<Short>}
+             * @see {@link https://docs.oracle.com/javase/10/docs/api/java/lang/Short.html}
+             */
+            export interface Short extends Number, Comparable<Short> {
                 /**
                  * Compares two Short objects numerically.
                  * @param anotherShort {$$rhino.Number}
-                 * @returns {Integer}
+                 * @returns {$$rhino.Number}
                  */
-                compareTo(anotherShort: $$rhino.Number): Integer;
+                compareTo(anotherShort: $$rhino.Number): $$rhino.Number;
             }
 
-            export class StringBuffer extends lang.Object implements CharSequence {
-                protected constructor();
+            /**
+             * Represents the java.lang.StringBuffer class.
+             * @export
+             * @interface StringBuffer
+             * @extends {Object}
+             * @extends {CharSequence}
+             * @see {@link https://docs.oracle.com/javase/10/docs/api/java/lang/StringBuffer.html}
+             */
+            export interface StringBuffer extends Object, CharSequence {
                 /**
-                 * Appends the string representation of the boolean argument to the sequence.
+                 * Appends the string representation of the $$rhino.Boolean argument to the sequence.
                  * @param b {$$rhino.Boolean}
                  * @returns {StringBuffer}
                  */
@@ -641,19 +726,19 @@ declare namespace Packages {
 
                 /**
                  * Appends the string representation of the char array argument to this sequence.
-                 * @param str {IJavaArray<$$rhino.String>}
+                 * @param str {Array<$$rhino.String>}
                  * @returns {StringBuffer}
                  */
-                append(str: IJavaArray<$$rhino.String>): StringBuffer;
+                append(str: Array<$$rhino.String>): StringBuffer;
 
                 /**
                  * Appends the string representation of a subarray of the char array argument to this sequence.
-                 * @param str {IJavaArray<$$rhino.String>}
+                 * @param str {Array<$$rhino.String>}
                  * @param offset {$$rhino.Number}
                  * @param len {$$rhino.Number}
                  * @returns {StringBuffer}
                  */
-                append(str: IJavaArray<$$rhino.String>, offset: $$rhino.Number, len: $$rhino.Number): StringBuffer;
+                append(str: Array<$$rhino.String>, offset: $$rhino.Number, len: $$rhino.Number): StringBuffer;
 
                 /**
                  * Appends the specified CharSequence to this sequence.
@@ -729,38 +814,38 @@ declare namespace Packages {
 
                 /**
                  * Returns the current capacity.
-                 * @returns {Integer}
+                 * @returns {$$rhino.Number}
                  */
-                capacity(): Integer;
+                capacity(): $$rhino.Number;
 
                 /**
                  * Returns the char value in this sequence at the specified index.
                  * @param index {$$rhino.Number}
                  * @returns {Character}
                  */
-                charAt(index: $$rhino.Number): Character;
+                charAt(index: $$rhino.Number): lang.Character;
 
                 /**
                  * Returns the character (Unicode code point) at the specified index.
                  * @param index {$$rhino.Number}
-                 * @returns {Integer}
+                 * @returns {$$rhino.Number}
                  */
-                codePointAt(index: $$rhino.Number): Integer;
+                codePointAt(index: $$rhino.Number): $$rhino.Number;
 
                 /**
                  * Returns the character (Unicode code point) before the specified index.
                  * @param index {$$rhino.Number}
-                 * @returns {Integer}
+                 * @returns {$$rhino.Number}
                  */
-                codePointBefore(index: $$rhino.Number): Integer;
+                codePointBefore(index: $$rhino.Number): $$rhino.Number;
 
                 /**
                  * Returns the number of Unicode code points in the specified text range of this sequence.
                  * @param beginIndex {$$rhino.Number}
                  * @param endIndex {$$rhino.Number}
-                 * @returns {Integer}
+                 * @returns {$$rhino.Number}
                  */
-                codePointCount(beginIndex: $$rhino.Number, endIndex: $$rhino.Number): Integer;
+                codePointCount(beginIndex: $$rhino.Number, endIndex: $$rhino.Number): $$rhino.Number;
 
                 /**
                  * Removes the characters in a substring of this sequence.
@@ -787,28 +872,28 @@ declare namespace Packages {
                  * Characters are copied from this sequence into the destination character array dst.
                  * @param srcBegin {$$rhino.Number}
                  * @param srcEnd {$$rhino.Number}
-                 * @param dst {IJavaArray<$$rhino.String>}
+                 * @param dst {Array<$$rhino.String>}
                  * @param dstBegin {$$rhino.Number}
                  */
-                getChars(srcBegin: $$rhino.Number, srcEnd: $$rhino.Number, dst: IJavaArray<$$rhino.String>, dstBegin: $$rhino.Number): void;
+                getChars(srcBegin: $$rhino.Number, srcEnd: $$rhino.Number, dst: Array<$$rhino.String>, dstBegin: $$rhino.Number): void;
 
                 /**
                  * Returns the index within this string of the first occurrence of the specified substring.
                  * @param str {$$rhino.String}
-                 * @returns {Integer}
+                 * @returns {$$rhino.Number}
                  */
-                indexOf(str: $$rhino.String): Integer;
+                indexOf(str: $$rhino.String): $$rhino.Number;
 
                 /**
                  * Returns the index within this string of the first occurrence of the specified substring, starting at the specified index.
                  * @param str {$$rhino.String}
                  * @param fromIndex {$$rhino.Number}
-                 * @returns {Integer}
+                 * @returns {$$rhino.Number}
                  */
-                indexOf(str: $$rhino.String, fromIndex: $$rhino.Number): Integer;
+                indexOf(str: $$rhino.String, fromIndex: $$rhino.Number): $$rhino.Number;
 
                 /**
-                 * Inserts the string representation of the boolean argument into this sequence.
+                 * Inserts the string representation of the $$rhino.Boolean argument into this sequence.
                  * @param offset {$$rhino.Number}
                  * @param b {$$rhino.Boolean}
                  * @returns {StringBuffer}
@@ -826,20 +911,20 @@ declare namespace Packages {
                 /**
                  * Inserts the string representation of the char array argument into this sequence.
                  * @param offset {$$rhino.Number}
-                 * @param str {IJavaArray<$$rhino.String>}
+                 * @param str {Array<$$rhino.String>}
                  * @returns {StringBuffer}
                  */
-                insert(offset: $$rhino.Number, str: IJavaArray<$$rhino.String>): StringBuffer;
+                insert(offset: $$rhino.Number, str: Array<$$rhino.String>): StringBuffer;
 
                 /**
                  * Inserts the string representation of a subarray of the str array argument into this sequence.
                  * @param index {$$rhino.Number}
-                 * @param str {IJavaArray<$$rhino.String>}
+                 * @param str {Array<$$rhino.String>}
                  * @param offset {$$rhino.Number}
                  * @param len {$$rhino.Number}
                  * @returns {StringBuffer}
                  */
-                insert(index: $$rhino.Number, str: IJavaArray<$$rhino.String>, offset: $$rhino.Number, len: $$rhino.Number): StringBuffer;
+                insert(index: $$rhino.Number, str: Array<$$rhino.String>, offset: $$rhino.Number, len: $$rhino.Number): StringBuffer;
 
                 /**
                  * Inserts the specified CharSequence into this sequence.
@@ -847,7 +932,7 @@ declare namespace Packages {
                  * @param s {CharSequence}
                  * @returns {StringBuffer}
                  */
-                insert(dstOffset: $$rhino.Number, s: CharSequence): StringBuffer;
+                insert(dstOffset: $$rhino.Number, s: lang.CharSequence): StringBuffer;
 
                 /**
                  * Inserts a subsequence of the specified CharSequence into this sequence.
@@ -857,7 +942,7 @@ declare namespace Packages {
                  * @param end {$$rhino.Number}
                  * @returns {StringBuffer}
                  */
-                insert(dstOffset: $$rhino.Number, s: CharSequence, start: $$rhino.Number, end: $$rhino.Number): StringBuffer;
+                insert(dstOffset: $$rhino.Number, s: lang.CharSequence, start: $$rhino.Number, end: $$rhino.Number): StringBuffer;
 
                 /**
                  * Inserts the string representation of the double argument into this sequence.
@@ -910,34 +995,34 @@ declare namespace Packages {
                 /**
                  * Returns the index within this string of the rightmost occurrence of the specified substring.
                  * @param str {$$rhino.String}
-                 * @returns {Integer}
+                 * @returns {$$rhino.Number}
                  */
-                lastIndexOf(str: $$rhino.String): Integer;
+                lastIndexOf(str: $$rhino.String): $$rhino.Number;
 
                 /**
                  * Returns the index within this string of the last occurrence of the specified substring.
                  * @param str {$$rhino.String}
                  * @param fromIndex {$$rhino.Number}
-                 * @returns {Integer}
+                 * @returns {$$rhino.Number}
                  */
-                lastIndexOf(str: $$rhino.String, fromIndex: $$rhino.Number): Integer;
+                lastIndexOf(str: $$rhino.String, fromIndex: $$rhino.Number): $$rhino.Number;
 
                 /**
                  * Returns the length (character count).
-                 * @returns {Integer}
+                 * @returns {$$rhino.Number}
                  */
-                length(): Integer;
+                length(): $$rhino.Number;
 
                 /**
                  * Returns the index within this sequence that is offset from the given index by codePointOffset code points.
                  * @param index {$$rhino.Number}
                  * @param codePointOffset {$$rhino.Number}
-                 * @returns {Integer}
+                 * @returns {$$rhino.Number}
                  */
-                offsetByCodePoints(index: $$rhino.Number, codePointOffset: $$rhino.Number): Integer;
+                offsetByCodePoints(index: $$rhino.Number, codePointOffset: $$rhino.Number): $$rhino.Number;
 
                 /**
-                 * Replaces the characters in a substring of this sequence with characters in the specified String.
+                 * Replaces the characters in a substring of this sequence with characters in the specified string.
                  * @param start {$$rhino.Number}
                  * @param end {$$rhino.Number}
                  * @param str {$$rhino.String}
@@ -970,22 +1055,22 @@ declare namespace Packages {
                  * @param end {$$rhino.Number}
                  * @returns {CharSequence}
                  */
-                subSequence(start: $$rhino.Number, end: $$rhino.Number): CharSequence;
+                subSequence(start: $$rhino.Number, end: $$rhino.Number): lang.CharSequence;
 
                 /**
-                 * Returns a new String that contains a subsequence of characters currently contained in this character sequence.
+                 * Returns a new string that contains a subsequence of characters currently contained in this character sequence.
                  * @param start {$$rhino.Number}
-                 * @returns {String}
+                 * @returns {$$rhino.String}
                  */
-                substring(start: $$rhino.Number): String;
+                substring(start: $$rhino.Number): $$rhino.String;
 
                 /**
-                 * Returns a new String that contains a subsequence of characters currently contained in this sequence.
+                 * Returns a new string that contains a subsequence of characters currently contained in this sequence.
                  * @param start {$$rhino.Number}
                  * @param end {$$rhino.Number}
-                 * @returns {String}
+                 * @returns {$$rhino.String}
                  */
-                substring(start: $$rhino.Number, end: $$rhino.Number): String;
+                substring(start: $$rhino.Number, end: $$rhino.Number): $$rhino.String;
 
                 /**
                  * Attempts to reduce storage used for the character sequence.
@@ -993,9 +1078,16 @@ declare namespace Packages {
                 trimToSize(): void;
             }
         }
+
         export namespace util {
-            export class Locale extends lang.Object {
-                protected constructor();
+            /**
+             * Represents a specific geographical, political, or cultural region.
+             * @export
+             * @interface Locale
+             * @extends {lang.Object}
+             * @see {@link https://docs.oracle.com/javase/10/docs/api/java/util/Locale.html}
+             */
+            export interface Locale extends java.lang.Object {
                 /**
                  * Overrides Cloneable.
                  * @returns {lang.Object}
@@ -1004,162 +1096,166 @@ declare namespace Packages {
 
                 /**
                  * Returns the country/region code for this locale, which should either be the empty string, an uppercase ISO 3166 2-letter code, or a UN M.49 3-digit code.
-                 * @returns {lang.String}
+                 * @returns {$$rhino.String}
                  */
-                getCountry(): lang.String;
+                getCountry(): $$rhino.String;
 
                 /**
                  * Returns a name for the locale's country that is appropriate for display to the user.
-                 * @returns {lang.String}
+                 * @returns {$$rhino.String}
                  */
-                getDisplayCountry(): lang.String;
+                getDisplayCountry(): $$rhino.String;
 
                 /**
                  * Returns a name for the locale's country that is appropriate for display to the user.
                  * @param inLocale {Locale}
-                 * @returns {lang.String}
+                 * @returns {$$rhino.String}
                  */
-                getDisplayCountry(inLocale: Locale): lang.String;
+                getDisplayCountry(inLocale: Locale): $$rhino.String;
 
                 /**
                  * Returns a name for the locale's language that is appropriate for display to the user.
-                 * @returns {lang.String}
+                 * @returns {$$rhino.String}
                  */
-                getDisplayLanguage(): lang.String;
+                getDisplayLanguage(): $$rhino.String;
 
                 /**
                  * Returns a name for the locale's language that is appropriate for display to the user.
                  * @param inLocale {Locale}
-                 * @returns {lang.String}
+                 * @returns {$$rhino.String}
                  */
-                getDisplayLanguage(inLocale: Locale): lang.String;
+                getDisplayLanguage(inLocale: Locale): $$rhino.String;
 
                 /**
                  * Returns a name for the locale that is appropriate for display to the user.
-                 * @returns {lang.String}
+                 * @returns {$$rhino.String}
                  */
-                getDisplayName(): lang.String;
+                getDisplayName(): $$rhino.String;
 
                 /**
                  * Returns a name for the locale that is appropriate for display to the user.
                  * @param inLocale {Locale}
-                 * @returns {lang.String}
+                 * @returns {$$rhino.String}
                  */
-                getDisplayName(inLocale: Locale): lang.String;
+                getDisplayName(inLocale: Locale): $$rhino.String;
 
                 /**
                  * Returns a name for the the locale's script that is appropriate for display to the user.
-                 * @returns {lang.String}
+                 * @returns {$$rhino.String}
                  */
-                getDisplayScript(): lang.String;
+                getDisplayScript(): $$rhino.String;
 
                 /**
                  * Returns a name for the locale's script that is appropriate for display to the user.
                  * @param inLocale {Locale}
-                 * @returns {lang.String}
+                 * @returns {$$rhino.String}
                  */
-                getDisplayScript(inLocale: Locale): lang.String;
+                getDisplayScript(inLocale: Locale): $$rhino.String;
 
                 /**
                  * Returns a name for the locale's variant code that is appropriate for display to the user.
-                 * @returns {lang.String}
+                 * @returns {$$rhino.String}
                  */
-                getDisplayVariant(): lang.String;
+                getDisplayVariant(): $$rhino.String;
 
                 /**
                  * Returns a name for the locale's variant code that is appropriate for display to the user.
                  * @param inLocale {Locale}
-                 * @returns {lang.String}
+                 * @returns {$$rhino.String}
                  */
-                getDisplayVariant(inLocale: Locale): lang.String;
+                getDisplayVariant(inLocale: Locale): $$rhino.String;
 
                 /**
                  * Returns the extension (or private use) value associated with the specified key, or null if there is no extension associated with the key.
                  * @param key {$$rhino.String}
-                 * @returns {lang.String}
+                 * @returns {$$rhino.String}
                  */
-                getExtension(key: $$rhino.String): lang.String;
+                getExtension(key: $$rhino.String): $$rhino.String;
 
                 /**
                  * Returns the set of extension keys associated with this locale, or the empty set if it has no extensions.
                  * @returns {Set<Character>}
                  */
-                getExtensionKeys(): Set<lang.Character>;
+                getExtensionKeys(): Set<java.lang.Character>;
 
                 /**
                  * Returns a three-letter abbreviation for this locale's country.
-                 * @returns {lang.String}
+                 * @returns {$$rhino.String}
                  */
-                getISO3Country(): lang.String;
+                getISO3Country(): $$rhino.String;
 
                 /**
                  * Returns a three-letter abbreviation of this locale's language.
-                 * @returns {lang.String}
+                 * @returns {$$rhino.String}
                  */
-                getISO3Language(): lang.String;
+                getISO3Language(): $$rhino.String;
 
                 /**
                  * Returns the language code of this Locale.
-                 * @returns {lang.String}
+                 * @returns {$$rhino.String}
                  */
-                getLanguage(): lang.String;
+                getLanguage(): $$rhino.String;
 
                 /**
                  * Returns the script for this locale, which should either be the empty string or an ISO 15924 4-letter script code.
-                 * @returns {lang.String}
+                 * @returns {$$rhino.String}
                  */
-                getScript(): lang.String;
+                getScript(): $$rhino.String;
 
                 /**
                  * Returns the set of unicode locale attributes associated with this locale, or the empty set if it has no attributes.
-                 * @returns {Set<lang.String>}
+                 * @returns {Set<$$rhino.String>}
                  */
-                getUnicodeLocaleAttributes(): Set<lang.String>;
+                getUnicodeLocaleAttributes(): Set<$$rhino.String>;
 
                 /**
                  * Returns the set of Unicode locale keys defined by this locale, or the empty set if this locale has none.
-                 * @returns {Set<lang.String>}
+                 * @returns {Set<$$rhino.String>}
                  */
-                getUnicodeLocaleKeys(): Set<lang.String>;
+                getUnicodeLocaleKeys(): Set<$$rhino.String>;
 
                 /**
                  * Returns the Unicode locale type associated with the specified Unicode locale key for this locale.
                  * @param key {$$rhino.String}
-                 * @returns {lang.String}
+                 * @returns {$$rhino.String}
                  */
-                getUnicodeLocaleType(key: $$rhino.String): lang.String;
+                getUnicodeLocaleType(key: $$rhino.String): $$rhino.String;
 
                 /**
                  * Returns the variant code for this locale.
-                 * @returns {lang.String}
+                 * @returns {$$rhino.String}
                  */
-                getVariant(): lang.String;
+                getVariant(): $$rhino.String;
 
                 /**
                  * Returns a well-formed IETF BCP 47 language tag representing this locale.
-                 * @returns {lang.String}
+                 * @returns {$$rhino.String}
                  */
-                toLanguageTag(): lang.String;
+                toLanguageTag(): $$rhino.String;
             }
+
             /**
-             * Java Collection interface.
+             * Represents a group of objects, known as its elements
              * @export
-             * @interface Collection<T>
+             * @interface Collection
+             * @extends {lang.Iterable<E>}
+             * @template E - The type of elements in this collection.
+             * @see {@link https://docs.oracle.com/javase/10/docs/api/java/util/Collection.html}
              */
             export interface Collection<E> extends lang.Iterable<E> {
                 /**
                  * Ensures that this collection contains the specified element (optional operation).
                  * @param e {E}
-                 * @returns {lang.Boolean}
+                 * @returns {$$rhino.Boolean}
                  */
-                add(e: E): lang.Boolean;
+                add(e: E): $$rhino.Boolean;
 
                 /**
                  * Adds all of the elements in the specified collection to this collection (optional operation).
                  * @param c {util.Collection<E>}
-                 * @returns {lang.Boolean}
+                 * @returns {$$rhino.Boolean}
                  */
-                addAll(c: util.Collection<E>): lang.Boolean;
+                addAll(c: util.Collection<E>): $$rhino.Boolean;
 
                 /**
                  * Removes all of the elements from this collection (optional operation).
@@ -1168,36 +1264,23 @@ declare namespace Packages {
 
                 /**
                  * Returns true if this collection contains the specified element.
-                 * @param o {lang.Object}
-                 * @returns {lang.Boolean}
+                 * @param o {*}
+                 * @returns {$$rhino.Boolean}
                  */
-                contains(o: lang.Object): lang.Boolean;
+                contains(o: any): $$rhino.Boolean;
 
                 /**
                  * Returns true if this collection contains all of the elements in the specified collection.
                  * @param c {util.Collection<any>}
-                 * @returns {lang.Boolean}
+                 * @returns {$$rhino.Boolean}
                  */
-                containsAll(c: util.Collection<any>): lang.Boolean;
-
-                /**
-                 * Compares the specified object with this collection for equality.
-                 * @param o {lang.Object}
-                 * @returns {lang.Boolean}
-                 */
-                equals(o: lang.Object): lang.Boolean;
-
-                /**
-                 * Returns the hash code value for this collection.
-                 * @returns {lang.Integer}
-                 */
-                hashCode(): lang.Integer;
+                containsAll(c: util.Collection<any>): $$rhino.Boolean;
 
                 /**
                  * Returns true if this collection contains no elements.
-                 * @returns {lang.Boolean}
+                 * @returns {$$rhino.Boolean}
                  */
-                isEmpty(): lang.Boolean;
+                isEmpty(): $$rhino.Boolean;
 
                 /**
                  * Returns an iterator over the elements in this collection.
@@ -1207,59 +1290,78 @@ declare namespace Packages {
 
                 /**
                  * Removes a single instance of the specified element from this collection, if it is present (optional operation).
-                 * @param o {lang.Object}
-                 * @returns {lang.Boolean}
+                 * @param o {*}
+                 * @returns {$$rhino.Boolean}
                  */
-                remove(o: lang.Object): lang.Boolean;
+                remove(o: any): $$rhino.Boolean;
 
                 /**
                  * Removes all of this collection's elements that are also contained in the specified collection (optional operation).
                  * @param c {util.Collection<any>}
-                 * @returns {lang.Boolean}
+                 * @returns {$$rhino.Boolean}
                  */
-                removeAll(c: util.Collection<any>): lang.Boolean;
+                removeAll(c: util.Collection<any>): $$rhino.Boolean;
 
                 /**
                  * Retains only the elements in this collection that are contained in the specified collection (optional operation).
                  * @param c {util.Collection<any>}
-                 * @returns {lang.Boolean}
+                 * @returns {$$rhino.Boolean}
                  */
-                retainAll(c: util.Collection<any>): lang.Boolean;
+                retainAll(c: util.Collection<any>): $$rhino.Boolean;
 
                 /**
                  * Returns the number of elements in this collection.
-                 * @returns {lang.Integer}
+                 * @returns {$$rhino.Number}
                  */
-                size(): lang.Integer;
+                size(): $$rhino.Number;
 
                 /**
                  * Returns an array containing all of the elements in this collection.
-                 * @returns {lang.Object}
+                 * @returns {*}
                  */
-                toArray(): lang.Object;
+                toArray(): any;
 
                 /**
                  * Returns a string representation of this collection.
-                 * @returns {lang.String}
+                 * @returns {$$rhino.String}
                  */
-                toString(): lang.String;
+                toString(): $$rhino.String;
             }
+
+            /**
+             * An iterator over a collection.
+             * @export
+             * @interface Iterator
+             * @template E - The type of elements returned by this iterator.
+             * @see {@link https://docs.oracle.com/javase/10/docs/api/java/util/Iterator.html}
+             */
             export interface Iterator<E> {
                 /**
                  * Returns true if the iteration has more elements.
-                 * @returns {lang.Boolean}
+                 * @returns {$$rhino.Boolean}
                  */
-                hasNext(): lang.Boolean;
+                hasNext(): $$rhino.Boolean;
+
                 /**
                  * Returns the next element in the iteration.
                  * @returns {E}
                  */
                 next(): E;
+
                 /**
-                 * Removes from the underlying collection the last element returned by this iterator .
+                 * Removes from the underlying collection the last element returned by this iterator.
                  */
                 remove(): void;
             }
+
+            /**
+             * An iterator for lists that allows the programmer to traverse the list in either direction, modify the list during iteration, and obtain the iterator's current position in the list.
+             * @export
+             * @interface ListIterator
+             * @extends {Iterator<E>}
+             * @template E - The type of elements returned by this iterator.
+             * @see {@link https://docs.oracle.com/javase/10/docs/api/java/util/ListIterator.html}
+             */
             export interface ListIterator<E> extends Iterator<E> {
                 /**
                  * Inserts the specified element into the list (optional operation).
@@ -1269,15 +1371,15 @@ declare namespace Packages {
 
                 /**
                  * Returns true if this list iterator has more elements when traversing the list in the forward direction.
-                 * @returns {lang.Boolean}
+                 * @returns {$$rhino.Boolean}
                  */
-                hasNext(): lang.Boolean;
+                hasNext(): $$rhino.Boolean;
 
                 /**
                  * Returns true if this list iterator has more elements when traversing the list in the reverse direction.
-                 * @returns {lang.Boolean}
+                 * @returns {$$rhino.Boolean}
                  */
-                hasPrevious(): lang.Boolean;
+                hasPrevious(): $$rhino.Boolean;
 
                 /**
                  * Returns the next element in the list and advances the cursor position.
@@ -1287,9 +1389,9 @@ declare namespace Packages {
 
                 /**
                  * Returns the index of the element that would be returned by a subsequent call to next().
-                 * @returns {lang.Integer}
+                 * @returns {$$rhino.Number}
                  */
-                nextIndex(): lang.Integer;
+                nextIndex(): $$rhino.Number;
 
                 /**
                  * Returns the previous element in the list and moves the cursor position backwards.
@@ -1299,9 +1401,9 @@ declare namespace Packages {
 
                 /**
                  * Returns the index of the element that would be returned by a subsequent call to previous().
-                 * @returns {lang.Integer}
+                 * @returns {$$rhino.Number}
                  */
-                previousIndex(): lang.Integer;
+                previousIndex(): $$rhino.Number;
 
                 /**
                  * Removes from the list the last element that was returned by next() or previous() (optional operation).
@@ -1314,13 +1416,22 @@ declare namespace Packages {
                  */
                 set(e: E): void;
             }
+
+            /**
+             * An ordered collection (also known as a sequence).
+             * @export
+             * @interface List
+             * @extends {util.Collection<E>}
+             * @template E
+             * @see {@link https://docs.oracle.com/javase/10/docs/api/java/util/List.html}
+             */
             export interface List<E> extends util.Collection<E> {
                 /**
                  * Appends the specified element to the end of this list (optional operation).
                  * @param e {E}
-                 * @returns {lang.Boolean}
+                 * @returns {$$rhino.Boolean}
                  */
-                add(e: E): lang.Boolean;
+                add(e: E): $$rhino.Boolean;
 
                 /**
                  * Inserts the specified element at the specified position in this list (optional operation).
@@ -1332,17 +1443,17 @@ declare namespace Packages {
                 /**
                  * Appends all of the elements in the specified collection to the end of this list, in the order that they are returned by the specified collection's iterator (optional operation).
                  * @param c {util.Collection< E>}
-                 * @returns {lang.Boolean}
+                 * @returns {$$rhino.Boolean}
                  */
-                addAll(c: util.Collection<E>): lang.Boolean;
+                addAll(c: util.Collection<E>): $$rhino.Boolean;
 
                 /**
                  * Inserts all of the elements in the specified collection into this list at the specified position (optional operation).
                  * @param index {$$rhino.Number}
                  * @param c {util.Collection< E>}
-                 * @returns {lang.Boolean}
+                 * @returns {$$rhino.Boolean}
                  */
-                addAll(index: $$rhino.Number, c: util.Collection<E>): lang.Boolean;
+                addAll(index: $$rhino.Number, c: util.Collection<E>): $$rhino.Boolean;
 
                 /**
                  * Removes all of the elements from this list (optional operation).
@@ -1351,24 +1462,17 @@ declare namespace Packages {
 
                 /**
                  * Returns true if this list contains the specified element.
-                 * @param o {lang.Object}
-                 * @returns {lang.Boolean}
+                 * @param o {*}
+                 * @returns {$$rhino.Boolean}
                  */
-                contains(o: lang.Object): lang.Boolean;
+                contains(o: any): $$rhino.Boolean;
 
                 /**
                  * Returns true if this list contains all of the elements of the specified collection.
                  * @param c {util.Collection<any>}
-                 * @returns {lang.Boolean}
+                 * @returns {$$rhino.Boolean}
                  */
-                containsAll(c: util.Collection<any>): lang.Boolean;
-
-                /**
-                 * Compares the specified object with this list for equality.
-                 * @param o {lang.Object}
-                 * @returns {lang.Boolean}
-                 */
-                equals(o: lang.Object): lang.Boolean;
+                containsAll(c: util.Collection<any>): $$rhino.Boolean;
 
                 /**
                  * Returns the element at the specified position in this list.
@@ -1378,23 +1482,17 @@ declare namespace Packages {
                 get(index: $$rhino.Number): E;
 
                 /**
-                 * Returns the hash code value for this list.
-                 * @returns {lang.Integer}
-                 */
-                hashCode(): lang.Integer;
-
-                /**
                  * Returns the index of the first occurrence of the specified element in this list, or -1 if this list does not contain the element.
-                 * @param o {lang.Object}
-                 * @returns {lang.Integer}
+                 * @param o {*}
+                 * @returns {$$rhino.Number}
                  */
-                indexOf(o: lang.Object): lang.Integer;
+                indexOf(o: any): $$rhino.Number;
 
                 /**
                  * Returns true if this list contains no elements.
-                 * @returns {lang.Boolean}
+                 * @returns {$$rhino.Boolean}
                  */
-                isEmpty(): lang.Boolean;
+                isEmpty(): $$rhino.Boolean;
 
                 /**
                  * Returns an iterator over the elements in this list in proper sequence.
@@ -1404,10 +1502,10 @@ declare namespace Packages {
 
                 /**
                  * Returns the index of the last occurrence of the specified element in this list, or -1 if this list does not contain the element.
-                 * @param o {lang.Object}
-                 * @returns {lang.Integer}
+                 * @param o {*}
+                 * @returns {$$rhino.Number}
                  */
-                lastIndexOf(o: lang.Object): lang.Integer;
+                lastIndexOf(o: any): $$rhino.Number;
 
                 /**
                  * Returns a list iterator over the elements in this list (in proper sequence).
@@ -1431,24 +1529,24 @@ declare namespace Packages {
 
                 /**
                  * Removes the first occurrence of the specified element from this list, if it is present (optional operation).
-                 * @param o {lang.Object}
-                 * @returns {lang.Boolean}
+                 * @param o {*}
+                 * @returns {$$rhino.Boolean}
                  */
-                remove(o: lang.Object): lang.Boolean;
+                remove(o: any): $$rhino.Boolean;
 
                 /**
                  * Removes from this list all of its elements that are contained in the specified collection (optional operation).
                  * @param c {util.Collection<any>}
-                 * @returns {lang.Boolean}
+                 * @returns {$$rhino.Boolean}
                  */
-                removeAll(c: util.Collection<any>): lang.Boolean;
+                removeAll(c: util.Collection<any>): $$rhino.Boolean;
 
                 /**
                  * Retains only the elements in this list that are contained in the specified collection (optional operation).
                  * @param c {util.Collection<any>}
-                 * @returns {lang.Boolean}
+                 * @returns {$$rhino.Boolean}
                  */
-                retainAll(c: util.Collection<any>): lang.Boolean;
+                retainAll(c: util.Collection<any>): $$rhino.Boolean;
 
                 /**
                  * Replaces the element at the specified position in this list with the specified element (optional operation).
@@ -1460,9 +1558,9 @@ declare namespace Packages {
 
                 /**
                  * Returns the number of elements in this list.
-                 * @returns {lang.Integer}
+                 * @returns {$$rhino.Number}
                  */
-                size(): lang.Integer;
+                size(): $$rhino.Number;
 
                 /**
                  * Returns a view of the portion of this list between the specified fromIndex, inclusive, and toIndex, exclusive.
@@ -1474,25 +1572,34 @@ declare namespace Packages {
 
                 /**
                  * Returns an array containing all of the elements in this list in proper sequence (from first to last element).
-                 * @returns {lang.Object}
+                 * @returns {*}
                  */
-                toArray(): lang.Object;
+                toArray(): any;
             }
-            export abstract class AbstractCollection<E> extends lang.Object implements util.Collection<E>  {
-                protected constructor();
+
+            /**
+             * Represents the java.util.AbstractCollection class.
+             * @export
+             * @interface AbstractCollection
+             * @extends {lang.Object}
+             * @extends {util.Collection<E>}
+             * @template E
+             * @see {@link https://docs.oracle.com/javase/10/docs/api/java/util/AbstractCollection.html}
+             */
+            export interface AbstractCollection<E> extends lang.Object, util.Collection<E>  {
                 /**
                  * Ensures that this collection contains the specified element (optional operation).
                  * @param e {E}
-                 * @returns {lang.Boolean}
+                 * @returns {$$rhino.Boolean}
                  */
-                add(e: E): lang.Boolean;
+                add(e: E): $$rhino.Boolean;
 
                 /**
                  * Adds all of the elements in the specified collection to this collection (optional operation).
                  * @param c {util.Collection< E>}
-                 * @returns {lang.Boolean}
+                 * @returns {$$rhino.Boolean}
                  */
-                addAll(c: util.Collection<E>): lang.Boolean;
+                addAll(c: util.Collection<E>): $$rhino.Boolean;
 
                 /**
                  * Removes all of the elements from this collection (optional operation).
@@ -1501,23 +1608,23 @@ declare namespace Packages {
 
                 /**
                  * Returns true if this collection contains the specified element.
-                 * @param o {lang.Object}
-                 * @returns {lang.Boolean}
+                 * @param o {*}
+                 * @returns {$$rhino.Boolean}
                  */
-                contains(o: lang.Object): lang.Boolean;
+                contains(o: any): $$rhino.Boolean;
 
                 /**
                  * Returns true if this collection contains all of the elements in the specified collection.
                  * @param c {util.Collection<any>}
-                 * @returns {lang.Boolean}
+                 * @returns {$$rhino.Boolean}
                  */
-                containsAll(c: util.Collection<any>): lang.Boolean;
+                containsAll(c: util.Collection<any>): $$rhino.Boolean;
 
                 /**
                  * Returns true if this collection contains no elements.
-                 * @returns {lang.Boolean}
+                 * @returns {$$rhino.Boolean}
                  */
-                isEmpty(): lang.Boolean;
+                isEmpty(): $$rhino.Boolean;
 
                 /**
                  * Returns an iterator over the elements contained in this collection.
@@ -1527,64 +1634,60 @@ declare namespace Packages {
 
                 /**
                  * Removes a single instance of the specified element from this collection, if it is present (optional operation).
-                 * @param o {lang.Object}
-                 * @returns {lang.Boolean}
+                 * @param o {*}
+                 * @returns {$$rhino.Boolean}
                  */
-                remove(o: lang.Object): lang.Boolean;
+                remove(o: any): $$rhino.Boolean;
 
                 /**
                  * Removes all of this collection's elements that are also contained in the specified collection (optional operation).
                  * @param c {util.Collection<any>}
-                 * @returns {lang.Boolean}
+                 * @returns {$$rhino.Boolean}
                  */
-                removeAll(c: util.Collection<any>): lang.Boolean;
+                removeAll(c: util.Collection<any>): $$rhino.Boolean;
 
                 /**
                  * Retains only the elements in this collection that are contained in the specified collection (optional operation).
                  * @param c {util.Collection<any>}
-                 * @returns {lang.Boolean}
+                 * @returns {$$rhino.Boolean}
                  */
-                retainAll(c: util.Collection<any>): lang.Boolean;
+                retainAll(c: util.Collection<any>): $$rhino.Boolean;
 
                 /**
                  * Returns the number of elements in this collection.
-                 * @returns {lang.Integer}
+                 * @returns {$$rhino.Number}
                  */
-                size(): lang.Integer;
-
-                /**
-                 * Returns the hash code value for this collection.
-                 * @returns {lang.Integer}
-                 */
-                hashCode(): lang.Integer;
-
-                /**
-                 * Compares the specified object with this collection for equality.
-                 * @param o {lang.Object}
-                 * @returns {lang.Boolean}
-                 */
-                equals(o: lang.Object): lang.Boolean;
+                size(): $$rhino.Number;
 
                 /**
                  * Returns an array containing all of the elements in this collection.
-                 * @returns {lang.Object}
+                 * @returns {*}
                  */
-                toArray(): lang.Object;
+                toArray(): any;
 
                 /**
                  * Returns a string representation of this collection.
-                 * @returns {lang.String}
+                 * @returns {$$rhino.String}
                  */
-                toString(): lang.String;
+                toString(): $$rhino.String;
             }
-            export abstract class AbstractList<E> extends AbstractCollection<E> implements List<E> {
-                protected constructor();
+
+            /**
+             * Represents the java.util.AbstractList class.
+             * @export
+             * @interface AbstractList
+             * @extends {AbstractCollection<E>}
+             * @extends {List<E>}
+             * @template E
+             * @see {@link https://docs.oracle.com/javase/10/docs/api/java/util/AbstractList.html}
+             */
+            export interface AbstractList<E> extends AbstractCollection<E>, List<E> {
                 /**
                  * Appends the specified element to the end of this list (optional operation).
                  * @param e {E}
-                 * @returns {lang.Boolean}
+                 * @returns {$$rhino.Boolean}
                  */
-                add(e: E): lang.Boolean;
+                add(e: E): $$rhino.Boolean;
 
                 /**
                  * Inserts the specified element at the specified position in this list (optional operation).
@@ -1597,10 +1700,10 @@ declare namespace Packages {
                  * Inserts all of the elements in the specified collection into this list at the specified position (optional operation).
                  * @param index {$$rhino.Number}
                  * @param c {util.Collection< E>}
-                 * @returns {lang.Boolean}
+                 * @returns {$$rhino.Boolean}
                  */
-                addAll(c: util.Collection<E>): lang.Boolean;
-                addAll(index: $$rhino.Number, c: util.Collection<E>): lang.Boolean;
+                addAll(c: util.Collection<E>): $$rhino.Boolean;
+                addAll(index: $$rhino.Number, c: util.Collection<E>): $$rhino.Boolean;
 
                 /**
                  * Removes all of the elements from this list (optional operation).
@@ -1616,16 +1719,16 @@ declare namespace Packages {
 
                 /**
                  * Returns the hash code value for this list.
-                 * @returns {lang.Integer}
+                 * @returns {$$rhino.Number}
                  */
-                hashCode(): lang.Integer;
+                hashCode(): $$rhino.Number;
 
                 /**
                  * Returns the index of the first occurrence of the specified element in this list, or -1 if this list does not contain the element.
-                 * @param o {lang.Object}
-                 * @returns {lang.Integer}
+                 * @param o {*}
+                 * @returns {$$rhino.Number}
                  */
-                indexOf(o: lang.Object): lang.Integer;
+                indexOf(o: any): $$rhino.Number;
 
                 /**
                  * Returns an iterator over the elements in this list in proper sequence.
@@ -1635,10 +1738,10 @@ declare namespace Packages {
 
                 /**
                  * Returns the index of the last occurrence of the specified element in this list, or -1 if this list does not contain the element.
-                 * @param o {lang.Object}
-                 * @returns {lang.Integer}
+                 * @param o {*}
+                 * @returns {$$rhino.Number}
                  */
-                lastIndexOf(o: lang.Object): lang.Integer;
+                lastIndexOf(o: any): $$rhino.Number;
 
                 /**
                  * Returns a list iterator over the elements in this list (in proper sequence).
@@ -1659,7 +1762,7 @@ declare namespace Packages {
                  * @returns {E}
                  */
                 remove(index: $$rhino.Number): E;
-                remove(o: lang.Object): lang.Boolean;
+                remove(o: any): $$rhino.Boolean;
 
                 /**
                  * Replaces the element at the specified position in this list with the specified element (optional operation).
@@ -1677,13 +1780,23 @@ declare namespace Packages {
                  */
                 subList(fromIndex: $$rhino.Number, toIndex: $$rhino.Number): List<E>;
             }
-            export class ArrayList<E> extends AbstractList<E> implements List<E> {
+
+            /**
+             * Represents the java.util.ArrayList class.
+             * @export
+             * @interface ArrayList
+             * @extends {AbstractList<E>}
+             * @extends {List<E>}
+             * @template E
+             * @see {@link https://docs.oracle.com/javase/10/docs/api/java/util/ArrayList.html}
+             */
+            export interface ArrayList<E> extends AbstractList<E>, List<E> {
                 /**
                  * Appends the specified element to the end of this list.
                  * @param e {E}
-                 * @returns {lang.Boolean}
+                 * @returns {$$rhino.Boolean}
                  */
-                add(e: E): lang.Boolean;
+                add(e: E): $$rhino.Boolean;
 
                 /**
                  * Inserts the specified element at the specified position in this list.
@@ -1695,17 +1808,17 @@ declare namespace Packages {
                 /**
                  * Appends all of the elements in the specified collection to the end of this list, in the order that they are returned by the specified collection's Iterator.
                  * @param c {util.Collection< E>}
-                 * @returns {lang.Boolean}
+                 * @returns {$$rhino.Boolean}
                  */
-                addAll(c: util.Collection<E>): lang.Boolean;
+                addAll(c: util.Collection<E>): $$rhino.Boolean;
 
                 /**
                  * Inserts all of the elements in the specified collection into this list, starting at the specified position.
                  * @param index {$$rhino.Number}
                  * @param c {util.Collection< E>}
-                 * @returns {lang.Boolean}
+                 * @returns {$$rhino.Boolean}
                  */
-                addAll(index: $$rhino.Number, c: util.Collection<E>): lang.Boolean;
+                addAll(index: $$rhino.Number, c: util.Collection<E>): $$rhino.Boolean;
 
                 /**
                  * Removes all of the elements from this list.
@@ -1720,10 +1833,10 @@ declare namespace Packages {
 
                 /**
                  * Returns true if this list contains the specified element.
-                 * @param o {lang.Object}
-                 * @returns {lang.Boolean}
+                 * @param o {*}
+                 * @returns {$$rhino.Boolean}
                  */
-                contains(o: lang.Object): lang.Boolean;
+                contains(o: any): $$rhino.Boolean;
 
                 /**
                  * Increases the capacity of this ArrayList instance, if necessary, to ensure that it can hold at least the number of elements specified by the minimum capacity argument.
@@ -1740,16 +1853,16 @@ declare namespace Packages {
 
                 /**
                  * Returns the index of the first occurrence of the specified element in this list, or -1 if this list does not contain the element.
-                 * @param o {lang.Object}
-                 * @returns {lang.Integer}
+                 * @param o {*}
+                 * @returns {$$rhino.Number}
                  */
-                indexOf(o: lang.Object): lang.Integer;
+                indexOf(o: any): $$rhino.Number;
 
                 /**
                  * Returns true if this list contains no elements.
-                 * @returns {lang.Boolean}
+                 * @returns {$$rhino.Boolean}
                  */
-                isEmpty(): lang.Boolean;
+                isEmpty(): $$rhino.Boolean;
 
                 /**
                  * Returns an iterator over the elements in this list in proper sequence.
@@ -1759,10 +1872,10 @@ declare namespace Packages {
 
                 /**
                  * Returns the index of the last occurrence of the specified element in this list, or -1 if this list does not contain the element.
-                 * @param o {lang.Object}
-                 * @returns {lang.Integer}
+                 * @param o {*}
+                 * @returns {$$rhino.Number}
                  */
-                lastIndexOf(o: lang.Object): lang.Integer;
+                lastIndexOf(o: any): $$rhino.Number;
 
                 /**
                  * Returns a list iterator over the elements in this list (in proper sequence).
@@ -1786,24 +1899,24 @@ declare namespace Packages {
 
                 /**
                  * Removes the first occurrence of the specified element from this list, if it is present.
-                 * @param o {lang.Object}
-                 * @returns {lang.Boolean}
+                 * @param o {*}
+                 * @returns {$$rhino.Boolean}
                  */
-                remove(o: lang.Object): lang.Boolean;
+                remove(o: any): $$rhino.Boolean;
 
                 /**
                  * Removes from this list all of its elements that are contained in the specified collection.
                  * @param c {util.Collection<any>}
-                 * @returns {lang.Boolean}
+                 * @returns {$$rhino.Boolean}
                  */
-                removeAll(c: util.Collection<any>): lang.Boolean;
+                removeAll(c: util.Collection<any>): $$rhino.Boolean;
 
                 /**
                  * Retains only the elements in this list that are contained in the specified collection.
                  * @param c {util.Collection<any>}
-                 * @returns {lang.Boolean}
+                 * @returns {$$rhino.Boolean}
                  */
-                retainAll(c: util.Collection<any>): lang.Boolean;
+                retainAll(c: util.Collection<any>): $$rhino.Boolean;
 
                 /**
                  * Replaces the element at the specified position in this list with the specified element.
@@ -1815,9 +1928,9 @@ declare namespace Packages {
 
                 /**
                  * Returns the number of elements in this list.
-                 * @returns {lang.Integer}
+                 * @returns {$$rhino.Number}
                  */
-                size(): lang.Integer;
+                size(): $$rhino.Number;
 
                 /**
                  * Returns a view of the portion of this list between the specified fromIndex, inclusive, and toIndex, exclusive.
@@ -1829,23 +1942,25 @@ declare namespace Packages {
 
                 /**
                  * Returns an array containing all of the elements in this list in proper sequence (from first to last element).
-                 * @returns {lang.Object}
+                 * @returns {*}
                  */
-                toArray(): lang.Object;
+                toArray(): any;
 
                 /**
                  * Trims the capacity of this ArrayList instance to be the list's current size.
                  */
                 trimToSize(): void;
             }
-            export interface MapEntry<K, V> {
-                /**
-                 * Compares the specified object with this entry for equality.
-                 * @param o {lang.Object}
-                 * @returns {lang.Boolean}
-                 */
-                equals(o: lang.Object): lang.Boolean;
 
+            /**
+             * A map entry (key-value pair).
+             * @export
+             * @interface MapEntry
+             * @template K - The type of key.
+             * @template V - The type of mapped value.
+             * @see {@link https://docs.oracle.com/javase/10/docs/api/java/util/Map.Entry.html}
+             */
+            export interface MapEntry<K, V> {
                 /**
                  * Returns the key corresponding to this entry.
                  * @returns {K}
@@ -1859,32 +1974,35 @@ declare namespace Packages {
                 getValue(): V;
 
                 /**
-                 * Returns the hash code value for this map entry.
-                 * @returns {lang.Integer}
-                 */
-                hashCode(): lang.Integer;
-
-                /**
                  * Replaces the value corresponding to this entry with the specified value (optional operation).
                  * @param value {V}
                  * @returns {V}
                  */
                 setValue(value: V): V;
             }
+
+            /**
+             * A collection that contains no duplicate elements.
+             * @export
+             * @interface Set
+             * @extends {util.Collection<E>}
+             * @template E - The type of elements maintained by this set.
+             * @see {@link https://docs.oracle.com/javase/10/docs/api/java/util/Set.html}
+             */
             export interface Set<E> extends util.Collection<E> {
                 /**
                  * Adds the specified element to this set if it is not already present (optional operation).
                  * @param e {E}
-                 * @returns {lang.Boolean}
+                 * @returns {$$rhino.Boolean}
                  */
-                add(e: E): lang.Boolean;
+                add(e: E): $$rhino.Boolean;
 
                 /**
                  * Adds all of the elements in the specified collection to this set if they're not already present (optional operation).
                  * @param c {util.Collection< E>}
-                 * @returns {lang.Boolean}
+                 * @returns {$$rhino.Boolean}
                  */
-                addAll(c: util.Collection<E>): lang.Boolean;
+                addAll(c: util.Collection<E>): $$rhino.Boolean;
 
                 /**
                  * Removes all of the elements from this set (optional operation).
@@ -1893,36 +2011,29 @@ declare namespace Packages {
 
                 /**
                  * Returns true if this set contains the specified element.
-                 * @param o {lang.Object}
-                 * @returns {lang.Boolean}
+                 * @param o {*}
+                 * @returns {$$rhino.Boolean}
                  */
-                contains(o: lang.Object): lang.Boolean;
+                contains(o: any): $$rhino.Boolean;
 
                 /**
                  * Returns true if this set contains all of the elements of the specified collection.
                  * @param c {util.Collection<any>}
-                 * @returns {lang.Boolean}
+                 * @returns {$$rhino.Boolean}
                  */
-                containsAll(c: util.Collection<any>): lang.Boolean;
-
-                /**
-                 * Compares the specified object with this set for equality.
-                 * @param o {lang.Object}
-                 * @returns {lang.Boolean}
-                 */
-                equals(o: lang.Object): lang.Boolean;
+                containsAll(c: util.Collection<any>): $$rhino.Boolean;
 
                 /**
                  * Returns the hash code value for this set.
-                 * @returns {lang.Integer}
+                 * @returns {$$rhino.Number}
                  */
-                hashCode(): lang.Integer;
+                hashCode(): $$rhino.Number;
 
                 /**
                  * Returns true if this set contains no elements.
-                 * @returns {lang.Boolean}
+                 * @returns {$$rhino.Boolean}
                  */
-                isEmpty(): lang.Boolean;
+                isEmpty(): $$rhino.Boolean;
 
                 /**
                  * Returns an iterator over the elements in this set.
@@ -1932,37 +2043,46 @@ declare namespace Packages {
 
                 /**
                  * Removes the specified element from this set if it is present (optional operation).
-                 * @param o {lang.Object}
-                 * @returns {lang.Boolean}
+                 * @param o {*}
+                 * @returns {$$rhino.Boolean}
                  */
-                remove(o: lang.Object): lang.Boolean;
+                remove(o: any): $$rhino.Boolean;
 
                 /**
                  * Removes from this set all of its elements that are contained in the specified collection (optional operation).
                  * @param c {util.Collection<any>}
-                 * @returns {lang.Boolean}
+                 * @returns {$$rhino.Boolean}
                  */
-                removeAll(c: util.Collection<any>): lang.Boolean;
+                removeAll(c: util.Collection<any>): $$rhino.Boolean;
 
                 /**
                  * Retains only the elements in this set that are contained in the specified collection (optional operation).
                  * @param c {util.Collection<any>}
-                 * @returns {lang.Boolean}
+                 * @returns {$$rhino.Boolean}
                  */
-                retainAll(c: util.Collection<any>): lang.Boolean;
+                retainAll(c: util.Collection<any>): $$rhino.Boolean;
 
                 /**
                  * Returns the number of elements in this set (its cardinality).
-                 * @returns {lang.Integer}
+                 * @returns {$$rhino.Number}
                  */
-                size(): lang.Integer;
+                size(): $$rhino.Number;
 
                 /**
                  * Returns an array containing all of the elements in this set.
-                 * @returns {lang.Object}
+                 * @returns {*}
                  */
-                toArray(): lang.Object;
+                toArray(): any;
             }
+
+            /**
+             * An object that maps keys to values.
+             * @export
+             * @interface Map
+             * @template K - The type of keys maintained by this map.
+             * @template V - The type of mapped values.
+             * @see {@link https://docs.oracle.com/javase/10/docs/api/java/util/Map.html}
+             */
             export interface Map<K, V> {
                 /**
                  * Removes all of the mappings from this map (optional operation).
@@ -1971,49 +2091,42 @@ declare namespace Packages {
 
                 /**
                  * Returns true if this map contains a mapping for the specified key.
-                 * @param key {lang.Object}
-                 * @returns {lang.Boolean}
+                 * @param key {*}
+                 * @returns {$$rhino.Boolean}
                  */
-                containsKey(key: lang.Object): lang.Boolean;
+                containsKey(key: any): $$rhino.Boolean;
 
                 /**
                  * Returns true if this map maps one or more keys to the specified value.
-                 * @param value {lang.Object}
-                 * @returns {lang.Boolean}
+                 * @param value {*}
+                 * @returns {$$rhino.Boolean}
                  */
-                containsValue(value: lang.Object): lang.Boolean;
+                containsValue(value: any): $$rhino.Boolean;
 
                 /**
                  * Returns a Set view of the mappings contained in this map.
-                 * @returns {util.Set<Map.Entry<K,V>>}
+                 * @returns {util.Set<MapEntry<K,V>>}
                  */
                 entrySet(): util.Set<MapEntry<K, V>>;
 
                 /**
-                 * Compares the specified object with this map for equality.
-                 * @param o {lang.Object}
-                 * @returns {lang.Boolean}
-                 */
-                equals(o: lang.Object): lang.Boolean;
-
-                /**
                  * Returns the value to which the specified key is mapped, or null if this map contains no mapping for the key.
-                 * @param key {lang.Object}
+                 * @param key {*}
                  * @returns {V}
                  */
-                get(key: lang.Object): V;
+                get(key: any): V;
 
                 /**
                  * Returns the hash code value for this map.
-                 * @returns {lang.Integer}
+                 * @returns {$$rhino.Number}
                  */
-                hashCode(): lang.Integer;
+                hashCode(): $$rhino.Number;
 
                 /**
                  * Returns true if this map contains no key-value mappings.
-                 * @returns {lang.Boolean}
+                 * @returns {$$rhino.Boolean}
                  */
-                isEmpty(): lang.Boolean;
+                isEmpty(): $$rhino.Boolean;
 
                 /**
                  * Returns a Set view of the keys contained in this map.
@@ -2031,16 +2144,16 @@ declare namespace Packages {
 
                 /**
                  * Removes the mapping for a key from this map if it is present (optional operation).
-                 * @param key {lang.Object}
+                 * @param key {*}
                  * @returns {V}
                  */
-                remove(key: lang.Object): V;
+                remove(key: any): V;
 
                 /**
                  * Returns the number of key-value mappings in this map.
-                 * @returns {lang.Integer}
+                 * @returns {$$rhino.Number}
                  */
-                size(): lang.Integer;
+                size(): $$rhino.Number;
 
                 /**
                  * Returns a util.Collection view of the values contained in this map.
@@ -2048,8 +2161,18 @@ declare namespace Packages {
                  */
                 values(): util.Collection<V>;
             }
-            export class AbstractMap<K, V> extends lang.Object implements Map<K, V> {
-                protected constructor();
+
+            /**
+             * Represents the java.util.AbstractMap class.
+             * @export
+             * @class AbstractMap
+             * @extends {lang.Object}
+             * @implements {Map<K, V>}
+             * @template K
+             * @template V
+             * @see {@link https://docs.oracle.com/javase/10/docs/api/java/util/AbstractMap.html}
+             */
+            export interface AbstractMap<K, V> extends lang.Object, Map<K, V> {
                 /**
                  * Removes all of the mappings from this map (optional operation).
                  */
@@ -2057,17 +2180,17 @@ declare namespace Packages {
 
                 /**
                  * Returns true if this map contains a mapping for the specified key.
-                 * @param key {lang.Object}
-                 * @returns {lang.Boolean}
+                 * @param key {*}
+                 * @returns {$$rhino.Boolean}
                  */
-                containsKey(key: lang.Object): lang.Boolean;
+                containsKey(key: any): $$rhino.Boolean;
 
                 /**
                  * Returns true if this map maps one or more keys to the specified value.
-                 * @param value {lang.Object}
-                 * @returns {lang.Boolean}
+                 * @param value {*}
+                 * @returns {$$rhino.Boolean}
                  */
-                containsValue(value: lang.Object): lang.Boolean;
+                containsValue(value: any): $$rhino.Boolean;
 
                 /**
                  * Returns a Set view of the mappings contained in this map.
@@ -2077,22 +2200,22 @@ declare namespace Packages {
 
                 /**
                  * Returns the value to which the specified key is mapped, or null if this map contains no mapping for the key.
-                 * @param key {lang.Object}
+                 * @param key {*}
                  * @returns {V}
                  */
-                get(key: lang.Object): V;
+                get(key: any): V;
 
                 /**
                  * Returns the hash code value for this map.
-                 * @returns {lang.Integer}
+                 * @returns {$$rhino.Number}
                  */
-                hashCode(): lang.Integer;
+                hashCode(): $$rhino.Number;
 
                 /**
                  * Returns true if this map contains no key-value mappings.
-                 * @returns {lang.Boolean}
+                 * @returns {$$rhino.Boolean}
                  */
-                isEmpty(): lang.Boolean;
+                isEmpty(): $$rhino.Boolean;
 
                 /**
                  * Returns a Set view of the keys contained in this map.
@@ -2110,16 +2233,16 @@ declare namespace Packages {
 
                 /**
                  * Removes the mapping for a key from this map if it is present (optional operation).
-                 * @param key {lang.Object}
+                 * @param key {*}
                  * @returns {V}
                  */
-                remove(key: lang.Object): V;
+                remove(key: any): V;
 
                 /**
                  * Returns the number of key-value mappings in this map.
-                 * @returns {lang.Integer}
+                 * @returns {$$rhino.Number}
                  */
-                size(): lang.Integer;
+                size(): $$rhino.Number;
 
                 /**
                  * Returns a util.Collection view of the values contained in this map.
@@ -2127,8 +2250,18 @@ declare namespace Packages {
                  */
                 values(): util.Collection<V>;
             }
-            export class HashMap<K, V> extends AbstractMap<K, V> implements Map<K, V> {
-                protected constructor();
+
+            /**
+             * Represents the java.util.HashMap class.
+             * @export
+             * @interface HashMap
+             * @extends {AbstractMap<K, V>}
+             * @extends {Map<K, V>}
+             * @template K
+             * @template V
+             * @see {@link https://docs.oracle.com/javase/10/docs/api/java/util/HashMap.html}
+             */
+            export interface HashMap<K, V> extends AbstractMap<K, V>, Map<K, V> {
                 /**
                  * Removes all of the mappings from this map.
                  */
@@ -2142,17 +2275,17 @@ declare namespace Packages {
 
                 /**
                  * Returns true if this map contains a mapping for the specified key.
-                 * @param key {lang.Object}
-                 * @returns {lang.Boolean}
+                 * @param key {*}
+                 * @returns {$$rhino.Boolean}
                  */
-                containsKey(key: lang.Object): lang.Boolean;
+                containsKey(key: any): $$rhino.Boolean;
 
                 /**
                  * Returns true if this map maps one or more keys to the specified value.
-                 * @param value {lang.Object}
-                 * @returns {lang.Boolean}
+                 * @param value {*}
+                 * @returns {$$rhino.Boolean}
                  */
-                containsValue(value: lang.Object): lang.Boolean;
+                containsValue(value: any): $$rhino.Boolean;
 
                 /**
                  * Returns a Set view of the mappings contained in this map.
@@ -2162,16 +2295,16 @@ declare namespace Packages {
 
                 /**
                  * Returns the value to which the specified key is mapped, or null if this map contains no mapping for the key.
-                 * @param key {lang.Object}
+                 * @param key {*}
                  * @returns {V}
                  */
-                get(key: lang.Object): V;
+                get(key: any): V;
 
                 /**
                  * Returns true if this map contains no key-value mappings.
-                 * @returns {lang.Boolean}
+                 * @returns {$$rhino.Boolean}
                  */
-                isEmpty(): lang.Boolean;
+                isEmpty(): $$rhino.Boolean;
 
                 /**
                  * Returns a Set view of the keys contained in this map.
@@ -2189,16 +2322,16 @@ declare namespace Packages {
 
                 /**
                  * Removes the mapping for the specified key from this map if present.
-                 * @param key {lang.Object}
+                 * @param key {*}
                  * @returns {V}
                  */
-                remove(key: lang.Object): V;
+                remove(key: any): V;
 
                 /**
                  * Returns the number of key-value mappings in this map.
-                 * @returns {lang.Integer}
+                 * @returns {$$rhino.Number}
                  */
-                size(): lang.Integer;
+                size(): $$rhino.Number;
 
                 /**
                  * Returns a util.Collection view of the values contained in this map.
@@ -2206,24 +2339,41 @@ declare namespace Packages {
                  */
                 values(): util.Collection<V>;
             }
-            export class AbstractSet<E> extends AbstractCollection<E> implements util.Set<E> {
-                protected constructor();
 
+            /**
+             * Represents the java.util.AbstractSet class.
+             * @export
+             * @interface AbstractSet
+             * @extends {AbstractCollection<E>}
+             * @extends {util.Set<E>}
+             * @template E
+             * @see {@link https://docs.oracle.com/javase/10/docs/api/java/util/AbstractSet.html}
+             */
+            export interface AbstractSet<E> extends AbstractCollection<E>, util.Set<E> {
                 /**
                  * Removes from this set all of its elements that are contained in the specified collection (optional operation).
                  * @param c {util.Collection<any>}
-                 * @returns {lang.Boolean}
+                 * @returns {$$rhino.Boolean}
                  */
-                removeAll(c: util.Collection<any>): lang.Boolean;
+                removeAll(c: util.Collection<any>): $$rhino.Boolean;
             }
-            export class HashSet<E> extends AbstractSet<E> implements util.Set<E> {
-                protected constructor();
+
+            /**
+             * Represents the java.util.HashSet class.
+             * @export
+             * @interface HashSet
+             * @extends {AbstractSet<E>}
+             * @extends {util.Set<E>}
+             * @template E
+             * @see {@link https://docs.oracle.com/javase/10/docs/api/java/util/HashSet.html}
+             */
+            export interface HashSet<E> extends AbstractSet<E>, util.Set<E> {
                 /**
                  * Adds the specified element to this set if it is not already present.
                  * @param e {E}
-                 * @returns {lang.Boolean}
+                 * @returns {$$rhino.Boolean}
                  */
-                add(e: E): lang.Boolean;
+                add(e: E): $$rhino.Boolean;
 
                 /**
                  * Removes all of the elements from this set.
@@ -2238,16 +2388,16 @@ declare namespace Packages {
 
                 /**
                  * Returns true if this set contains the specified element.
-                 * @param o {lang.Object}
-                 * @returns {lang.Boolean}
+                 * @param o {*}
+                 * @returns {$$rhino.Boolean}
                  */
-                contains(o: lang.Object): lang.Boolean;
+                contains(o: any): $$rhino.Boolean;
 
                 /**
                  * Returns true if this set contains no elements.
-                 * @returns {lang.Boolean}
+                 * @returns {$$rhino.Boolean}
                  */
-                isEmpty(): lang.Boolean;
+                isEmpty(): $$rhino.Boolean;
 
                 /**
                  * Returns an iterator over the elements in this set.
@@ -2257,38 +2407,40 @@ declare namespace Packages {
 
                 /**
                  * Removes the specified element from this set if it is present.
-                 * @param o {lang.Object}
-                 * @returns {lang.Boolean}
+                 * @param o {*}
+                 * @returns {$$rhino.Boolean}
                  */
-                remove(o: lang.Object): lang.Boolean;
+                remove(o: any): $$rhino.Boolean;
 
                 /**
                  * Returns the number of elements in this set (its cardinality).
-                 * @returns {lang.Integer}
+                 * @returns {$$rhino.Number}
                  */
-                size(): lang.Integer;
+                size(): $$rhino.Number;
             }
+
             /**
-             * Java Date object.
+             * Represents the java.util.Date class.
              * @export
-             * @class Date
-             * @extends {Object}
+             * @interface Date
+             * @extends {lang.Object}
+             * @extends {lang.Comparable<Date>}
+             * @see {@link https://docs.oracle.com/javase/10/docs/api/java/util/Date.html}
              */
-            export class Date extends lang.Object implements lang.Comparable<Date> {
-                protected constructor();
+            export interface Date extends lang.Object, lang.Comparable<Date> {
                 /**
                  * Tests if this date is after the specified date.
                  * @param when {Date}
-                 * @returns {lang.Boolean}
+                 * @returns {$$rhino.Boolean}
                  */
-                after(when: Date): lang.Boolean;
+                after(when: Date): $$rhino.Boolean;
 
                 /**
                  * Tests if this date is before the specified date.
                  * @param when {Date}
-                 * @returns {lang.Boolean}
+                 * @returns {$$rhino.Boolean}
                  */
-                before(when: Date): lang.Boolean;
+                before(when: Date): $$rhino.Boolean;
 
                 /**
                  * Return a copy of this object.
@@ -2299,15 +2451,15 @@ declare namespace Packages {
                 /**
                  * Compares two Dates for ordering.
                  * @param anotherDate {Date}
-                 * @returns {lang.Integer}
+                 * @returns {$$rhino.Number}
                  */
-                compareTo(anotherDate: Date): lang.Integer;
+                compareTo(anotherDate: Date): $$rhino.Number;
 
                 /**
                  * Returns the number of milliseconds since January 1, 1970, 00:00:00 GMT represented by this Date object.
-                 * @returns {lang.Long}
+                 * @returns {$$rhino.Number}
                  */
-                getTime(): lang.Long;
+                getTime(): $$rhino.Number;
 
                 /**
                  * Sets this Date object to represent a point in time that is time milliseconds after January 1, 1970 00:00:00 GMT.
@@ -2316,12 +2468,14 @@ declare namespace Packages {
                 setTime(time: $$rhino.Number): void;
 
             }
+
             /**
-             * Represents a time zone offset, and also figures out daylight savings.
-             * @class TimeZone
+             * Represents the java.util.TimeZone class.
+             * @export
+             * @interface TimeZone
+             * @see {@link https://docs.oracle.com/javase/10/docs/api/java/util/TimeZone.html}
              */
-            export class TimeZone {
-                protected constructor();
+            export interface TimeZone {
                 /**
                  * Creates a copy of this TimeZone.
                  * @returns {lang.Object}
@@ -2330,45 +2484,45 @@ declare namespace Packages {
 
                 /**
                  * Returns a long standard time name of this TimeZone suitable for presentation to the user in the default locale.
-                 * @returns {lang.String}
+                 * @returns {$$rhino.String}
                  */
-                getDisplayName(): lang.String;
+                getDisplayName(): $$rhino.String;
 
                 /**
                  * Returns a name in the specified style of this TimeZone suitable for presentation to the user in the default locale.
                  * @param daylight {$$rhino.Boolean}
                  * @param style {$$rhino.Number}
-                 * @returns {lang.String}
+                 * @returns {$$rhino.String}
                  */
-                getDisplayName(daylight: $$rhino.Boolean, style: $$rhino.Number): lang.String;
+                getDisplayName(daylight: $$rhino.Boolean, style: $$rhino.Number): $$rhino.String;
 
                 /**
                  * Returns a name in the specified style of this TimeZone suitable for presentation to the user in the specified locale.
                  * @param daylight {$$rhino.Boolean}
                  * @param style {$$rhino.Number}
                  * @param locale {Locale}
-                 * @returns {lang.String}
+                 * @returns {$$rhino.String}
                  */
-                getDisplayName(daylight: $$rhino.Boolean, style: $$rhino.Number, locale: Locale): lang.String;
+                getDisplayName(daylight: $$rhino.Boolean, style: $$rhino.Number, locale: Locale): $$rhino.String;
 
                 /**
                  * Returns a long standard time name of this TimeZone suitable for presentation to the user in the specified locale.
                  * @param locale {Locale}
-                 * @returns {lang.String}
+                 * @returns {$$rhino.String}
                  */
-                getDisplayName(locale: Locale): lang.String;
+                getDisplayName(locale: Locale): $$rhino.String;
 
                 /**
                  * Returns the amount of time to be added to local standard time to get local wall clock time.
-                 * @returns {lang.Integer}
+                 * @returns {$$rhino.Number}
                  */
-                getDSTSavings(): lang.Integer;
+                getDSTSavings(): $$rhino.Number;
 
                 /**
                  * Gets the ID of this time zone.
-                 * @returns {lang.String}
+                 * @returns {$$rhino.String}
                  */
-                getID(): lang.String;
+                getID(): $$rhino.String;
 
                 /**
                  * Gets the time zone offset, for current date, modified in case of daylight savings.
@@ -2378,42 +2532,42 @@ declare namespace Packages {
                  * @param day {$$rhino.Number}
                  * @param dayOfWeek {$$rhino.Number}
                  * @param milliseconds {$$rhino.Number}
-                 * @returns {lang.Integer}
+                 * @returns {$$rhino.Number}
                  */
-                getOffset(era: $$rhino.Number, year: $$rhino.Number, month: $$rhino.Number, day: $$rhino.Number, dayOfWeek: $$rhino.Number, milliseconds: $$rhino.Number): lang.Integer;
+                getOffset(era: $$rhino.Number, year: $$rhino.Number, month: $$rhino.Number, day: $$rhino.Number, dayOfWeek: $$rhino.Number, milliseconds: $$rhino.Number): $$rhino.Number;
 
                 /**
                  * Returns the offset of this time zone from UTC at the specified date.
                  * @param date {$$rhino.Number}
-                 * @returns {lang.Integer}
+                 * @returns {$$rhino.Number}
                  */
-                getOffset(date: $$rhino.Number): lang.Integer;
+                getOffset(date: $$rhino.Number): $$rhino.Number;
 
                 /**
                  * Returns the amount of time in milliseconds to add to UTC to get standard time in this time zone.
-                 * @returns {lang.Integer}
+                 * @returns {$$rhino.Number}
                  */
-                getRawOffset(): lang.Integer;
+                getRawOffset(): $$rhino.Number;
 
                 /**
                  * Returns true if this zone has the same rule and offset as another zone.
                  * @param other {TimeZone}
-                 * @returns {lang.Boolean}
+                 * @returns {$$rhino.Boolean}
                  */
-                hasSameRules(other: TimeZone): lang.Boolean;
+                hasSameRules(other: TimeZone): $$rhino.Boolean;
 
                 /**
                  * Queries if the given date is in Daylight Saving Time in this time zone.
                  * @param date {Date}
-                 * @returns {lang.Boolean}
+                 * @returns {$$rhino.Boolean}
                  */
-                inDaylightTime(date: Date): lang.Boolean;
+                inDaylightTime(date: Date): $$rhino.Boolean;
 
                 /**
                  * Returns true if this TimeZone is currently in Daylight Saving Time, or if a transition from Standard Time to Daylight Saving Time occurs at any future time.
-                 * @returns {lang.Boolean}
+                 * @returns {$$rhino.Boolean}
                  */
-                observesDaylightTime(): lang.Boolean;
+                observesDaylightTime(): $$rhino.Boolean;
 
                 /**
                  * Sets the time zone ID.
@@ -2429,9 +2583,9 @@ declare namespace Packages {
 
                 /**
                  * Queries if this TimeZone uses Daylight Saving Time.
-                 * @returns {lang.Boolean}
+                 * @returns {$$rhino.Boolean}
                  */
-                useDaylightTime(): lang.Boolean;
+                useDaylightTime(): $$rhino.Boolean;
             }
         }
     }
@@ -2439,6 +2593,376 @@ declare namespace Packages {
     export namespace org {
         export namespace w3c {
             export namespace dom {
+                /**
+                 * The primary datatype for the entire Document Object Model.
+                 * @export
+                 * @interface Node
+                 * @see {@link https://docs.oracle.com/javase/10/docs/api/org/w3c/dom/Node.html}
+                 */
+                export interface Node {
+                    /**
+                     * Adds the node newChild to the end of the list of children of this node.
+                     * @param newChild {Node}
+                     * @returns {Node}
+                     */
+                    appendChild(newChild: Node): Node;
+
+                    /**
+                     * Returns a duplicate of this node, i.e., serves as a generic copy constructor for nodes.
+                     * @param deep {$$rhino.Boolean}
+                     * @returns {Node}
+                     */
+                    cloneNode(deep: $$rhino.Boolean): Node;
+
+                    /**
+                     * Compares the reference node, i.e.
+                     * @param other {Node}
+                     * @returns {$$rhino.Number}
+                     */
+                    compareDocumentPosition(other: Node): $$rhino.Number;
+
+                    /**
+                     * A NamedNodeMap containing the attributes of this node (if it is an Element) or null otherwise.
+                     * @returns {NamedNodeMap}
+                     */
+                    getAttributes(): NamedNodeMap;
+
+                    /**
+                     * The absolute base URI of this node or null if the implementation wasn't able to obtain an absolute URI.
+                     * @returns {$$rhino.String}
+                     */
+                    getBaseURI(): $$rhino.String;
+
+                    /**
+                     * A NodeList that contains all children of this node.
+                     * @returns {NodeList}
+                     */
+                    getChildNodes(): NodeList;
+
+                    /**
+                     * This method returns a specialized object which implements the specialized APIs of the specified feature and version, as specified in.
+                     * @param feature {$$rhino.String}
+                     * @param version {$$rhino.String}
+                     * @returns {*}
+                     */
+                    getFeature(feature: $$rhino.String, version: $$rhino.String): any;
+
+                    /**
+                     * The first child of this node.
+                     * @returns {Node}
+                     */
+                    getFirstChild(): Node;
+
+                    /**
+                     * The last child of this node.
+                     * @returns {Node}
+                     */
+                    getLastChild(): Node;
+
+                    /**
+                     * Returns the local part of the qualified name of this node.
+                     * @returns {$$rhino.String}
+                     */
+                    getLocalName(): $$rhino.String;
+
+                    /**
+                     * The namespace URI of this node, or null if it is unspecified (see ).
+                     * @returns {$$rhino.String}
+                     */
+                    getNamespaceURI(): $$rhino.String;
+
+                    /**
+                     * The node immediately following this node.
+                     * @returns {Node}
+                     */
+                    getNextSibling(): Node;
+
+                    /**
+                     * The name of this node, depending on its type; see the table above.
+                     * @returns {$$rhino.String}
+                     */
+                    getNodeName(): $$rhino.String;
+
+                    /**
+                     * A code representing the type of the underlying object, as defined above.
+                     * @returns {$$rhino.Number}
+                     */
+                    getNodeType(): $$rhino.Number;
+
+                    /**
+                     * The value of this node, depending on its type; see the table above.
+                     * @returns {$$rhino.String}
+                     */
+                    getNodeValue(): $$rhino.String;
+
+                    /**
+                     * The Document object associated with this node.
+                     * @returns {Document}
+                     */
+                    getOwnerDocument(): Document;
+
+                    /**
+                     * The parent of this node.
+                     * @returns {Node}
+                     */
+                    getParentNode(): Node;
+
+                    /**
+                     * The namespace prefix of this node, or null if it is unspecified.
+                     * @returns {$$rhino.String}
+                     */
+                    getPrefix(): $$rhino.String;
+
+                    /**
+                     * The node immediately preceding this node.
+                     * @returns {Node}
+                     */
+                    getPreviousSibling(): Node;
+
+                    /**
+                     * This attribute returns the text content of this node and its descendants.
+                     * @returns {$$rhino.String}
+                     */
+                    getTextContent(): $$rhino.String;
+
+                    /**
+                     * Retrieves the object associated to a key on a this node.
+                     * @param key {$$rhino.String}
+                     * @returns {*}
+                     */
+                    getUserData(key: $$rhino.String): any;
+
+                    /**
+                     * Returns whether this node (if it is an element) has any attributes.
+                     * @returns {$$rhino.Boolean}
+                     */
+                    hasAttributes(): $$rhino.Boolean;
+
+                    /**
+                     * Returns whether this node has any children.
+                     * @returns {$$rhino.Boolean}
+                     */
+                    hasChildNodes(): $$rhino.Boolean;
+
+                    /**
+                     * Inserts the node newChild before the existing child node refChild.
+                     * @param newChild {Node}
+                     * @param refChild {Node}
+                     * @returns {Node}
+                     */
+                    insertBefore(newChild: Node, refChild: Node): Node;
+
+                    /**
+                     * This method checks if the specified namespaceURI is the default namespace or not.
+                     * @param namespaceURI {$$rhino.String}
+                     * @returns {$$rhino.Boolean}
+                     */
+                    isDefaultNamespace(namespaceURI: $$rhino.String): $$rhino.Boolean;
+
+                    /**
+                     * Tests whether two nodes are equal.
+                     * @param arg {Node}
+                     * @returns {$$rhino.Boolean}
+                     */
+                    isEqualNode(arg: Node): $$rhino.Boolean;
+
+                    /**
+                     * Returns whether this node is the same node as the given one.
+                     * @param other {Node}
+                     * @returns {$$rhino.Boolean}
+                     */
+                    isSameNode(other: Node): $$rhino.Boolean;
+
+                    /**
+                     * Tests whether the DOM implementation implements a specific feature and that feature is supported by this node, as specified in.
+                     * @param feature {$$rhino.String}
+                     * @param version {$$rhino.String}
+                     * @returns {$$rhino.Boolean}
+                     */
+                    isSupported(feature: $$rhino.String, version: $$rhino.String): $$rhino.Boolean;
+
+                    /**
+                     * Look up the namespace URI associated to the given prefix, starting from this node.
+                     * @param prefix {$$rhino.String}
+                     * @returns {$$rhino.String}
+                     */
+                    lookupNamespaceURI(prefix: $$rhino.String): $$rhino.String;
+
+                    /**
+                     * Look up the prefix associated to the given namespace URI, starting from this node.
+                     * @param namespaceURI {$$rhino.String}
+                     * @returns {$$rhino.String}
+                     */
+                    lookupPrefix(namespaceURI: $$rhino.String): $$rhino.String;
+
+                    /**
+                     * Puts all Text nodes in the full depth of the sub-tree underneath this Node.
+                     */
+                    normalize(): void;
+
+                    /**
+                     * Removes the child node indicated by oldChild from the list of children, and returns it.
+                     * @param oldChild {Node}
+                     * @returns {Node}
+                     */
+                    removeChild(oldChild: Node): Node;
+
+                    /**
+                     * Replaces the child node oldChild with newChild in the list of children, and returns the oldChild node.
+                     * @param newChild {Node}
+                     * @param oldChild {Node}
+                     * @returns {Node}
+                     */
+                    replaceChild(newChild: Node, oldChild: Node): Node;
+
+                    /**
+                     * The value of this node, depending on its type; see the table above.
+                     * @param nodeValue {$$rhino.String}
+                     */
+                    setNodeValue(nodeValue: $$rhino.String): void;
+
+                    /**
+                     * The namespace prefix of this node, or null if it is unspecified.
+                     * @param prefix {$$rhino.String}
+                     */
+                    setPrefix(prefix: $$rhino.String): void;
+
+                    /**
+                     * This attribute returns the text content of this node and its descendants.
+                     * @param textContent {$$rhino.String}
+                     */
+                    setTextContent(textContent: $$rhino.String): void;
+                }
+
+                /**
+                 * Represents an attribute in an {@link Element} object.
+                 * @export
+                 * @interface Attr
+                 * @see {@link https://docs.oracle.com/javase/10/docs/api/org/w3c/dom/Attr.html}
+                 */
+                export interface Attr {
+                    /**
+                     * Returns the name of this attribute.
+                     * @returns {$$rhino.String}
+                     */
+                    getName(): $$rhino.String;
+
+                    /**
+                     * The Element node this attribute is attached to or null if this attribute is not in use.
+                     * @returns {Element}
+                     */
+                    getOwnerElement(): Element;
+
+                    /**
+                     * The type information associated with this attribute.
+                     * @returns {TypeInfo}
+                     */
+                    getSchemaTypeInfo(): TypeInfo;
+
+                    /**
+                     * True if this attribute was explicitly given a value in the instance document, false otherwise.
+                     * @returns {$$rhino.Boolean}
+                     */
+                    getSpecified(): $$rhino.Boolean;
+
+                    /**
+                     * On retrieval, the value of the attribute is returned as a string.
+                     * @returns {$$rhino.String}
+                     */
+                    getValue(): $$rhino.String;
+
+                    /**
+                     * Returns whether this attribute is known to be of type ID (i.e.
+                     * @returns {$$rhino.Boolean}
+                     */
+                    isId(): $$rhino.Boolean;
+
+                    /**
+                     * On retrieval, the value of the attribute is returned as a string.
+                     * @param value {$$rhino.String}
+                     */
+                    setValue(value: $$rhino.String): void;
+                }
+
+                /**
+                 * Provides the abstraction of an ordered collection of nodes, without defining or constraining how this collection is implemented.
+                 * @export
+                 * @interface NodeList
+                 * @see {@link https://docs.oracle.com/javase/10/docs/api/org/w3c/dom/NodeList.html}
+                 */
+                export interface NodeList {
+                    /**
+                     * Test if a name is part of this NameList.
+                     * @param str {$$rhino.String}
+                     * @returns {$$rhino.Boolean}
+                     */
+                    contains(str: $$rhino.String): $$rhino.Boolean;
+
+                    /**
+                     * Test if the pair namespaceURI/name is part of this NameList.
+                     * @param namespaceURI {$$rhino.String}
+                     * @param name {$$rhino.String}
+                     * @returns {$$rhino.Boolean}
+                     */
+                    containsNS(namespaceURI: $$rhino.String, name: $$rhino.String): $$rhino.Boolean;
+
+                    /**
+                     * The number of pairs (name and namespaceURI) in the list.
+                     * @returns {$$rhino.Number}
+                     */
+                    getLength(): $$rhino.Number;
+
+                    /**
+                     * Returns the indexth name item in the collection.
+                     * @param index {$$rhino.Number}
+                     * @returns {$$rhino.String}
+                     */
+                    getName(index: $$rhino.Number): $$rhino.String;
+
+                    /**
+                     * Returns the indexth namespaceURI item in the collection.
+                     * @param index {$$rhino.Number}
+                     * @returns {$$rhino.String}
+                     */
+                    getNamespaceURI(index: $$rhino.Number): $$rhino.String;
+                }
+
+                /**
+                 * Represents a type referenced from {@link Element} or {@link Attr} nodes, specified in the schemas associated with the document
+                 * @export
+                 * @interface TypeInfo
+                 * @see {@link https://docs.oracle.com/javase/10/docs/api/org/w3c/dom/TypeInfo.html}
+                 */
+                export interface TypeInfo {
+                    /**
+                     * The name of a type declared for the associated element or attribute, or null if unknown.
+                     * @returns {$$rhino.String}
+                     */
+                    getTypeName(): $$rhino.String;
+
+                    /**
+                     * The namespace of the type declared for the associated element or attribute or null if the element does not have declaration or if no namespace information is available.
+                     * @returns {$$rhino.String}
+                     */
+                    getTypeNamespace(): $$rhino.String;
+
+                    /**
+                     * This method returns if there is a derivation between the reference type definition, i.e.
+                     * @param typeNamespaceArg {$$rhino.String}
+                     * @param typeNameArg {$$rhino.String}
+                     * @param derivationMethod {$$rhino.Number}
+                     * @returns {$$rhino.Boolean}
+                     */
+                    isDerivedFrom(typeNamespaceArg: $$rhino.String, typeNameArg: $$rhino.String, derivationMethod: $$rhino.Number): $$rhino.Boolean;
+                }
+
+                /**
+                 * Provides a set of attributes and methods for accessing character data in the DOM.
+                 * @export
+                 * @interface CharacterData
+                 * @extends {Node}
+                 * @see {@link https://docs.oracle.com/javase/10/docs/api/org/w3c/dom/CharacterData.html}
+                 */
                 export interface CharacterData extends Node {
                     /**
                      * Append the string to the end of the character data of the node.
@@ -2455,15 +2979,15 @@ declare namespace Packages {
 
                     /**
                      * The character data of the node that implements this interface.
-                     * @returns {Packages.java.lang.String}
+                     * @returns {$$rhino.String}
                      */
-                    getData(): Packages.java.lang.String;
+                    getData(): $$rhino.String;
 
                     /**
                      * The number of 16-bit units that are available through data and the substringData method below.
-                     * @returns {Packages.java.lang.Integer}
+                     * @returns {$$rhino.Number}
                      */
-                    getLength(): Packages.java.lang.Integer;
+                    getLength(): $$rhino.Number;
 
                     /**
                      * Insert a string at the specified 16-bit unit offset.
@@ -2490,22 +3014,30 @@ declare namespace Packages {
                      * Extracts a range of data from the node.
                      * @param offset {$$rhino.Number}
                      * @param count {$$rhino.Number}
-                     * @returns {Packages.java.lang.String}
+                     * @returns {$$rhino.String}
                      */
-                    substringData(offset: $$rhino.Number, count: $$rhino.Number): Packages.java.lang.String;
+                    substringData(offset: $$rhino.Number, count: $$rhino.Number): $$rhino.String;
                 }
+
+                /**
+                 * Represents the textual content (termed character data in XML) of an {@link Element} or {@link Attr}.
+                 * @export
+                 * @interface Text
+                 * @extends {CharacterData}
+                 * @see {@link https://docs.oracle.com/javase/10/docs/api/org/w3c/dom/Text.html}
+                 */
                 export interface Text extends CharacterData {
                     /**
                      * Returns all text of Text nodes logically-adjacent text nodes to this node, concatenated in document order.
-                     * @returns {java.lang.String}
+                     * @returns {$$rhino.String}
                      */
-                    getWholeText(): java.lang.String;
+                    getWholeText(): $$rhino.String;
 
                     /**
                      * Returns whether this text node contains element content whitespace, often abusively called "ignorable whitespace".
-                     * @returns {java.lang.Boolean}
+                     * @returns {$$rhino.Boolean}
                      */
-                    isElementContentWhitespace(): java.lang.Boolean;
+                    isElementContentWhitespace(): $$rhino.Boolean;
 
                     /**
                      * Replaces the text of the current node and all logically-adjacent text nodes with the specified text.
@@ -2521,22 +3053,62 @@ declare namespace Packages {
                      */
                     splitText(offset: $$rhino.Number): Text;
                 }
+
+                /**
+                 * Escaped block of text containing characters that would otherwise be regarded as markup.
+                 * @export
+                 * @interface CDATASection
+                 * @extends {Text}
+                 * @see {@link https://docs.oracle.com/javase/10/docs/api/org/w3c/dom/CDATASection.html}
+                 */
                 export interface CDATASection extends Text { }
+
+                /**
+                 * Represents the content of a comment.
+                 * @export
+                 * @interface Comment
+                 * @extends {CharacterData}
+                 * @see {@link https://docs.oracle.com/javase/10/docs/api/org/w3c/dom/Comment.html}
+                 */
                 export interface Comment extends CharacterData { }
+
+                /**
+                 * A "lightweight" or "minimal" Document object.
+                 * @export
+                 * @interface DocumentFragment
+                 * @extends {Node}
+                 * @see {@link https://docs.oracle.com/javase/10/docs/api/org/w3c/dom/DocumentFragment.html}
+                 */
                 export interface DocumentFragment extends Node { }
+
+                /**
+                 * Represents a character entity reference.
+                 * @export
+                 * @interface EntityReference
+                 * @extends {Node}
+                 * @see {@link https://docs.oracle.com/javase/10/docs/api/org/w3c/dom/EntityReference.html}
+                 */
                 export interface EntityReference extends Node { }
+
+                /**
+                 * Represents a "processing instruction", used in XML as a way to keep processor-specific information in the text of the document.
+                 * @export
+                 * @interface ProcessingInstruction
+                 * @extends {Node}
+                 * @see {@link https://docs.oracle.com/javase/10/docs/api/org/w3c/dom/ProcessingInstruction.html}
+                 */
                 export interface ProcessingInstruction extends Node {
                     /**
                      * The content of this processing instruction.
-                     * @returns {java.lang.String}
+                     * @returns {$$rhino.String}
                      */
-                    getData(): java.lang.String;
+                    getData(): $$rhino.String;
 
                     /**
                      * The target of this processing instruction.
-                     * @returns {java.lang.String}
+                     * @returns {$$rhino.String}
                      */
-                    getTarget(): java.lang.String;
+                    getTarget(): $$rhino.String;
 
                     /**
                      * The content of this processing instruction.
@@ -2544,6 +3116,14 @@ declare namespace Packages {
                      */
                     setData(data: $$rhino.String): void;
                 }
+
+                /**
+                 * Provides an interface to the list of entities that are defined for the document.
+                 * @export
+                 * @interface DocumentType
+                 * @extends {Node}
+                 * @see {@link https://docs.oracle.com/javase/10/docs/api/org/w3c/dom/DocumentType.html}
+                 */
                 export interface DocumentType extends Node {
                     /**
                      * A NamedNodeMap containing the general entities, both external and internal, declared in the DTD.
@@ -2553,15 +3133,15 @@ declare namespace Packages {
 
                     /**
                      * The internal subset as a string, or null if there is none.
-                     * @returns {java.lang.String}
+                     * @returns {$$rhino.String}
                      */
-                    getInternalSubset(): java.lang.String;
+                    getInternalSubset(): $$rhino.String;
 
                     /**
                      * The name of DTD; i.e., the name immediately following the DOCTYPE keyword.
-                     * @returns {java.lang.String}
+                     * @returns {$$rhino.String}
                      */
-                    getName(): java.lang.String;
+                    getName(): $$rhino.String;
 
                     /**
                      * A NamedNodeMap containing the notations declared in the DTD.
@@ -2571,52 +3151,66 @@ declare namespace Packages {
 
                     /**
                      * The public identifier of the external subset.
-                     * @returns {java.lang.String}
+                     * @returns {$$rhino.String}
                      */
-                    getPublicId(): java.lang.String;
+                    getPublicId(): $$rhino.String;
 
                     /**
                      * The system identifier of the external subset.
-                     * @returns {java.lang.String}
+                     * @returns {$$rhino.String}
                      */
-                    getSystemId(): java.lang.String;
+                    getSystemId(): $$rhino.String;
                 }
+
+                /**
+                 * Provides the abstraction of an ordered collection of DOMString values, without defining or constraining how this collection is implemented
+                 * @export
+                 * @interface DOMStringList
+                 * @see {@link https://docs.oracle.com/javase/10/docs/api/org/w3c/dom/DOMStringList.html}
+                 */
                 export interface DOMStringList {
                     /**
                      * Test if a string is part of this DOMStringList.
                      * @param str {$$rhino.String}
-                     * @returns {java.lang.Boolean}
+                     * @returns {$$rhino.Boolean}
                      */
-                    contains(str: $$rhino.String): java.lang.Boolean;
+                    contains(str: $$rhino.String): $$rhino.Boolean;
 
                     /**
                      * The number of DOMStrings in the list.
-                     * @returns {java.lang.Integer}
+                     * @returns {$$rhino.Number}
                      */
-                    getLength(): java.lang.Integer;
+                    getLength(): $$rhino.Number;
 
                     /**
                      * Returns the indexth item in the collection.
                      * @param index {$$rhino.Number}
-                     * @returns {java.lang.String}
+                     * @returns {$$rhino.String}
                      */
-                    item(index: $$rhino.Number): java.lang.String;
+                    item(index: $$rhino.Number): $$rhino.String;
                 }
+
+                /**
+                 * Represents the configuration of a document and maintains a table of recognized parameters.
+                 * @export
+                 * @interface DOMConfiguration
+                 * @see {@link https://docs.oracle.com/javase/10/docs/api/org/w3c/dom/DOMConfiguration.html}
+                 */
                 export interface DOMConfiguration {
                     /**
                      * Check if setting a parameter to a specific value is supported.
                      * @param name {$$rhino.String}
                      * @param value {object}
-                     * @returns {java.lang.Boolean}
+                     * @returns {$$rhino.Boolean}
                      */
-                    canSetParameter(name: $$rhino.String, value: object): java.lang.Boolean;
+                    canSetParameter(name: $$rhino.String, value: object): $$rhino.Boolean;
 
                     /**
                      * Return the value of a parameter if known.
                      * @param name {$$rhino.String}
-                     * @returns {java.lang.Object}
+                     * @returns {*}
                      */
-                    getParameter(name: $$rhino.String): java.lang.Object;
+                    getParameter(name: $$rhino.String): any;
 
                     /**
                      * The list of the parameters supported by this DOMConfiguration object and for which at least one value can be set by the application.
@@ -2631,6 +3225,13 @@ declare namespace Packages {
                      */
                     setParameter(name: $$rhino.String, value: object): void;
                 }
+
+                /**
+                 * Provides a number of methods for performing operations that are independent of any particular instance of the document object model.
+                 * @export
+                 * @interface DOMImplementation
+                 * @see {@link https://docs.oracle.com/javase/10/docs/api/org/w3c/dom/DOMImplementation.html}
+                 */
                 export interface DOMImplementation {
                     /**
                      * Creates a DOM Document object of the specified type with its document element.
@@ -2654,18 +3255,26 @@ declare namespace Packages {
                      * This method returns a specialized object which implements the specialized APIs of the specified feature and version, as specified in DOM Features.
                      * @param feature {$$rhino.String}
                      * @param version {$$rhino.String}
-                     * @returns {java.lang.Object}
+                     * @returns {*}
                      */
-                    getFeature(feature: $$rhino.String, version: $$rhino.String): java.lang.Object;
+                    getFeature(feature: $$rhino.String, version: $$rhino.String): any;
 
                     /**
                      * Test if the DOM implementation implements a specific feature and version, as specified in DOM Features.
                      * @param feature {$$rhino.String}
                      * @param version {$$rhino.String}
-                     * @returns {java.lang.Boolean}
+                     * @returns {$$rhino.Boolean}
                      */
-                    hasFeature(feature: $$rhino.String, version: $$rhino.String): java.lang.Boolean;
+                    hasFeature(feature: $$rhino.String, version: $$rhino.String): $$rhino.Boolean;
                 }
+
+                /**
+                 * Represents the entire HTML or XML document.
+                 * @export
+                 * @interface Document
+                 * @extends {Node}
+                 * @see {@link https://docs.oracle.com/javase/10/docs/api/org/w3c/dom/Document.html}
+                 */
                 export interface Document extends Node {
                     /**
                      * Attempts to adopt a node from another document to this document.
@@ -2760,9 +3369,9 @@ declare namespace Packages {
 
                     /**
                      * The location of the document or null if undefined or if the Document was created using DOMImplementation.createDocument.
-                     * @returns {java.lang.String}
+                     * @returns {$$rhino.String}
                      */
-                    getDocumentURI(): java.lang.String;
+                    getDocumentURI(): $$rhino.String;
 
                     /**
                      * The configuration used when Document.normalizeDocument() is invoked.
@@ -2800,33 +3409,33 @@ declare namespace Packages {
 
                     /**
                      * An attribute specifying the encoding used for this document at the time of the parsing.
-                     * @returns {java.lang.String}
+                     * @returns {$$rhino.String}
                      */
-                    getInputEncoding(): java.lang.String;
+                    getInputEncoding(): $$rhino.String;
 
                     /**
                      * An attribute specifying whether error checking is enforced or not.
-                     * @returns {java.lang.Boolean}
+                     * @returns {$$rhino.Boolean}
                      */
-                    getStrictErrorChecking(): java.lang.Boolean;
+                    getStrictErrorChecking(): $$rhino.Boolean;
 
                     /**
                      * An attribute specifying, as part of the XML declaration, the encoding of this document.
-                     * @returns {java.lang.String}
+                     * @returns {$$rhino.String}
                      */
-                    getXmlEncoding(): java.lang.String;
+                    getXmlEncoding(): $$rhino.String;
 
                     /**
                      * An attribute specifying, as part of the XML declaration, whether this document is standalone.
-                     * @returns {java.lang.Boolean}
+                     * @returns {$$rhino.Boolean}
                      */
-                    getXmlStandalone(): java.lang.Boolean;
+                    getXmlStandalone(): $$rhino.Boolean;
 
                     /**
                      * An attribute specifying, as part of the XML declaration, the version number of this document.
-                     * @returns {java.lang.String}
+                     * @returns {$$rhino.String}
                      */
-                    getXmlVersion(): java.lang.String;
+                    getXmlVersion(): $$rhino.String;
 
                     /**
                      * Imports a node from another document to this document, without altering or removing the source node from the original document; this method creates a new copy of the source node.
@@ -2874,12 +3483,19 @@ declare namespace Packages {
                      */
                     setXmlVersion(xmlVersion: $$rhino.String): void;
                 }
+
+                /**
+                 * Represents collections of nodes that can be accessed by name.
+                 * @export
+                 * @interface NamedNodeMap
+                 * @see {@link https://docs.oracle.com/javase/10/docs/api/org/w3c/dom/NamedNodeMap.html}
+                 */
                 export interface NamedNodeMap {
                     /**
                      * The number of nodes in this map.
-                     * @returns {java.lang.Integer}
+                     * @returns {$$rhino.Number}
                      */
-                    getLength(): java.lang.Integer;
+                    getLength(): $$rhino.Number;
 
                     /**
                      * Retrieves a node specified by name.
@@ -2932,348 +3548,21 @@ declare namespace Packages {
                      */
                     setNamedItemNS(arg: Node): Node;
                 }
-                export interface Node {
-                    /**
-                     * Adds the node newChild to the end of the list of children of this node.
-                     * @param newChild {Node}
-                     * @returns {Node}
-                     */
-                    appendChild(newChild: Node): Node;
 
-                    /**
-                     * Returns a duplicate of this node, i.e., serves as a generic copy constructor for nodes.
-                     * @param deep {$$rhino.Boolean}
-                     * @returns {Node}
-                     */
-                    cloneNode(deep: $$rhino.Boolean): Node;
-
-                    /**
-                     * Compares the reference node, i.e.
-                     * @param other {Node}
-                     * @returns {java.lang.Short}
-                     */
-                    compareDocumentPosition(other: Node): java.lang.Short;
-
-                    /**
-                     * A NamedNodeMap containing the attributes of this node (if it is an Element) or null otherwise.
-                     * @returns {NamedNodeMap}
-                     */
-                    getAttributes(): NamedNodeMap;
-
-                    /**
-                     * The absolute base URI of this node or null if the implementation wasn't able to obtain an absolute URI.
-                     * @returns {java.lang.String}
-                     */
-                    getBaseURI(): java.lang.String;
-
-                    /**
-                     * A NodeList that contains all children of this node.
-                     * @returns {NodeList}
-                     */
-                    getChildNodes(): NodeList;
-
-                    /**
-                     * This method returns a specialized object which implements the specialized APIs of the specified feature and version, as specified in .
-                     * @param feature {$$rhino.String}
-                     * @param version {$$rhino.String}
-                     * @returns {java.lang.Object}
-                     */
-                    getFeature(feature: $$rhino.String, version: $$rhino.String): java.lang.Object;
-
-                    /**
-                     * The first child of this node.
-                     * @returns {Node}
-                     */
-                    getFirstChild(): Node;
-
-                    /**
-                     * The last child of this node.
-                     * @returns {Node}
-                     */
-                    getLastChild(): Node;
-
-                    /**
-                     * Returns the local part of the qualified name of this node.
-                     * @returns {java.lang.String}
-                     */
-                    getLocalName(): java.lang.String;
-
-                    /**
-                     * The namespace URI of this node, or null if it is unspecified (see ).
-                     * @returns {java.lang.String}
-                     */
-                    getNamespaceURI(): java.lang.String;
-
-                    /**
-                     * The node immediately following this node.
-                     * @returns {Node}
-                     */
-                    getNextSibling(): Node;
-
-                    /**
-                     * The name of this node, depending on its type; see the table above.
-                     * @returns {java.lang.String}
-                     */
-                    getNodeName(): java.lang.String;
-
-                    /**
-                     * A code representing the type of the underlying object, as defined above.
-                     * @returns {java.lang.Short}
-                     */
-                    getNodeType(): java.lang.Short;
-
-                    /**
-                     * The value of this node, depending on its type; see the table above.
-                     * @returns {java.lang.String}
-                     */
-                    getNodeValue(): java.lang.String;
-
-                    /**
-                     * The Document object associated with this node.
-                     * @returns {Document}
-                     */
-                    getOwnerDocument(): Document;
-
-                    /**
-                     * The parent of this node.
-                     * @returns {Node}
-                     */
-                    getParentNode(): Node;
-
-                    /**
-                     * The namespace prefix of this node, or null if it is unspecified.
-                     * @returns {java.lang.String}
-                     */
-                    getPrefix(): java.lang.String;
-
-                    /**
-                     * The node immediately preceding this node.
-                     * @returns {Node}
-                     */
-                    getPreviousSibling(): Node;
-
-                    /**
-                     * This attribute returns the text content of this node and its descendants.
-                     * @returns {java.lang.String}
-                     */
-                    getTextContent(): java.lang.String;
-
-                    /**
-                     * Retrieves the object associated to a key on a this node.
-                     * @param key {$$rhino.String}
-                     * @returns {java.lang.Object}
-                     */
-                    getUserData(key: $$rhino.String): java.lang.Object;
-
-                    /**
-                     * Returns whether this node (if it is an element) has any attributes.
-                     * @returns {java.lang.Boolean}
-                     */
-                    hasAttributes(): java.lang.Boolean;
-
-                    /**
-                     * Returns whether this node has any children.
-                     * @returns {java.lang.Boolean}
-                     */
-                    hasChildNodes(): java.lang.Boolean;
-
-                    /**
-                     * Inserts the node newChild before the existing child node refChild.
-                     * @param newChild {Node}
-                     * @param refChild {Node}
-                     * @returns {Node}
-                     */
-                    insertBefore(newChild: Node, refChild: Node): Node;
-
-                    /**
-                     * This method checks if the specified namespaceURI is the default namespace or not.
-                     * @param namespaceURI {$$rhino.String}
-                     * @returns {java.lang.Boolean}
-                     */
-                    isDefaultNamespace(namespaceURI: $$rhino.String): java.lang.Boolean;
-
-                    /**
-                     * Tests whether two nodes are equal.
-                     * @param arg {Node}
-                     * @returns {java.lang.Boolean}
-                     */
-                    isEqualNode(arg: Node): java.lang.Boolean;
-
-                    /**
-                     * Returns whether this node is the same node as the given one.
-                     * @param other {Node}
-                     * @returns {java.lang.Boolean}
-                     */
-                    isSameNode(other: Node): java.lang.Boolean;
-
-                    /**
-                     * Tests whether the DOM implementation implements a specific feature and that feature is supported by this node, as specified in .
-                     * @param feature {$$rhino.String}
-                     * @param version {$$rhino.String}
-                     * @returns {java.lang.Boolean}
-                     */
-                    isSupported(feature: $$rhino.String, version: $$rhino.String): java.lang.Boolean;
-
-                    /**
-                     * Look up the namespace URI associated to the given prefix, starting from this node.
-                     * @param prefix {$$rhino.String}
-                     * @returns {java.lang.String}
-                     */
-                    lookupNamespaceURI(prefix: $$rhino.String): java.lang.String;
-
-                    /**
-                     * Look up the prefix associated to the given namespace URI, starting from this node.
-                     * @param namespaceURI {$$rhino.String}
-                     * @returns {java.lang.String}
-                     */
-                    lookupPrefix(namespaceURI: $$rhino.String): java.lang.String;
-
-                    /**
-                     * Puts all Text nodes in the full depth of the sub-tree underneath this Node.
-                     */
-                    normalize(): void;
-
-                    /**
-                     * Removes the child node indicated by oldChild from the list of children, and returns it.
-                     * @param oldChild {Node}
-                     * @returns {Node}
-                     */
-                    removeChild(oldChild: Node): Node;
-
-                    /**
-                     * Replaces the child node oldChild with newChild in the list of children, and returns the oldChild node.
-                     * @param newChild {Node}
-                     * @param oldChild {Node}
-                     * @returns {Node}
-                     */
-                    replaceChild(newChild: Node, oldChild: Node): Node;
-
-                    /**
-                     * The value of this node, depending on its type; see the table above.
-                     * @param nodeValue {$$rhino.String}
-                     */
-                    setNodeValue(nodeValue: $$rhino.String): void;
-
-                    /**
-                     * The namespace prefix of this node, or null if it is unspecified.
-                     * @param prefix {$$rhino.String}
-                     */
-                    setPrefix(prefix: $$rhino.String): void;
-
-                    /**
-                     * This attribute returns the text content of this node and its descendants.
-                     * @param textContent {$$rhino.String}
-                     */
-                    setTextContent(textContent: $$rhino.String): void;
-                }
-                export interface Attr {
-                    /**
-                     * Returns the name of this attribute.
-                     * @returns {java.lang.String}
-                     */
-                    getName(): java.lang.String;
-
-                    /**
-                     * The Element node this attribute is attached to or null if this attribute is not in use.
-                     * @returns {Element}
-                     */
-                    getOwnerElement(): Element;
-
-                    /**
-                     * The type information associated with this attribute.
-                     * @returns {TypeInfo}
-                     */
-                    getSchemaTypeInfo(): TypeInfo;
-
-                    /**
-                     * True if this attribute was explicitly given a value in the instance document, false otherwise.
-                     * @returns {java.lang.Boolean}
-                     */
-                    getSpecified(): java.lang.Boolean;
-
-                    /**
-                     * On retrieval, the value of the attribute is returned as a string.
-                     * @returns {java.lang.String}
-                     */
-                    getValue(): java.lang.String;
-
-                    /**
-                     * Returns whether this attribute is known to be of type ID (i.e.
-                     * @returns {java.lang.Boolean}
-                     */
-                    isId(): java.lang.Boolean;
-
-                    /**
-                     * On retrieval, the value of the attribute is returned as a string.
-                     * @param value {$$rhino.String}
-                     */
-                    setValue(value: $$rhino.String): void;
-                }
-                export interface NodeList {
-                    /**
-                     * Test if a name is part of this NameList.
-                     * @param str {$$rhino.String}
-                     * @returns {java.lang.Boolean}
-                     */
-                    contains(str: $$rhino.String): java.lang.Boolean;
-
-                    /**
-                     * Test if the pair namespaceURI/name is part of this NameList.
-                     * @param namespaceURI {$$rhino.String}
-                     * @param name {$$rhino.String}
-                     * @returns {java.lang.Boolean}
-                     */
-                    containsNS(namespaceURI: $$rhino.String, name: $$rhino.String): java.lang.Boolean;
-
-                    /**
-                     * The number of pairs (name and namespaceURI) in the list.
-                     * @returns {java.lang.Integer}
-                     */
-                    getLength(): java.lang.Integer;
-
-                    /**
-                     * Returns the indexth name item in the collection.
-                     * @param index {$$rhino.Number}
-                     * @returns {java.lang.String}
-                     */
-                    getName(index: $$rhino.Number): java.lang.String;
-
-                    /**
-                     * Returns the indexth namespaceURI item in the collection.
-                     * @param index {$$rhino.Number}
-                     * @returns {java.lang.String}
-                     */
-                    getNamespaceURI(index: $$rhino.Number): java.lang.String;
-                }
-                export interface TypeInfo {
-                    /**
-                     * The name of a type declared for the associated element or attribute, or null if unknown.
-                     * @returns {java.lang.String}
-                     */
-                    getTypeName(): java.lang.String;
-
-                    /**
-                     * The namespace of the type declared for the associated element or attribute or null if the element does not have declaration or if no namespace information is available.
-                     * @returns {java.lang.String}
-                     */
-                    getTypeNamespace(): java.lang.String;
-
-                    /**
-                     * This method returns if there is a derivation between the reference type definition, i.e.
-                     * @param typeNamespaceArg {$$rhino.String}
-                     * @param typeNameArg {$$rhino.String}
-                     * @param derivationMethod {$$rhino.Number}
-                     * @returns {java.lang.Boolean}
-                     */
-                    isDerivedFrom(typeNamespaceArg: $$rhino.String, typeNameArg: $$rhino.String, derivationMethod: $$rhino.Number): java.lang.Boolean;
-                }
+                /**
+                 * Represents an element in an HTML or XML document.
+                 * @export
+                 * @interface Element
+                 * @extends {Node}
+                 * @see {@link https://docs.oracle.com/javase/10/docs/api/org/w3c/dom/Element.html}
+                 */
                 export interface Element extends Node {
                     /**
                      * Retrieves an attribute value by name.
                      * @param name {$$rhino.String}
-                     * @returns {java.lang.String}
+                     * @returns {$$rhino.String}
                      */
-                    getAttribute(name: $$rhino.String): java.lang.String;
+                    getAttribute(name: $$rhino.String): $$rhino.String;
 
                     /**
                      * Retrieves an attribute node by name.
@@ -3294,9 +3583,9 @@ declare namespace Packages {
                      * Retrieves an attribute value by local name and namespace URI.
                      * @param namespaceURI {$$rhino.String}
                      * @param localName {$$rhino.String}
-                     * @returns {java.lang.String}
+                     * @returns {$$rhino.String}
                      */
-                    getAttributeNS(namespaceURI: $$rhino.String, localName: $$rhino.String): java.lang.String;
+                    getAttributeNS(namespaceURI: $$rhino.String, localName: $$rhino.String): $$rhino.String;
 
                     /**
                      * Returns a NodeList of all descendant Elements with a given tag name, in document order.
@@ -3321,24 +3610,24 @@ declare namespace Packages {
 
                     /**
                      * The name of the element.
-                     * @returns {java.lang.String}
+                     * @returns {$$rhino.String}
                      */
-                    getTagName(): java.lang.String;
+                    getTagName(): $$rhino.String;
 
                     /**
                      * Returns true when an attribute with a given name is specified on this element or has a default value, false otherwise.
                      * @param name {$$rhino.String}
-                     * @returns {java.lang.Boolean}
+                     * @returns {$$rhino.Boolean}
                      */
-                    hasAttribute(name: $$rhino.String): java.lang.Boolean;
+                    hasAttribute(name: $$rhino.String): $$rhino.Boolean;
 
                     /**
                      * Returns true when an attribute with a given local name and namespace URI is specified on this element or has a default value, false otherwise.
                      * @param namespaceURI {$$rhino.String}
                      * @param localName {$$rhino.String}
-                     * @returns {java.lang.Boolean}
+                     * @returns {$$rhino.Boolean}
                      */
-                    hasAttributeNS(namespaceURI: $$rhino.String, localName: $$rhino.String): java.lang.Boolean;
+                    hasAttributeNS(namespaceURI: $$rhino.String, localName: $$rhino.String): $$rhino.Boolean;
 
                     /**
                      * Removes an attribute by name.
@@ -3390,21 +3679,21 @@ declare namespace Packages {
                     setAttributeNS(namespaceURI: $$rhino.String, qualifiedName: $$rhino.String, value: $$rhino.String): void;
 
                     /**
-                     * If the parameter isId is true, this method declares the specified attribute to be a user-determined ID attribute .
+                     * If the parameter isId is true, this method declares the specified attribute to be a user-determined ID attribute.
                      * @param name {$$rhino.String}
                      * @param isId {$$rhino.Boolean}
                      */
                     setIdAttribute(name: $$rhino.String, isId: $$rhino.Boolean): void;
 
                     /**
-                     * If the parameter isId is true, this method declares the specified attribute to be a user-determined ID attribute .
+                     * If the parameter isId is true, this method declares the specified attribute to be a user-determined ID attribute.
                      * @param idAttr {Attr}
                      * @param isId {$$rhino.Boolean}
                      */
                     setIdAttributeNode(idAttr: Attr, isId: $$rhino.Boolean): void;
 
                     /**
-                     * If the parameter isId is true, this method declares the specified attribute to be a user-determined ID attribute .
+                     * If the parameter isId is true, this method declares the specified attribute to be a user-determined ID attribute.
                      * @param namespaceURI {$$rhino.String}
                      * @param localName {$$rhino.String}
                      * @param isId {$$rhino.Boolean}
@@ -3413,79 +3702,32 @@ declare namespace Packages {
                 }
             }
         }
-    }
 
-    export namespace com {
-        export namespace glide {
-            export namespace choice {
-                export class ChoiceList {
+        export namespace mozilla {
+            export namespace javascript {
+                /**
+                 * This is interface that all objects in JavaScript must implement. The interface provides for the management of properties and for performing conversions.
+                 * @export
+                 * @interface Scriptable
+                 * @see {@link https://www-archive.mozilla.org/rhino/apidocs/org/mozilla/javascript/scriptable}
+                 * @description Library: rhino-ng-0.0.80.jar;
+                 * Java declaration: ' '.
+                 */
+                export interface Scriptable { }
 
-                }
-            }
-            export namespace script {
-                export class GlideElement {
-
-                }
-            }
-            export namespace glideobject {
-                export interface IGlideObject {
-                    handlesChangeDetection(): $$rhino.Boolean;
-                    handlesPreviousValueTracking(): $$rhino.Boolean;
-                    handlesDefaultValue(): $$rhino.Boolean;
-                    getPreviousValue(): java.lang.String;
-                    changes(): $$rhino.Boolean;
-                    wasChangedInStream(): $$rhino.Boolean;
-                    isValid(bln: $$rhino.Boolean): $$rhino.Boolean;
-                    getErrorMsg(): java.lang.String;
-                    hasChoices(): $$rhino.Boolean;
-                    getChoices(cl: choice.ChoiceList): void;
-                    getTableName(): java.lang.String;
-                    setValue(o: java.lang.Object): void;
-                    setDisplayValue(string: java.lang.String): void;
-                    getDisplayValue(): java.lang.String;
-                    getValue(): java.lang.String;
-                    getStorageValue(): java.lang.String;
-                    getInitialValue(): java.lang.String
-                    setInitialValue(string: java.lang.String): void;
-                    setElement(ge: script.GlideElement): void;
-                    getHTMLValue(i?: $$rhino.Number): java.lang.String;
-                    setDefaultValue(o: java.lang.Object): void;
-                }
-                export class AGlideObject implements IGlideObject {
-                    handlesDefaultValue(): $$rhino.Boolean;
-                    handlesChangeDetection(): $$rhino.Boolean;
-                    handlesPreviousValueTracking(): $$rhino.Boolean;
-                    getPreviousValue(): java.lang.String;
-                    changes(): $$rhino.Boolean;
-                    wasChangedInStream(): $$rhino.Boolean;
-                    isValid(mandatoryApplies: $$rhino.Boolean): $$rhino.Boolean;
-                    getErrorMsg(): java.lang.String;
-                    hasChoices(): $$rhino.Boolean;
-                    getChoices(cl: choice.ChoiceList): void;
-                    copyAll(from: choice.ChoiceList, to: choice.ChoiceList): void;
-                    getTableName(): java.lang.String;
-                    setValue(o: java.lang.Object): void;
-                    setDisplayValue(string: java.lang.String): void;
-                    setDefaultValue(o: java.lang.Object): void;
-                    getDisplayValue(): java.lang.String;
-                    getValue(): java.lang.String;
-                    getStorageValue(): java.lang.String;
-                    getInitialValue(): java.lang.String;
-                    setInitialValue(string: java.lang.String): void;
-                    setElement(ge: script.GlideElement): void;
-                    getHTMLValue(i?: $$rhino.Number): java.lang.String;
-                }
-                export class GlideObject extends AGlideObject {
-                    setValue(value: java.lang.Object): void;
-                    setDisplayValue(value: java.lang.String): void;
-                    getDisplayValue(): java.lang.String;
-                    getValue(): java.lang.String;
-                    getInitialValue(): java.lang.String;
-                }
+                /**
+                 * This is the default implementation of the Scriptable interface. This class provides convenient default behavior that makes it easier to define host objects.
+                 * @export
+                 * @interface Scriptable
+                 * @see {@link https://www-archive.mozilla.org/rhino/apidocs/org/mozilla/javascript/scriptableobject}
+                 * @description Library: rhino-ng-0.0.80.jar;
+                 */
+                export interface ScriptableObject extends java.lang.Object, Scriptable { }
             }
         }
     }
 }
+
 declare interface IJavaArray<E> {
     /**
      * Gets the length of the array.
