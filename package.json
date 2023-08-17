@@ -2,18 +2,28 @@
   "name": "servicenow-server-global-dts",
   "version": "0.1.1",
   "description": "TypeScript definitions for globally-scoped ServiceNow server-side development",
-  "author": {
-    "name": "Leonard T. Erwine"
+  "types": "types/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "license": "Apache-2.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/erwinel/sn_typings_server_global.git"
   },
-  "typeScriptVersion": "2.7",
-  "types": "index.d.ts",
+  "keywords": [
+    "ServiceNow",
+    "Global",
+    "Server"
+  ],
+  "author": {
+    "name": "Leonard T. Erwine"
+  },
+  "license": "GPL-3.0-only",
+  "bugs": {
+    "url": "https://github.com/erwinel/sn_typings_server_global/issues"
+  },
+  "homepage": "https://github.com/erwinel/sn_typings_server_global#readme",
   "devDependencies": {
-    "@types/node": "^8.0.14",
-    "typescript": "^3.8.2"
+    "typescript": "^5.1.6"
   }
 }
