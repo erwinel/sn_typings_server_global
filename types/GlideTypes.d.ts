@@ -1210,6 +1210,36 @@ declare class GlideElementBoolean implements IGlideElement { // sys_dictionary.a
     getTableName(): string;
 }
 
+declare class GlideElementPhoneNumber implements IGlideElement {
+    protected constructor();
+    changes(): boolean;
+    changesFrom(o: any): boolean;
+    changesTo(o: any): boolean;
+    dateNumericValue(): number;
+    getBooleanAttribute(attributeName: string): boolean;
+    getChoices(dependent?: string | undefined): any[];
+    getChoiceValue(): string;
+    getDecryptedValue(): string;
+    getDisplayValue(maxCharacters?: number | undefined): string;
+    getGlobalDisplayValue(): string;
+    getHTMLValue(maxChars?: number | undefined): string;
+    getJournalEntry(mostRecent: number): string;
+    getName(): string;
+    nil(): boolean;
+    setDateNumericValue(milliseconds: number): void;
+    setDisplayValue(value: any): void;
+    setError(errorMessage: string): void;
+    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
+    setValue(value: any): void;
+    canCreate(): boolean;
+    canRead(): boolean;
+    canWrite(): boolean;
+    getAttribute(attributeName: string): string;
+    getED(): GlideElementDescriptor;
+    getLabel(): string;
+    getTableName(): string;
+}
+
 declare class GlideElementGlideObject implements IGlideElement { // incident.sys_created_on
     protected constructor();
     changes(): boolean;
@@ -1249,6 +1279,36 @@ declare class GlideElementGlideObject implements IGlideElement { // incident.sys
      * @param {number} milliseconds - Number of milliseconds since 1/1/1970
      */
     setDateNumericValue(milliseconds: number): void;
+}
+
+declare class GlideElementIPAddress implements IGlideElement {
+    protected constructor();
+    changes(): boolean;
+    changesFrom(o: any): boolean;
+    changesTo(o: any): boolean;
+    dateNumericValue(): number;
+    getBooleanAttribute(attributeName: string): boolean;
+    getChoices(dependent?: string | undefined): any[];
+    getChoiceValue(): string;
+    getDecryptedValue(): string;
+    getDisplayValue(maxCharacters?: number | undefined): string;
+    getGlobalDisplayValue(): string;
+    getHTMLValue(maxChars?: number | undefined): string;
+    getJournalEntry(mostRecent: number): string;
+    getName(): string;
+    nil(): boolean;
+    setDateNumericValue(milliseconds: number): void;
+    setDisplayValue(value: any): void;
+    setError(errorMessage: string): void;
+    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
+    setValue(value: any): void;
+    canCreate(): boolean;
+    canRead(): boolean;
+    canWrite(): boolean;
+    getAttribute(attributeName: string): string;
+    getED(): GlideElementDescriptor;
+    getLabel(): string;
+    getTableName(): string;
 }
 
 declare class GlideElementNumeric implements IGlideElement { // sys_dictionary.defaultsort
