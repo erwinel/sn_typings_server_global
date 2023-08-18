@@ -54,9 +54,10 @@ interface IRecordElement {
  */
 interface RecordElement extends Readonly<{
     elementName: string;
-    type: string;
+    elementType: string;
     table: InterfaceInfo;
     getType(): TypeInfo;
+    equals(other?: RecordElement): boolean;
 }> {
     // Declare public read/write instance members here.
 }
@@ -65,7 +66,7 @@ interface RecordElement extends Readonly<{
  * Defines the prototype for a {@link RecordElement} constructor.
  */
 interface IRecordElementPrototype extends RecordElement {
-    _columns: { [elementName: string]: Element; };
+    // _columns: { [elementName: string]: Element; };
 }
 
 /**
@@ -75,10 +76,10 @@ interface RecordElementConstructor extends $$class.Constructor3<string, string, 
     /**
      * Creates a new instance of the implementing class.
      * @param {string} elementName - The name of the element.
-     * @param {string} type - The element type.
+     * @param {string} elementType - The element type.
      * @param {InterfaceInfo} table - The table containing the element.
      */
-    new(elementName: string, type: string, table: InterfaceInfo): RecordElement;
+    new(elementName: string, elementType: string, table: InterfaceInfo): RecordElement;
 
     getTypeInfo(value?: sys_glide_object | string | null): TypeInfo;
 }
@@ -127,7 +128,7 @@ interface IDeclaredElementPrototype extends DeclaredElementPublic {
 /**
  * Defines the {@link DeclaredElement} constructor.
  */
-interface DeclaredElementConstructor extends $$class.Constructor3<string, InterfaceInfo, sys_dictionary, DeclaredElement> {
+interface DeclaredElementConstructor extends $$class.Constructor5Opt2<string, InterfaceInfo, sys_dictionary | string, string, string, DeclaredElement> {
     /**
      * Creates a new instance of the implementing class.
      * @param {string} elementName - 
@@ -135,12 +136,13 @@ interface DeclaredElementConstructor extends $$class.Constructor3<string, Interf
      * @param {sys_dictionary} glideObject - 
      */
     new(elementName: string, declaredOn: InterfaceInfo, glideObject: sys_dictionary): DeclaredElement;
+    new(elementName: string, declaredOn: InterfaceInfo, type: string, label?: string, scope?: string): DeclaredElement;
 }
 
 /**
  * Defines the"this" object for {@link DeclaredElement} instance methods.
  */
-type DeclaredElementThisObj = IDeclaredElementPrototype & DeclaredElement & $$class.IPrototype3<string, InterfaceInfo, sys_dictionary>;
+type DeclaredElementThisObj = IDeclaredElementPrototype & DeclaredElement & $$class.IPrototype5Opt2<string, InterfaceInfo, sys_dictionary | string, string, string>;
 
 // #endregion
 
@@ -235,6 +237,14 @@ interface InterfaceInfoConstructor extends $$class.Constructor1<string, Interfac
      * @param {string} interfaceName - 
      */
     new(interfaceName: string): InterfaceInfo;
+    
+    readonly baseInterface: InterfaceInfo;
+    readonly sys_id: DeclaredElement;
+    readonly sys_mod_count: DeclaredElement;
+    readonly sys_updated_by: DeclaredElement;
+    readonly sys_updated_on: DeclaredElement;
+    readonly sys_created_by: DeclaredElement;
+    readonly sys_created_on: DeclaredElement;
 }
 
 /**
@@ -389,6 +399,8 @@ function isValidSysDbObject(value?: any | null): value is (({ isValidRecord(): t
     );
 }
 
+const worCharsRe = /^\w+$/;
+
 function smartQuote(value?: string | number | boolean | null) {
     switch (typeof value) {
         case "number":
@@ -396,7 +408,7 @@ function smartQuote(value?: string | number | boolean | null) {
         case "boolean":
             return value ? "True" : "False";
         case "string":
-            return (value.trim().length == value.length || /^\w+$/.test(value)) ? value : JSON.stringify(value);
+            return worCharsRe.test(value) ? value : JSON.stringify(value);
         default:
             return "(" + ((value === null) ? "null" : typeof value) + ")";
     }
@@ -444,14 +456,18 @@ const RecordElement: RecordElementConstructor = (function(): RecordElementConstr
     const RecordElement: RecordElementConstructor = Class.create<string, string, InterfaceInfo, RecordElement, RecordElementConstructor, IRecordElementPrototype>();
 
     RecordElement.prototype = <RecordElementThisObj>{
-        initialize: function(this: RecordElementThisObj, elementName: string, type: string, table: InterfaceInfo): void {
-            this._columns = {};
+        initialize: function(this: RecordElementThisObj, elementName: string, elementType: string, table: InterfaceInfo): void {
+            // this._columns = {};
             (<{ elementName: string; }>this).elementName = elementName;
-            (<{ type: string; }>this).type = type;
+            (<{ elementType: string; }>this).elementType = elementType;
             (<{ table: InterfaceInfo; }>this).table = table;
         },
 
-        getType: function(): TypeInfo { return RecordElement.getTypeInfo(this.type); },
+        equals: function(other?: RecordElement): boolean {
+            return typeof other === 'object' && other !== null && this.elementName == other.elementName && this.elementType == other.elementType;
+        },
+
+        getType: function(): TypeInfo { return RecordElement.getTypeInfo(this.elementType); },
 
         type: "RecordElement"
     };
@@ -476,24 +492,24 @@ const RecordElement: RecordElementConstructor = (function(): RecordElementConstr
                 break;
             case "object":
                 if (isValidGlideRecordOrElement(value)) {
-                    var name = value.name.nil() ? (value.sys_name.nil() ? "" + value : "" + value.sys_name) : "" + value.name;
+                    var name = gs.nil(value.name) ? (gs.nil(value.sys_name) ? "" + value : "" + value.sys_name) : "" + value.name;
                     if (typeof (result = types[name]) === "undefined") {
                         if (typeof (result = typePlaceholders[name]) === "undefined")
                             result = {
                                 name: name,
-                                label: value.label.nil() ? name : "" + value.label,
+                                label: gs.nil(value.label) ? name : "" + value.label,
                                 isVisible: isTrue(value.visible),
-                                scalarType: value.scalar_type.nil() ? "string" : "" + value.scalar_type,
+                                scalarType: gs.nil(value.scalar_type) ? "string" : "" + value.scalar_type,
                                 useOriginalValue: isTrue(value.use_original_value)
                             };
                         else {
-                            if (!value.label.nil())
+                            if (!gs.nil(value.label))
                                 (<{ label: string; }>result).label = "" + value.label;
                             if (isTrue(value.visible))
                                 (<{ isVisible: boolean; }>result).isVisible = true;
                             if (isTrue(value.use_original_value))
                                 (<{ useOriginalValue: boolean; }>result).useOriginalValue = true;
-                            if (!value.scalar_type.nil())
+                            if (!gs.nil(value.scalar_type))
                                 (<{ scalarType: string; }>result).scalarType = "" + value.scalar_type;
                         }
                         var scalarLength = asNumber(value.scalar_length);
@@ -526,27 +542,34 @@ const RecordElement: RecordElementConstructor = (function(): RecordElementConstr
  * The {@link DeclaredElement} constructor object.
  */
 const DeclaredElement: DeclaredElementConstructor = (function(): DeclaredElementConstructor {
-    const DeclaredElement: DeclaredElementConstructor = Class.create<string, InterfaceInfo, sys_dictionary, DeclaredElement, DeclaredElementConstructor>();
+    const DeclaredElement: DeclaredElementConstructor = Class.create<string, InterfaceInfo, sys_dictionary | string, string, string, DeclaredElement, DeclaredElementConstructor>();
 
-    DeclaredElement.prototype = Object.extendsObject<string, InterfaceInfo, sys_dictionary, RecordElement, IDeclaredElementPrototype, $$class.IPrototype3<string, InterfaceInfo, sys_dictionary>, DeclaredElement>(RecordElement, <DeclaredElementThisObj>{
-        initialize: function(this: DeclaredElementThisObj, elementName: string, declaredOn: InterfaceInfo, glideObject: sys_dictionary): void {
-            RecordElement.prototype.initialize.call(this, elementName, RecordElement.getTypeInfo(glideObject.internal_type).name, declaredOn);
-            (<{ label: string; }>this).label = glideObject.column_label.nil() ? elementName : "" + glideObject.column_label;
-            var maxLength = asNumber(glideObject.max_length);
-            if (typeof maxLength === "number") (<{ maxLength: number; }>this).maxLength = maxLength;
-            if (isTrue(glideObject.primary)) (<{ primary: boolean; }>this).primary = true;
-            var scope = TableInfo.getScopeInfo(glideObject.sys_scope);
-            if (typeof scope !== "undefined")
-                (<{ scope?: string; }>this).scope = scope.value;
-            if (isTrue(glideObject.array)) (<{ array: boolean; }>this).array = true;
-            if (isTrue(glideObject.mandatory)) (<{ mandatory: boolean; }>this).mandatory = true;
-            if (isTrue(glideObject.display)) (<{ display: boolean; }>this).display = true;
-            if (isTrue(glideObject.read_only)) (<{ readOnly: boolean; }>this).readOnly = true;
-            if (!glideObject.comments.nil())
-                (<{ comments?: string; }>this).comments = "" + glideObject.comments;
-            var refTable = TableInfo.getTableInfo(glideObject.reference);
-            if (typeof refTable !== "undefined")
-                (<{ refTable?: TableInfo; }>this).refTable = refTable;
+    DeclaredElement.prototype = Object.extendsObject<string, InterfaceInfo, sys_dictionary | string, string, string, RecordElement, IDeclaredElementPrototype, $$class.IPrototype5Opt2<string, InterfaceInfo, sys_dictionary | string, string, string>, DeclaredElement>(RecordElement, <DeclaredElementThisObj>{
+        initialize: function(this: DeclaredElementThisObj, elementName: string, declaredOn: InterfaceInfo, glideObject: sys_dictionary | string, label?: string, scope?: string): void {
+            if (typeof glideObject === 'string') {
+                RecordElement.prototype.initialize.call(this, elementName, glideObject, declaredOn);
+                (<{ label: string; }>this).label = (typeof label === 'string' && label.length > 0 && label.trim().length > 0) ? label : elementName;
+                if (typeof scope === "string")
+                    (<{ scope?: string; }>this).scope = scope;
+            } else {
+                RecordElement.prototype.initialize.call(this, elementName, RecordElement.getTypeInfo(glideObject.internal_type).name, declaredOn);
+                (<{ label: string; }>this).label = glideObject.column_label.nil() ? elementName : "" + glideObject.column_label;
+                var maxLength = asNumber(glideObject.max_length);
+                if (typeof maxLength === "number") (<{ maxLength: number; }>this).maxLength = maxLength;
+                if (isTrue(glideObject.primary)) (<{ primary: boolean; }>this).primary = true;
+                var s = TableInfo.getScopeInfo(glideObject.sys_scope);
+                if (typeof s !== "undefined")
+                    (<{ scope?: string; }>this).scope = s.value;
+                if (isTrue(glideObject.array)) (<{ array: boolean; }>this).array = true;
+                if (isTrue(glideObject.mandatory)) (<{ mandatory: boolean; }>this).mandatory = true;
+                if (isTrue(glideObject.display)) (<{ display: boolean; }>this).display = true;
+                if (isTrue(glideObject.read_only)) (<{ readOnly: boolean; }>this).readOnly = true;
+                if (!glideObject.comments.nil())
+                    (<{ comments?: string; }>this).comments = "" + glideObject.comments;
+                var refTable = TableInfo.getTableInfo(glideObject.reference);
+                if (typeof refTable !== "undefined")
+                    (<{ refTable?: TableInfo; }>this).refTable = refTable;
+            }
         },
 
         getLabel: function(this: DeclaredElementThisObj): string { return this.label; },
@@ -633,6 +656,10 @@ const DeclaredElement: DeclaredElementConstructor = (function(): DeclaredElement
                         break;
                     case "integer":
                     case "decimal":
+                    case "float":
+                    case "percent_complete":
+                    case "order_index":
+                    case "longint":
                         jsType = 'GlideElementNumeric';
                         break;
                     case "sys_class_name":
@@ -655,6 +682,7 @@ const DeclaredElement: DeclaredElementConstructor = (function(): DeclaredElement
                         break;
                     case "script":
                     case "script_plain":
+                    case "xml":
                         jsType = 'GlideElementScript';
                         break;
                     case "conditions":
@@ -765,6 +793,11 @@ const DeclaredElement: DeclaredElementConstructor = (function(): DeclaredElement
                     case "html":
                     case "glide_list":
                     case "journal":
+                    case "glide_action_list":
+                    case "date":
+                    case "day_of_week":
+                    case "month_of_year":
+                    case "week_of_month":
                         typeName = typeToString(typeInfo);
                         jsType = 'GlideElementGlideObject';
                         break;
@@ -772,6 +805,7 @@ const DeclaredElement: DeclaredElementConstructor = (function(): DeclaredElement
                         jsType = 'GlideElementReference';
                         break;
                     case "caller_phone_number":
+                    case "phone_number_e164":
                         jsType = 'GlideElementPhoneNumber';
                         break;
                     case "string":
@@ -780,64 +814,46 @@ const DeclaredElement: DeclaredElementConstructor = (function(): DeclaredElement
                     case "color":
                     case "user_roles":
                     case "image":
-                        case "table_name":
+                    case "json":
+                    case "char":
+                    case "email":
+                    case "ph_number":
+                    case "multi_two_lines":
+                    case "table_name":
+                    case "external_names":
+                    case "expression":
+                    case "glyphicon":
+                    case "field_list":
+                    case "datetime":
+                    case "slushbucket":
+                    case "GUID":
+                    case "domain_path":
+                    case "composite_field":
+                    case "radio":
+                    case "script_server":
+                    case "decoration":
+                    case "sys_class_code":
+                    case "wide_text":
+                    case "version":
+                    case "sys_class_path":
+                    case "catalog_preview":
+                    case "properties":
+                    case "bootstrap_color":
+                    case "css":
+                    case "html_template":
+                    case "color_display":
+                    case "composite_name":
                         jsType = 'GlideElement';
+                        break;
+                    case "ip_addr":
+                        jsType = "GlideElementIPAddress";
                         break;
                     default:
                         typeName = typeToString(typeInfo);
                         gs.warn("Unknown " + typeName + ' on ' + this.table.interfaceName + '.' + this.elementName);
                         /*
-2023-08-17 15:02:35 (336) Unknown JSON (json) on sp_widget.demo_data
-2023-08-17 15:02:35 (336) Unknown undefined on planned_task.dependency
-2023-08-17 15:02:35 (337) Unknown Char (char); scalar type: GUID on sys_trigger.document_key
-2023-08-17 15:02:35 (338) Unknown Email (email) on sys_user.email
-2023-08-17 15:02:35 (339) Unknown UI Action List (glide_action_list) on wf_context.ert_long_running_actions
-2023-08-17 15:02:35 (339) Unknown UI Action List (glide_action_list) on wf_context.ert_outlier_workflow_actions
-2023-08-17 15:02:35 (339) Unknown Other Date (date) on sys_report_import_table.expire_on_date
-2023-08-17 15:02:35 (340) Unknown External Names (external_names) on sys_impex_map.external_names
-2023-08-17 15:02:35 (341) Unknown Expression (expression) on sys_dictionary.formula
-2023-08-17 15:02:35 (341) Unknown Glyph Icon (Bootstrap) (glyphicon) on sp_instance.glyph
-2023-08-17 15:02:35 (342) Unknown Phone Number (ph_number) on sys_user.home_phone
-2023-08-17 15:02:35 (345) Unknown Field List (field_list) on cmn_timeline_page.labels
-2023-08-17 15:02:35 (345) Unknown Basic Date/Time (datetime) on license_details.last_allocation_cal_on
-2023-08-17 15:02:35 (345) Unknown Basic Date/Time (datetime) on license_details.last_tables_used_cal_on
-2023-08-17 15:02:35 (345) Unknown Floating Point Number (float) on alm_stockroom.latitude
-2023-08-17 15:02:35 (346) Unknown Two Line Text Area (multi_two_lines) on sys_report_page_hdrftr.left_ftr_text
-2023-08-17 15:02:35 (346) Unknown Two Line Text Area (multi_two_lines) on sys_report_page_hdrftr.left_hdr_text
-2023-08-17 15:02:35 (347) Unknown Floating Point Number (float) on alm_stockroom.longitude
-2023-08-17 15:02:35 (347) Unknown Slush Bucket (slushbucket) on kb_knowledge_base.mandatory_fields
-2023-08-17 15:02:35 (348) Unknown Two Line Text Area (multi_two_lines) on sys_report_page_hdrftr.mid_ftr_text
-2023-08-17 15:02:35 (348) Unknown Two Line Text Area (multi_two_lines) on sys_report_page_hdrftr.mid_hdr_text
-2023-08-17 15:02:35 (348) Unknown Phone Number (ph_number) on sys_user.mobile_phone
-2023-08-17 15:02:35 (350) Unknown JSON (json) on sp_widget.option_schema
-2023-08-17 15:02:35 (350) Unknown Field List (field_list) on sys_report.orderby_list
-2023-08-17 15:02:35 (350) Unknown JSON (json) on sys_flow_context.origins
-2023-08-17 15:02:35 (351) Unknown Percent Complete (percent_complete); scalar type: decimal on sn_gf_core_goal.percent_complete
-2023-08-17 15:02:35 (351) Unknown Percent Complete (percent_complete); scalar type: decimal on rm_epic.percent_complete_by_count
-2023-08-17 15:02:35 (351) Unknown Percent Complete (percent_complete); scalar type: decimal on rm_epic.percent_complete_by_estimate
-2023-08-17 15:02:35 (351) Unknown Phone Number (ph_number) on sys_user.phone
-2023-08-17 15:02:35 (352) Unknown JSON (json) on sys_flow_context.planuct_model_class
-2023-08-17 15:02:35 (352) Unknown Order Index (order_index); scalar type: integer on rm_story.product_rel_index
-2023-08-17 15:02:35 (353) Unknown Sys ID (GUID) (GUID) on ais_search_profile.publish_id
-2023-08-17 15:02:35 (353) Unknown JSON (json) on sp_portal.quick_start_config
-2023-08-17 15:02:35 (354) Unknown Order Index (order_index); scalar type: integer on rm_story.release_index
-2023-08-17 15:02:35 (355) Unknown Two Line Text Area (multi_two_lines) on sys_report_page_hdrftr.right_ftr_text
-2023-08-17 15:02:35 (356) Unknown Two Line Text Area (multi_two_lines) on sys_report_page_hdrftr.right_hdr_text
-2023-08-17 15:02:35 (356) Unknown IP Address (Validated IPV4, IPV6) (ip_addr) on ecc_agent.router
-2023-08-17 15:02:35 (356) Unknown Day of Week (day_of_week); scalar type: integer on sys_trigger.run_dayofweek
-2023-08-17 15:02:35 (356) Unknown Month of Year (month_of_year); scalar type: integer on sys_trigger.run_month
-2023-08-17 15:02:35 (356) Unknown Week of Month (week_of_month); scalar type: integer on sys_trigger.run_weekinmonth
-2023-08-17 15:02:35 (360) Unknown Order Index (order_index); scalar type: integer on rm_story.sprint_index
-2023-08-17 15:02:35 (361) Unknown Two Line Text Area (multi_two_lines) on sys_user.street
-2023-08-17 15:02:35 (361) Unknown undefined on sys_db_object.sys_class_code
-2023-08-17 15:02:35 (361) Unknown Domain Path (domain_path) on task.sys_domain_path
-2023-08-17 15:02:35 (361) Unknown Sys ID (GUID) (GUID) on task.sys_id
-2023-08-17 15:02:35 (362) Unknown Composite Field (composite_field) on planned_task.task
-2023-08-17 15:02:35 (362) Unknown Field List (field_list) on cmn_timeline_page.tooltip_label
-2023-08-17 15:02:35 (363) Unknown Radio Button Choice (radio) on sys_report_map_source.type_mapping
-2023-08-17 15:02:35 (365) Unknown Script (server side) (script_server) on sp_instance.widget_parameters
-2023-08-17 15:02:35 (365) Unknown UI Action List (glide_action_list) on wf_context.without_current_wf_actions
-2023-08-17 15:02:35 (366) Unknown XML (xml) on sys_ui_macro.xml
+2023-08-17 18:00:57 (412) Unknown undefined on planned_task.dependency - GlideElement
+2023-08-17 18:00:57 (439) Unknown undefined on sys_db_object.sys_class_code - GlideElement
                         */
                         jsType = 'GlideElement';
                         break;
@@ -971,7 +987,7 @@ const InheritedElement: InheritedElementConstructor = (function(): InheritedElem
                 if (typeof refTable !== "undefined" && (typeof inheritedFrom.refTable !== "object" || refTable.interfaceName != inheritedFrom.refTable.interfaceName))
                     (<{ refTable?: TableInfo; }>this).refTable = refTable;
             } else
-                RecordElement.prototype.initialize.call(this, inheritedFrom.elementName, inheritedFrom.type, usedOn);
+                RecordElement.prototype.initialize.call(this, inheritedFrom.elementName, inheritedFrom.elementType, usedOn);
         },
 
         getLabel: function(): string { return (typeof this.labelOverride !== "string") ? this.base.label : this.labelOverride; },
@@ -1013,9 +1029,8 @@ const InterfaceInfo: InterfaceInfoConstructor = (function(): InterfaceInfoConstr
     const InterfaceInfo: InterfaceInfoConstructor = Class.create<string, InterfaceInfo, InterfaceInfoConstructor, IInterfaceInfoPrototype>();
 
     InterfaceInfo.prototype = <InterfaceInfoThisObj>{
-        _elements: {},
-
         initialize: function(this: InterfaceInfoThisObj, interfaceName: string): void {
+            this._elements = {};
             (<{ interfaceName: string; }>this).interfaceName = interfaceName;
         },
 
@@ -1037,6 +1052,28 @@ const InterfaceInfo: InterfaceInfoConstructor = (function(): InterfaceInfoConstr
         type: "InterfaceInfo"
     };
 
+
+    (<{ baseInterface: InterfaceInfo }>InterfaceInfo).baseInterface = new InterfaceInfo("IBaseRecord");
+
+    (<{ sys_id: DeclaredElement }>InterfaceInfo).sys_id = new DeclaredElement("sys_id", InterfaceInfo.baseInterface, "GUID", "Sys ID", "global");
+    (<InterfaceInfoThisObj>InterfaceInfo.baseInterface)._elements[InterfaceInfo.sys_id.elementName] = InterfaceInfo.sys_id;
+
+    (<{ sys_created_by: DeclaredElement }>InterfaceInfo).sys_created_by = new DeclaredElement("sys_created_by", InterfaceInfo.baseInterface, "string", "Created by", "global");
+    (<InterfaceInfoThisObj>InterfaceInfo.baseInterface)._elements[InterfaceInfo.sys_created_by.elementName] = InterfaceInfo.sys_created_by;
+
+    (<{ sys_created_on: DeclaredElement }>InterfaceInfo).sys_created_on = new DeclaredElement("sys_created_on", InterfaceInfo.baseInterface, "glide_date_time", "Created", "global");
+    (<InterfaceInfoThisObj>InterfaceInfo.baseInterface)._elements[InterfaceInfo.sys_created_on.elementName] = InterfaceInfo.sys_created_on;
+
+    (<{ sys_mod_count: DeclaredElement }>InterfaceInfo).sys_mod_count = new DeclaredElement("sys_mod_count", InterfaceInfo.baseInterface, "integer", "Updates", "global");
+    (<InterfaceInfoThisObj>InterfaceInfo.baseInterface)._elements[InterfaceInfo.sys_mod_count.elementName] = InterfaceInfo.sys_mod_count;
+
+    (<{ sys_updated_by: DeclaredElement }>InterfaceInfo).sys_updated_by = new DeclaredElement("sys_updated_by", InterfaceInfo.baseInterface, "string", "Updated by", "global");
+    (<InterfaceInfoThisObj>InterfaceInfo.baseInterface)._elements[InterfaceInfo.sys_updated_by.elementName] = InterfaceInfo.sys_updated_by;
+
+    (<{ sys_updated_on: DeclaredElement }>InterfaceInfo).sys_updated_on = new DeclaredElement("sys_updated_on", InterfaceInfo.baseInterface, "glide_date_time", "Updated", "global");
+    (<InterfaceInfoThisObj>InterfaceInfo.baseInterface)._elements[InterfaceInfo.sys_updated_on.elementName] = InterfaceInfo.sys_updated_on;
+
+    
     return InterfaceInfo;
 })();
 
@@ -1069,7 +1106,7 @@ const TableInfo: TableInfoConstructor = (function(): TableInfoConstructor {
             gr.query();
             var table = TableInfo.getTableInfo(glideRecord.super_class);
             if (typeof table !== "undefined") {
-                (<{ superClass?: TableInfo; }>this).superClass = table;
+                (<{ superClass?: InterfaceInfo; }>this).superClass = table;
                 while (gr.next()) {
                     var elementName = "" + gr.element;
                     var base = table.getElement(elementName);
@@ -1082,6 +1119,17 @@ const TableInfo: TableInfoConstructor = (function(): TableInfoConstructor {
                 while (gr.next()) {
                     var elementName = "" + gr.element;
                     this._elements[elementName] = new DeclaredElement(elementName, this, gr);
+                }
+                if (InterfaceInfo.sys_id.equals(this._elements[InterfaceInfo.sys_id.elementName]) && InterfaceInfo.sys_created_by.equals(this._elements[InterfaceInfo.sys_created_by.elementName]) &&
+                        InterfaceInfo.sys_created_on.equals(this._elements[InterfaceInfo.sys_created_on.elementName]) && InterfaceInfo.sys_mod_count.equals(this._elements[InterfaceInfo.sys_mod_count.elementName]) &&
+                        InterfaceInfo.sys_updated_by.equals(this._elements[InterfaceInfo.sys_updated_by.elementName]) && InterfaceInfo.sys_updated_on.equals(this._elements[InterfaceInfo.sys_updated_on.elementName])) {
+                    (<{ superClass?: InterfaceInfo; }>this).superClass = InterfaceInfo.baseInterface;
+                    this._elements[InterfaceInfo.sys_id.elementName] = new InheritedElement(InterfaceInfo.sys_id, this);
+                    this._elements[InterfaceInfo.sys_created_by.elementName] = new InheritedElement(InterfaceInfo.sys_created_by, this);
+                    this._elements[InterfaceInfo.sys_created_on.elementName] = new InheritedElement(InterfaceInfo.sys_created_on, this);
+                    this._elements[InterfaceInfo.sys_mod_count.elementName] = new InheritedElement(InterfaceInfo.sys_mod_count, this);
+                    this._elements[InterfaceInfo.sys_updated_by.elementName] = new InheritedElement(InterfaceInfo.sys_updated_by, this);
+                    this._elements[InterfaceInfo.sys_updated_on.elementName] = new InheritedElement(InterfaceInfo.sys_updated_on, this);
                 }
             }
         },
@@ -1140,7 +1188,7 @@ const TableInfo: TableInfoConstructor = (function(): TableInfoConstructor {
             }
             context.elementLines.push("     */");
             context.recordLines.push("     */");
-            context.elementLines.push("    export type task = Reference<$$tableFields." + this.interfaceName + ", $$GlideRecord." + this.interfaceName + ">;");
+            context.elementLines.push("    export type " + this.interfaceName + " = Reference<$$tableFields." + this.interfaceName + ", $$GlideRecord." + this.interfaceName + ">;");
             if (typeof this.superClass !== "undefined" && this.superClass instanceof TableInfo)
                 context.recordLines.push("    export type " + this.interfaceName + " = $$tableFields." + this.interfaceName + " & " + this.superClass.interfaceName + ";");
             else
@@ -1197,7 +1245,7 @@ const TableInfo: TableInfoConstructor = (function(): TableInfoConstructor {
     return TableInfo;
 })();
 
-var tableNames: string[] = ["task"];
+var tableNames = ["sys_security_acl", "sys_hub_flow_output", "sys_ux_theme_property", "sys_ux_theme_property_schema", "sc_ordered_item_link", "sc_ic_item_staging", "sc_template", "topic", "taxonomy"];
 var context: CodeGenerationContext = {
     fieldInterfaceLines: [],
     elementLines: [],
@@ -1215,4 +1263,14 @@ tableNames.forEach(function(this: CodeGenerationContext, n: string): void {
     else
         tableInfo.generateCode(this);
 }, context);
-context.fieldInterfaceLines
+[
+    'declare namespace $$GlideRecord {'
+].concat(context.recordLines).concat([
+    '}',
+    '',
+    'declare namespace $$GlideElement {'
+]).concat(context.elementLines).concat([
+    '}',
+    '',
+    'declare namespace $$tableFields {'
+]).concat(context.fieldInterfaceLines).concat('}').join("\n");

@@ -76,6 +76,7 @@ function isValidSysDbObject(value) {
         value.isValidRecord() && value.getTableName() == TABLE_NAME_sys_db_object :
         value instanceof GlideElementReference && !value.nil() && value.getReferenceTable && value.getReferenceTable() == TABLE_NAME_sys_db_object);
 }
+const worCharsRe = /^\w+$/;
 function smartQuote(value) {
     switch (typeof value) {
         case "number":
@@ -83,7 +84,7 @@ function smartQuote(value) {
         case "boolean":
             return value ? "True" : "False";
         case "string":
-            return (value.trim().length == value.length || /^\w+$/.test(value)) ? value : JSON.stringify(value);
+            return worCharsRe.test(value) ? value : JSON.stringify(value);
         default:
             return "(" + ((value === null) ? "null" : typeof value) + ")";
     }
@@ -124,13 +125,16 @@ const RecordElement = (function () {
     const types = {};
     const RecordElement = Class.create();
     RecordElement.prototype = {
-        initialize: function (elementName, type, table) {
-            this._columns = {};
+        initialize: function (elementName, elementType, table) {
+            // this._columns = {};
             this.elementName = elementName;
-            this.type = type;
+            this.elementType = elementType;
             this.table = table;
         },
-        getType: function () { return RecordElement.getTypeInfo(this.type); },
+        equals: function (other) {
+            return typeof other === 'object' && other !== null && this.elementName == other.elementName && this.elementType == other.elementType;
+        },
+        getType: function () { return RecordElement.getTypeInfo(this.elementType); },
         type: "RecordElement"
     };
     RecordElement.getTypeInfo = function (value) {
@@ -153,24 +157,24 @@ const RecordElement = (function () {
                 break;
             case "object":
                 if (isValidGlideRecordOrElement(value)) {
-                    var name = value.name.nil() ? (value.sys_name.nil() ? "" + value : "" + value.sys_name) : "" + value.name;
+                    var name = gs.nil(value.name) ? (gs.nil(value.sys_name) ? "" + value : "" + value.sys_name) : "" + value.name;
                     if (typeof (result = types[name]) === "undefined") {
                         if (typeof (result = typePlaceholders[name]) === "undefined")
                             result = {
                                 name: name,
-                                label: value.label.nil() ? name : "" + value.label,
+                                label: gs.nil(value.label) ? name : "" + value.label,
                                 isVisible: isTrue(value.visible),
-                                scalarType: value.scalar_type.nil() ? "string" : "" + value.scalar_type,
+                                scalarType: gs.nil(value.scalar_type) ? "string" : "" + value.scalar_type,
                                 useOriginalValue: isTrue(value.use_original_value)
                             };
                         else {
-                            if (!value.label.nil())
+                            if (!gs.nil(value.label))
                                 result.label = "" + value.label;
                             if (isTrue(value.visible))
                                 result.isVisible = true;
                             if (isTrue(value.use_original_value))
                                 result.useOriginalValue = true;
-                            if (!value.scalar_type.nil())
+                            if (!gs.nil(value.scalar_type))
                                 result.scalarType = "" + value.scalar_type;
                         }
                         var scalarLength = asNumber(value.scalar_length);
@@ -203,30 +207,38 @@ const RecordElement = (function () {
 const DeclaredElement = (function () {
     const DeclaredElement = Class.create();
     DeclaredElement.prototype = Object.extendsObject(RecordElement, {
-        initialize: function (elementName, declaredOn, glideObject) {
-            RecordElement.prototype.initialize.call(this, elementName, RecordElement.getTypeInfo(glideObject.internal_type).name, declaredOn);
-            this.label = glideObject.column_label.nil() ? elementName : "" + glideObject.column_label;
-            var maxLength = asNumber(glideObject.max_length);
-            if (typeof maxLength === "number")
-                this.maxLength = maxLength;
-            if (isTrue(glideObject.primary))
-                this.primary = true;
-            var scope = TableInfo.getScopeInfo(glideObject.sys_scope);
-            if (typeof scope !== "undefined")
-                this.scope = scope.value;
-            if (isTrue(glideObject.array))
-                this.array = true;
-            if (isTrue(glideObject.mandatory))
-                this.mandatory = true;
-            if (isTrue(glideObject.display))
-                this.display = true;
-            if (isTrue(glideObject.read_only))
-                this.readOnly = true;
-            if (!glideObject.comments.nil())
-                this.comments = "" + glideObject.comments;
-            var refTable = TableInfo.getTableInfo(glideObject.reference);
-            if (typeof refTable !== "undefined")
-                this.refTable = refTable;
+        initialize: function (elementName, declaredOn, glideObject, label, scope) {
+            if (typeof glideObject === 'string') {
+                RecordElement.prototype.initialize.call(this, elementName, glideObject, declaredOn);
+                this.label = (typeof label === 'string' && label.length > 0 && label.trim().length > 0) ? label : elementName;
+                if (typeof scope === "string")
+                    this.scope = scope;
+            }
+            else {
+                RecordElement.prototype.initialize.call(this, elementName, RecordElement.getTypeInfo(glideObject.internal_type).name, declaredOn);
+                this.label = glideObject.column_label.nil() ? elementName : "" + glideObject.column_label;
+                var maxLength = asNumber(glideObject.max_length);
+                if (typeof maxLength === "number")
+                    this.maxLength = maxLength;
+                if (isTrue(glideObject.primary))
+                    this.primary = true;
+                var s = TableInfo.getScopeInfo(glideObject.sys_scope);
+                if (typeof s !== "undefined")
+                    this.scope = s.value;
+                if (isTrue(glideObject.array))
+                    this.array = true;
+                if (isTrue(glideObject.mandatory))
+                    this.mandatory = true;
+                if (isTrue(glideObject.display))
+                    this.display = true;
+                if (isTrue(glideObject.read_only))
+                    this.readOnly = true;
+                if (!glideObject.comments.nil())
+                    this.comments = "" + glideObject.comments;
+                var refTable = TableInfo.getTableInfo(glideObject.reference);
+                if (typeof refTable !== "undefined")
+                    this.refTable = refTable;
+            }
         },
         getLabel: function () { return this.label; },
         getMaxLength: function () { return this.maxLength; },
@@ -298,6 +310,11 @@ const DeclaredElement = (function () {
                         jsType = 'GlideElementBoolean';
                         break;
                     case "integer":
+                    case "decimal":
+                    case "float":
+                    case "percent_complete":
+                    case "order_index":
+                    case "longint":
                         jsType = 'GlideElementNumeric';
                         break;
                     case "sys_class_name":
@@ -319,6 +336,8 @@ const DeclaredElement = (function () {
                         jsType = 'GlideElementDocumentation';
                         break;
                     case "script":
+                    case "script_plain":
+                    case "xml":
                         jsType = 'GlideElementScript';
                         break;
                     case "conditions":
@@ -426,18 +445,71 @@ const DeclaredElement = (function () {
                     case "user_input":
                     case "journal_input":
                     case "journal_list":
+                    case "html":
+                    case "glide_list":
+                    case "journal":
+                    case "glide_action_list":
+                    case "date":
+                    case "day_of_week":
+                    case "month_of_year":
+                    case "week_of_month":
                         typeName = typeToString(typeInfo);
                         jsType = 'GlideElementGlideObject';
                         break;
                     case "reference":
                         jsType = 'GlideElementReference';
                         break;
+                    case "caller_phone_number":
+                    case "phone_number_e164":
+                        jsType = 'GlideElementPhoneNumber';
+                        break;
                     case "string":
+                    case "choice":
+                    case "field_name":
+                    case "color":
+                    case "user_roles":
+                    case "image":
+                    case "json":
+                    case "char":
+                    case "email":
+                    case "ph_number":
+                    case "multi_two_lines":
+                    case "table_name":
+                    case "external_names":
+                    case "expression":
+                    case "glyphicon":
+                    case "field_list":
+                    case "datetime":
+                    case "slushbucket":
+                    case "GUID":
+                    case "domain_path":
+                    case "composite_field":
+                    case "radio":
+                    case "script_server":
+                    case "decoration":
+                    case "sys_class_code":
+                    case "wide_text":
+                    case "version":
+                    case "sys_class_path":
+                    case "catalog_preview":
+                    case "properties":
+                    case "bootstrap_color":
+                    case "css":
+                    case "html_template":
+                    case "color_display":
+                    case "composite_name":
                         jsType = 'GlideElement';
+                        break;
+                    case "ip_addr":
+                        jsType = "GlideElementIPAddress";
                         break;
                     default:
                         typeName = typeToString(typeInfo);
                         gs.warn("Unknown " + typeName + ' on ' + this.table.interfaceName + '.' + this.elementName);
+                        /*
+2023-08-17 18:00:57 (412) Unknown undefined on planned_task.dependency - GlideElement
+2023-08-17 18:00:57 (439) Unknown undefined on sys_db_object.sys_class_code - GlideElement
+                        */
                         jsType = 'GlideElement';
                         break;
                 }
@@ -582,7 +654,7 @@ const InheritedElement = (function () {
                     this.refTable = refTable;
             }
             else
-                RecordElement.prototype.initialize.call(this, inheritedFrom.elementName, inheritedFrom.type, usedOn);
+                RecordElement.prototype.initialize.call(this, inheritedFrom.elementName, inheritedFrom.elementType, usedOn);
         },
         getLabel: function () { return (typeof this.labelOverride !== "string") ? this.base.label : this.labelOverride; },
         getMaxLength: function () { return (typeof this.maxLengthOverride !== "string") ? this.base.maxLength : this.maxLengthOverride; },
@@ -607,8 +679,8 @@ const InheritedElement = (function () {
 const InterfaceInfo = (function () {
     const InterfaceInfo = Class.create();
     InterfaceInfo.prototype = {
-        _elements: {},
         initialize: function (interfaceName) {
+            this._elements = {};
             this.interfaceName = interfaceName;
         },
         getElement: function (name) { return this._elements[name]; },
@@ -626,6 +698,19 @@ const InterfaceInfo = (function () {
         },
         type: "InterfaceInfo"
     };
+    InterfaceInfo.baseInterface = new InterfaceInfo("IBaseRecord");
+    InterfaceInfo.sys_id = new DeclaredElement("sys_id", InterfaceInfo.baseInterface, "GUID", "Sys ID", "global");
+    InterfaceInfo.baseInterface._elements[InterfaceInfo.sys_id.elementName] = InterfaceInfo.sys_id;
+    InterfaceInfo.sys_created_by = new DeclaredElement("sys_created_by", InterfaceInfo.baseInterface, "string", "Created by", "global");
+    InterfaceInfo.baseInterface._elements[InterfaceInfo.sys_created_by.elementName] = InterfaceInfo.sys_created_by;
+    InterfaceInfo.sys_created_on = new DeclaredElement("sys_created_on", InterfaceInfo.baseInterface, "glide_date_time", "Created", "global");
+    InterfaceInfo.baseInterface._elements[InterfaceInfo.sys_created_on.elementName] = InterfaceInfo.sys_created_on;
+    InterfaceInfo.sys_mod_count = new DeclaredElement("sys_mod_count", InterfaceInfo.baseInterface, "integer", "Updates", "global");
+    InterfaceInfo.baseInterface._elements[InterfaceInfo.sys_mod_count.elementName] = InterfaceInfo.sys_mod_count;
+    InterfaceInfo.sys_updated_by = new DeclaredElement("sys_updated_by", InterfaceInfo.baseInterface, "string", "Updated by", "global");
+    InterfaceInfo.baseInterface._elements[InterfaceInfo.sys_updated_by.elementName] = InterfaceInfo.sys_updated_by;
+    InterfaceInfo.sys_updated_on = new DeclaredElement("sys_updated_on", InterfaceInfo.baseInterface, "glide_date_time", "Updated", "global");
+    InterfaceInfo.baseInterface._elements[InterfaceInfo.sys_updated_on.elementName] = InterfaceInfo.sys_updated_on;
     return InterfaceInfo;
 })();
 /**
@@ -667,6 +752,17 @@ const TableInfo = (function () {
                 while (gr.next()) {
                     var elementName = "" + gr.element;
                     this._elements[elementName] = new DeclaredElement(elementName, this, gr);
+                }
+                if (InterfaceInfo.sys_id.equals(this._elements[InterfaceInfo.sys_id.elementName]) && InterfaceInfo.sys_created_by.equals(this._elements[InterfaceInfo.sys_created_by.elementName]) &&
+                    InterfaceInfo.sys_created_on.equals(this._elements[InterfaceInfo.sys_created_on.elementName]) && InterfaceInfo.sys_mod_count.equals(this._elements[InterfaceInfo.sys_mod_count.elementName]) &&
+                    InterfaceInfo.sys_updated_by.equals(this._elements[InterfaceInfo.sys_updated_by.elementName]) && InterfaceInfo.sys_updated_on.equals(this._elements[InterfaceInfo.sys_updated_on.elementName])) {
+                    this.superClass = InterfaceInfo.baseInterface;
+                    this._elements[InterfaceInfo.sys_id.elementName] = new InheritedElement(InterfaceInfo.sys_id, this);
+                    this._elements[InterfaceInfo.sys_created_by.elementName] = new InheritedElement(InterfaceInfo.sys_created_by, this);
+                    this._elements[InterfaceInfo.sys_created_on.elementName] = new InheritedElement(InterfaceInfo.sys_created_on, this);
+                    this._elements[InterfaceInfo.sys_mod_count.elementName] = new InheritedElement(InterfaceInfo.sys_mod_count, this);
+                    this._elements[InterfaceInfo.sys_updated_by.elementName] = new InheritedElement(InterfaceInfo.sys_updated_by, this);
+                    this._elements[InterfaceInfo.sys_updated_on.elementName] = new InheritedElement(InterfaceInfo.sys_updated_on, this);
                 }
             }
         },
@@ -720,7 +816,7 @@ const TableInfo = (function () {
             }
             context.elementLines.push("     */");
             context.recordLines.push("     */");
-            context.elementLines.push("    export type task = Reference<$$tableFields." + this.interfaceName + ", $$GlideRecord." + this.interfaceName + ">;");
+            context.elementLines.push("    export type " + this.interfaceName + " = Reference<$$tableFields." + this.interfaceName + ", $$GlideRecord." + this.interfaceName + ">;");
             if (typeof this.superClass !== "undefined" && this.superClass instanceof TableInfo)
                 context.recordLines.push("    export type " + this.interfaceName + " = $$tableFields." + this.interfaceName + " & " + this.superClass.interfaceName + ";");
             else
@@ -772,7 +868,7 @@ const TableInfo = (function () {
     };
     return TableInfo;
 })();
-var tableNames = ["task"];
+var tableNames = ["sys_security_acl", "sys_hub_flow_output", "sys_ux_theme_property", "sys_ux_theme_property_schema", "sc_ordered_item_link", "sc_ic_item_staging", "sc_template", "topic", "taxonomy"];
 var context = {
     fieldInterfaceLines: [],
     elementLines: [],
@@ -790,4 +886,14 @@ tableNames.forEach(function (n) {
     else
         tableInfo.generateCode(this);
 }, context);
-context.fieldInterfaceLines;
+[
+    'declare namespace $$GlideRecord {'
+].concat(context.recordLines).concat([
+    '}',
+    '',
+    'declare namespace $$GlideElement {'
+]).concat(context.elementLines).concat([
+    '}',
+    '',
+    'declare namespace $$tableFields {'
+]).concat(context.fieldInterfaceLines).concat('}').join("\n");

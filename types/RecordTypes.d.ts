@@ -5,570 +5,660 @@
  * @namespace $$GlideRecord
  */
 declare namespace $$GlideRecord {
+    // #region Done
+
     /**
-     * GlideRecord representing the "Business Unit" table (business_unit).
+     * "Business Unit" glide record.
      */
     export type business_unit = $$tableFields.business_unit & GlideRecord;
-    
+ 
     /**
-     * GlideRecord representing the "Task" table (task).
+     * Task glide record.
+     * Auto-number Prefix: TASK
      */
     export type task = $$tableFields.task & GlideRecord;
-
+ 
     /**
-     * GlideRecord representing the "Application File" table (sys_metadata).
+     * "Application File" glide record.
      */
     export type sys_metadata = $$tableFields.sys_metadata & GlideRecord;
-
+ 
     /**
-     * GlideRecord representing the "Package" table (sys_package).
+     * Package glide record.
      */
     export type sys_package = $$tableFields.sys_package & GlideRecord;
-
+ 
     /**
-     * GlideRecord representing the "Application" table (sys_scope).
+     * Application glide record.
      */
     export type sys_scope = $$tableFields.sys_scope & sys_package;
-
+ 
     /**
-     * GlideRecord representing the "Guided Setup Content" table (gsw_content).
+     * "Guided Setup Content" glide record.
+     * Scope: "Guided Setup - Legacy" (sn_guided_setup)
      */
     export type gsw_content = $$tableFields.gsw_content & sys_metadata;
-
+ 
     /**
-     * GlideRecord representing the "Subscription" table (license_details).
+     * Subscription glide record.
      */
     export type license_details = $$tableFields.license_details & GlideRecord;
-
+ 
     /**
-     * GlideRecord representing the "UsageAnalytics Definitions Base" table (ua_defn_base).
+     * "UsageAnalytics Definitions Base" glide record.
      */
     export type ua_defn_base = $$tableFields.ua_defn_base & GlideRecord;
-
+ 
     /**
-     * GlideRecord representing the "Asset" table (alm_asset).
+     * Asset glide record.
      */
     export type alm_asset = $$tableFields.alm_asset & GlideRecord;
-
+ 
     /**
-     * GlideRecord representing the "Cost Center" table (cmn_cost_center).
+     * "Cost Center" glide record.
      */
     export type cmn_cost_center = $$tableFields.cmn_cost_center & GlideRecord;
 
     /**
-     * GlideRecord representing the "Depreciation" table (cmdb_depreciation).
+     * Depreciation glide record.
      */
     export type cmdb_depreciation = $$tableFields.cmdb_depreciation & GlideRecord;
-
+ 
     /**
-     * GlideRecord representing the "Life Cycle Stage" table (life_cycle_stage).
+     * "Life Cycle Stage" glide record.
      */
     export type life_cycle_stage = $$tableFields.life_cycle_stage & sys_metadata;
-
+ 
     /**
-     * GlideRecord representing the "Life Cycle Stage Status" table (life_cycle_stage_status).
+     * "Life Cycle Stage Status" glide record.
      */
     export type life_cycle_stage_status = $$tableFields.life_cycle_stage_status & sys_metadata;
-
+ 
     /**
-     * GlideRecord representing the "Product Model" table (cmdb_model).
+     * "Product Model" glide record.
      */
     export type cmdb_model = $$tableFields.cmdb_model & GlideRecord;
-    
+ 
     /**
-     * GlideRecord representing the "Model Category" table (cmdb_model_category).
+     * "Model Category" glide record.
      */
     export type cmdb_model_category = $$tableFields.cmdb_model_category & GlideRecord;
-
+ 
     /**
-     * GlideRecord representing the "Base Configuration Item" table (cmdb).
+     * "Base Configuration Item" glide record.
      */
     export type cmdb = $$tableFields.cmdb & GlideRecord;
-    
+ 
     /**
-     * GlideRecord representing the "Configuration Item" table (cmdb_ci).
+     * "Configuration Item" glide record.
      */
     export type cmdb_ci = $$tableFields.cmdb_ci & cmdb;
-
+ 
     /**
-     * GlideRecord representing the "Model Component" table (cmdb_m2m_model_component).
+     * "Model Component" glide record.
      */
     export type cmdb_m2m_model_component = $$tableFields.cmdb_m2m_model_component & GlideRecord;
-    
+ 
     /**
-     * GlideRecord representing the "Service" table (cmdb_ci_service).
+     * Service glide record.
+     * Auto-number Prefix: BSN
      */
     export type cmdb_ci_service = $$tableFields.cmdb_ci_service & cmdb_ci;
 
     /**
-     * GlideRecord representing the "Contract" table (ast_contract).
+     * "Subscription Role Type" glide record.
+     */
+    export type license_role_type = $$tableFields.license_role_type & GlideRecord;
+ 
+    /**
+     * "OT Asset" glide record.
+     * Scope: "CMDB CI Class Models" (sn_cmdb_ci_class): A single source for all new, out-of-the-box, CMDB CI class models from ServiceNow
+     */
+    export type cmdb_ot_entity = $$tableFields.cmdb_ot_entity & GlideRecord;
+ 
+    /**
+     * Contract glide record.
+     * Auto-number Prefix: CNTR
      */
     export type ast_contract = $$tableFields.ast_contract & GlideRecord;
-
+ 
     /**
-     * GlideRecord representing the "Execution Plan" table (sc_cat_item_delivery_plan).
+     * "Execution Plan" glide record.
      */
     export type sc_cat_item_delivery_plan = $$tableFields.sc_cat_item_delivery_plan & sys_metadata;
-    
+ 
     /**
-     * GlideRecord representing the "Execution Plan Task" table (sc_cat_item_delivery_task).
+     * "Execution Plan Task" glide record.
      */
     export type sc_cat_item_delivery_task = $$tableFields.sc_cat_item_delivery_task & sys_metadata;
-
+ 
     /**
-     * GlideRecord representing the "Offering" table (service_offering).
+     * Offering glide record.
      */
     export type service_offering = $$tableFields.service_offering & cmdb_ci_service;
-
+ 
     /**
-     * GlideRecord representing the "Request" table (sc_request).
+     * Request glide record.
+     * Auto-number Prefix: REQ
      */
     export type sc_request = $$tableFields.sc_request & task;
-
+ 
     /**
-     * GlideRecord representing the "Requested Item" table (sc_req_item).
+     * "Requested Item" glide record.
+     * Auto-number Prefix: RITM
      */
     export type sc_req_item = $$tableFields.sc_req_item & task;
-
+ 
     /**
-     * GlideRecord representing the "Flow engine context" table (sys_flow_context).
+     * "Flow engine context" glide record.
      */
     export type sys_flow_context = $$tableFields.sys_flow_context & GlideRecord;
 
     /**
-     * GlideRecord representing the "Stockroom" table (alm_stockroom).
+     * "OT Asset Type" glide record.
+     * Scope: "CMDB CI Class Models" (sn_cmdb_ci_class): A single source for all new, out-of-the-box, CMDB CI class models from ServiceNow
+     */
+    export type cmdb_ot_entity_type = $$tableFields.cmdb_ot_entity_type & sys_metadata;
+ 
+    /**
+     * Stockroom glide record.
      */
     export type alm_stockroom = $$tableFields.alm_stockroom & GlideRecord;
-    
+ 
     /**
-     * GlideRecord representing the "Unit" table (cmdb_model_unit).
+     * Unit glide record.
      */
     export type cmdb_model_unit = $$tableFields.cmdb_model_unit & GlideRecord;
-
+ 
     /**
-     * GlideRecord representing the "Catalog Item" table (sc_cat_item).
+     * "Catalog Item" glide record.
      */
     export type sc_cat_item = $$tableFields.sc_cat_item & sys_metadata;
-
+ 
     /**
-     * GlideRecord representing the "Order guide" table (sc_cat_item_guide).
+     * "Order guide" glide record.
      */
     export type sc_cat_item_guide = $$tableFields.sc_cat_item_guide & sc_cat_item;
-
+ 
     /**
-     * GlideRecord representing the "Planned Task" table (planned_task).
+     * "Planned Task" glide record.
      */
     export type planned_task = $$tableFields.planned_task & task;
-
+ 
     /**
-     * GlideRecord representing the "Task Relationship" table (task_rel_task).
+     * "Task Relationship" glide record.
      */
     export type task_rel_task = $$tableFields.task_rel_task & GlideRecord;
-
+ 
     /**
-     * GlideRecord representing the "Planned Task Relationship" table (planned_task_rel_planned_task).
+     * "Planned Task Relationship" glide record.
      */
     export type planned_task_rel_planned_task = $$tableFields.planned_task_rel_planned_task & task_rel_task;
-
+ 
     /**
-     * GlideRecord representing the "Feature" table (rm_feature).
+     * Feature glide record.
      */
     export type rm_feature = $$tableFields.rm_feature & planned_task;
 
     /**
-     * GlideRecord representing the "Story" table (rm_story).
+     * Goal glide record.
+     * Scope: "Goal Framework" (sn_gf)
+     */
+    export type sn_gf_goal = $$tableFields.sn_gf_goal & sn_gf_core_goal;
+ 
+    /**
+     * Story glide record.
      */
     export type rm_story = $$tableFields.rm_story & rm_feature;
-
+ 
     /**
-     * GlideRecord representing the "Schedule" table (cmn_schedule).
+     * Schedule glide record.
      */
     export type cmn_schedule = $$tableFields.cmn_schedule & business_calendar;
-
+ 
     /**
-     * GlideRecord representing the "Business Calendar" table (business_calendar).
+     * "Business Calendar" glide record.
      */
     export type business_calendar = $$tableFields.business_calendar & sys_metadata;
-
+ 
     /**
-     * GlideRecord representing the "Business Calendar Entry" table (business_calendar_span).
+     * "Business Calendar Entry" glide record.
      */
     export type business_calendar_span = $$tableFields.business_calendar_span & GlideRecord;
-
+ 
     /**
-     * GlideRecord representing the "Agreement" table (sla).
+     * Agreement glide record.
+     * Auto-number Prefix: SLA
      */
     export type sla = $$tableFields.sla & GlideRecord;
-
+ 
     /**
-     * GlideRecord representing the "Service Portfolio" table (spm_service_portfolio).
+     * "Service Portfolio" glide record.
      */
     export type spm_service_portfolio = $$tableFields.spm_service_portfolio & GlideRecord;
-
+ 
     /**
-     * GlideRecord representing the "Calendar" table (sys_calendar).
+     * Calendar glide record.
      */
     export type sys_calendar = $$tableFields.sys_calendar & sys_metadata;
-    
+ 
     /**
-     * GlideRecord representing the "Taxonomy Node" table (spm_taxonomy_node).
+     * "Taxonomy Node" glide record.
      */
     export type spm_taxonomy_node = $$tableFields.spm_taxonomy_node & GlideRecord;
 
     /**
-     * GlideRecord representing the "Application Model" table (cmdb_application_product_model).
+     * "Core Goal" glide record.
+     * Scope: "Goal Framework" (sn_gf)
+     */
+    export type sn_gf_core_goal = $$tableFields.sn_gf_core_goal & GlideRecord;
+ 
+    /**
+     * "Strategic Priority" glide record.
+     * Scope: "Goal Framework" (sn_gf)
+     */
+    export type sn_gf_strategy = $$tableFields.sn_gf_strategy & GlideRecord;
+ 
+    /**
+     * "Application Model" glide record.
      */
     export type cmdb_application_product_model = $$tableFields.cmdb_application_product_model & cmdb_model;
-
+ 
     /**
-     * GlideRecord representing the "Condition" table (clm_condition_checker).
+     * Condition glide record.
      */
     export type clm_condition_checker = $$tableFields.clm_condition_checker & sys_metadata;
-
+ 
     /**
-     * GlideRecord representing the "Condition Checks" table (clm_condition_check).
+     * "Condition Checks" glide record.
      */
     export type clm_condition_check = $$tableFields.clm_condition_check & sys_metadata;
-    
+ 
     /**
-     * GlideRecord representing the "Rule" table (sysrule).
+     * Rule glide record.
      */
     export type sysrule = $$tableFields.sysrule & sys_metadata;
-
+ 
     /**
-     * GlideRecord representing the "Service Level Agreement" table (sysrule_escalate).
+     * "Service Level Agreement" glide record.
      */
     export type sysrule_escalate = $$tableFields.sysrule_escalate & sysrule;
-    
+ 
     /**
-     * GlideRecord representing the "Workflow context" table (wf_context).
+     * "Workflow context" glide record.
      */
     export type wf_context = $$tableFields.wf_context & GlideRecord;
-
+ 
     /**
-     * GlideRecord representing the "Workflow Version" table (wf_workflow_version).
+     * "Workflow Version" glide record.
      */
     export type wf_workflow_version = $$tableFields.wf_workflow_version & GlideRecord;
-    
+
     /**
-     * GlideRecord representing the "Workflow" table (wf_workflow).
+     * Workflow glide record.
      */
     export type wf_workflow = $$tableFields.wf_workflow & sys_metadata;
-
+ 
     /**
-     * GlideRecord representing the "Workflow Stage" table (wf_stage).
+     * "Workflow Stage" glide record.
      */
     export type wf_stage = $$tableFields.wf_stage & GlideRecord;
-    
+ 
     /**
-     * GlideRecord representing the "Workflow Executing Activity" table (wf_executing).
+     * "Workflow Executing Activity" glide record.
      */
     export type wf_executing = $$tableFields.wf_executing & GlideRecord;
-
+ 
     /**
-     * GlideRecord representing the "Macro" table (sys_ui_macro).
+     * Macro glide record.
      */
     export type sys_ui_macro = $$tableFields.sys_ui_macro & sys_metadata;
-
+ 
     /**
-     * GlideRecord representing the "Column Renderer" table (column_renderer).
+     * "Column Renderer" glide record.
      */
     export type column_renderer = $$tableFields.column_renderer & sys_ui_macro;
-
+ 
     /**
-     * GlideRecord representing the "Workflow Activity" table (wf_activity).
+     * "Workflow Activity" glide record.
      */
     export type wf_activity = $$tableFields.wf_activity & GlideRecord;
-    
+ 
     /**
-     * GlideRecord representing the "Relative Duration" table (cmn_relative_duration).
+     * "Relative Duration" glide record.
      */
     export type cmn_relative_duration = $$tableFields.cmn_relative_duration & sys_metadata;
-
+ 
     /**
-     * GlideRecord representing the "Workflow Activity History" table (wf_history).
+     * "Workflow Activity History" glide record.
      */
     export type wf_history = $$tableFields.wf_history & GlideRecord;
-    
+ 
     /**
-     * GlideRecord representing the "Workflow Element Definition" table (wf_element_definition).
+     * "Workflow Element Definition" glide record.
      */
     export type wf_element_definition = $$tableFields.wf_element_definition & sys_metadata;
 
     /**
-     * GlideRecord representing the "Element Provider" table (wf_element_provider).
+     * "Activity Variables" glide record.
+     */
+    export type wf_activity_variable = $$tableFields.wf_activity_variable & var_dictionary;
+ 
+    /**
+     * "Element Provider" glide record.
      */
     export type wf_element_provider = $$tableFields.wf_element_provider & GlideRecord;
-
+ 
     /**
-     * GlideRecord representing the "Flow catalog variable model" table (sys_flow_cat_variable_model).
+     * "Flow catalog variable model" glide record.
      */
     export type sys_flow_cat_variable_model = $$tableFields.sys_flow_cat_variable_model & GlideRecord;
-
+ 
     /**
-     * GlideRecord representing the "Interaction" table (interaction).
+     * Interaction glide record.
+     * Auto-number Prefix: IMS
      */
     export type interaction = $$tableFields.interaction & GlideRecord;
-
+ 
     /**
-     * GlideRecord representing the "Provider Channel Identity" table (sys_cs_provider_application).
+     * "Provider Channel Identity" glide record.
      */
     export type sys_cs_provider_application = $$tableFields.sys_cs_provider_application & sys_metadata;
-    
+ 
     /**
-     * GlideRecord representing the "Interaction Context" table (v_interaction_context).
+     * "Interaction Context" glide record.
      */
     export type v_interaction_context = $$tableFields.v_interaction_context & GlideRecord;
-
+ 
     /**
-     * GlideRecord representing the "Channel User Profile" table (sys_cs_channel_user_profile).
+     * "Channel User Profile" glide record.
      */
     export type sys_cs_channel_user_profile = $$tableFields.sys_cs_channel_user_profile & GlideRecord;
-    
+ 
     /**
-     * GlideRecord representing the "Messaging Channel" table (sys_cs_channel).
+     * "Messaging Channel" glide record.
      */
     export type sys_cs_channel = $$tableFields.sys_cs_channel & sys_metadata;
-
+ 
     /**
-     * GlideRecord representing the "Provider Channel" table (sys_cs_provider).
+     * "Provider Channel" glide record.
      */
     export type sys_cs_provider = $$tableFields.sys_cs_provider & sys_metadata;
-    
+
     /**
-     * GlideRecord representing the "Provider Auth" table (provider_auth).
+     * Variables glide record.
+     */
+    export type var_dictionary = $$tableFields.var_dictionary & sys_dictionary;
+ 
+    /**
+     * "Workflow Activity Definition" glide record.
+     */
+    export type wf_activity_definition = $$tableFields.wf_activity_definition & wf_element_definition;
+ 
+    /**
+     * "Provider Auth" glide record.
      */
     export type provider_auth = $$tableFields.provider_auth & GlideRecord;
-
+ 
     /**
-     * GlideRecord representing the "Text Index Group" table (ts_index_group).
+     * "Text Index Group" glide record.
      */
     export type ts_index_group = $$tableFields.ts_index_group & sys_metadata;
-    
+ 
     /**
-     * GlideRecord representing the "Theme" table (sp_theme).
+     * Theme glide record.
      */
     export type sp_theme = $$tableFields.sp_theme & sys_metadata;
-
+ 
     /**
-     * GlideRecord representing the "Instance" table (sp_instance).
+     * Instance glide record.
      */
     export type sp_instance = $$tableFields.sp_instance & sys_metadata;
-
+ 
     /**
-     * GlideRecord representing the "Instance with Menu" table (sp_instance_menu).
+     * "Instance with Menu" glide record.
      */
     export type sp_instance_menu = $$tableFields.sp_instance_menu & sp_instance;
-    
+ 
     /**
-     * GlideRecord representing the "Chat Queue" table (chat_queue).
+     * "Chat Queue" glide record.
      */
     export type chat_queue = $$tableFields.chat_queue & GlideRecord;
-
+ 
     /**
-     * GlideRecord representing the "EVAM Definition" table (sys_ux_composite_data).
+     * "EVAM Definition" glide record.
      */
     export type sys_ux_composite_data = $$tableFields.sys_ux_composite_data & sys_metadata;
 
     /**
-     * GlideRecord representing the "Search Application Configuration" table (sys_search_context_config).
+     * "Text Index Configuration" glide record.
+     */
+    export type ts_configuration = $$tableFields.ts_configuration & sys_metadata;
+ 
+    /**
+     * "Search Application Configuration" glide record.
      */
     export type sys_search_context_config = $$tableFields.sys_search_context_config & sys_metadata;
-    
+ 
     /**
-     * GlideRecord representing the "Page" table (sp_page).
+     * Page glide record.
      */
     export type sp_page = $$tableFields.sp_page & sys_metadata;
-
+ 
     /**
-     * GlideRecord representing the "Catalog" table (sc_catalog).
+     * Catalog glide record.
      */
     export type sc_catalog = $$tableFields.sc_catalog & sys_metadata;
-    
+ 
     /**
-     * GlideRecord representing the "Knowledge Base" table (kb_knowledge_base).
+     * "Knowledge Base" glide record.
      */
     export type kb_knowledge_base = $$tableFields.kb_knowledge_base & GlideRecord;
-
+ 
     /**
-     * GlideRecord representing the "Widget" table (sp_widget).
+     * Widget glide record.
      */
     export type sp_widget = $$tableFields.sp_widget & sys_metadata;
-    
+ 
     /**
-     * GlideRecord representing the "Header | Footer" table (sp_header_footer).
+     * "Header | Footer" glide record.
      */
     export type sp_header_footer = $$tableFields.sp_header_footer & sp_widget;
-
+ 
     /**
-     * GlideRecord representing the "Service Portal Documentation" table (sp_documentation).
+     * "Service Portal Documentation" glide record.
      */
     export type sp_documentation = $$tableFields.sp_documentation & sys_metadata;
-    
+ 
     /**
-     * GlideRecord representing the "Column" table (sp_column).
+     * Column glide record.
      */
     export type sp_column = $$tableFields.sp_column & sys_metadata;
 
     /**
-     * GlideRecord representing the "Row" table (sp_row).
+     * Row glide record.
      */
     export type sp_row = $$tableFields.sp_row & sys_metadata;
-    
+ 
     /**
-     * GlideRecord representing the "Container" table (sp_container).
+     * Container glide record.
      */
     export type sp_container = $$tableFields.sp_container & sys_metadata;
-
+ 
     /**
-     * GlideRecord representing the "AI Search Search Profile" table (ais_search_profile).
+     * "AI Search Search Profile" glide record.
      */
     export type ais_search_profile = $$tableFields.ais_search_profile & sys_metadata;
-    
+ 
     /**
-     * GlideRecord representing the "Script Include" table (sys_script_include).
+     * "Script Include" glide record.
      */
     export type sys_script_include = $$tableFields.sys_script_include & sys_metadata;
-
+ 
     /**
-     * GlideRecord representing the "Data Policy" table (sys_data_policy2).
+     * "Data Policy" glide record.
      */
     export type sys_data_policy2 = $$tableFields.sys_data_policy2 & sys_metadata;
-    
+ 
     /**
-     * GlideRecord representing the "Stage State" table (stage_state).
+     * "Stage State" glide record.
      */
     export type stage_state = $$tableFields.stage_state & GlideRecord;
-
+ 
     /**
-     * GlideRecord representing the "Stockroom Type" table (alm_stockroom_type).
+     * "Stockroom Type" glide record.
      */
     export type alm_stockroom_type = $$tableFields.alm_stockroom_type & GlideRecord;
-    
+ 
     /**
-     * GlideRecord representing the "Category" table (sc_category).
+     * Category glide record.
      */
     export type sc_category = $$tableFields.sc_category & sys_metadata;
-
+ 
     /**
-     * GlideRecord representing the "Module" table (sys_app_module).
+     * Module glide record.
      */
     export type sys_app_module = $$tableFields.sys_app_module & sys_metadata;
-    
+
     /**
-     * GlideRecord representing the "Timeline Page" table (cmn_timeline_page).
+     * "Timeline Page" glide record.
      */
     export type cmn_timeline_page = $$tableFields.cmn_timeline_page & sys_metadata;
-
+ 
     /**
-     * GlideRecord representing the "Catalog Renderer" table (sc_renderer).
+     * "Catalog Renderer" glide record.
      */
     export type sc_renderer = $$tableFields.sc_renderer & sys_metadata;
-
+ 
     /**
-     * GlideRecord representing the "Homepage Category Renderer" table (sc_homepage_renderer).
+     * "Homepage Category Renderer" glide record.
      */
     export type sc_homepage_renderer = $$tableFields.sc_homepage_renderer & sc_renderer;
-
+ 
     /**
-     * GlideRecord representing the "Report" table (sys_report).
+     * Report glide record.
      */
     export type sys_report = $$tableFields.sys_report & sys_metadata;
-    
+ 
     /**
-     * GlideRecord representing the "Flow Block" table (sys_hub_flow_block).
+     * "Flow Block" glide record.
      */
     export type sys_hub_flow_block = $$tableFields.sys_hub_flow_block & sys_metadata;
-
+ 
     /**
-     * GlideRecord representing the "Flow Base" table (sys_hub_flow_base).
+     * "Flow Base" glide record.
      */
     export type sys_hub_flow_base = $$tableFields.sys_hub_flow_base & sys_hub_flow_block;
  
     /**
-     * GlideRecord representing the "Flow" table (sys_hub_flow).
+     * Flow glide record.
      */
     export type sys_hub_flow = $$tableFields.sys_hub_flow & sys_hub_flow_base;
  
     /**
-     * GlideRecord representing the "Action Category" table (sys_hub_category).
+     * "Action Category" glide record.
      */
     export type sys_hub_category = $$tableFields.sys_hub_category & sys_metadata;
  
     /**
-     * GlideRecord representing the "Color Definition" table (sys_report_color).
+     * "Color Definition" glide record.
      */
     export type sys_report_color = $$tableFields.sys_report_color & sys_metadata;
+
+    /**
+     * "Access Control" glide record.
+     */
+    export type sys_security_acl = $$tableFields.sys_security_acl & sys_metadata;
  
     /**
-     * GlideRecord representing the "UX Theme Property" table (sys_ux_theme_property).
+     * "Flow Outputs" glide record.
+     */
+    export type sys_hub_flow_output = $$tableFields.sys_hub_flow_output & var_dictionary;
+ 
+    /**
+     * "UX Theme Property" glide record.
      */
     export type sys_ux_theme_property = $$tableFields.sys_ux_theme_property & sys_metadata;
  
     /**
-     * GlideRecord representing the "UX Theme Property Schema" table (sys_ux_theme_property_schema).
+     * "UX Theme Property Schema" glide record.
      */
     export type sys_ux_theme_property_schema = $$tableFields.sys_ux_theme_property_schema & sys_metadata;
  
     /**
-     * GlideRecord representing the "Ordered Item Link" table (sc_ordered_item_link).
+     * "Ordered Item Link" glide record.
      */
     export type sc_ordered_item_link = $$tableFields.sc_ordered_item_link & sys_metadata;
  
     /**
-     * GlideRecord representing the "Item" table (sc_ic_item_staging).
+     * Item glide record.
      */
     export type sc_ic_item_staging = $$tableFields.sc_ic_item_staging & sys_metadata;
  
     /**
-     * GlideRecord representing the "Catalog Template" table (sc_template).
+     * "Catalog Template" glide record.
      */
     export type sc_template = $$tableFields.sc_template & sys_metadata;
  
     /**
-     * GlideRecord representing the "Topic" table (topic).
+     * Topic glide record.
      */
     export type topic = $$tableFields.topic & sys_metadata;
  
     /**
-     * GlideRecord representing the "Taxonomy" table (taxonomy).
+     * Taxonomy glide record.
      */
     export type taxonomy = $$tableFields.taxonomy & sys_metadata;
+
+    /**
+     * Operation glide record.
+     */
+    export type sys_security_operation = $$tableFields.sys_security_operation & sys_metadata;
  
     /**
-     * GlideRecord representing the "User Criteria" table (user_criteria).
+     * Type glide record.
+     */
+    export type sys_security_type = $$tableFields.sys_security_type & sys_metadata;
+ 
+    /**
+     * "User Criteria" glide record.
      */
     export type user_criteria = $$tableFields.user_criteria & sys_metadata;
  
     /**
-     * GlideRecord representing the "Template" table (sys_template).
+     * Template glide record.
+     * Auto-number Prefix: TEMPLATE
      */
     export type sys_template = $$tableFields.sys_template & sys_metadata;
  
     /**
-     * GlideRecord representing the "Map Page" table (cmn_map_page).
+     * "Map Page" glide record.
      */
     export type cmn_map_page = $$tableFields.cmn_map_page & sys_metadata;
  
     /**
-     * GlideRecord representing the "Map Item" table (cmn_map_item).
+     * "Map Item" glide record.
      */
     export type cmn_map_item = $$tableFields.cmn_map_item & sys_metadata;
  
     /**
-     * GlideRecord representing the "Map Page Filter" table (cmn_map_filter).
+     * "Map Page Filter" glide record.
      */
     export type cmn_map_filter = $$tableFields.cmn_map_filter & cmn_map_item;
  
     /**
-     * GlideRecord representing the "Portal Page" table (sys_portal_page).
+     * "Portal Page" glide record.
      */
     export type sys_portal_page = $$tableFields.sys_portal_page & sys_metadata;
  
     /**
-     * GlideRecord representing the "Assessment Metric Type" table (asmt_metric_type).
+     * "Assessment Metric Type" glide record.
      */
     export type asmt_metric_type = $$tableFields.asmt_metric_type & sys_metadata;
+
+    // #endregion
+
+    // #region Not Done
  
     /**
      * GlideRecord representing the "Business Rule" table (sys_script).
@@ -1709,6 +1799,8 @@ declare namespace $$GlideRecord {
      * GlideRecord representing the "Word corpus" table (ml_word_vector_corpus).
      */
     export type ml_word_vector_corpus = $$tableFields.ml_word_vector_corpus & GlideRecord;
+
+    // #endregion
 }
 
 /**
@@ -1716,6 +1808,8 @@ declare namespace $$GlideRecord {
  * @namespace $$GlideElement
  */
 declare namespace $$GlideElement {
+    // #region Done
+
     /**
     * Reference
     * scalar_type: GUID; name: reference
@@ -1725,570 +1819,658 @@ declare namespace $$GlideElement {
     } & GlideElementReference;
 
     /**
-     * Reference element for the "Task" record type (task).
+     * Element that refers to a "Business Unit" glide record.
+     */
+    export type business_unit = Reference<$$tableFields.business_unit, $$GlideRecord.business_unit>;
+ 
+    /**
+     * Element that refers to a Task glide record.
+     * Auto-number Prefix: TASK
      */
     export type task = Reference<$$tableFields.task, $$GlideRecord.task>;
-
+ 
     /**
-     * Reference element for the "Application File" record type (sys_metadata).
+     * Element that refers to a "Application File" glide record.
      */
     export type sys_metadata = Reference<$$tableFields.sys_metadata, $$GlideRecord.sys_metadata>;
-
+ 
     /**
-     * Reference element for the "Package" record type (sys_package).
+     * Element that refers to a Package glide record.
      */
     export type sys_package = Reference<$$tableFields.sys_package, $$GlideRecord.sys_package>;
-
+ 
     /**
-     * Reference element for the "Application" record type (sys_scope).
+     * Element that refers to a Application glide record.
      */
     export type sys_scope = Reference<$$tableFields.sys_scope, $$GlideRecord.sys_scope>;
-
+ 
     /**
-     * Reference element for the "Guided Setup Content" record type (gsw_content).
+     * Element that refers to a "Guided Setup Content" glide record.
+     * Scope: "Guided Setup - Legacy" (sn_guided_setup)
      */
-    export type gsw_content = Reference<$$tableFields.gsw_content, $$GlideRecord.gsw_content> & sys_metadata;
-
+    export type gsw_content = Reference<$$tableFields.gsw_content, $$GlideRecord.gsw_content>;
+ 
     /**
-     * Reference element for the "Subscription" record type (license_details).
+     * Element that refers to a Subscription glide record.
      */
     export type license_details = Reference<$$tableFields.license_details, $$GlideRecord.license_details>;
-
+ 
     /**
-     * Reference element for the "UsageAnalytics Definitions Base" record type (ua_defn_base).
+     * Element that refers to a "UsageAnalytics Definitions Base" glide record.
      */
     export type ua_defn_base = Reference<$$tableFields.ua_defn_base, $$GlideRecord.ua_defn_base>;
-
+ 
     /**
-     * Reference element for the "Asset" record type (alm_asset).
+     * Element that refers to a Asset glide record.
      */
     export type alm_asset = Reference<$$tableFields.alm_asset, $$GlideRecord.alm_asset>;
-    
+ 
     /**
-     * Reference element for the "Cost Center" record type (cmn_cost_center).
+     * Element that refers to a "Cost Center" glide record.
      */
     export type cmn_cost_center = Reference<$$tableFields.cmn_cost_center, $$GlideRecord.cmn_cost_center>;
 
     /**
-     * Reference element for the "Depreciation" record type (cmdb_depreciation).
+     * Element that refers to a Depreciation glide record.
      */
     export type cmdb_depreciation = Reference<$$tableFields.cmdb_depreciation, $$GlideRecord.cmdb_depreciation>;
-
+ 
     /**
-     * Reference element for the "Life Cycle Stage" record type (life_cycle_stage).
+     * Element that refers to a "Life Cycle Stage" glide record.
      */
-    export type life_cycle_stage = Reference<$$tableFields.life_cycle_stage, $$GlideRecord.life_cycle_stage> & sys_metadata;
-
+    export type life_cycle_stage = Reference<$$tableFields.life_cycle_stage, $$GlideRecord.life_cycle_stage>;
+ 
     /**
-     * Reference element for the "Life Cycle Stage Status" record type (life_cycle_stage_status).
+     * Element that refers to a "Life Cycle Stage Status" glide record.
      */
-    export type life_cycle_stage_status = Reference<$$tableFields.life_cycle_stage_status, $$GlideRecord.life_cycle_stage_status> & sys_metadata;
-
+    export type life_cycle_stage_status = Reference<$$tableFields.life_cycle_stage_status, $$GlideRecord.life_cycle_stage_status>;
+ 
     /**
-     * Reference element for the "Product Model" record type (cmdb_model).
+     * Element that refers to a "Product Model" glide record.
      */
     export type cmdb_model = Reference<$$tableFields.cmdb_model, $$GlideRecord.cmdb_model>;
-
+ 
     /**
-     * Reference element for the "Model Category" record type (cmdb_model_category).
+     * Element that refers to a "Model Category" glide record.
      */
     export type cmdb_model_category = Reference<$$tableFields.cmdb_model_category, $$GlideRecord.cmdb_model_category>;
-
+ 
     /**
-     * Reference element for the "Base Configuration Item" record type (cmdb).
+     * Element that refers to a "Base Configuration Item" glide record.
      */
     export type cmdb = Reference<$$tableFields.cmdb, $$GlideRecord.cmdb>;
-
+ 
     /**
-     * Reference element for the "Configuration Item" record type (cmdb_ci).
+     * Element that refers to a "Configuration Item" glide record.
      */
-    export type cmdb_ci = Reference<$$tableFields.cmdb_ci, $$GlideRecord.cmdb_ci> & cmdb;
-
+    export type cmdb_ci = Reference<$$tableFields.cmdb_ci, $$GlideRecord.cmdb_ci>;
+ 
     /**
-     * Reference element for the "Model Component" record type (cmdb_m2m_model_component).
+     * Element that refers to a "Model Component" glide record.
      */
     export type cmdb_m2m_model_component = Reference<$$tableFields.cmdb_m2m_model_component, $$GlideRecord.cmdb_m2m_model_component>;
-
+ 
     /**
-     * Reference element for the "Service" record type (cmdb_ci_service).
+     * Element that refers to a Service glide record.
+     * Auto-number Prefix: BSN
      */
-    export type cmdb_ci_service = Reference<$$tableFields.cmdb_ci_service, $$GlideRecord.cmdb_ci_service> & cmdb_ci;
+    export type cmdb_ci_service = Reference<$$tableFields.cmdb_ci_service, $$GlideRecord.cmdb_ci_service>;
 
     /**
-     * Reference element for the "Contract" record type (ast_contract).
+     * Element that refers to a "Subscription Role Type" glide record.
+     */
+    export type license_role_type = Reference<$$tableFields.license_role_type, $$GlideRecord.license_role_type>;
+ 
+    /**
+     * Element that refers to a "OT Asset" glide record.
+     * Scope: "CMDB CI Class Models" (sn_cmdb_ci_class): A single source for all new, out-of-the-box, CMDB CI class models from ServiceNow
+     */
+    export type cmdb_ot_entity = Reference<$$tableFields.cmdb_ot_entity, $$GlideRecord.cmdb_ot_entity>;
+ 
+    /**
+     * Element that refers to a Contract glide record.
+     * Auto-number Prefix: CNTR
      */
     export type ast_contract = Reference<$$tableFields.ast_contract, $$GlideRecord.ast_contract>;
-
+ 
     /**
-     * Reference element for the "Execution Plan" record type (sc_cat_item_delivery_plan).
+     * Element that refers to a "Execution Plan" glide record.
      */
-    export type sc_cat_item_delivery_plan = Reference<$$tableFields.sc_cat_item_delivery_plan, $$GlideRecord.sc_cat_item_delivery_plan> & sys_metadata;
-
+    export type sc_cat_item_delivery_plan = Reference<$$tableFields.sc_cat_item_delivery_plan, $$GlideRecord.sc_cat_item_delivery_plan>;
+ 
     /**
-     * Reference element for the "Execution Plan Task" record type (sc_cat_item_delivery_task).
+     * Element that refers to a "Execution Plan Task" glide record.
      */
-    export type sc_cat_item_delivery_task = Reference<$$tableFields.sc_cat_item_delivery_task, $$GlideRecord.sc_cat_item_delivery_task> & sys_metadata;
-
+    export type sc_cat_item_delivery_task = Reference<$$tableFields.sc_cat_item_delivery_task, $$GlideRecord.sc_cat_item_delivery_task>;
+ 
     /**
-     * Reference element for the "Offering" record type (service_offering).
+     * Element that refers to a Offering glide record.
      */
-    export type service_offering = Reference<$$tableFields.service_offering, $$GlideRecord.service_offering> & cmdb_ci_service;
-
+    export type service_offering = Reference<$$tableFields.service_offering, $$GlideRecord.service_offering>;
+ 
     /**
-     * Reference element for the "Request" record type (sc_request).
+     * Element that refers to a Request glide record.
+     * Auto-number Prefix: REQ
      */
-    export type sc_request = Reference<$$tableFields.sc_request, $$GlideRecord.sc_request> & task;
-
+    export type sc_request = Reference<$$tableFields.sc_request, $$GlideRecord.sc_request>;
+ 
     /**
-     * Reference element for the "Requested Item" record type (sc_req_item).
+     * Element that refers to a "Requested Item" glide record.
+     * Auto-number Prefix: RITM
      */
-    export type sc_req_item = Reference<$$tableFields.sc_req_item, $$GlideRecord.sc_req_item> & task;
-
+    export type sc_req_item = Reference<$$tableFields.sc_req_item, $$GlideRecord.sc_req_item>;
+ 
     /**
-     * Reference element for the "Flow engine context" record type (sys_flow_context).
+     * Element that refers to a "Flow engine context" glide record.
      */
     export type sys_flow_context = Reference<$$tableFields.sys_flow_context, $$GlideRecord.sys_flow_context>;
 
     /**
-     * Reference element for the "Stockroom" record type (alm_stockroom).
+     * Element that refers to a "OT Asset Type" glide record.
+     * Scope: "CMDB CI Class Models" (sn_cmdb_ci_class): A single source for all new, out-of-the-box, CMDB CI class models from ServiceNow
+     */
+    export type cmdb_ot_entity_type = Reference<$$tableFields.cmdb_ot_entity_type, $$GlideRecord.cmdb_ot_entity_type>;
+ 
+    /**
+     * Element that refers to a Stockroom glide record.
      */
     export type alm_stockroom = Reference<$$tableFields.alm_stockroom, $$GlideRecord.alm_stockroom>;
-
+ 
     /**
-     * Reference element for the "Unit" record type (cmdb_model_unit).
+     * Element that refers to a Unit glide record.
      */
     export type cmdb_model_unit = Reference<$$tableFields.cmdb_model_unit, $$GlideRecord.cmdb_model_unit>;
-
+ 
     /**
-     * Reference element for the "Catalog Item" record type (sc_cat_item).
+     * Element that refers to a "Catalog Item" glide record.
      */
-    export type sc_cat_item = Reference<$$tableFields.sc_cat_item, $$GlideRecord.sc_cat_item> & sys_metadata;
-
+    export type sc_cat_item = Reference<$$tableFields.sc_cat_item, $$GlideRecord.sc_cat_item>;
+ 
     /**
-     * Reference element for the "Order guide" record type (sc_cat_item_guide).
+     * Element that refers to a "Order guide" glide record.
      */
-    export type sc_cat_item_guide = Reference<$$tableFields.sc_cat_item_guide, $$GlideRecord.sc_cat_item_guide> & sc_cat_item;
-
+    export type sc_cat_item_guide = Reference<$$tableFields.sc_cat_item_guide, $$GlideRecord.sc_cat_item_guide>;
+ 
     /**
-     * Reference element for the "Business Unit" record type (business_unit).
+     * Element that refers to a "Planned Task" glide record.
      */
-    export type business_unit = Reference<$$tableFields.business_unit, $$GlideRecord.business_unit>;
-
+    export type planned_task = Reference<$$tableFields.planned_task, $$GlideRecord.planned_task>;
+ 
     /**
-     * Reference element for the "Planned Task" record type (planned_task).
-     */
-    export type planned_task = Reference<$$tableFields.planned_task, $$GlideRecord.planned_task> & task;
-
-    /**
-     * Reference element for the "Task Relationship" record type (task_rel_task).
+     * Element that refers to a "Task Relationship" glide record.
      */
     export type task_rel_task = Reference<$$tableFields.task_rel_task, $$GlideRecord.task_rel_task>;
+ 
+    /**
+     * Element that refers to a "Planned Task Relationship" glide record.
+     */
+    export type planned_task_rel_planned_task = Reference<$$tableFields.planned_task_rel_planned_task, $$GlideRecord.planned_task_rel_planned_task>;
+ 
+    /**
+     * Element that refers to a Feature glide record.
+     */
+    export type rm_feature = Reference<$$tableFields.rm_feature, $$GlideRecord.rm_feature>;
 
     /**
-     * Reference element for the "Planned Task Relationship" record type (planned_task_rel_planned_task).
+     * Element that refers to a Goal glide record.
+     * Scope: "Goal Framework" (sn_gf)
      */
-    export type planned_task_rel_planned_task = Reference<$$tableFields.planned_task_rel_planned_task, $$GlideRecord.planned_task_rel_planned_task> & task_rel_task;
-
+    export type sn_gf_goal = Reference<$$tableFields.sn_gf_goal, $$GlideRecord.sn_gf_goal>;
+ 
     /**
-     * Reference element for the "Feature" record type (rm_feature).
+     * Element that refers to a Story glide record.
      */
-    export type rm_feature = Reference<$$tableFields.rm_feature, $$GlideRecord.rm_feature> & planned_task;
-    
+    export type rm_story = Reference<$$tableFields.rm_story, $$GlideRecord.rm_story>;
+ 
     /**
-     * Reference element for the "Story" record type (rm_story).
+     * Element that refers to a Schedule glide record.
      */
-    export type rm_story = Reference<$$tableFields.rm_story, $$GlideRecord.rm_story> & rm_feature;
-
+    export type cmn_schedule = Reference<$$tableFields.cmn_schedule, $$GlideRecord.cmn_schedule>;
+ 
     /**
-     * Reference element for the "Schedule" record type (cmn_schedule).
+     * Element that refers to a "Business Calendar" glide record.
      */
-    export type cmn_schedule = Reference<$$tableFields.cmn_schedule, $$GlideRecord.cmn_schedule> & business_calendar;
-
+    export type business_calendar = Reference<$$tableFields.business_calendar, $$GlideRecord.business_calendar>;
+ 
     /**
-     * Reference element for the "Business Calendar" record type (business_calendar).
-     */
-    export type business_calendar = Reference<$$tableFields.business_calendar, $$GlideRecord.business_calendar> & sys_metadata;
-
-    /**
-     * Reference element for the "Business Calendar Entry" record type (business_calendar_span).
+     * Element that refers to a "Business Calendar Entry" glide record.
      */
     export type business_calendar_span = Reference<$$tableFields.business_calendar_span, $$GlideRecord.business_calendar_span>;
-
+ 
     /**
-     * Reference element for the "Agreement" record type (sla).
+     * Element that refers to a Agreement glide record.
+     * Auto-number Prefix: SLA
      */
     export type sla = Reference<$$tableFields.sla, $$GlideRecord.sla>;
-    
+ 
     /**
-     * Reference element for the "Service Portfolio" record type (spm_service_portfolio).
+     * Element that refers to a "Service Portfolio" glide record.
      */
     export type spm_service_portfolio = Reference<$$tableFields.spm_service_portfolio, $$GlideRecord.spm_service_portfolio>;
-    
+ 
     /**
-     * Reference element for the "Calendar" record type (sys_calendar).
+     * Element that refers to a Calendar glide record.
      */
-    export type sys_calendar = Reference<$$tableFields.sys_calendar, $$GlideRecord.sys_calendar> & sys_metadata;
-
+    export type sys_calendar = Reference<$$tableFields.sys_calendar, $$GlideRecord.sys_calendar>;
+ 
     /**
-     * Reference element for the "Taxonomy Node" record type (spm_taxonomy_node).
+     * Element that refers to a "Taxonomy Node" glide record.
      */
     export type spm_taxonomy_node = Reference<$$tableFields.spm_taxonomy_node, $$GlideRecord.spm_taxonomy_node>;
 
     /**
-     * Reference element for the "Application Model" record type (cmdb_application_product_model).
+     * Element that refers to a "Core Goal" glide record.
+     * Scope: "Goal Framework" (sn_gf)
      */
-    export type cmdb_application_product_model = Reference<$$tableFields.cmdb_application_product_model, $$GlideRecord.cmdb_application_product_model> & cmdb_model;
-
+    export type sn_gf_core_goal = Reference<$$tableFields.sn_gf_core_goal, $$GlideRecord.sn_gf_core_goal>;
+ 
     /**
-     * Reference element for the "Condition" record type (clm_condition_checker).
+     * Element that refers to a "Strategic Priority" glide record.
+     * Scope: "Goal Framework" (sn_gf)
      */
-    export type clm_condition_checker = Reference<$$tableFields.clm_condition_checker, $$GlideRecord.clm_condition_checker> & sys_metadata;
-
+    export type sn_gf_strategy = Reference<$$tableFields.sn_gf_strategy, $$GlideRecord.sn_gf_strategy>;
+ 
     /**
-     * Reference element for the "Condition Checks" record type (clm_condition_check).
+     * Element that refers to a "Application Model" glide record.
      */
-    export type clm_condition_check = Reference<$$tableFields.clm_condition_check, $$GlideRecord.clm_condition_check> & sys_metadata;
-
+    export type cmdb_application_product_model = Reference<$$tableFields.cmdb_application_product_model, $$GlideRecord.cmdb_application_product_model>;
+ 
     /**
-     * Reference element for the "Rule" record type (sysrule).
+     * Element that refers to a Condition glide record.
      */
-    export type sysrule = Reference<$$tableFields.sysrule, $$GlideRecord.sysrule> & sys_metadata;
-
+    export type clm_condition_checker = Reference<$$tableFields.clm_condition_checker, $$GlideRecord.clm_condition_checker>;
+ 
     /**
-     * Reference element for the "Service Level Agreement" record type (sysrule_escalate).
+     * Element that refers to a "Condition Checks" glide record.
      */
-    export type sysrule_escalate = Reference<$$tableFields.sysrule_escalate, $$GlideRecord.sysrule_escalate> & sysrule;
-
+    export type clm_condition_check = Reference<$$tableFields.clm_condition_check, $$GlideRecord.clm_condition_check>;
+ 
     /**
-     * Reference element for the "Workflow context" record type (wf_context).
+     * Element that refers to a Rule glide record.
+     */
+    export type sysrule = Reference<$$tableFields.sysrule, $$GlideRecord.sysrule>;
+ 
+    /**
+     * Element that refers to a "Service Level Agreement" glide record.
+     */
+    export type sysrule_escalate = Reference<$$tableFields.sysrule_escalate, $$GlideRecord.sysrule_escalate>;
+ 
+    /**
+     * Element that refers to a "Workflow context" glide record.
      */
     export type wf_context = Reference<$$tableFields.wf_context, $$GlideRecord.wf_context>;
-
+ 
     /**
-     * Reference element for the "Workflow Version" record type (wf_workflow_version).
+     * Element that refers to a "Workflow Version" glide record.
      */
     export type wf_workflow_version = Reference<$$tableFields.wf_workflow_version, $$GlideRecord.wf_workflow_version>;
 
     /**
-     * Reference element for the "Workflow" record type (wf_workflow).
+     * Element that refers to a Workflow glide record.
      */
-    export type wf_workflow = Reference<$$tableFields.wf_workflow, $$GlideRecord.wf_workflow> & sys_metadata;
-
+    export type wf_workflow = Reference<$$tableFields.wf_workflow, $$GlideRecord.wf_workflow>;
+ 
     /**
-     * Reference element for the "Workflow Stage" record type (wf_stage).
+     * Element that refers to a "Workflow Stage" glide record.
      */
     export type wf_stage = Reference<$$tableFields.wf_stage, $$GlideRecord.wf_stage>;
-
+ 
     /**
-     * Reference element for the "Workflow Executing Activity" record type (wf_executing).
+     * Element that refers to a "Workflow Executing Activity" glide record.
      */
     export type wf_executing = Reference<$$tableFields.wf_executing, $$GlideRecord.wf_executing>;
-
+ 
     /**
-     * Reference element for the "Column Renderer" record type (column_renderer).
+     * Element that refers to a Macro glide record.
      */
-    export type column_renderer = Reference<$$tableFields.column_renderer, $$GlideRecord.column_renderer> & sys_ui_macro;
-
+    export type sys_ui_macro = Reference<$$tableFields.sys_ui_macro, $$GlideRecord.sys_ui_macro>;
+ 
     /**
-     * Reference element for the "Macro" record type (sys_ui_macro).
+     * Element that refers to a "Column Renderer" glide record.
      */
-    export type sys_ui_macro = Reference<$$tableFields.sys_ui_macro, $$GlideRecord.sys_ui_macro> & sys_metadata;
-
+    export type column_renderer = Reference<$$tableFields.column_renderer, $$GlideRecord.column_renderer>;
+ 
     /**
-     * Reference element for the "Workflow Activity" record type (wf_activity).
+     * Element that refers to a "Workflow Activity" glide record.
      */
     export type wf_activity = Reference<$$tableFields.wf_activity, $$GlideRecord.wf_activity>;
-
+ 
     /**
-     * Reference element for the "Relative Duration" record type (cmn_relative_duration).
+     * Element that refers to a "Relative Duration" glide record.
      */
-    export type cmn_relative_duration = Reference<$$tableFields.cmn_relative_duration, $$GlideRecord.cmn_relative_duration> & sys_metadata;
-
+    export type cmn_relative_duration = Reference<$$tableFields.cmn_relative_duration, $$GlideRecord.cmn_relative_duration>;
+ 
     /**
-     * Reference element for the "Workflow Activity History" record type (wf_history).
+     * Element that refers to a "Workflow Activity History" glide record.
      */
     export type wf_history = Reference<$$tableFields.wf_history, $$GlideRecord.wf_history>;
-
+ 
     /**
-     * Reference element for the "Workflow Element Definition" record type (wf_element_definition).
+     * Element that refers to a "Workflow Element Definition" glide record.
      */
-    export type wf_element_definition = Reference<$$tableFields.wf_element_definition, $$GlideRecord.wf_element_definition> & sys_metadata;
+    export type wf_element_definition = Reference<$$tableFields.wf_element_definition, $$GlideRecord.wf_element_definition>;
 
     /**
-     * Reference element for the "Element Provider" record type (wf_element_provider).
+     * Element that refers to a "Activity Variables" glide record.
+     */
+    export type wf_activity_variable = Reference<$$tableFields.wf_activity_variable, $$GlideRecord.wf_activity_variable>;
+ 
+    /**
+     * Element that refers to a "Element Provider" glide record.
      */
     export type wf_element_provider = Reference<$$tableFields.wf_element_provider, $$GlideRecord.wf_element_provider>;
-
+ 
     /**
-     * Reference element for the "Flow catalog variable model" record type (sys_flow_cat_variable_model).
+     * Element that refers to a "Flow catalog variable model" glide record.
      */
     export type sys_flow_cat_variable_model = Reference<$$tableFields.sys_flow_cat_variable_model, $$GlideRecord.sys_flow_cat_variable_model>;
-
+ 
     /**
-     * Reference element for the "Interaction" record type (interaction).
+     * Element that refers to a Interaction glide record.
+     * Auto-number Prefix: IMS
      */
     export type interaction = Reference<$$tableFields.interaction, $$GlideRecord.interaction>;
-    
+ 
     /**
-     * Reference element for the "Provider Channel Identity" record type (sys_cs_provider_application).
+     * Element that refers to a "Provider Channel Identity" glide record.
      */
-    export type sys_cs_provider_application = Reference<$$tableFields.sys_cs_provider_application, $$GlideRecord.sys_cs_provider_application> & sys_metadata;
-
+    export type sys_cs_provider_application = Reference<$$tableFields.sys_cs_provider_application, $$GlideRecord.sys_cs_provider_application>;
+ 
     /**
-     * Reference element for the "Interaction Context" record type (v_interaction_context).
+     * Element that refers to a "Interaction Context" glide record.
      */
     export type v_interaction_context = Reference<$$tableFields.v_interaction_context, $$GlideRecord.v_interaction_context>;
-
+ 
     /**
-     * Reference element for the "Channel User Profile" record type (sys_cs_channel_user_profile).
+     * Element that refers to a "Channel User Profile" glide record.
      */
     export type sys_cs_channel_user_profile = Reference<$$tableFields.sys_cs_channel_user_profile, $$GlideRecord.sys_cs_channel_user_profile>;
-
+ 
     /**
-     * Reference element for the "Messaging Channel" record type (sys_cs_channel).
+     * Element that refers to a "Messaging Channel" glide record.
      */
-    export type sys_cs_channel = Reference<$$tableFields.sys_cs_channel, $$GlideRecord.sys_cs_channel> & sys_metadata;
-
+    export type sys_cs_channel = Reference<$$tableFields.sys_cs_channel, $$GlideRecord.sys_cs_channel>;
+ 
     /**
-     * Reference element for the "Provider Channel" record type (sys_cs_provider).
+     * Element that refers to a "Provider Channel" glide record.
      */
-    export type sys_cs_provider = Reference<$$tableFields.sys_cs_provider, $$GlideRecord.sys_cs_provider> & sys_metadata;
+    export type sys_cs_provider = Reference<$$tableFields.sys_cs_provider, $$GlideRecord.sys_cs_provider>;
 
     /**
-     * Reference element for the "Provider Auth" record type (provider_auth).
+     * Element that refers to a Variables glide record.
+     */
+    export type var_dictionary = Reference<$$tableFields.var_dictionary, $$GlideRecord.var_dictionary>;
+ 
+    /**
+     * Element that refers to a "Workflow Activity Definition" glide record.
+     */
+    export type wf_activity_definition = Reference<$$tableFields.wf_activity_definition, $$GlideRecord.wf_activity_definition>;
+ 
+    /**
+     * Element that refers to a "Provider Auth" glide record.
      */
     export type provider_auth = Reference<$$tableFields.provider_auth, $$GlideRecord.provider_auth>;
-
+ 
     /**
-     * Reference element for the "Text Index Group" record type (ts_index_group).
+     * Element that refers to a "Text Index Group" glide record.
      */
-    export type ts_index_group = Reference<$$tableFields.ts_index_group, $$GlideRecord.ts_index_group> & sys_metadata;
-
+    export type ts_index_group = Reference<$$tableFields.ts_index_group, $$GlideRecord.ts_index_group>;
+ 
     /**
-     * Reference element for the "Theme" record type (sp_theme).
+     * Element that refers to a Theme glide record.
      */
-    export type sp_theme = Reference<$$tableFields.sp_theme, $$GlideRecord.sp_theme> & sys_metadata;
-
+    export type sp_theme = Reference<$$tableFields.sp_theme, $$GlideRecord.sp_theme>;
+ 
     /**
-     * Reference element for the "Instance" record type (sp_instance).
+     * Element that refers to a Instance glide record.
      */
-    export type sp_instance = Reference<$$tableFields.sp_instance, $$GlideRecord.sp_instance> & sys_metadata;
-
+    export type sp_instance = Reference<$$tableFields.sp_instance, $$GlideRecord.sp_instance>;
+ 
     /**
-     * Reference element for the "Instance with Menu" record type (sp_instance_menu).
+     * Element that refers to a "Instance with Menu" glide record.
      */
-    export type sp_instance_menu = Reference<$$tableFields.sp_instance_menu, $$GlideRecord.sp_instance_menu> & sp_instance;
-
+    export type sp_instance_menu = Reference<$$tableFields.sp_instance_menu, $$GlideRecord.sp_instance_menu>;
+ 
     /**
-     * Reference element for the "Chat Queue" record type (chat_queue).
+     * Element that refers to a "Chat Queue" glide record.
      */
     export type chat_queue = Reference<$$tableFields.chat_queue, $$GlideRecord.chat_queue>;
-
+ 
     /**
-     * Reference element for the "EVAM Definition" record type (sys_ux_composite_data).
+     * Element that refers to a "EVAM Definition" glide record.
      */
-    export type sys_ux_composite_data = Reference<$$tableFields.sys_ux_composite_data, $$GlideRecord.sys_ux_composite_data> & sys_metadata;
+    export type sys_ux_composite_data = Reference<$$tableFields.sys_ux_composite_data, $$GlideRecord.sys_ux_composite_data>;
 
     /**
-     * Reference element for the "Search Application Configuration" record type (sys_search_context_config).
+     * Element that refers to a "Text Index Configuration" glide record.
      */
-    export type sys_search_context_config = Reference<$$tableFields.sys_search_context_config, $$GlideRecord.sys_search_context_config> & sys_metadata;
-
+    export type ts_configuration = Reference<$$tableFields.ts_configuration, $$GlideRecord.ts_configuration>;
+ 
     /**
-     * Reference element for the "Page" record type (sp_page).
+     * Element that refers to a "Search Application Configuration" glide record.
      */
-    export type sp_page = Reference<$$tableFields.sp_page, $$GlideRecord.sp_page> & sys_metadata;
-
+    export type sys_search_context_config = Reference<$$tableFields.sys_search_context_config, $$GlideRecord.sys_search_context_config>;
+ 
     /**
-     * Reference element for the "Catalog" record type (sc_catalog).
+     * Element that refers to a Page glide record.
      */
-    export type sc_catalog = Reference<$$tableFields.sc_catalog, $$GlideRecord.sc_catalog> & sys_metadata;
-
+    export type sp_page = Reference<$$tableFields.sp_page, $$GlideRecord.sp_page>;
+ 
     /**
-     * Reference element for the "Knowledge Base" record type (kb_knowledge_base).
+     * Element that refers to a Catalog glide record.
+     */
+    export type sc_catalog = Reference<$$tableFields.sc_catalog, $$GlideRecord.sc_catalog>;
+ 
+    /**
+     * Element that refers to a "Knowledge Base" glide record.
      */
     export type kb_knowledge_base = Reference<$$tableFields.kb_knowledge_base, $$GlideRecord.kb_knowledge_base>;
-
+ 
     /**
-     * Reference element for the "Widget" record type (sp_widget).
+     * Element that refers to a Widget glide record.
      */
-    export type sp_widget = Reference<$$tableFields.sp_widget, $$GlideRecord.sp_widget> & sys_metadata;
-
+    export type sp_widget = Reference<$$tableFields.sp_widget, $$GlideRecord.sp_widget>;
+ 
     /**
-     * Reference element for the "Header | Footer" record type (sp_header_footer).
+     * Element that refers to a "Header | Footer" glide record.
      */
-    export type sp_header_footer = Reference<$$tableFields.sp_header_footer, $$GlideRecord.sp_header_footer> & sp_widget;
-
+    export type sp_header_footer = Reference<$$tableFields.sp_header_footer, $$GlideRecord.sp_header_footer>;
+ 
     /**
-     * Reference element for the "Service Portal Documentation" record type (sp_documentation).
+     * Element that refers to a "Service Portal Documentation" glide record.
      */
-    export type sp_documentation = Reference<$$tableFields.sp_documentation, $$GlideRecord.sp_documentation> & sys_metadata;
-
+    export type sp_documentation = Reference<$$tableFields.sp_documentation, $$GlideRecord.sp_documentation>;
+ 
     /**
-     * Reference element for the "Column" record type (sp_column).
+     * Element that refers to a Column glide record.
      */
-    export type sp_column = Reference<$$tableFields.sp_column, $$GlideRecord.sp_column> & sys_metadata;
+    export type sp_column = Reference<$$tableFields.sp_column, $$GlideRecord.sp_column>;
 
     /**
-     * Reference element for the "Row" record type (sp_row).
+     * Element that refers to a Row glide record.
      */
-    export type sp_row = Reference<$$tableFields.sp_row, $$GlideRecord.sp_row> & sys_metadata;
-
+    export type sp_row = Reference<$$tableFields.sp_row, $$GlideRecord.sp_row>;
+ 
     /**
-     * Reference element for the "Container" record type (sp_container).
+     * Element that refers to a Container glide record.
      */
-    export type sp_container = Reference<$$tableFields.sp_container, $$GlideRecord.sp_container> & sys_metadata;
-
+    export type sp_container = Reference<$$tableFields.sp_container, $$GlideRecord.sp_container>;
+ 
     /**
-     * Reference element for the "AI Search Search Profile" record type (ais_search_profile).
+     * Element that refers to a "AI Search Search Profile" glide record.
      */
-    export type ais_search_profile = Reference<$$tableFields.ais_search_profile, $$GlideRecord.ais_search_profile> & sys_metadata;
-
+    export type ais_search_profile = Reference<$$tableFields.ais_search_profile, $$GlideRecord.ais_search_profile>;
+ 
     /**
-     * Reference element for the "Script Include" record type (sys_script_include).
+     * Element that refers to a "Script Include" glide record.
      */
-    export type sys_script_include = Reference<$$tableFields.sys_script_include, $$GlideRecord.sys_script_include> & sys_metadata;
-
+    export type sys_script_include = Reference<$$tableFields.sys_script_include, $$GlideRecord.sys_script_include>;
+ 
     /**
-     * Reference element for the "Data Policy" record type (sys_data_policy2).
+     * Element that refers to a "Data Policy" glide record.
      */
-    export type sys_data_policy2 = Reference<$$tableFields.sys_data_policy2, $$GlideRecord.sys_data_policy2> & sys_metadata;
-
+    export type sys_data_policy2 = Reference<$$tableFields.sys_data_policy2, $$GlideRecord.sys_data_policy2>;
+ 
     /**
-     * Reference element for the "Stage State" record type (stage_state).
+     * Element that refers to a "Stage State" glide record.
      */
     export type stage_state = Reference<$$tableFields.stage_state, $$GlideRecord.stage_state>;
-
+ 
     /**
-     * Reference element for the "Stockroom Type" record type (alm_stockroom_type).
+     * Element that refers to a "Stockroom Type" glide record.
      */
     export type alm_stockroom_type = Reference<$$tableFields.alm_stockroom_type, $$GlideRecord.alm_stockroom_type>;
+ 
+    /**
+     * Element that refers to a Category glide record.
+     */
+    export type sc_category = Reference<$$tableFields.sc_category, $$GlideRecord.sc_category>;
+ 
+    /**
+     * Element that refers to a Module glide record.
+     */
+    export type sys_app_module = Reference<$$tableFields.sys_app_module, $$GlideRecord.sys_app_module>;
 
     /**
-     * Reference element for the "Category" record type (sc_category).
+     * Element that refers to a "Timeline Page" glide record.
      */
-    export type sc_category = Reference<$$tableFields.sc_category, $$GlideRecord.sc_category> & sys_metadata;
+    export type cmn_timeline_page = Reference<$$tableFields.cmn_timeline_page, $$GlideRecord.cmn_timeline_page>;
+ 
+    /**
+     * Element that refers to a "Catalog Renderer" glide record.
+     */
+    export type sc_renderer = Reference<$$tableFields.sc_renderer, $$GlideRecord.sc_renderer>;
+ 
+    /**
+     * Element that refers to a "Homepage Category Renderer" glide record.
+     */
+    export type sc_homepage_renderer = Reference<$$tableFields.sc_homepage_renderer, $$GlideRecord.sc_homepage_renderer>;
+ 
+    /**
+     * Element that refers to a Report glide record.
+     */
+    export type sys_report = Reference<$$tableFields.sys_report, $$GlideRecord.sys_report>;
+ 
+    /**
+     * Element that refers to a "Flow Block" glide record.
+     */
+    export type sys_hub_flow_block = Reference<$$tableFields.sys_hub_flow_block, $$GlideRecord.sys_hub_flow_block>;
+ 
+    /**
+     * Element that refers to a "Flow Base" glide record.
+     */
+    export type sys_hub_flow_base = Reference<$$tableFields.sys_hub_flow_base, $$GlideRecord.sys_hub_flow_base>;
+ 
+    /**
+     * Element that refers to a Flow glide record.
+     */
+    export type sys_hub_flow = Reference<$$tableFields.sys_hub_flow, $$GlideRecord.sys_hub_flow>;
+ 
+    /**
+     * Element that refers to a "Action Category" glide record.
+     */
+    export type sys_hub_category = Reference<$$tableFields.sys_hub_category, $$GlideRecord.sys_hub_category>;
+ 
+    /**
+     * Element that refers to a "Color Definition" glide record.
+     */
+    export type sys_report_color = Reference<$$tableFields.sys_report_color, $$GlideRecord.sys_report_color>;
 
     /**
-     * Reference element for the "Module" record type (sys_app_module).
+     * Element that refers to a "Access Control" glide record.
      */
-    export type sys_app_module = Reference<$$tableFields.sys_app_module, $$GlideRecord.sys_app_module> & sys_metadata;
+    export type sys_security_acl = Reference<$$tableFields.sys_security_acl, $$GlideRecord.sys_security_acl>;
+ 
+    /**
+     * Element that refers to a "Flow Outputs" glide record.
+     */
+    export type sys_hub_flow_output = Reference<$$tableFields.sys_hub_flow_output, $$GlideRecord.sys_hub_flow_output>;
+ 
+    /**
+     * Element that refers to a "UX Theme Property" glide record.
+     */
+    export type sys_ux_theme_property = Reference<$$tableFields.sys_ux_theme_property, $$GlideRecord.sys_ux_theme_property>;
+ 
+    /**
+     * Element that refers to a "UX Theme Property Schema" glide record.
+     */
+    export type sys_ux_theme_property_schema = Reference<$$tableFields.sys_ux_theme_property_schema, $$GlideRecord.sys_ux_theme_property_schema>;
+ 
+    /**
+     * Element that refers to a "Ordered Item Link" glide record.
+     */
+    export type sc_ordered_item_link = Reference<$$tableFields.sc_ordered_item_link, $$GlideRecord.sc_ordered_item_link>;
+ 
+    /**
+     * Element that refers to a Item glide record.
+     */
+    export type sc_ic_item_staging = Reference<$$tableFields.sc_ic_item_staging, $$GlideRecord.sc_ic_item_staging>;
+ 
+    /**
+     * Element that refers to a "Catalog Template" glide record.
+     */
+    export type sc_template = Reference<$$tableFields.sc_template, $$GlideRecord.sc_template>;
+ 
+    /**
+     * Element that refers to a Topic glide record.
+     */
+    export type topic = Reference<$$tableFields.topic, $$GlideRecord.topic>;
+ 
+    /**
+     * Element that refers to a Taxonomy glide record.
+     */
+    export type taxonomy = Reference<$$tableFields.taxonomy, $$GlideRecord.taxonomy>;
 
     /**
-     * Reference element for the "Timeline Page" record type (cmn_timeline_page).
+     * Element that refers to a Operation glide record.
      */
-    export type cmn_timeline_page = Reference<$$tableFields.cmn_timeline_page, $$GlideRecord.cmn_timeline_page> & sys_metadata;
+    export type sys_security_operation = Reference<$$tableFields.sys_security_operation, $$GlideRecord.sys_security_operation>;
+ 
+    /**
+     * Element that refers to a Type glide record.
+     */
+    export type sys_security_type = Reference<$$tableFields.sys_security_type, $$GlideRecord.sys_security_type>;
+ 
+    /**
+     * Element that refers to a "User Criteria" glide record.
+     */
+    export type user_criteria = Reference<$$tableFields.user_criteria, $$GlideRecord.user_criteria>;
+ 
+    /**
+     * Element that refers to a Template glide record.
+     * Auto-number Prefix: TEMPLATE
+     */
+    export type sys_template = Reference<$$tableFields.sys_template, $$GlideRecord.sys_template>;
+ 
+    /**
+     * Element that refers to a "Map Page" glide record.
+     */
+    export type cmn_map_page = Reference<$$tableFields.cmn_map_page, $$GlideRecord.cmn_map_page>;
+ 
+    /**
+     * Element that refers to a "Map Item" glide record.
+     */
+    export type cmn_map_item = Reference<$$tableFields.cmn_map_item, $$GlideRecord.cmn_map_item>;
+ 
+    /**
+     * Element that refers to a "Map Page Filter" glide record.
+     */
+    export type cmn_map_filter = Reference<$$tableFields.cmn_map_filter, $$GlideRecord.cmn_map_filter>;
+ 
+    /**
+     * Element that refers to a "Portal Page" glide record.
+     */
+    export type sys_portal_page = Reference<$$tableFields.sys_portal_page, $$GlideRecord.sys_portal_page>;
+ 
+    /**
+     * Element that refers to a "Assessment Metric Type" glide record.
+     */
+    export type asmt_metric_type = Reference<$$tableFields.asmt_metric_type, $$GlideRecord.asmt_metric_type>;
 
-    /**
-     * Reference element for the "Catalog Renderer" record type (sc_renderer).
-     */
-    export type sc_renderer = Reference<$$tableFields.sc_renderer, $$GlideRecord.sc_renderer> & sys_metadata;
+    // #endregion
 
-    /**
-     * Reference element for the "Homepage Category Renderer" record type (sc_homepage_renderer).
-     */
-    export type sc_homepage_renderer = Reference<$$tableFields.sc_homepage_renderer, $$GlideRecord.sc_homepage_renderer> & sc_renderer;
+    // #region Not Done
 
-    /**
-     * Reference element for the "Report" record type (sys_report).
-     */
-    export type sys_report = Reference<$$tableFields.sys_report, $$GlideRecord.sys_report> & sys_metadata;
-
-    /**
-     * GlideRecord representing the "Flow Block" table (sys_hub_flow_block).
-     */
-    export type sys_hub_flow_block = Reference<$$tableFields.sys_hub_flow_block, $$GlideRecord.sys_hub_flow_block> & sys_metadata;
-
-    /**
-     * Reference element for the "Flow Base" record type (sys_hub_flow_base).
-     */
-    export type sys_hub_flow_base = Reference<$$tableFields.sys_hub_flow_base, $$GlideRecord.sys_hub_flow_base> & sys_hub_flow_block;
- 
-    /**
-     * Reference element for the "Flow" record type (sys_hub_flow).
-     */
-    export type sys_hub_flow = Reference<$$tableFields.sys_hub_flow, $$GlideRecord.sys_hub_flow> & sys_hub_flow_base;
- 
-    /**
-     * Reference element for the "Action Category" record type (sys_hub_category).
-     */
-    export type sys_hub_category = Reference<$$tableFields.sys_hub_category, $$GlideRecord.sys_hub_category> & sys_metadata;
- 
-    /**
-     * Reference element for the "Color Definition" record type (sys_report_color).
-     */
-    export type sys_report_color = Reference<$$tableFields.sys_report_color, $$GlideRecord.sys_report_color> & sys_metadata;
- 
-    /**
-     * Reference element for the "UX Theme Property" record type (sys_ux_theme_property).
-     */
-    export type sys_ux_theme_property = Reference<$$tableFields.sys_ux_theme_property, $$GlideRecord.sys_ux_theme_property> & sys_metadata;
- 
-    /**
-     * Reference element for the "UX Theme Property Schema" record type (sys_ux_theme_property_schema).
-     */
-    export type sys_ux_theme_property_schema = Reference<$$tableFields.sys_ux_theme_property_schema, $$GlideRecord.sys_ux_theme_property_schema> & sys_metadata;
- 
-    /**
-     * Reference element for the "Ordered Item Link" record type (sc_ordered_item_link).
-     */
-    export type sc_ordered_item_link = Reference<$$tableFields.sc_ordered_item_link, $$GlideRecord.sc_ordered_item_link> & sys_metadata;
- 
-    /**
-     * Reference element for the "Item" record type (sc_ic_item_staging).
-     */
-    export type sc_ic_item_staging = Reference<$$tableFields.sc_ic_item_staging, $$GlideRecord.sc_ic_item_staging> & sys_metadata;
- 
-    /**
-     * Reference element for the "Catalog Template" record type (sc_template).
-     */
-    export type sc_template = Reference<$$tableFields.sc_template, $$GlideRecord.sc_template> & sys_metadata;
- 
-    /**
-     * Reference element for the "Topic" record type (topic).
-     */
-    export type topic = Reference<$$tableFields.topic, $$GlideRecord.topic> & sys_metadata;
- 
-    /**
-     * Reference element for the "Taxonomy" record type (taxonomy).
-     */
-    export type taxonomy = Reference<$$tableFields.taxonomy, $$GlideRecord.taxonomy> & sys_metadata;
- 
-    /**
-     * Reference element for the "User Criteria" record type (user_criteria).
-     */
-    export type user_criteria = Reference<$$tableFields.user_criteria, $$GlideRecord.user_criteria> & sys_metadata;
- 
-    /**
-     * Reference element for the "Template" record type (sys_template).
-     */
-    export type sys_template = Reference<$$tableFields.sys_template, $$GlideRecord.sys_template> & sys_metadata;
- 
-    /**
-     * Reference element for the "Map Page" record type (cmn_map_page).
-     */
-    export type cmn_map_page = Reference<$$tableFields.cmn_map_page, $$GlideRecord.cmn_map_page> & sys_metadata;
- 
-    /**
-     * Reference element for the "Map Item" record type (cmn_map_item).
-     */
-    export type cmn_map_item = Reference<$$tableFields.cmn_map_item, $$GlideRecord.cmn_map_item> & sys_metadata;
- 
-    /**
-     * Reference element for the "Map Page Filter" record type (cmn_map_filter).
-     */
-    export type cmn_map_filter = Reference<$$tableFields.cmn_map_filter, $$GlideRecord.cmn_map_filter> & cmn_map_item;
- 
-    /**
-     * Reference element for the "Portal Page" record type (sys_portal_page).
-     */
-    export type sys_portal_page = Reference<$$tableFields.sys_portal_page, $$GlideRecord.sys_portal_page> & sys_metadata;
- 
-    /**
-     * Reference element for the "Assessment Metric Type" record type (asmt_metric_type).
-     */
-    export type asmt_metric_type = Reference<$$tableFields.asmt_metric_type, $$GlideRecord.asmt_metric_type> & sys_metadata;
- 
     /**
      * Reference element for the "Business Rule" record type (sys_script).
      */
@@ -3428,9 +3610,13 @@ declare namespace $$GlideElement {
      * Reference element for the "Word corpus" record type (ml_word_vector_corpus).
      */
     export type ml_word_vector_corpus = Reference<$$tableFields.ml_word_vector_corpus, $$GlideRecord.ml_word_vector_corpus>;
+
+    // #endregion
 }
 
 declare namespace $$tableFields {
+    // #region Done
+
     export interface IBaseRecord {
         /**
          * "Sys ID" element (sys_id)
@@ -3476,13985 +3662,10920 @@ declare namespace $$tableFields {
     }
     
     /**
-     * "Task" glide record fields.
-     * Auto-number prefix: TASK
-     * Scope: Global (global) - Global application scope
+     * "Business Unit" glide record fields.
+     * @see {@link $$GlideElement.business_unit}
+     * @see {@link $$GlideRecord.business_unit}
+     */
+    export interface business_unit extends IBaseRecord {
+        /**
+         * "Business Unit Head" element.
+         * @see {@link $$GlideRecord.sys_user}
+         */
+        bu_head: $$GlideElement.sys_user;
+ 
+        /**
+         * Company element.
+         * @see {@link $$GlideRecord.core_company}
+         */
+        company: $$GlideElement.core_company;
+ 
+        /**
+         * Description element.
+         */
+        description: GlideElement;
+ 
+        /**
+         * "Hierarchy level" element.
+         */
+        hierarchy_level: GlideElementNumeric;
+ 
+        /**
+         * Name element.
+         */
+        name: GlideElement;
+ 
+        /**
+         * Parent element.
+         * @see {@link $$GlideRecord.business_unit}
+         */
+        parent: $$GlideElement.business_unit;
+ 
+        /**
+         * Domain element.
+         */
+        sys_domain: GlideElementDomainId;
+ 
+        /**
+         * "Domain Path" element.
+         */
+        sys_domain_path: GlideElement;
+    }
+ 
+    /**
+     * Task glide record fields.
+     * @see {@link $$GlideElement.task}
+     * @see {@link $$GlideRecord.task}
      */
     export interface task extends IBaseRecord {
         /**
-         * "Active" element (active)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
+         * Active element.
          */
-        active: GlideElement;
-        
+        active: GlideElementBoolean;
+ 
         /**
-         * "Activity due" element (activity_due)
-         * Type: "Due Date" (due_date)
-         * Maximum length: 40
+         * "Activity due" element.
+         * Type: "Due Date" (due_date); scalar type: datetime
          */
         activity_due: GlideElementGlideObject;
-        
+ 
         /**
-         * "Additional assignee list" element (additional_assignee_list)
-         * Type: "List" (glide_list)
-         * Maximum length: 4000
+         * "Additional assignee list" element.
+         * Type: List (glide_list); Scalar length: undefined
+         * @see {@link $$GlideRecord.sys_user}
          */
-        additional_assignee_list: GlideElementGlideObject;
-        
+        additional_assignee_list: $$GlideElement.sys_user;
+ 
         /**
-         * "Approval" element (approval)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "not requested"
+         * "Agile story" element.
+         * @see {@link $$GlideRecord.rm_story}
+         */
+        agile_story: $$GlideElement.rm_story;
+ 
+        /**
+         * Approval element.
          */
         approval: GlideElement;
-        
+ 
         /**
-         * "Approval history" element (approval_history)
-         * Type: "Journal" (journal)
-         * Maximum length: 4000
+         * "Approval history" element.
+         * Type: Journal (journal)
          */
         approval_history: GlideElementGlideObject;
-        
+ 
         /**
-         * "Approval set" element (approval_set)
-         * Type: "Date/Time" (glide_date_time)
-         * Maximum length: 40
+         * "Approval set" element.
+         * Type: "Date/Time" (glide_date_time); scalar type: datetime
          */
         approval_set: GlideElementGlideObject;
-        
+ 
         /**
-         * "Assigned to" element (assigned_to)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Assigned to" element.
+         * @see {@link $$GlideRecord.sys_user}
          */
         assigned_to: $$GlideElement.sys_user;
-        
+ 
         /**
-         * "Assignment group" element (assignment_group)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Assignment group" element.
+         * @see {@link $$GlideRecord.sys_user_group}
          */
         assignment_group: $$GlideElement.sys_user_group;
-        
+ 
         /**
-         * "Business duration" element (business_duration)
-         * Type: "Duration" (glide_duration)
-         * Maximum length: 40
-         * This is a read-only column.
+         * "Business duration" element.
+         * Type: Duration (glide_duration); scalar type: datetime
          */
         business_duration: GlideElementGlideObject;
-        
+ 
         /**
-         * "Service" element (business_service)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Service element.
+         * @see {@link $$GlideRecord.cmdb_ci_service}
          */
         business_service: $$GlideElement.cmdb_ci_service;
-        
+ 
         /**
-         * "Duration" element (calendar_duration)
-         * Type: "Duration" (glide_duration)
-         * Maximum length: 40
-         * This is a read-only column.
+         * Duration element.
+         * Type: Duration (glide_duration); scalar type: datetime
          */
         calendar_duration: GlideElementGlideObject;
-        
+ 
         /**
-         * "Close notes" element (close_notes)
-         * Type: "String" (string)
-         * Maximum length: 4000
+         * "Close notes" element.
          */
         close_notes: GlideElement;
-        
+ 
         /**
-         * "Closed" element (closed_at)
-         * Type: "Date/Time" (glide_date_time)
-         * Maximum length: 40
+         * Closed element.
+         * Type: "Date/Time" (glide_date_time); scalar type: datetime
          */
         closed_at: GlideElementGlideObject;
-        
+ 
         /**
-         * "Closed by" element (closed_by)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Closed by" element.
+         * @see {@link $$GlideRecord.sys_user}
          */
         closed_by: $$GlideElement.sys_user;
-        
+ 
         /**
-         * "Configuration item" element (cmdb_ci)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Configuration item" element.
+         * @see {@link $$GlideRecord.cmdb_ci}
          */
         cmdb_ci: $$GlideElement.cmdb_ci;
-        
+ 
         /**
-         * "Additional comments" element (comments)
+         * "Additional comments" element.
          * Type: "Journal Input" (journal_input)
-         * Maximum length: 4000
          */
         comments: GlideElementGlideObject;
-        
+ 
         /**
-         * "Comments and Work notes" element (comments_and_work_notes)
+         * "Comments and Work notes" element.
          * Type: "Journal List" (journal_list)
-         * Maximum length: 4000
          */
         comments_and_work_notes: GlideElementGlideObject;
-        
+ 
         /**
-         * "Company" element (company)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Company element.
+         * @see {@link $$GlideRecord.core_company}
          */
         company: $$GlideElement.core_company;
-        
+ 
         /**
-         * "Contact type" element (contact_type)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * "Contact type" element.
          */
         contact_type: GlideElement;
-        
+ 
         /**
-         * "Contract" element (contract)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Contract element.
+         * @see {@link $$GlideRecord.ast_contract}
          */
         contract: $$GlideElement.ast_contract;
-        
+ 
         /**
-         * "Correlation display" element (correlation_display)
-         * Type: "String" (string)
-         * Maximum length: 100
+         * "Correlation display" element.
          */
         correlation_display: GlideElement;
-        
+ 
         /**
-         * "Correlation ID" element (correlation_id)
-         * Type: "String" (string)
-         * Maximum length: 100
+         * "Correlation ID" element.
          */
         correlation_id: GlideElement;
-        
+ 
         /**
-         * "Delivery plan" element (delivery_plan)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Delivery plan" element.
+         * @see {@link $$GlideRecord.sc_cat_item_delivery_plan}
          */
         delivery_plan: $$GlideElement.sc_cat_item_delivery_plan;
-        
+ 
         /**
-         * "Delivery task" element (delivery_task)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Delivery task" element.
+         * @see {@link $$GlideRecord.sc_cat_item_delivery_task}
          */
         delivery_task: $$GlideElement.sc_cat_item_delivery_task;
-        
+ 
         /**
-         * "Description" element (description)
-         * Type: "String" (string)
-         * Maximum length: 4000
+         * Description element.
          */
         description: GlideElement;
-        
+ 
         /**
-         * "Due date" element (due_date)
-         * Type: "Date/Time" (glide_date_time)
-         * Maximum length: 40
+         * "Due date" element.
+         * Type: "Date/Time" (glide_date_time); scalar type: datetime
          */
         due_date: GlideElementGlideObject;
-        
+ 
         /**
-         * "Escalation" element (escalation)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
-         * Default value: "0"
-         * This is a read-only column.
+         * Escalation element.
          */
-        escalation: GlideElement;
-        
+        escalation: GlideElementNumeric;
+ 
         /**
-         * "Expected start" element (expected_start)
-         * Type: "Date/Time" (glide_date_time)
-         * Maximum length: 40
+         * "Expected start" element.
+         * Type: "Date/Time" (glide_date_time); scalar type: datetime
          */
         expected_start: GlideElementGlideObject;
-        
+ 
         /**
-         * "Follow up" element (follow_up)
-         * Type: "Date/Time" (glide_date_time)
-         * Maximum length: 40
+         * "Follow up" element.
+         * Type: "Date/Time" (glide_date_time); scalar type: datetime
          */
         follow_up: GlideElementGlideObject;
-        
+ 
         /**
-         * "Group list" element (group_list)
-         * Type: "List" (glide_list)
-         * Maximum length: 4000
+         * "Group list" element.
+         * Type: List (glide_list); Scalar length: undefined
+         * @see {@link $$GlideRecord.sys_user_group}
          */
-        group_list: GlideElementGlideObject;
-        
+        group_list: $$GlideElement.sys_user_group;
+ 
         /**
-         * "Impact" element (impact)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
-         * Default value: "3"
+         * Impact element.
          */
-        impact: GlideElement;
-        
+        impact: GlideElementNumeric;
+ 
         /**
-         * "Knowledge" element (knowledge)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * Knowledge element.
          */
-        knowledge: GlideElement;
-        
+        knowledge: GlideElementBoolean;
+ 
         /**
-         * "Location" element (location)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Location element.
+         * @see {@link $$GlideRecord.cmn_location}
          */
         location: $$GlideElement.cmn_location;
-        
+ 
         /**
-         * "Made SLA" element (made_sla)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
+         * "Made SLA" element.
          */
-        made_sla: GlideElement;
-        
+        made_sla: GlideElementBoolean;
+ 
         /**
-         * "Number" element (number)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * Number element.
          */
         number: GlideElement;
-        
+ 
         /**
-         * "Opened" element (opened_at)
-         * Type: "Date/Time" (glide_date_time)
-         * Maximum length: 40
+         * Opened element.
+         * Type: "Date/Time" (glide_date_time); scalar type: datetime
          */
         opened_at: GlideElementGlideObject;
-        
+ 
         /**
-         * "Opened by" element (opened_by)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Opened by" element.
+         * @see {@link $$GlideRecord.sys_user}
          */
         opened_by: $$GlideElement.sys_user;
-        
+ 
         /**
-         * "Order" element (order)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
+         * Order element.
          */
-        order: GlideElement;
-        
+        order: GlideElementNumeric;
+ 
         /**
-         * "Parent" element (parent)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Parent element.
+         * @see {@link $$GlideRecord.task}
          */
         parent: $$GlideElement.task;
-        
+ 
         /**
-         * "Priority" element (priority)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
-         * Default value: "4"
+         * Priority element.
          */
-        priority: GlideElement;
-        
+        priority: GlideElementNumeric;
+ 
         /**
-         * "Reassignment count" element (reassignment_count)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
-         * Default value: "0"
+         * "Reassignment count" element.
          */
-        reassignment_count: GlideElement;
-        
+        reassignment_count: GlideElementNumeric;
+ 
         /**
-         * "Transfer reason" element (route_reason)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
-         * This is a read-only column.
+         * "Transfer reason" element.
          */
-        route_reason: GlideElement;
-        
+        route_reason: GlideElementNumeric;
+ 
         /**
-         * "Service offering" element (service_offering)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Service offering" element.
+         * @see {@link $$GlideRecord.service_offering}
          */
         service_offering: $$GlideElement.service_offering;
-        
+ 
         /**
-         * "Short description" element (short_description)
-         * Type: "String" (string)
-         * Maximum length: 160
+         * "Short description" element.
          */
         short_description: GlideElement;
-        
+ 
         /**
-         * "Skills" element (skills)
-         * Type: "List" (glide_list)
-         * Maximum length: 4000
-         */
-        skills: GlideElementGlideObject;
-        
-        /**
-         * "SLA due" element (sla_due)
-         * Type: "Due Date" (due_date)
-         * Maximum length: 40
+         * "SLA due" element.
+         * Type: "Due Date" (due_date); scalar type: datetime
          */
         sla_due: GlideElementGlideObject;
-        
+ 
         /**
-         * "State" element (state)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
-         * Default value: "1"
+         * State element.
          */
-        state: GlideElement;
-        
+        state: GlideElementNumeric;
+ 
         /**
-         * "Task type" element (sys_class_name)
-         * Type: "System Class Name" (sys_class_name)
-         * Maximum length: 80
+         * "Task type" element.
          */
-        sys_class_name: GlideElement;
-        
+        sys_class_name: GlideElementSysClassName;
+ 
         /**
-         * "Domain" element (sys_domain)
-         * Type: "Domain ID" (domain_id)
-         * Maximum length: 32
-         * Default value: "global"
+         * Domain element.
          */
-        sys_domain: GlideElementReference;
-        
+        sys_domain: GlideElementDomainId;
+ 
         /**
-         * "Domain Path" element (sys_domain_path)
-         * Type: "Domain Path" (domain_path)
-         * Maximum length: 255
-         * Default value: "/"
+         * "Domain Path" element.
          */
         sys_domain_path: GlideElement;
-        
+ 
         /**
-         * "Effective number" element (task_effective_number)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * This is a read-only column.
+         * "Effective number" element.
          */
         task_effective_number: GlideElement;
-        
+ 
         /**
-         * "Time worked" element (time_worked)
-         * Type: "Timer" (timer)
-         * Maximum length: 40
+         * "Time worked" element.
+         * Type: Timer (timer); scalar type: datetime
          */
         time_worked: GlideElementGlideObject;
-        
+ 
         /**
-         * "Universal Request" element (universal_request)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Universal Request" element.
+         * @see {@link $$GlideRecord.task}
          */
         universal_request: $$GlideElement.task;
-        
+ 
         /**
-         * "Upon approval" element (upon_approval)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "proceed"
+         * "Upon approval" element.
          */
         upon_approval: GlideElement;
-        
+ 
         /**
-         * "Upon reject" element (upon_reject)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "cancel"
+         * "Upon reject" element.
          */
         upon_reject: GlideElement;
-        
+ 
         /**
-         * "Urgency" element (urgency)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
-         * Default value: "3"
+         * Urgency element.
          */
-        urgency: GlideElement;
-        
+        urgency: GlideElementNumeric;
+ 
         /**
-         * "User input" element (user_input)
+         * "User input" element.
          * Type: "User Input" (user_input)
-         * Maximum length: 4000
          */
         user_input: GlideElementGlideObject;
-        
+ 
         /**
-         * "Watch list" element (watch_list)
-         * Type: "List" (glide_list)
-         * Maximum length: 4000
+         * "Watch list" element.
+         * Type: List (glide_list); Scalar length: undefined
+         * @see {@link $$GlideRecord.sys_user}
          */
-        watch_list: GlideElementGlideObject;
-        
+        watch_list: $$GlideElement.sys_user;
+ 
         /**
-         * "Actual end" element (work_end)
-         * Type: "Date/Time" (glide_date_time)
-         * Maximum length: 40
+         * "Actual end" element.
+         * Type: "Date/Time" (glide_date_time); scalar type: datetime
          */
         work_end: GlideElementGlideObject;
-        
+ 
         /**
-         * "Work notes" element (work_notes)
+         * "Work notes" element.
          * Type: "Journal Input" (journal_input)
-         * Maximum length: 4000
          */
         work_notes: GlideElementGlideObject;
-        
+ 
         /**
-         * "Work notes list" element (work_notes_list)
-         * Type: "List" (glide_list)
-         * Maximum length: 4000
+         * "Work notes list" element.
+         * Type: List (glide_list); Scalar length: undefined
+         * @see {@link $$GlideRecord.sys_user}
          */
-        work_notes_list: GlideElementGlideObject;
-        
+        work_notes_list: $$GlideElement.sys_user;
+ 
         /**
-         * "Actual start" element (work_start)
-         * Type: "Date/Time" (glide_date_time)
-         * Maximum length: 40
+         * "Actual start" element.
+         * Type: "Date/Time" (glide_date_time); scalar type: datetime
          */
         work_start: GlideElementGlideObject;
     }
-
+ 
     /**
      * "Application File" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * @see {@link $$GlideElement.sys_metadata}
+     * @see {@link $$GlideRecord.sys_metadata}
      */
     export interface sys_metadata extends IBaseRecord {
         /**
-         * "Class" element (sys_class_name)
-         * Type: "System Class Name" (sys_class_name)
-         * Maximum length: 80
+         * Class element.
          */
-        sys_class_name: GlideElement;
-        
+        sys_class_name: GlideElementSysClassName;
+ 
         /**
-         * "Display name" element (sys_name)
-         * Type: "String" (string)
-         * Maximum length: 255
+         * "Display name" element.
          */
         sys_name: GlideElement;
-        
+ 
         /**
-         * "Package" element (sys_package)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         * This is a read-only column.
+         * Package element.
+         * @see {@link $$GlideRecord.sys_package}
          */
         sys_package: $$GlideElement.sys_package;
-        
+ 
         /**
-         * "Protection policy" element (sys_policy)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * "Protection policy" element.
          */
         sys_policy: GlideElement;
-        
+ 
         /**
-         * "Application" element (sys_scope)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Application element.
+         * @see {@link $$GlideRecord.sys_scope}
          */
         sys_scope: $$GlideElement.sys_scope;
-        
+ 
         /**
-         * "Update name" element (sys_update_name)
-         * Type: "String" (string)
-         * Maximum length: 250
+         * "Update name" element.
          */
         sys_update_name: GlideElement;
     }
-
+ 
     /**
-     * "Package" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * Package glide record fields.
+     * @see {@link $$GlideElement.sys_package}
+     * @see {@link $$GlideRecord.sys_package}
      */
     export interface sys_package extends IBaseRecord {
         /**
-         * "Active" element (active)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
+         * Active element.
          */
-        active: GlideElement;
-        
+        active: GlideElementBoolean;
+ 
         /**
-         * "Subscription requirement" element (enforce_license)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "none"
+         * "Subscription requirement" element.
          */
         enforce_license: GlideElement;
-        
+ 
         /**
-         * "Licensable" element (licensable)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
+         * Licensable element.
          */
-        licensable: GlideElement;
-        
+        licensable: GlideElementBoolean;
+ 
         /**
-         * "Subscription Category" element (license_category)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "none"
+         * "Subscription Category" element.
          */
         license_category: GlideElement;
-        
+ 
         /**
-         * "Subscription Model" element (license_model)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "none"
+         * "Subscription Model" element.
          */
         license_model: GlideElement;
-        
+ 
         /**
-         * "Name" element (name)
-         * Type: "String" (string)
-         * Maximum length: 100
-         * This is column is mandatory.
+         * Name element.
          */
         name: GlideElement;
-        
+ 
         /**
-         * "ID" element (source)
-         * Type: "String" (string)
-         * Maximum length: 100
+         * ID element.
          */
         source: GlideElement;
-        
+ 
         /**
-         * "Class" element (sys_class_name)
-         * Type: "System Class Name" (sys_class_name)
-         * Maximum length: 80
+         * Class element.
          */
-        sys_class_name: GlideElement;
-        
+        sys_class_name: GlideElementSysClassName;
+ 
         /**
-         * "Trackable" element (trackable)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * Trackable element.
          */
-        trackable: GlideElement;
-        
+        trackable: GlideElementBoolean;
+ 
         /**
-         * "Version" element (version)
-         * Type: "Version" (version)
-         * Maximum length: 40
+         * Version element.
          */
         version: GlideElement;
     }
-
+ 
     /**
-     * "Application" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * Application glide record fields.
+     * @see {@link $$GlideElement.sys_scope}
+     * @see {@link $$GlideRecord.sys_scope}
      */
     export interface sys_scope extends sys_package {
         /**
-         * "Can Edit Application in Studio" element (can_edit_in_studio)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
+         * "Can Edit Application in Studio" element.
          */
-        can_edit_in_studio: GlideElement;
-        
+        can_edit_in_studio: GlideElementBoolean;
+ 
         /**
-         * "Guided Setup" element (guided_setup_guid)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Guided Setup" element.
+         * @see {@link $$GlideRecord.gsw_content}
          */
         guided_setup_guid: $$GlideElement.gsw_content;
-        
+ 
         /**
-         * "JavaScript Mode" element (js_level)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "es_latest"
+         * "JavaScript Mode" element.
          */
         js_level: GlideElement;
-        
+ 
         /**
-         * "Subscription" element (license)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Subscription element.
+         * @see {@link $$GlideRecord.license_details}
          */
         license: $$GlideElement.license_details;
-        
+ 
         /**
-         * "Logo" element (logo)
-         * Type: "Image" (user_image)
-         * Maximum length: 40
+         * Logo element.
          */
-        logo: GlideElement;
-        
+        logo: GlideElementUserImage;
+ 
         /**
-         * "Private" element (private)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * Private element.
          */
-        private: GlideElement;
-        
+        private: GlideElementBoolean;
+ 
         /**
-         * "Restrict Table Choices" element (restrict_table_access)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Restrict Table Choices" element.
          */
-        restrict_table_access: GlideElement;
-        
+        restrict_table_access: GlideElementBoolean;
+ 
         /**
-         * "Restrict Runtime Access" element (runtime_access_tracking)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * "Restrict Runtime Access" element.
          */
         runtime_access_tracking: GlideElement;
-        
+ 
         /**
-         * "Scope" element (scope)
-         * Type: "String" (string)
-         * Maximum length: 18
+         * Scope element.
          */
         scope: GlideElement;
-        
+ 
         /**
-         * "Application administration" element (scoped_administration)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Application administration" element.
          */
-        scoped_administration: GlideElement;
-        
+        scoped_administration: GlideElementBoolean;
+ 
         /**
-         * "Short description" element (short_description)
-         * Type: "String" (string)
-         * Maximum length: 500
+         * "Short description" element.
          */
-        short_description: GlideElement;
-        
+        short_description: GlideElementTranslatedText;
+ 
         /**
-         * "Template" element (template)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * This is a read-only column.
+         * Template element.
          */
         template: GlideElement;
-        
+ 
         /**
-         * "Vendor" element (vendor)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * Vendor element.
          */
         vendor: GlideElement;
-        
+ 
         /**
-         * "Vendor prefix" element (vendor_prefix)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * This is a read-only column.
+         * "Vendor prefix" element.
          */
         vendor_prefix: GlideElement;
     }
-
+ 
     /**
      * "Guided Setup Content" glide record fields.
-     * Scope: Guided Setup - Legacy (sn_guided_setup)
+     * @see {@link $$GlideElement.gsw_content}
+     * @see {@link $$GlideRecord.gsw_content}
      */
     export interface gsw_content extends sys_metadata {
         /**
-         * "Active" element (active)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
+         * Active element.
          */
-        active: GlideElement;
-        
+        active: GlideElementBoolean;
+ 
         /**
-         * "Dependent on Contents" element (dependent_on_contents)
-         * Type: "List" (glide_list)
-         * Maximum length: 4000
+         * "Dependent on Contents" element.
+         * Type: List (glide_list); Scalar length: undefined
+         * @see {@link $$GlideRecord.gsw_content}
          */
-        dependent_on_contents: GlideElementGlideObject;
-        
+        dependent_on_contents: $$GlideElement.gsw_content;
+ 
         /**
-         * "Dependent on Plugins" element (dependent_on_plugins)
-         * Type: "List" (glide_list)
-         * Maximum length: 4000
+         * "Dependent on Plugins" element.
+         * Type: List (glide_list); Scalar length: undefined
+         * @see {@link $$GlideRecord.v_plugin}
          */
-        dependent_on_plugins: GlideElementGlideObject;
-        
+        dependent_on_plugins: $$GlideElement.v_plugin;
+ 
         /**
-         * "Dependent on Plugins IDs" element (dependent_on_plugins_ids)
-         * Type: "List" (glide_list)
-         * Maximum length: 4000
-         * This is a read-only column.
+         * "Dependent on Plugins IDs" element.
+         * Type: List (glide_list); Scalar length: undefined
+         * @see {@link $$GlideRecord.v_plugin}
          */
-        dependent_on_plugins_ids: GlideElementGlideObject;
-        
+        dependent_on_plugins_ids: $$GlideElement.v_plugin;
+ 
         /**
-         * "Description" element (description)
-         * Type: "Translated HTML" (translated_html)
-         * Maximum length: 8000
+         * Description element.
          */
-        description: GlideElement;
-        
+        description: GlideElementTranslatedHTML;
+ 
         /**
-         * "Implicit dependent on Contents" element (implicit_dependent_on)
-         * Type: "List" (glide_list)
-         * Maximum length: 4000
-         * This is a read-only column.
+         * "Implicit dependent on Contents" element.
+         * Type: List (glide_list); Scalar length: undefined
+         * @see {@link $$GlideRecord.gsw_content}
          */
-        implicit_dependent_on: GlideElementGlideObject;
-        
+        implicit_dependent_on: $$GlideElement.gsw_content;
+ 
         /**
-         * "Implicit plugin dependencies" element (implicit_plugin_dependencies)
-         * Type: "List" (glide_list)
-         * Maximum length: 4000
-         * This is a read-only column.
+         * "Implicit plugin dependencies" element.
+         * Type: List (glide_list); Scalar length: undefined
+         * @see {@link $$GlideRecord.gsw_content}
          */
-        implicit_plugin_dependencies: GlideElementGlideObject;
-        
+        implicit_plugin_dependencies: $$GlideElement.gsw_content;
+ 
         /**
-         * "Order" element (order)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
-         * This is column is mandatory.
+         * Order element.
          */
-        order: GlideElement;
-        
+        order: GlideElementNumeric;
+ 
         /**
-         * "Parent Content" element (parent)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Parent Content" element.
+         * @see {@link $$GlideRecord.gsw_content}
          */
         parent: $$GlideElement.gsw_content;
-        
+ 
         /**
-         * "Parents" element (parents)
-         * Type: "List" (glide_list)
-         * Maximum length: 1024
-         * This is a read-only column.
+         * Parents element.
+         * Type: List (glide_list); Scalar length: undefined
+         * @see {@link $$GlideRecord.gsw_content}
          */
-        parents: GlideElementGlideObject;
-        
+        parents: $$GlideElement.gsw_content;
+ 
         /**
-         * "Root Parent Content" element (root_parent)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         * This is a read-only column.
+         * "Root Parent Content" element.
+         * @see {@link $$GlideRecord.gsw_content}
          */
         root_parent: $$GlideElement.gsw_content;
-        
+ 
         /**
-         * "Skippable" element (skippable)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
+         * Skippable element.
          */
-        skippable: GlideElement;
-        
+        skippable: GlideElementBoolean;
+ 
         /**
-         * "Supports child content" element (supports_child_content)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Supports child content" element.
          */
-        supports_child_content: GlideElement;
-        
+        supports_child_content: GlideElementBoolean;
+ 
         /**
-         * "Title" element (title)
-         * Type: "Translated Text" (translated_text)
-         * Maximum length: 100
-         * This is column is mandatory.
+         * Title element.
          */
-        title: GlideElement;
-        
+        title: GlideElementTranslatedText;
+ 
         /**
-         * "Weight" element (weight)
-         * Type: "Floating Point Number" (float)
-         * Maximum length: 40
-         * This is column is mandatory.
+         * Weight element.
          */
-        weight: GlideElement;
+        weight: GlideElementNumeric;
     }
-
+ 
     /**
-     * "Subscription" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * Subscription glide record fields.
+     * @see {@link $$GlideElement.license_details}
+     * @see {@link $$GlideRecord.license_details}
      */
     export interface license_details extends IBaseRecord {
         /**
-         * "Allocated" element (allocated)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "0"
+         * Allocated element.
          */
         allocated: GlideElement;
-        
+ 
         /**
-         * "Allocated Status" element (allocated_status)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "na"
+         * "Allocated Status" element.
          */
         allocated_status: GlideElement;
-        
+ 
         /**
-         * "Auto-sync user sets" element (auto_sync)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Auto-sync user sets" element.
          */
-        auto_sync: GlideElement;
-        
+        auto_sync: GlideElementBoolean;
+ 
         /**
-         * "Category" element (category)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
-         * Default value: "0"
+         * Category element.
          */
-        category: GlideElement;
-        
+        category: GlideElementNumeric;
+ 
         /**
-         * "Purchased" element (count)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * Purchased element.
          */
         count: GlideElement;
-        
+ 
         /**
-         * "Display only" element (display_only)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Display only" element.
          */
-        display_only: GlideElement;
-        
+        display_only: GlideElementBoolean;
+ 
         /**
-         * "End date" element (end_date)
-         * Type: "Date" (glide_date)
-         * Maximum length: 40
+         * "End date" element.
+         * Type: Date (glide_date); scalar type: date
          */
         end_date: GlideElementGlideObject;
-        
+ 
         /**
-         * "Status" element (expired)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * Status element.
          */
-        expired: GlideElement;
-        
+        expired: GlideElementBoolean;
+ 
         /**
-         * "Limit to purchased" element (is_capped)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Limit to purchased" element.
          */
-        is_capped: GlideElement;
-        
+        is_capped: GlideElementBoolean;
+ 
         /**
-         * "Last allocated count on" element (last_allocation_cal_on)
-         * Type: "Basic Date/Time" (datetime)
-         * Maximum length: 40
-         * This is a read-only column.
+         * "Last allocated count on" element.
          */
         last_allocation_cal_on: GlideElement;
-        
+ 
         /**
-         * "Last table used count on" element (last_tables_used_cal_on)
-         * Type: "Basic Date/Time" (datetime)
-         * Maximum length: 40
-         * This is a read-only column.
+         * "Last table used count on" element.
          */
         last_tables_used_cal_on: GlideElement;
-        
+ 
         /**
-         * "Subscription identifier" element (license_id)
-         * Type: "String" (string)
-         * Maximum length: 32
+         * "Subscription identifier" element.
          */
         license_id: GlideElement;
-        
+ 
         /**
-         * "Type" element (license_type)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
-         * Default value: "0"
+         * Type element.
          */
-        license_type: GlideElement;
-        
+        license_type: GlideElementNumeric;
+ 
         /**
-         * "License Weight" element (license_weight)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
-         * Default value: "-1"
-         * This is a read-only column.
+         * "License Weight" element.
          */
-        license_weight: GlideElement;
-        
+        license_weight: GlideElementNumeric;
+ 
         /**
-         * "Measured role types" element (measured_role_types)
-         * Type: "List" (glide_list)
-         * Maximum length: 4000
+         * "Measured role types" element.
+         * Type: List (glide_list); Scalar length: undefined
+         * @see {@link $$GlideRecord.license_role_type}
          */
-        measured_role_types: GlideElementGlideObject;
-        
+        measured_role_types: $$GlideElement.license_role_type;
+ 
         /**
-         * "Name" element (name)
-         * Type: "String" (string)
-         * Maximum length: 100
+         * Name element.
          */
         name: GlideElement;
-        
+ 
         /**
-         * "Product Code(s)" element (product_code)
-         * Type: "String" (string)
-         * Maximum length: 80
+         * "Product Code(s)" element.
          */
         product_code: GlideElement;
-        
+ 
         /**
-         * "Cost type" element (product_cost)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
-         * Default value: "0"
+         * "Cost type" element.
          */
-        product_cost: GlideElement;
-        
+        product_cost: GlideElementNumeric;
+ 
         /**
-         * "Capacity Definition" element (quota_defn)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Capacity Definition" element.
+         * @see {@link $$GlideRecord.ua_defn_base}
          */
         quota_defn: $$GlideElement.ua_defn_base;
-        
+ 
         /**
-         * "Capacity Definition ID" element (quota_defn_id)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * "Capacity Definition ID" element.
          */
         quota_defn_id: GlideElement;
-        
+ 
         /**
-         * "Capacity ID" element (quota_id)
-         * Type: "String" (string)
-         * Maximum length: 32
+         * "Capacity ID" element.
          */
         quota_id: GlideElement;
-        
+ 
         /**
-         * "Start date" element (start_date)
-         * Type: "Date" (glide_date)
-         * Maximum length: 40
+         * "Start date" element.
+         * Type: Date (glide_date); scalar type: date
          */
         start_date: GlideElementGlideObject;
-        
+ 
         /**
-         * "Tables included" element (table_count)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "0"
+         * "Tables included" element.
          */
         table_count: GlideElement;
-        
+ 
         /**
-         * "Tables used" element (tables_used)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "0"
+         * "Tables used" element.
          */
         tables_used: GlideElement;
     }
-
+ 
     /**
      * "UsageAnalytics Definitions Base" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * @see {@link $$GlideElement.ua_defn_base}
+     * @see {@link $$GlideRecord.ua_defn_base}
      */
     export interface ua_defn_base extends IBaseRecord {
         /**
-         * "Definition ID" element (definition_id)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * This is a read-only column.
+         * "Definition ID" element.
          */
         definition_id: GlideElement;
-        
+ 
         /**
-         * "Description" element (description)
-         * Type: "String" (string)
-         * Maximum length: 250
-         * This is a read-only column.
+         * Description element.
          */
         description: GlideElement;
-        
+ 
         /**
-         * "Class" element (sys_class_name)
-         * Type: "System Class Name" (sys_class_name)
-         * Maximum length: 80
+         * Class element.
          */
-        sys_class_name: GlideElement;
+        sys_class_name: GlideElementSysClassName;
     }
-
+ 
     /**
-     * "Asset" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * Asset glide record fields.
+     * @see {@link $$GlideElement.alm_asset}
+     * @see {@link $$GlideRecord.alm_asset}
      */
     export interface alm_asset extends IBaseRecord {
         /**
-         * "Acquisition method" element (acquisition_method)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * "Acquisition method" element.
          */
         acquisition_method: GlideElement;
-        
+ 
         /**
-         * "Active transfer order" element (active_to)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
-         * This is a read-only column.
+         * "Active transfer order" element.
          */
-        active_to: GlideElement;
-        
+        active_to: GlideElementBoolean;
+ 
         /**
-         * "Asset function" element (asset_function)
-         * Type: "Choice" (choice)
-         * Maximum length: 40
+         * "Asset function" element.
          */
         asset_function: GlideElement;
-        
+ 
         /**
-         * "Asset tag" element (asset_tag)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * "Asset tag" element.
          */
         asset_tag: GlideElement;
-        
+ 
         /**
-         * "Assigned" element (assigned)
-         * Type: "Date/Time" (glide_date_time)
-         * Maximum length: 40
+         * Assigned element.
+         * Type: "Date/Time" (glide_date_time); scalar type: datetime
          */
         assigned: GlideElementGlideObject;
-        
+ 
         /**
-         * "Assigned to" element (assigned_to)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Assigned to" element.
+         * @see {@link $$GlideRecord.sys_user}
          */
         assigned_to: $$GlideElement.sys_user;
-        
+ 
         /**
-         * "Beneficiary" element (beneficiary)
-         * Type: "Reference" (reference)
-         * Maximum length: 255
+         * Beneficiary element.
+         * @see {@link $$GlideRecord.core_company}
          */
         beneficiary: $$GlideElement.core_company;
-        
+ 
         /**
-         * "Checked in" element (checked_in)
-         * Type: "Date/Time" (glide_date_time)
-         * Maximum length: 40
+         * "Checked in" element.
+         * Type: "Date/Time" (glide_date_time); scalar type: datetime
          */
         checked_in: GlideElementGlideObject;
-        
+ 
         /**
-         * "Checked out" element (checked_out)
-         * Type: "Date/Time" (glide_date_time)
-         * Maximum length: 40
+         * "Checked out" element.
+         * Type: "Date/Time" (glide_date_time); scalar type: datetime
          */
         checked_out: GlideElementGlideObject;
-        
+ 
         /**
-         * "Configuration Item" element (ci)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         * This is a read-only column.
+         * "Configuration Item" element.
+         * @see {@link $$GlideRecord.cmdb_ci}
          */
         ci: $$GlideElement.cmdb_ci;
-        
+ 
         /**
-         * "Comments" element (comments)
-         * Type: "String" (string)
-         * Maximum length: 4000
+         * Comments element.
          */
         comments: GlideElement;
-        
+ 
         /**
-         * "Company" element (company)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Company element.
+         * @see {@link $$GlideRecord.core_company}
          */
         company: $$GlideElement.core_company;
-        
+ 
         /**
-         * "Cost" element (cost)
-         * Type: "Currency" (currency)
-         * Maximum length: 20
+         * Cost element.
          */
-        cost: GlideElement;
-        
+        cost: GlideElementCurrency;
+ 
         /**
-         * "Cost center" element (cost_center)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Cost center" element.
+         * @see {@link $$GlideRecord.cmn_cost_center}
          */
         cost_center: $$GlideElement.cmn_cost_center;
-        
+ 
         /**
-         * "Order received" element (delivery_date)
-         * Type: "Date/Time" (glide_date_time)
-         * Maximum length: 40
+         * "Order received" element.
+         * Type: "Date/Time" (glide_date_time); scalar type: datetime
          */
         delivery_date: GlideElementGlideObject;
-        
+ 
         /**
-         * "Department" element (department)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Department element.
+         * @see {@link $$GlideRecord.cmn_department}
          */
         department: $$GlideElement.cmn_department;
-        
+ 
         /**
-         * "Depreciated amount" element (depreciated_amount)
-         * Type: "Currency" (currency)
-         * Maximum length: 20
-         * This is a read-only column.
+         * "Depreciated amount" element.
          */
-        depreciated_amount: GlideElement;
-        
+        depreciated_amount: GlideElementCurrency;
+ 
         /**
-         * "Depreciation" element (depreciation)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Depreciation element.
+         * @see {@link $$GlideRecord.cmdb_depreciation}
          */
         depreciation: $$GlideElement.cmdb_depreciation;
-        
+ 
         /**
-         * "Depreciation effective date" element (depreciation_date)
-         * Type: "Date/Time" (glide_date_time)
-         * Maximum length: 40
+         * "Depreciation effective date" element.
+         * Type: "Date/Time" (glide_date_time); scalar type: datetime
          */
         depreciation_date: GlideElementGlideObject;
-        
+ 
         /**
-         * "Display name" element (display_name)
-         * Type: "String" (string)
-         * Maximum length: 255
-         * This is a read-only column.
+         * "Display name" element.
          */
         display_name: GlideElement;
-        
+ 
         /**
-         * "Disposal reason" element (disposal_reason)
-         * Type: "String" (string)
-         * Maximum length: 255
+         * "Disposal reason" element.
          */
         disposal_reason: GlideElement;
-        
+ 
         /**
-         * "Due" element (due)
-         * Type: "Date/Time" (glide_date_time)
-         * Maximum length: 40
+         * Due element.
+         * Type: "Date/Time" (glide_date_time); scalar type: datetime
          */
         due: GlideElementGlideObject;
-        
+ 
         /**
-         * "Due in" element (due_in)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * "Due in" element.
          */
         due_in: GlideElement;
-        
+ 
         /**
-         * "Expenditure type" element (expenditure_type)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * "Expenditure type" element.
          */
         expenditure_type: GlideElement;
-        
+ 
         /**
-         * "GL account" element (gl_account)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * "GL account" element.
          */
         gl_account: GlideElement;
-        
+ 
         /**
-         * "Installed" element (install_date)
-         * Type: "Date/Time" (glide_date_time)
-         * Maximum length: 40
+         * Installed element.
+         * Type: "Date/Time" (glide_date_time); scalar type: datetime
          */
         install_date: GlideElementGlideObject;
-        
+ 
         /**
-         * "State" element (install_status)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
-         * Default value: "1"
+         * State element.
          */
-        install_status: GlideElement;
-        
+        install_status: GlideElementNumeric;
+ 
         /**
-         * "Invoice number" element (invoice_number)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * "Invoice number" element.
          */
         invoice_number: GlideElement;
-        
+ 
         /**
-         * "Justification" element (justification)
-         * Type: "String" (string)
-         * Maximum length: 80
+         * Justification element.
          */
         justification: GlideElement;
-        
+ 
         /**
-         * "Lease contract" element (lease_id)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * "Lease contract" element.
          */
         lease_id: GlideElement;
-        
+ 
         /**
-         * "Life Cycle Stage" element (life_cycle_stage)
-         * Type: "Reference" (reference)
-         * Maximum length: 100
+         * "Life Cycle Stage" element.
+         * @see {@link $$GlideRecord.life_cycle_stage}
          */
         life_cycle_stage: $$GlideElement.life_cycle_stage;
-        
+ 
         /**
-         * "Life Cycle Stage Status" element (life_cycle_stage_status)
-         * Type: "Reference" (reference)
-         * Maximum length: 100
+         * "Life Cycle Stage Status" element.
+         * @see {@link $$GlideRecord.life_cycle_stage_status}
          */
         life_cycle_stage_status: $$GlideElement.life_cycle_stage_status;
-        
+ 
         /**
-         * "Location" element (location)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Location element.
+         * @see {@link $$GlideRecord.cmn_location}
          */
         location: $$GlideElement.cmn_location;
-        
+ 
         /**
-         * "Managed by" element (managed_by)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Managed by" element.
+         * @see {@link $$GlideRecord.sys_user}
          */
         managed_by: $$GlideElement.sys_user;
-        
+ 
         /**
-         * "Model" element (model)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         * This is column is mandatory.
+         * Model element.
+         * @see {@link $$GlideRecord.cmdb_model}
          */
         model: $$GlideElement.cmdb_model;
-        
+ 
         /**
-         * "Model category" element (model_category)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         * This is column is mandatory.
+         * "Model category" element.
+         * @see {@link $$GlideRecord.cmdb_model_category}
          */
         model_category: $$GlideElement.cmdb_model_category;
-        
+ 
         /**
-         * "Old status" element (old_status)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * This is a read-only column.
+         * "Model component" element.
+         * @see {@link $$GlideRecord.cmdb_m2m_model_component}
+         */
+        model_component: $$GlideElement.cmdb_m2m_model_component;
+ 
+        /**
+         * "Old status" element.
          */
         old_status: GlideElement;
-        
+ 
         /**
-         * "Old substatus" element (old_substatus)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * This is a read-only column.
+         * "Old substatus" element.
          */
         old_substatus: GlideElement;
-        
+ 
         /**
-         * "Ordered" element (order_date)
-         * Type: "Date/Time" (glide_date_time)
-         * Maximum length: 40
+         * Ordered element.
+         * Type: "Date/Time" (glide_date_time); scalar type: datetime
          */
         order_date: GlideElementGlideObject;
-        
+ 
         /**
-         * "Owned by" element (owned_by)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Owned by" element.
+         * @see {@link $$GlideRecord.sys_user}
          */
         owned_by: $$GlideElement.sys_user;
-        
+ 
         /**
-         * "Parent" element (parent)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Parent element.
+         * @see {@link $$GlideRecord.alm_asset}
          */
         parent: $$GlideElement.alm_asset;
-        
+ 
         /**
-         * "PO number" element (po_number)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * "PO number" element.
          */
         po_number: GlideElement;
-        
+ 
         /**
-         * "Pre-allocated" element (pre_allocated)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
-         * This is a read-only column.
+         * "Pre-allocated" element.
          */
-        pre_allocated: GlideElement;
-        
+        pre_allocated: GlideElementBoolean;
+ 
         /**
-         * "Purchased" element (purchase_date)
-         * Type: "Date" (glide_date)
-         * Maximum length: 40
+         * Purchased element.
+         * Type: Date (glide_date); scalar type: date
          */
         purchase_date: GlideElementGlideObject;
-        
+ 
         /**
-         * "Purchase order line" element (purchase_line)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Quantity element.
          */
-        purchase_line: $$GlideElement.proc_po_item;
-        
+        quantity: GlideElementNumeric;
+ 
         /**
-         * "Quantity" element (quantity)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
-         * Default value: "1"
-         * This is column is mandatory.
-         */
-        quantity: GlideElement;
-        
-        /**
-         * "Receiving line" element (receiving_line)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         */
-        receiving_line: $$GlideElement.proc_rec_slip_item;
-        
-        /**
-         * "Request line" element (request_line)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Request line" element.
+         * @see {@link $$GlideRecord.sc_req_item}
          */
         request_line: $$GlideElement.sc_req_item;
-        
+ 
         /**
-         * "Resale price" element (resale_price)
-         * Type: "Price" (price)
-         * Maximum length: 20
+         * "Resale price" element.
          */
-        resale_price: GlideElement;
-        
+        resale_price: GlideElementPrice;
+ 
         /**
-         * "Reserved for" element (reserved_for)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Reserved for" element.
+         * @see {@link $$GlideRecord.sys_user}
          */
         reserved_for: $$GlideElement.sys_user;
-        
+ 
         /**
-         * "Residual value" element (residual)
-         * Type: "Currency" (currency)
-         * Maximum length: 20
-         * This is a read-only column.
+         * "Residual value" element.
          */
-        residual: GlideElement;
-        
+        residual: GlideElementCurrency;
+ 
         /**
-         * "Residual date" element (residual_date)
-         * Type: "Date" (glide_date)
-         * Maximum length: 40
-         * This is a read-only column.
+         * "Residual date" element.
+         * Type: Date (glide_date); scalar type: date
          */
         residual_date: GlideElementGlideObject;
-        
+ 
         /**
-         * "Resold value" element (resold_value)
-         * Type: "Currency" (currency)
-         * Maximum length: 20
+         * "Resold value" element.
          */
-        resold_value: GlideElement;
-        
+        resold_value: GlideElementCurrency;
+ 
         /**
-         * "Retired date" element (retired)
-         * Type: "Date" (glide_date)
-         * Maximum length: 40
+         * "Retired date" element.
+         * Type: Date (glide_date); scalar type: date
          */
         retired: GlideElementGlideObject;
-        
+ 
         /**
-         * "Scheduled retirement" element (retirement_date)
-         * Type: "Date" (glide_date)
-         * Maximum length: 40
+         * "Scheduled retirement" element.
+         * Type: Date (glide_date); scalar type: date
          */
         retirement_date: GlideElementGlideObject;
-        
+ 
         /**
-         * "Salvage value" element (salvage_value)
-         * Type: "Currency" (currency)
-         * Maximum length: 20
+         * "Salvage value" element.
          */
-        salvage_value: GlideElement;
-        
+        salvage_value: GlideElementCurrency;
+ 
         /**
-         * "Serial number" element (serial_number)
-         * Type: "String" (string)
-         * Maximum length: 100
+         * "Serial number" element.
          */
         serial_number: GlideElement;
-        
+ 
         /**
-         * "Skip sync" element (skip_sync)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
-         * This is a read-only column.
+         * "Skip sync" element.
          */
-        skip_sync: GlideElement;
-        
+        skip_sync: GlideElementBoolean;
+ 
         /**
-         * "Stockroom" element (stockroom)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Stockroom element.
+         * @see {@link $$GlideRecord.alm_stockroom}
          */
         stockroom: $$GlideElement.alm_stockroom;
-        
+ 
         /**
-         * "Substate" element (substatus)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * Substate element.
          */
         substatus: GlideElement;
-        
+ 
         /**
-         * "Support group" element (support_group)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Support group" element.
+         * @see {@link $$GlideRecord.sys_user_group}
          */
         support_group: $$GlideElement.sys_user_group;
-        
+ 
         /**
-         * "Supported by" element (supported_by)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Supported by" element.
+         * @see {@link $$GlideRecord.sys_user}
          */
         supported_by: $$GlideElement.sys_user;
-        
+ 
         /**
-         * "Class" element (sys_class_name)
-         * Type: "System Class Name" (sys_class_name)
-         * Maximum length: 80
+         * Class element.
          */
-        sys_class_name: GlideElement;
-        
+        sys_class_name: GlideElementSysClassName;
+ 
         /**
-         * "Domain" element (sys_domain)
-         * Type: "Domain ID" (domain_id)
-         * Maximum length: 32
-         * Default value: "global"
+         * Domain element.
          */
-        sys_domain: GlideElementReference;
-        
+        sys_domain: GlideElementDomainId;
+ 
         /**
-         * "Domain Path" element (sys_domain_path)
-         * Type: "Domain Path" (domain_path)
-         * Maximum length: 255
-         * Default value: "/"
+         * "Domain Path" element.
          */
         sys_domain_path: GlideElement;
-        
+ 
         /**
-         * "Vendor" element (vendor)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Vendor element.
+         * @see {@link $$GlideRecord.core_company}
          */
         vendor: $$GlideElement.core_company;
-        
+ 
         /**
-         * "Warranty expiration" element (warranty_expiration)
-         * Type: "Date" (glide_date)
-         * Maximum length: 40
+         * "Warranty expiration" element.
+         * Type: Date (glide_date); scalar type: date
          */
         warranty_expiration: GlideElementGlideObject;
-        
+ 
         /**
-         * "Work notes" element (work_notes)
+         * "Work notes" element.
          * Type: "Journal Input" (journal_input)
-         * Maximum length: 4000
          */
         work_notes: GlideElementGlideObject;
     }
-
+ 
     /**
      * "Cost Center" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * @see {@link $$GlideElement.cmn_cost_center}
+     * @see {@link $$GlideRecord.cmn_cost_center}
      */
     export interface cmn_cost_center extends IBaseRecord {
         /**
-         * "Account number" element (account_number)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * "Account number" element.
          */
         account_number: GlideElement;
-        
+ 
         /**
-         * "Code" element (code)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * Code element.
          */
         code: GlideElement;
-        
+ 
         /**
-         * "Location" element (location)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Location element.
+         * @see {@link $$GlideRecord.cmn_location}
          */
         location: $$GlideElement.cmn_location;
-        
+ 
         /**
-         * "Manager" element (manager)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Manager element.
+         * @see {@link $$GlideRecord.sys_user}
          */
         manager: $$GlideElement.sys_user;
-        
+ 
         /**
-         * "Name" element (name)
-         * Type: "String" (string)
-         * Maximum length: 100
+         * Name element.
          */
         name: GlideElement;
-        
+ 
         /**
-         * "Parent" element (parent)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Parent element.
+         * @see {@link $$GlideRecord.cmn_cost_center}
          */
         parent: $$GlideElement.cmn_cost_center;
-        
+ 
         /**
-         * "Domain" element (sys_domain)
-         * Type: "Domain ID" (domain_id)
-         * Maximum length: 32
-         * Default value: "global"
+         * Domain element.
          */
-        sys_domain: GlideElementReference;
-        
+        sys_domain: GlideElementDomainId;
+ 
         /**
-         * "Domain path" element (sys_domain_path)
-         * Type: "Domain Path" (domain_path)
-         * Maximum length: 255
+         * "Domain path" element.
          */
         sys_domain_path: GlideElement;
-        
+ 
         /**
-         * "Valid from" element (valid_from)
-         * Type: "Date/Time" (glide_date_time)
-         * Maximum length: 40
+         * "Valid from" element.
+         * Type: "Date/Time" (glide_date_time); scalar type: datetime
          */
         valid_from: GlideElementGlideObject;
-        
+ 
         /**
-         * "Valid to" element (valid_to)
-         * Type: "Date/Time" (glide_date_time)
-         * Maximum length: 40
+         * "Valid to" element.
+         * Type: "Date/Time" (glide_date_time); scalar type: datetime
          */
         valid_to: GlideElementGlideObject;
     }
 
     /**
-     * "Depreciation" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * Depreciation glide record fields.
+     * @see {@link $$GlideElement.cmdb_depreciation}
+     * @see {@link $$GlideRecord.cmdb_depreciation}
      */
     export interface cmdb_depreciation extends IBaseRecord {
         /**
-         * "Category" element (category)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * Category element.
          */
         category: GlideElement;
-        
+ 
         /**
-         * "Depreciation Time" element (depreciation_time)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
+         * "Depreciation Time" element.
          */
-        depreciation_time: GlideElement;
-        
+        depreciation_time: GlideElementNumeric;
+ 
         /**
-         * "Depreciation Unit" element (depreciation_unit)
-         * Type: "String" (string)
-         * Maximum length: 100
+         * "Depreciation Unit" element.
          */
         depreciation_unit: GlideElement;
-        
+ 
         /**
-         * "Name" element (name)
-         * Type: "String" (string)
-         * Maximum length: 100
+         * Name element.
          */
         name: GlideElement;
-        
+ 
         /**
-         * "Script" element (script)
-         * Type: "Script" (script)
-         * Maximum length: 4000
+         * Script element.
          */
-        script: GlideElement;
+        script: GlideElementScript;
     }
-
+ 
     /**
      * "Life Cycle Stage" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * @see {@link $$GlideElement.life_cycle_stage}
+     * @see {@link $$GlideRecord.life_cycle_stage}
      */
-    export interface life_cycle_stage extends IBaseRecord {
+    export interface life_cycle_stage extends sys_metadata {
         /**
-         * "Name" element (name)
-         * Type: "Translated Text" (translated_text)
-         * Maximum length: 40
+         * Name element.
          */
-        name: GlideElement;
+        name: GlideElementTranslatedText;
     }
-
+ 
     /**
      * "Life Cycle Stage Status" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * @see {@link $$GlideElement.life_cycle_stage_status}
+     * @see {@link $$GlideRecord.life_cycle_stage_status}
      */
-    export interface life_cycle_stage_status extends IBaseRecord {
+    export interface life_cycle_stage_status extends sys_metadata {
         /**
-         * "Name" element (name)
-         * Type: "Translated Text" (translated_text)
-         * Maximum length: 40
+         * Name element.
          */
-        name: GlideElement;
+        name: GlideElementTranslatedText;
     }
-
+ 
     /**
      * "Product Model" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * @see {@link $$GlideElement.cmdb_model}
+     * @see {@link $$GlideRecord.cmdb_model}
      */
     export interface cmdb_model extends IBaseRecord {
         /**
-         * "Acquisition method" element (acquisition_method)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * "Acquisition method" element.
          */
         acquisition_method: GlideElement;
-        
+ 
         /**
-         * "Asset tracking strategy" element (asset_tracking_strategy)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "leave_to_category"
+         * "Asset tracking strategy" element.
          */
         asset_tracking_strategy: GlideElement;
-        
+ 
         /**
-         * "Asset tracking unit" element (asset_tracking_unit)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         * Default value: "individual unit"
+         * "Asset tracking unit" element.
+         * @see {@link $$GlideRecord.cmdb_model_unit}
          */
         asset_tracking_unit: $$GlideElement.cmdb_model_unit;
-        
+ 
         /**
-         * "Barcode" element (barcode)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * Barcode element.
          */
         barcode: GlideElement;
-        
+ 
         /**
-         * "Bundle" element (bundle)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
+         * Bundle element.
          */
-        bundle: GlideElement;
-        
+        bundle: GlideElementBoolean;
+ 
         /**
-         * "Certified" element (certified)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
+         * Certified element.
          */
-        certified: GlideElement;
-        
+        certified: GlideElementBoolean;
+ 
         /**
-         * "CMDB CI class" element (cmdb_ci_class)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * "CMDB CI class" element.
          */
         cmdb_ci_class: GlideElement;
-        
+ 
         /**
-         * "Model categories" element (cmdb_model_category)
-         * Type: "List" (glide_list)
-         * Maximum length: 1024
+         * "Model categories" element.
+         * Type: List (glide_list); Scalar length: undefined
+         * @see {@link $$GlideRecord.cmdb_model_category}
          */
-        cmdb_model_category: GlideElementGlideObject;
-        
+        cmdb_model_category: $$GlideElement.cmdb_model_category;
+ 
         /**
-         * "Comments" element (comments)
-         * Type: "String" (string)
-         * Maximum length: 4000
+         * Comments element.
          */
         comments: GlideElement;
-        
+ 
         /**
-         * "Cost" element (cost)
-         * Type: "Price" (price)
-         * Maximum length: 20
+         * Cost element.
          */
-        cost: GlideElement;
-        
+        cost: GlideElementPrice;
+ 
         /**
-         * "Current" element (current)
-         * Type: "Decimal" (decimal)
-         * Maximum length: 15
+         * Current element.
          */
-        current: GlideElement;
-        
+        current: GlideElementNumeric;
+ 
         /**
-         * "Current Unit" element (current_unit)
-         * Type: "Choice" (choice)
-         * Maximum length: 40
+         * "Current Unit" element.
          */
         current_unit: GlideElement;
-        
+ 
         /**
-         * "Depreciation" element (depreciation)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Depreciation element.
+         * @see {@link $$GlideRecord.cmdb_depreciation}
          */
         depreciation: $$GlideElement.cmdb_depreciation;
-        
+ 
         /**
-         * "Depth" element (depth)
-         * Type: "Decimal" (decimal)
-         * Maximum length: 15
+         * Depth element.
          */
-        depth: GlideElement;
-        
+        depth: GlideElementNumeric;
+ 
         /**
-         * "Description" element (description)
-         * Type: "Translated HTML" (translated_html)
-         * Maximum length: 8000
+         * Description element.
          */
-        description: GlideElement;
-        
+        description: GlideElementTranslatedHTML;
+ 
         /**
-         * "Dimensions Unit" element (dimensions_unit)
-         * Type: "Choice" (choice)
-         * Maximum length: 40
+         * "Dimensions Unit" element.
          */
         dimensions_unit: GlideElement;
-        
+ 
         /**
-         * "Display name" element (display_name)
-         * Type: "String" (string)
-         * Maximum length: 255
-         * This is a read-only column.
+         * "Display name" element.
          */
         display_name: GlideElement;
-        
+ 
         /**
-         * "Energy Star" element (energy_star)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Energy Star" element.
          */
-        energy_star: GlideElement;
-        
+        energy_star: GlideElementBoolean;
+ 
         /**
-         * "Energy use" element (energy_use)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * "Energy use" element.
          */
         energy_use: GlideElement;
-        
+ 
         /**
-         * "Expected lifetime CO2e" element (expected_lifetime_co2e)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * "Expected lifetime CO2e" element.
          */
         expected_lifetime_co2e: GlideElement;
-        
+ 
         /**
-         * "Expenditure type" element (expenditure_type)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * "Expenditure type" element.
          */
         expenditure_type: GlideElement;
-        
+ 
         /**
-         * "Flow Rate (cfm)" element (flow_rate)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
+         * "Flow Rate (cfm)" element.
          */
-        flow_rate: GlideElement;
-        
+        flow_rate: GlideElementNumeric;
+ 
         /**
-         * "Full name" element (full_name)
-         * Type: "String" (string)
-         * Maximum length: 100
+         * "Full name" element.
          */
         full_name: GlideElement;
-        
+ 
         /**
-         * "Height" element (height)
-         * Type: "Decimal" (decimal)
-         * Maximum length: 15
+         * Height element.
          */
-        height: GlideElement;
-        
+        height: GlideElementNumeric;
+ 
         /**
-         * "Length" element (length)
-         * Type: "Decimal" (decimal)
-         * Maximum length: 15
+         * Length element.
          */
-        length: GlideElement;
-        
+        length: GlideElementNumeric;
+ 
         /**
-         * "Life Cycle Stage" element (life_cycle_stage)
-         * Type: "Reference" (reference)
-         * Maximum length: 40
+         * "Life Cycle Stage" element.
+         * @see {@link $$GlideRecord.life_cycle_stage}
          */
         life_cycle_stage: $$GlideElement.life_cycle_stage;
-        
+ 
         /**
-         * "Life Cycle Stage Status" element (life_cycle_stage_status)
-         * Type: "Reference" (reference)
-         * Maximum length: 40
+         * "Life Cycle Stage Status" element.
+         * @see {@link $$GlideRecord.life_cycle_stage_status}
          */
         life_cycle_stage_status: $$GlideElement.life_cycle_stage_status;
-        
+ 
         /**
-         * "Main component" element (main_component)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         * This is a read-only column.
+         * "Main component" element.
+         * @see {@link $$GlideRecord.cmdb_m2m_model_component}
          */
         main_component: $$GlideElement.cmdb_m2m_model_component;
-        
+ 
         /**
-         * "Manufacturer" element (manufacturer)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Manufacturer element.
+         * @see {@link $$GlideRecord.core_company}
          */
         manufacturer: $$GlideElement.core_company;
-        
+ 
         /**
-         * "Model number" element (model_number)
-         * Type: "String" (string)
-         * Maximum length: 80
+         * "Model number" element.
          */
         model_number: GlideElement;
-        
+ 
         /**
-         * "Name" element (name)
-         * Type: "String" (string)
-         * Maximum length: 255
+         * Name element.
          */
         name: GlideElement;
-        
+ 
         /**
-         * "Owner" element (owner)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Owner element.
+         * @see {@link $$GlideRecord.sys_user}
          */
         owner: $$GlideElement.sys_user;
-        
+ 
         /**
-         * "Picture" element (picture)
-         * Type: "Image" (user_image)
-         * Maximum length: 40
+         * Picture element.
          */
-        picture: GlideElement;
-        
+        picture: GlideElementUserImage;
+ 
         /**
-         * "Power (watts)" element (power_consumption)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
+         * "Power (watts)" element.
          */
-        power_consumption: GlideElement;
-        
+        power_consumption: GlideElementNumeric;
+ 
         /**
-         * "Power unit" element (power_unit)
-         * Type: "Choice" (choice)
-         * Maximum length: 40
+         * "Power unit" element.
          */
         power_unit: GlideElement;
-        
+ 
         /**
-         * "Product Catalog Item" element (product_catalog_item)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         * This is a read-only column.
+         * "Product Catalog Item" element.
+         * @see {@link $$GlideRecord.sc_cat_item}
          */
         product_catalog_item: $$GlideElement.sc_cat_item;
-        
+ 
         /**
-         * "Height (U)" element (rack_units)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
-         * Default value: "1"
+         * "Height (U)" element.
          */
-        rack_units: GlideElement;
-        
+        rack_units: GlideElementNumeric;
+ 
         /**
-         * "Rated Power" element (rated_power)
-         * Type: "Decimal" (decimal)
-         * Maximum length: 15
+         * "Rated Power" element.
          */
-        rated_power: GlideElement;
-        
+        rated_power: GlideElementNumeric;
+ 
         /**
-         * "Salvage value" element (salvage_value)
-         * Type: "Currency" (currency)
-         * Maximum length: 20
+         * "Salvage value" element.
          */
-        salvage_value: GlideElement;
-        
+        salvage_value: GlideElementCurrency;
+ 
         /**
-         * "Short description" element (short_description)
-         * Type: "String" (string)
-         * Maximum length: 100
+         * "Short description" element.
          */
         short_description: GlideElement;
-        
+ 
         /**
-         * "SLA" element (sla)
-         * Type: "String" (string)
-         * Maximum length: 30
+         * SLA element.
          */
         sla: GlideElement;
-        
+ 
         /**
-         * "Sound Power (bels)" element (sound_power)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
+         * "Sound Power (bels)" element.
          */
-        sound_power: GlideElement;
-        
+        sound_power: GlideElementNumeric;
+ 
         /**
-         * "Status" element (status)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "In Production"
+         * Status element.
          */
         status: GlideElement;
-        
+ 
         /**
-         * "Class" element (sys_class_name)
-         * Type: "System Class Name" (sys_class_name)
-         * Maximum length: 80
+         * Class element.
          */
-        sys_class_name: GlideElement;
-        
+        sys_class_name: GlideElementSysClassName;
+ 
         /**
-         * "Domain" element (sys_domain)
-         * Type: "Domain ID" (domain_id)
-         * Maximum length: 32
-         * Default value: "global"
+         * Domain element.
          */
-        sys_domain: GlideElementReference;
-        
+        sys_domain: GlideElementDomainId;
+ 
         /**
-         * "Domain path" element (sys_domain_path)
-         * Type: "Domain Path" (domain_path)
-         * Maximum length: 255
+         * "Domain path" element.
          */
         sys_domain_path: GlideElement;
-        
+ 
         /**
-         * "Type" element (type)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "Generic"
+         * Type element.
          */
         type: GlideElement;
-        
+ 
         /**
-         * "Unit of Measure System" element (unit_of_measure_system)
-         * Type: "Choice" (choice)
-         * Maximum length: 40
+         * "Unit of Measure System" element.
          */
         unit_of_measure_system: GlideElement;
-        
+ 
         /**
-         * "Voltage" element (voltage)
-         * Type: "Decimal" (decimal)
-         * Maximum length: 15
+         * Voltage element.
          */
-        voltage: GlideElement;
-        
+        voltage: GlideElementNumeric;
+ 
         /**
-         * "Voltage unit" element (voltage_unit)
-         * Type: "Choice" (choice)
-         * Maximum length: 40
+         * "Voltage unit" element.
          */
         voltage_unit: GlideElement;
-        
+ 
         /**
-         * "Volume" element (volume)
-         * Type: "Decimal" (decimal)
-         * Maximum length: 15
+         * Volume element.
          */
-        volume: GlideElement;
-        
+        volume: GlideElementNumeric;
+ 
         /**
-         * "Volume unit" element (volume_unit)
-         * Type: "Choice" (choice)
-         * Maximum length: 40
+         * "Volume unit" element.
          */
         volume_unit: GlideElement;
-        
+ 
         /**
-         * "Weight (lbs)" element (weight)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
+         * "Weight (lbs)" element.
          */
-        weight: GlideElement;
-        
+        weight: GlideElementNumeric;
+ 
         /**
-         * "Weight" element (weight_decimal)
-         * Type: "Decimal" (decimal)
-         * Maximum length: 15
+         * Weight element.
          */
-        weight_decimal: GlideElement;
-        
+        weight_decimal: GlideElementNumeric;
+ 
         /**
-         * "Weight unit" element (weight_unit)
-         * Type: "Choice" (choice)
-         * Maximum length: 40
+         * "Weight unit" element.
          */
         weight_unit: GlideElement;
-        
+ 
         /**
-         * "Width" element (width)
-         * Type: "Decimal" (decimal)
-         * Maximum length: 15
+         * Width element.
          */
-        width: GlideElement;
+        width: GlideElementNumeric;
     }
-
+ 
     /**
      * "Model Category" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * @see {@link $$GlideElement.cmdb_model_category}
+     * @see {@link $$GlideRecord.cmdb_model_category}
      */
     export interface cmdb_model_category extends IBaseRecord {
         /**
-         * "Allow as main" element (allow_as_master)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Allow as main" element.
          */
-        allow_as_master: GlideElement;
-        
+        allow_as_master: GlideElementBoolean;
+ 
         /**
-         * "Allow in bundle" element (allow_in_bundle)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Allow in bundle" element.
          */
-        allow_in_bundle: GlideElement;
-        
+        allow_in_bundle: GlideElementBoolean;
+ 
         /**
-         * "Allow pre-allocation" element (allow_pre_allocation)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Allow pre-allocation" element.
          */
-        allow_pre_allocation: GlideElement;
-        
+        allow_pre_allocation: GlideElementBoolean;
+ 
         /**
-         * "Asset class" element (asset_class)
-         * Type: "Table Name" (table_name)
-         * Maximum length: 80
+         * "Asset class" element.
          */
         asset_class: GlideElement;
-        
+ 
         /**
-         * "Bundle" element (bundle)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
-         * This is a read-only column.
+         * Bundle element.
          */
-        bundle: GlideElement;
-        
+        bundle: GlideElementBoolean;
+ 
         /**
-         * "CI class" element (cmdb_ci_class)
-         * Type: "Table Name" (table_name)
-         * Maximum length: 80
+         * "CI class" element.
          */
         cmdb_ci_class: GlideElement;
-        
+ 
         /**
-         * "UNSPSC code" element (code)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * "UNSPSC code" element.
          */
         code: GlideElement;
-        
+ 
         /**
-         * "Enforce CI verification" element (enforce_verification)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
+         * "Enforce CI verification" element.
          */
-        enforce_verification: GlideElement;
-        
+        enforce_verification: GlideElementBoolean;
+ 
         /**
-         * "Name" element (name)
-         * Type: "String" (string)
-         * Maximum length: 100
-         * This is column is mandatory.
+         * Name element.
          */
         name: GlideElement;
-        
+ 
         /**
-         * "Parent category" element (parent_cateogry)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Parent category" element.
+         * @see {@link $$GlideRecord.cmdb_model_category}
          */
         parent_cateogry: $$GlideElement.cmdb_model_category;
-        
+ 
         /**
-         * "Picture or icon" element (picture)
-         * Type: "Image" (user_image)
-         * Maximum length: 40
+         * "Picture or icon" element.
          */
-        picture: GlideElement;
-        
+        picture: GlideElementUserImage;
+ 
         /**
-         * "Product model class" element (product_model_class)
-         * Type: "Table Name" (table_name)
-         * Maximum length: 80
+         * "Product model class" element.
          */
         product_model_class: GlideElement;
-        
+ 
         /**
-         * "Domain" element (sys_domain)
-         * Type: "Domain ID" (domain_id)
-         * Maximum length: 32
-         * Default value: "global"
+         * Domain element.
          */
-        sys_domain: GlideElementReference;
-        
+        sys_domain: GlideElementDomainId;
+ 
         /**
-         * "Domain Path" element (sys_domain_path)
-         * Type: "Domain Path" (domain_path)
-         * Maximum length: 255
-         * Default value: "/"
+         * "Domain Path" element.
          */
         sys_domain_path: GlideElement;
     }
-
+ 
     /**
      * "Base Configuration Item" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * @see {@link $$GlideElement.cmdb}
+     * @see {@link $$GlideRecord.cmdb}
      */
     export interface cmdb extends IBaseRecord {
         /**
-         * "Asset" element (asset)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         * This is a read-only column.
+         * Asset element.
+         * @see {@link $$GlideRecord.alm_asset}
          */
         asset: $$GlideElement.alm_asset;
-        
+ 
         /**
-         * "Asset tag" element (asset_tag)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * "Asset tag" element.
          */
         asset_tag: GlideElement;
-        
+ 
         /**
-         * "Assigned" element (assigned)
-         * Type: "Date/Time" (glide_date_time)
-         * Maximum length: 40
+         * Assigned element.
+         * Type: "Date/Time" (glide_date_time); scalar type: datetime
          */
         assigned: GlideElementGlideObject;
-        
+ 
         /**
-         * "Assigned to" element (assigned_to)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Assigned to" element.
+         * @see {@link $$GlideRecord.sys_user}
          */
         assigned_to: $$GlideElement.sys_user;
-        
+ 
         /**
-         * "Change Group" element (assignment_group)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Change Group" element.
+         * @see {@link $$GlideRecord.sys_user_group}
          */
         assignment_group: $$GlideElement.sys_user_group;
-        
+ 
         /**
-         * "Checked in" element (checked_in)
-         * Type: "Date/Time" (glide_date_time)
-         * Maximum length: 40
+         * "Checked in" element.
+         * Type: "Date/Time" (glide_date_time); scalar type: datetime
          */
         checked_in: GlideElementGlideObject;
-        
+ 
         /**
-         * "Checked out" element (checked_out)
-         * Type: "Date/Time" (glide_date_time)
-         * Maximum length: 40
+         * "Checked out" element.
+         * Type: "Date/Time" (glide_date_time); scalar type: datetime
          */
         checked_out: GlideElementGlideObject;
-        
+ 
         /**
-         * "Company" element (company)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Company element.
+         * @see {@link $$GlideRecord.core_company}
          */
         company: $$GlideElement.core_company;
-        
+ 
         /**
-         * "Cost" element (cost)
-         * Type: "Floating Point Number" (float)
-         * Maximum length: 40
+         * Cost element.
          */
-        cost: GlideElement;
-        
+        cost: GlideElementNumeric;
+ 
         /**
-         * "Cost currency" element (cost_cc)
-         * Type: "String" (string)
-         * Maximum length: 3
-         * Default value: "USD"
+         * "Cost currency" element.
          */
         cost_cc: GlideElement;
-        
+ 
         /**
-         * "Cost center" element (cost_center)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Cost center" element.
+         * @see {@link $$GlideRecord.cmn_cost_center}
          */
         cost_center: $$GlideElement.cmn_cost_center;
-        
+ 
         /**
-         * "Order received" element (delivery_date)
-         * Type: "Date/Time" (glide_date_time)
-         * Maximum length: 40
+         * "Order received" element.
+         * Type: "Date/Time" (glide_date_time); scalar type: datetime
          */
         delivery_date: GlideElementGlideObject;
-        
+ 
         /**
-         * "Department" element (department)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Department element.
+         * @see {@link $$GlideRecord.cmn_department}
          */
         department: $$GlideElement.cmn_department;
-        
+ 
         /**
-         * "Due" element (due)
-         * Type: "Date/Time" (glide_date_time)
-         * Maximum length: 40
+         * Due element.
+         * Type: "Date/Time" (glide_date_time); scalar type: datetime
          */
         due: GlideElementGlideObject;
-        
+ 
         /**
-         * "Due in" element (due_in)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * "Due in" element.
          */
         due_in: GlideElement;
-        
+ 
         /**
-         * "GL account" element (gl_account)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * "GL account" element.
          */
         gl_account: GlideElement;
-        
+ 
         /**
-         * "Installed" element (install_date)
-         * Type: "Date/Time" (glide_date_time)
-         * Maximum length: 40
+         * Installed element.
+         * Type: "Date/Time" (glide_date_time); scalar type: datetime
          */
         install_date: GlideElementGlideObject;
-        
+ 
         /**
-         * "Install Status" element (install_status)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
-         * Default value: "1"
+         * "Install Status" element.
          */
-        install_status: GlideElement;
-        
+        install_status: GlideElementNumeric;
+ 
         /**
-         * "Invoice number" element (invoice_number)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * "Invoice number" element.
          */
         invoice_number: GlideElement;
-        
+ 
         /**
-         * "Justification" element (justification)
-         * Type: "String" (string)
-         * Maximum length: 80
+         * Justification element.
          */
         justification: GlideElement;
-        
+ 
         /**
-         * "Lease contract" element (lease_id)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * "Lease contract" element.
          */
         lease_id: GlideElement;
-        
+ 
         /**
-         * "Location" element (location)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Location element.
+         * @see {@link $$GlideRecord.cmn_location}
          */
         location: $$GlideElement.cmn_location;
-        
+ 
         /**
-         * "Managed by" element (managed_by)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Managed by" element.
+         * @see {@link $$GlideRecord.sys_user}
          */
         managed_by: $$GlideElement.sys_user;
-        
+ 
         /**
-         * "Manufacturer" element (manufacturer)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Manufacturer element.
+         * @see {@link $$GlideRecord.core_company}
          */
         manufacturer: $$GlideElement.core_company;
-        
+ 
         /**
-         * "Model ID" element (model_id)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Model ID" element.
+         * @see {@link $$GlideRecord.cmdb_model}
          */
         model_id: $$GlideElement.cmdb_model;
-        
+ 
         /**
-         * "Name" element (name)
-         * Type: "String" (string)
-         * Maximum length: 255
+         * Name element.
          */
         name: GlideElement;
-        
+ 
         /**
-         * "Ordered" element (order_date)
-         * Type: "Date/Time" (glide_date_time)
-         * Maximum length: 40
+         * Ordered element.
+         * Type: "Date/Time" (glide_date_time); scalar type: datetime
          */
         order_date: GlideElementGlideObject;
-        
+ 
         /**
-         * "Owned by" element (owned_by)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Owned by" element.
+         * @see {@link $$GlideRecord.sys_user}
          */
         owned_by: $$GlideElement.sys_user;
-        
+ 
         /**
-         * "PO number" element (po_number)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * "PO number" element.
          */
         po_number: GlideElement;
-        
+ 
         /**
-         * "Purchased" element (purchase_date)
-         * Type: "Date" (glide_date)
-         * Maximum length: 40
+         * Purchased element.
+         * Type: Date (glide_date); scalar type: date
          */
         purchase_date: GlideElementGlideObject;
-        
+ 
         /**
-         * "Serial number" element (serial_number)
-         * Type: "String" (string)
-         * Maximum length: 255
+         * "Serial number" element.
          */
         serial_number: GlideElement;
-        
+ 
         /**
-         * "Skip sync" element (skip_sync)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
-         * This is a read-only column.
+         * "Skip sync" element.
          */
-        skip_sync: GlideElement;
-        
+        skip_sync: GlideElementBoolean;
+ 
         /**
-         * "Support group" element (support_group)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Support group" element.
+         * @see {@link $$GlideRecord.sys_user_group}
          */
         support_group: $$GlideElement.sys_user_group;
-        
+ 
         /**
-         * "Supported by" element (supported_by)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Supported by" element.
+         * @see {@link $$GlideRecord.sys_user}
          */
         supported_by: $$GlideElement.sys_user;
-        
+ 
         /**
-         * "Class" element (sys_class_name)
-         * Type: "System Class Name" (sys_class_name)
-         * Maximum length: 80
+         * Class element.
          */
-        sys_class_name: GlideElement;
-        
+        sys_class_name: GlideElementSysClassName;
+ 
         /**
-         * "Sys class path" element (sys_class_path)
+         * "Sys class path" element.
          * Type: "System Class path" (sys_class_path)
-         * Maximum length: 255
-         * This is a read-only column.
          */
         sys_class_path: GlideElement;
-        
+ 
         /**
-         * "Domain" element (sys_domain)
-         * Type: "Domain ID" (domain_id)
-         * Maximum length: 32
-         * Default value: "global"
+         * Domain element.
          */
-        sys_domain: GlideElementReference;
-        
+        sys_domain: GlideElementDomainId;
+ 
         /**
-         * "Domain Path" element (sys_domain_path)
-         * Type: "Domain Path" (domain_path)
-         * Maximum length: 255
+         * "Domain Path" element.
          */
         sys_domain_path: GlideElement;
-        
+ 
         /**
-         * "Requires verification" element (unverified)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * This is a read-only column.
+         * "Requires verification" element.
          */
-        unverified: GlideElement;
-        
+        unverified: GlideElementBoolean;
+ 
         /**
-         * "Vendor" element (vendor)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Vendor element.
+         * @see {@link $$GlideRecord.core_company}
          */
         vendor: $$GlideElement.core_company;
-        
+ 
         /**
-         * "Warranty expiration" element (warranty_expiration)
-         * Type: "Date" (glide_date)
-         * Maximum length: 40
+         * "Warranty expiration" element.
+         * Type: Date (glide_date); scalar type: date
          */
         warranty_expiration: GlideElementGlideObject;
     }
-
-    /**
-     * "Model Component" glide record fields.
-     * Scope: Global (global) - Global application scope
-     */
-    export interface cmdb_m2m_model_component extends IBaseRecord {
-        /**
-         * "Component" element (child)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         * This is column is mandatory.
-         */
-        child: $$GlideElement.cmdb_model;
-        
-        /**
-         * "Component parameter" element (component_parameter)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "mandatory"
-         * This is column is mandatory.
-         */
-        component_parameter: GlideElement;
-        
-        /**
-         * "Is main component" element (master)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         */
-        master: GlideElement;
-        
-        /**
-         * "Model category of component" element (model_category)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         * This is column is mandatory.
-         */
-        model_category: $$GlideElement.cmdb_model_category;
-        
-        /**
-         * "Bundle" element (parent)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         * This is column is mandatory.
-         */
-        parent: $$GlideElement.cmdb_model;
-        
-        /**
-         * "Domain" element (sys_domain)
-         * Type: "Domain ID" (domain_id)
-         * Maximum length: 32
-         * Default value: "global"
-         */
-        sys_domain: GlideElementReference;
-    }
-
+ 
     /**
      * "Configuration Item" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * @see {@link $$GlideElement.cmdb_ci}
+     * @see {@link $$GlideRecord.cmdb_ci}
      */
     export interface cmdb_ci extends cmdb {
         /**
-         * "Attestation Score" element (attestation_score)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
+         * Asset element.
+         * @see {@link $$GlideRecord.alm_asset}
          */
-        attestation_score: GlideElement;
-        
+        asset: $$GlideElement.alm_asset;
+ 
         /**
-         * "Attestation Status" element (attestation_status)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "Not Yet Reviewed"
+         * "Asset tag" element.
+         */
+        asset_tag: GlideElement;
+ 
+        /**
+         * Assigned element.
+         * Type: "Date/Time" (glide_date_time); scalar type: datetime
+         */
+        assigned: GlideElementGlideObject;
+ 
+        /**
+         * "Assigned to" element.
+         * @see {@link $$GlideRecord.sys_user}
+         */
+        assigned_to: $$GlideElement.sys_user;
+ 
+        /**
+         * "Change Group" element.
+         * @see {@link $$GlideRecord.sys_user_group}
+         */
+        assignment_group: $$GlideElement.sys_user_group;
+ 
+        /**
+         * "Attestation Score" element.
+         */
+        attestation_score: GlideElementNumeric;
+ 
+        /**
+         * "Attestation Status" element.
          */
         attestation_status: GlideElement;
-        
+ 
         /**
-         * "Attested" element (attested)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * Attested element.
          */
-        attested: GlideElement;
-        
+        attested: GlideElementBoolean;
+ 
         /**
-         * "Attested By" element (attested_by)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Attested By" element.
+         * @see {@link $$GlideRecord.sys_user}
          */
         attested_by: $$GlideElement.sys_user;
-        
+ 
         /**
-         * "Attested Date" element (attested_date)
-         * Type: "Date/Time" (glide_date_time)
-         * Maximum length: 40
+         * "Attested Date" element.
+         * Type: "Date/Time" (glide_date_time); scalar type: datetime
          */
         attested_date: GlideElementGlideObject;
-        
+ 
         /**
-         * "Attributes" element (attributes)
-         * Type: "String" (string)
-         * Maximum length: 65000
+         * Attributes element.
          */
         attributes: GlideElement;
-        
+ 
         /**
-         * "Business Unit" element (business_unit)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Business Unit" element.
+         * @see {@link $$GlideRecord.business_unit}
          */
         business_unit: $$GlideElement.business_unit;
-        
+ 
         /**
-         * "Can Print" element (can_print)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Can Print" element.
          */
-        can_print: GlideElement;
-        
+        can_print: GlideElementBoolean;
+ 
         /**
-         * "Category" element (category)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * Category element.
          */
         category: GlideElement;
-        
+ 
         /**
-         * "Approval group" element (change_control)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Approval group" element.
+         * @see {@link $$GlideRecord.sys_user_group}
          */
         change_control: $$GlideElement.sys_user_group;
-        
+ 
         /**
-         * "Comments" element (comments)
-         * Type: "String" (string)
-         * Maximum length: 4000
+         * "Checked in" element.
+         * Type: "Date/Time" (glide_date_time); scalar type: datetime
+         */
+        checked_in: GlideElementGlideObject;
+ 
+        /**
+         * "Checked out" element.
+         * Type: "Date/Time" (glide_date_time); scalar type: datetime
+         */
+        checked_out: GlideElementGlideObject;
+ 
+        /**
+         * "OT asset details" element.
+         * @see {@link $$GlideRecord.cmdb_ot_entity}
+         */
+        cmdb_ot_entity: $$GlideElement.cmdb_ot_entity;
+ 
+        /**
+         * Comments element.
          */
         comments: GlideElement;
-        
+ 
         /**
-         * "Correlation ID" element (correlation_id)
-         * Type: "String" (string)
-         * Maximum length: 512
+         * Company element.
+         * @see {@link $$GlideRecord.core_company}
+         */
+        company: $$GlideElement.core_company;
+ 
+        /**
+         * "Correlation ID" element.
          */
         correlation_id: GlideElement;
-        
+ 
         /**
-         * "Discovery source" element (discovery_source)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * Cost element.
+         */
+        cost: GlideElementNumeric;
+ 
+        /**
+         * "Cost currency" element.
+         */
+        cost_cc: GlideElement;
+ 
+        /**
+         * "Cost center" element.
+         * @see {@link $$GlideRecord.cmn_cost_center}
+         */
+        cost_center: $$GlideElement.cmn_cost_center;
+ 
+        /**
+         * "Order received" element.
+         * Type: "Date/Time" (glide_date_time); scalar type: datetime
+         */
+        delivery_date: GlideElementGlideObject;
+ 
+        /**
+         * Department element.
+         * @see {@link $$GlideRecord.cmn_department}
+         */
+        department: $$GlideElement.cmn_department;
+ 
+        /**
+         * "Discovery source" element.
          */
         discovery_source: GlideElement;
-        
+ 
         /**
-         * "DNS Domain" element (dns_domain)
-         * Type: "String" (string)
-         * Maximum length: 255
+         * "DNS Domain" element.
          */
         dns_domain: GlideElement;
-        
+ 
         /**
-         * "Duplicate Of" element (duplicate_of)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Due element.
+         * Type: "Date/Time" (glide_date_time); scalar type: datetime
+         */
+        due: GlideElementGlideObject;
+ 
+        /**
+         * "Due in" element.
+         */
+        due_in: GlideElement;
+ 
+        /**
+         * "Duplicate Of" element.
+         * @see {@link $$GlideRecord.cmdb_ci}
          */
         duplicate_of: $$GlideElement.cmdb_ci;
-        
+ 
         /**
-         * "Environment" element (environment)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * Environment element.
          */
         environment: GlideElement;
-        
+ 
         /**
-         * "Fault count" element (fault_count)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
-         * Default value: "0"
+         * "Fault count" element.
          */
-        fault_count: GlideElement;
-        
+        fault_count: GlideElementNumeric;
+ 
         /**
-         * "First discovered" element (first_discovered)
-         * Type: "Date/Time" (glide_date_time)
-         * Maximum length: 40
+         * "First discovered" element.
+         * Type: "Date/Time" (glide_date_time); scalar type: datetime
          */
         first_discovered: GlideElementGlideObject;
-        
+ 
         /**
-         * "Fully qualified domain name" element (fqdn)
-         * Type: "String" (string)
-         * Maximum length: 255
+         * "Fully qualified domain name" element.
          */
         fqdn: GlideElement;
-        
+ 
         /**
-         * "IP Address" element (ip_address)
-         * Type: "IP Address (Validated IPV4, IPV6)" (ip_addr)
-         * Maximum length: 255
+         * "GL account" element.
          */
-        ip_address: GlideElement;
-        
+        gl_account: GlideElement;
+ 
         /**
-         * "Most recent discovery" element (last_discovered)
-         * Type: "Date/Time" (glide_date_time)
-         * Maximum length: 40
+         * Installed element.
+         * Type: "Date/Time" (glide_date_time); scalar type: datetime
+         */
+        install_date: GlideElementGlideObject;
+ 
+        /**
+         * "Install Status" element.
+         */
+        install_status: GlideElementNumeric;
+ 
+        /**
+         * "Invoice number" element.
+         */
+        invoice_number: GlideElement;
+ 
+        /**
+         * "IP Address" element.
+         */
+        ip_address: GlideElementIPAddress;
+ 
+        /**
+         * Justification element.
+         */
+        justification: GlideElement;
+ 
+        /**
+         * "Most recent discovery" element.
+         * Type: "Date/Time" (glide_date_time); scalar type: datetime
          */
         last_discovered: GlideElementGlideObject;
-        
+ 
         /**
-         * "Life Cycle Stage" element (life_cycle_stage)
-         * Type: "Reference" (reference)
-         * Maximum length: 100
+         * "Lease contract" element.
+         */
+        lease_id: GlideElement;
+ 
+        /**
+         * "Life Cycle Stage" element.
+         * @see {@link $$GlideRecord.life_cycle_stage}
          */
         life_cycle_stage: $$GlideElement.life_cycle_stage;
-        
+ 
         /**
-         * "Life Cycle Stage Status" element (life_cycle_stage_status)
-         * Type: "Reference" (reference)
-         * Maximum length: 100
+         * "Life Cycle Stage Status" element.
+         * @see {@link $$GlideRecord.life_cycle_stage_status}
          */
         life_cycle_stage_status: $$GlideElement.life_cycle_stage_status;
-        
+ 
         /**
-         * "MAC Address" element (mac_address)
-         * Type: "String" (string)
-         * Maximum length: 24
+         * Location element.
+         * @see {@link $$GlideRecord.cmn_location}
+         */
+        location: $$GlideElement.cmn_location;
+ 
+        /**
+         * "MAC Address" element.
          */
         mac_address: GlideElement;
-        
+ 
         /**
-         * "Maintenance schedule" element (maintenance_schedule)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Maintenance schedule" element.
+         * @see {@link $$GlideRecord.cmn_schedule}
          */
         maintenance_schedule: $$GlideElement.cmn_schedule;
-        
+ 
         /**
-         * "Managed By Group" element (managed_by_group)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Managed by" element.
+         * @see {@link $$GlideRecord.sys_user}
+         */
+        managed_by: $$GlideElement.sys_user;
+ 
+        /**
+         * "Managed By Group" element.
+         * @see {@link $$GlideRecord.sys_user_group}
          */
         managed_by_group: $$GlideElement.sys_user_group;
-        
+ 
         /**
-         * "Model number" element (model_number)
-         * Type: "String" (string)
-         * Maximum length: 255
+         * Manufacturer element.
+         * @see {@link $$GlideRecord.core_company}
+         */
+        manufacturer: $$GlideElement.core_company;
+ 
+        /**
+         * "Model ID" element.
+         * @see {@link $$GlideRecord.cmdb_model}
+         */
+        model_id: $$GlideElement.cmdb_model;
+ 
+        /**
+         * "Model number" element.
          */
         model_number: GlideElement;
-        
+ 
         /**
-         * "Monitor" element (monitor)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * Monitor element.
          */
-        monitor: GlideElement;
-        
+        monitor: GlideElementBoolean;
+ 
         /**
-         * "Operational status" element (operational_status)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
-         * Default value: "1"
+         * Name element.
          */
-        operational_status: GlideElement;
-        
+        name: GlideElement;
+ 
         /**
-         * "Schedule" element (schedule)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Operational status" element.
+         */
+        operational_status: GlideElementNumeric;
+ 
+        /**
+         * Ordered element.
+         * Type: "Date/Time" (glide_date_time); scalar type: datetime
+         */
+        order_date: GlideElementGlideObject;
+ 
+        /**
+         * "Owned by" element.
+         * @see {@link $$GlideRecord.sys_user}
+         */
+        owned_by: $$GlideElement.sys_user;
+ 
+        /**
+         * "PO number" element.
+         */
+        po_number: GlideElement;
+ 
+        /**
+         * Purchased element.
+         * Type: Date (glide_date); scalar type: date
+         */
+        purchase_date: GlideElementGlideObject;
+ 
+        /**
+         * Schedule element.
+         * @see {@link $$GlideRecord.cmn_schedule}
          */
         schedule: $$GlideElement.cmn_schedule;
-        
+ 
         /**
-         * "Description" element (short_description)
-         * Type: "String" (string)
-         * Maximum length: 1000
+         * "Serial number" element.
+         */
+        serial_number: GlideElement;
+ 
+        /**
+         * Description element.
          */
         short_description: GlideElement;
-        
+ 
         /**
-         * "Start date" element (start_date)
-         * Type: "Date/Time" (glide_date_time)
-         * Maximum length: 40
+         * "Skip sync" element.
+         */
+        skip_sync: GlideElementBoolean;
+ 
+        /**
+         * "Start date" element.
+         * Type: "Date/Time" (glide_date_time); scalar type: datetime
          */
         start_date: GlideElementGlideObject;
-        
+ 
         /**
-         * "Subcategory" element (subcategory)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * Subcategory element.
          */
         subcategory: GlideElement;
+ 
+        /**
+         * "Support group" element.
+         * @see {@link $$GlideRecord.sys_user_group}
+         */
+        support_group: $$GlideElement.sys_user_group;
+ 
+        /**
+         * "Supported by" element.
+         * @see {@link $$GlideRecord.sys_user}
+         */
+        supported_by: $$GlideElement.sys_user;
+ 
+        /**
+         * Class element.
+         */
+        sys_class_name: GlideElementSysClassName;
+ 
+        /**
+         * "Sys class path" element.
+         * Type: "System Class path" (sys_class_path)
+         */
+        sys_class_path: GlideElement;
+ 
+        /**
+         * "Created by" element.
+         */
+        sys_created_by: GlideElement;
+ 
+        /**
+         * Created element.
+         * Type: "Date/Time" (glide_date_time); scalar type: datetime
+         */
+        sys_created_on: GlideElementGlideObject;
+ 
+        /**
+         * Domain element.
+         */
+        sys_domain: GlideElementDomainId;
+ 
+        /**
+         * "Domain Path" element.
+         */
+        sys_domain_path: GlideElement;
+ 
+        /**
+         * "Sys ID" element.
+         */
+        sys_id: GlideElement;
+ 
+        /**
+         * Updates element.
+         */
+        sys_mod_count: GlideElementNumeric;
+ 
+        /**
+         * "Updated by" element.
+         */
+        sys_updated_by: GlideElement;
+ 
+        /**
+         * Updated element.
+         * Type: "Date/Time" (glide_date_time); scalar type: datetime
+         */
+        sys_updated_on: GlideElementGlideObject;
+ 
+        /**
+         * "Requires verification" element.
+         */
+        unverified: GlideElementBoolean;
+ 
+        /**
+         * Vendor element.
+         * @see {@link $$GlideRecord.core_company}
+         */
+        vendor: $$GlideElement.core_company;
+ 
+        /**
+         * "Warranty expiration" element.
+         * Type: Date (glide_date); scalar type: date
+         */
+        warranty_expiration: GlideElementGlideObject;
     }
-
+ 
     /**
-     * "Service" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * "Model Component" glide record fields.
+     * @see {@link $$GlideElement.cmdb_m2m_model_component}
+     * @see {@link $$GlideRecord.cmdb_m2m_model_component}
+     */
+    export interface cmdb_m2m_model_component extends IBaseRecord {
+        /**
+         * Component element.
+         * @see {@link $$GlideRecord.cmdb_model}
+         */
+        child: $$GlideElement.cmdb_model;
+ 
+        /**
+         * "Component parameter" element.
+         */
+        component_parameter: GlideElement;
+ 
+        /**
+         * "Is main component" element.
+         */
+        master: GlideElementBoolean;
+ 
+        /**
+         * "Model category of component" element.
+         * @see {@link $$GlideRecord.cmdb_model_category}
+         */
+        model_category: $$GlideElement.cmdb_model_category;
+ 
+        /**
+         * Bundle element.
+         * @see {@link $$GlideRecord.cmdb_model}
+         */
+        parent: $$GlideElement.cmdb_model;
+ 
+        /**
+         * Domain element.
+         */
+        sys_domain: GlideElementDomainId;
+ 
+        /**
+         * "Domain Path" element.
+         */
+        sys_domain_path: GlideElement;
+    }
+ 
+    /**
+     * Service glide record fields.
+     * @see {@link $$GlideElement.cmdb_ci_service}
+     * @see {@link $$GlideRecord.cmdb_ci_service}
      */
     export interface cmdb_ci_service extends cmdb_ci {
         /**
-         * "Aliases" element (aliases)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * Aliases element.
          */
         aliases: GlideElement;
-        
+ 
         /**
-         * "Business Criticality" element (busines_criticality)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "2 - somewhat critical"
+         * "Business Criticality" element.
          */
         busines_criticality: GlideElement;
-        
+ 
         /**
-         * "Business contact" element (business_contact)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Business contact" element.
+         * @see {@link $$GlideRecord.sys_user}
          */
         business_contact: $$GlideElement.sys_user;
-        
+ 
         /**
-         * "Business need" element (business_need)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * "Business need" element.
          */
         business_need: GlideElement;
-        
+ 
         /**
-         * "Business relation manager" element (business_relation_manager)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Business relation manager" element.
+         * @see {@link $$GlideRecord.sys_user}
          */
         business_relation_manager: $$GlideElement.sys_user;
-        
+ 
         /**
-         * "Checkout" element (checkout)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * This is a read-only column.
+         * Checkout element.
          */
         checkout: GlideElement;
-        
+ 
         /**
-         * "Compatibility dependencies" element (compatibility_dependencies)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * "Compatibility dependencies" element.
          */
         compatibility_dependencies: GlideElement;
-        
+ 
         /**
-         * "Consumer type" element (consumer_type)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "internal"
+         * "Consumer type" element.
          */
         consumer_type: GlideElement;
-        
+ 
         /**
-         * "Delivery manager" element (delivery_manager)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Delivery manager" element.
+         * @see {@link $$GlideRecord.sys_user}
          */
         delivery_manager: $$GlideElement.sys_user;
-        
+ 
         /**
-         * "End date" element (end_date)
-         * Type: "Date/Time" (glide_date_time)
-         * Maximum length: 40
+         * "End date" element.
+         * Type: "Date/Time" (glide_date_time); scalar type: datetime
          */
         end_date: GlideElementGlideObject;
-        
+ 
         /**
-         * "Last review date" element (last_review_date)
-         * Type: "Date/Time" (glide_date_time)
-         * Maximum length: 40
+         * "Last review date" element.
+         * Type: "Date/Time" (glide_date_time); scalar type: datetime
          */
         last_review_date: GlideElementGlideObject;
-        
+ 
         /**
-         * "Monitoring requirements" element (monitoring_requirements)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * "Monitoring requirements" element.
          */
         monitoring_requirements: GlideElement;
-        
+ 
         /**
-         * "Number" element (number)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * Number element.
          */
         number: GlideElement;
-        
+ 
         /**
-         * "Parent" element (parent)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Parent element.
+         * @see {@link $$GlideRecord.cmdb_ci_service}
          */
         parent: $$GlideElement.cmdb_ci_service;
-        
+ 
         /**
-         * "Phase" element (portfolio_status)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "pipeline"
+         * Phase element.
          */
         portfolio_status: GlideElement;
-        
+ 
         /**
-         * "Prerequisites" element (prerequisites)
-         * Type: "Translated HTML" (translated_html)
-         * Maximum length: 65536
+         * Prerequisites element.
          */
-        prerequisites: GlideElement;
-        
+        prerequisites: GlideElementTranslatedHTML;
+ 
         /**
-         * "Price model" element (price_model)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "per_unit"
+         * "Price model" element.
          */
         price_model: GlideElement;
-        
+ 
         /**
-         * "Price unit" element (price_unit)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * "Price unit" element.
          */
         price_unit: GlideElement;
-        
+ 
         /**
-         * "Published Item" element (published_ref)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         * This is a read-only column.
+         * "Published Item" element.
+         * @see {@link $$GlideRecord.cmdb_ci_service}
          */
         published_ref: $$GlideElement.cmdb_ci_service;
-        
+ 
         /**
-         * "Service classification" element (service_classification)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "Business Service"
+         * "Service classification" element.
          */
         service_classification: GlideElement;
-        
+ 
         /**
-         * "Service level requirement" element (service_level_requirement)
-         * Type: "Translated HTML" (translated_html)
-         * Maximum length: 8000
+         * "Service level requirement" element.
          */
-        service_level_requirement: GlideElement;
-        
+        service_level_requirement: GlideElementTranslatedHTML;
+ 
         /**
-         * "Delegate" element (service_owner_delegate)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Delegate element.
+         * @see {@link $$GlideRecord.sys_user}
          */
         service_owner_delegate: $$GlideElement.sys_user;
-        
+ 
         /**
-         * "Status" element (service_status)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "requirements"
+         * Status element.
          */
         service_status: GlideElement;
-        
+ 
         /**
-         * "SLA" element (sla)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * SLA element.
+         * @see {@link $$GlideRecord.sla}
          */
         sla: $$GlideElement.sla;
-        
+ 
         /**
-         * "Service portfolio" element (spm_service_portfolio)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Service portfolio" element.
+         * @see {@link $$GlideRecord.spm_service_portfolio}
          */
         spm_service_portfolio: $$GlideElement.spm_service_portfolio;
-        
+ 
         /**
-         * "Taxonomy node" element (spm_taxonomy_node)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Taxonomy node" element.
+         * @see {@link $$GlideRecord.spm_taxonomy_node}
          */
         spm_taxonomy_node: $$GlideElement.spm_taxonomy_node;
-        
+ 
         /**
-         * "Stakeholders" element (stakeholders)
-         * Type: "List" (glide_list)
-         * Maximum length: 1024
+         * Stakeholders element.
+         * Type: List (glide_list); Scalar length: undefined
+         * @see {@link $$GlideRecord.sys_user}
          */
-        stakeholders: GlideElementGlideObject;
-        
+        stakeholders: $$GlideElement.sys_user;
+ 
         /**
-         * "State" element (state)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * This is a read-only column.
+         * State element.
          */
         state: GlideElement;
-        
+ 
         /**
-         * "Unit description" element (unit_description)
-         * Type: "HTML" (html)
-         * Maximum length: 4000
+         * "Total vulnerable items" element.
          */
-        unit_description: GlideElement;
-        
+        total_vulnerable_items: GlideElementNumeric;
+ 
         /**
-         * "Used for" element (used_for)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "Production"
+         * "Unit description" element.
+         * Type: HTML (html); Scalar length: undefined
+         */
+        unit_description: GlideElementGlideObject;
+ 
+        /**
+         * "Used for" element.
          */
         used_for: GlideElement;
-        
+ 
         /**
-         * "Users supported" element (user_group)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Users supported" element.
+         * @see {@link $$GlideRecord.sys_user_group}
          */
         user_group: $$GlideElement.sys_user_group;
-        
+ 
         /**
-         * "Version" element (version)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * Version element.
          */
         version: GlideElement;
+ 
+        /**
+         * "Vulnerability risk score" element.
+         */
+        vulnerability_risk_score: GlideElementNumeric;
     }
 
     /**
-     * "Contract" glide record fields.
-     * Auto-number prefix: CNTR
-     * Scope: Global (global) - Global application scope
+     * "Subscription Role Type" glide record fields.
+     * @see {@link $$GlideElement.license_role_type}
+     * @see {@link $$GlideRecord.license_role_type}
+     */
+    export interface license_role_type extends IBaseRecord {
+        /**
+         * Active element.
+         */
+        active: GlideElementBoolean;
+ 
+        /**
+         * ID element.
+         */
+        id: GlideElement;
+ 
+        /**
+         * Name element.
+         */
+        name: GlideElement;
+ 
+        /**
+         * Order element.
+         */
+        order: GlideElementNumeric;
+    }
+ 
+    /**
+     * "OT Asset" glide record fields.
+     * @see {@link $$GlideElement.cmdb_ot_entity}
+     * @see {@link $$GlideRecord.cmdb_ot_entity}
+     */
+    export interface cmdb_ot_entity extends IBaseRecord {
+        /**
+         * "Asset criticality" element.
+         */
+        business_criticality: GlideElement;
+ 
+        /**
+         * "OT asset" element.
+         * @see {@link $$GlideRecord.cmdb_ci}
+         */
+        ot_asset: $$GlideElement.cmdb_ci;
+ 
+        /**
+         * "OT asset type" element.
+         * @see {@link $$GlideRecord.cmdb_ot_entity_type}
+         */
+        ot_asset_type: $$GlideElement.cmdb_ot_entity_type;
+ 
+        /**
+         * "OT discovery source ID" element.
+         */
+        ot_correlation_id: GlideElement;
+ 
+        /**
+         * "OT discovery source name" element.
+         */
+        ot_discovery_source: GlideElement;
+ 
+        /**
+         * "Purdue level" element.
+         */
+        purdue_level: GlideElement;
+ 
+        /**
+         * Domain element.
+         */
+        sys_domain: GlideElementDomainId;
+ 
+        /**
+         * "Domain Path" element.
+         */
+        sys_domain_path: GlideElement;
+ 
+        /**
+         * Zone element.
+         */
+        zone: GlideElement;
+    }
+ 
+    /**
+     * Contract glide record fields.
+     * @see {@link $$GlideElement.ast_contract}
+     * @see {@link $$GlideRecord.ast_contract}
      */
     export interface ast_contract extends IBaseRecord {
         /**
-         * "Active" element (active)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
+         * Active element.
          */
-        active: GlideElement;
-        
+        active: GlideElementBoolean;
+ 
         /**
-         * "Applicable taxes" element (applicable_taxes)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * "Applicable taxes" element.
          */
         applicable_taxes: GlideElement;
-        
+ 
         /**
-         * "Application model" element (application_model)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Application model" element.
+         * @see {@link $$GlideRecord.cmdb_application_product_model}
          */
         application_model: $$GlideElement.cmdb_application_product_model;
-        
+ 
         /**
-         * "Approval History" element (approval_history)
-         * Type: "Journal" (journal)
-         * Maximum length: 4000
-         * This is a read-only column.
+         * "Approval History" element.
+         * Type: Journal (journal)
          */
         approval_history: GlideElementGlideObject;
-        
+ 
         /**
-         * "Approver" element (approver)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Approver element.
+         * @see {@link $$GlideRecord.sys_user}
          */
         approver: $$GlideElement.sys_user;
-        
+ 
         /**
-         * "Business owner" element (business_owner)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Business owner" element.
+         * @see {@link $$GlideRecord.sys_user}
          */
         business_owner: $$GlideElement.sys_user;
-        
+ 
         /**
-         * "Commitment" element (commitment)
-         * Type: "Currency" (currency)
-         * Maximum length: 20
+         * Commitment element.
          */
-        commitment: GlideElement;
-        
+        commitment: GlideElementCurrency;
+ 
         /**
-         * "Contract administrator" element (contract_administrator)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Contract administrator" element.
+         * @see {@link $$GlideRecord.sys_user}
          */
         contract_administrator: $$GlideElement.sys_user;
-        
+ 
         /**
-         * "Contract model" element (contract_model)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         * This is column is mandatory.
+         * "Contract model" element.
+         * @see {@link $$GlideRecord.cmdb_model}
          */
         contract_model: $$GlideElement.cmdb_model;
-        
+ 
         /**
-         * "Cost adjustment amount" element (cost_adjustment)
-         * Type: "Decimal" (decimal)
-         * Maximum length: 15
+         * "Cost adjustment amount" element.
          */
-        cost_adjustment: GlideElement;
-        
+        cost_adjustment: GlideElementNumeric;
+ 
         /**
-         * "Cost adjustment percentage" element (cost_adjustment_percentage)
-         * Type: "Decimal" (decimal)
-         * Maximum length: 15
-         * Default value: "0"
+         * "Cost adjustment percentage" element.
          */
-        cost_adjustment_percentage: GlideElement;
-        
+        cost_adjustment_percentage: GlideElementNumeric;
+ 
         /**
-         * "Cost adjustment reason" element (cost_adjustment_reason)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * "Cost adjustment reason" element.
          */
         cost_adjustment_reason: GlideElement;
-        
+ 
         /**
-         * "Cost adjustment type" element (cost_adjustment_type)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * "Cost adjustment type" element.
          */
         cost_adjustment_type: GlideElement;
-        
+ 
         /**
-         * "Cost center" element (cost_center)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Cost center" element.
+         * @see {@link $$GlideRecord.cmn_cost_center}
          */
         cost_center: $$GlideElement.cmn_cost_center;
-        
+ 
         /**
-         * "Cost per unit" element (cost_per_unit)
-         * Type: "Currency" (currency)
-         * Maximum length: 20
+         * "Cost per unit" element.
          */
-        cost_per_unit: GlideElement;
-        
+        cost_per_unit: GlideElementCurrency;
+ 
         /**
-         * "Covers" element (covers)
-         * Type: "String" (string)
-         * Maximum length: 4000
+         * Covers element.
          */
         covers: GlideElement;
-        
+ 
         /**
-         * "Customer" element (customer)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Customer element.
+         * @see {@link $$GlideRecord.core_company}
          */
         customer: $$GlideElement.core_company;
-        
+ 
         /**
-         * "Description" element (description)
-         * Type: "String" (string)
-         * Maximum length: 4000
+         * Description element.
          */
         description: GlideElement;
-        
+ 
         /**
-         * "Discount" element (discount)
-         * Type: "Decimal" (decimal)
-         * Maximum length: 15
+         * Discount element.
          */
-        discount: GlideElement;
-        
+        discount: GlideElementNumeric;
+ 
         /**
-         * "End date" element (ends)
-         * Type: "Date" (glide_date)
-         * Maximum length: 40
+         * "End date" element.
+         * Type: Date (glide_date); scalar type: date
          */
         ends: GlideElementGlideObject;
-        
+ 
         /**
-         * "Expiration" element (expiration)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Expiration element.
+         * @see {@link $$GlideRecord.clm_condition_checker}
          */
         expiration: $$GlideElement.clm_condition_checker;
-        
+ 
         /**
-         * "Invoice payment terms" element (invoice_payment_terms)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * "Invoice payment terms" element.
          */
         invoice_payment_terms: GlideElement;
-        
+ 
         /**
-         * "License quantity entitled" element (license_quantity_entitled)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
-         * This is a read-only column.
+         * "License quantity entitled" element.
          */
-        license_quantity_entitled: GlideElement;
-        
+        license_quantity_entitled: GlideElementNumeric;
+ 
         /**
-         * "Agreement type" element (license_type)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * "Agreement type" element.
          */
         license_type: GlideElement;
-        
+ 
         /**
-         * "Life Cycle Stage" element (life_cycle_stage)
-         * Type: "Reference" (reference)
-         * Maximum length: 100
+         * "Life Cycle Stage" element.
+         * @see {@link $$GlideRecord.life_cycle_stage}
          */
         life_cycle_stage: $$GlideElement.life_cycle_stage;
-        
+ 
         /**
-         * "Life Cycle Stage Status" element (life_cycle_stage_status)
-         * Type: "Reference" (reference)
-         * Maximum length: 100
+         * "Life Cycle Stage Status" element.
+         * @see {@link $$GlideRecord.life_cycle_stage_status}
          */
         life_cycle_stage_status: $$GlideElement.life_cycle_stage_status;
-        
+ 
         /**
-         * "Lifetime cost" element (lifetime_cost)
-         * Type: "Currency" (currency)
-         * Maximum length: 20
+         * "Lifetime cost" element.
          */
-        lifetime_cost: GlideElement;
-        
+        lifetime_cost: GlideElementCurrency;
+ 
         /**
-         * "Location" element (location)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Location element.
+         * @see {@link $$GlideRecord.cmn_location}
          */
         location: $$GlideElement.cmn_location;
-        
+ 
         /**
-         * "Monthly cost" element (monthly_cost)
-         * Type: "Currency" (currency)
-         * Maximum length: 20
+         * "Monthly cost" element.
          */
-        monthly_cost: GlideElement;
-        
+        monthly_cost: GlideElementCurrency;
+ 
         /**
-         * "Number" element (number)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * This is a read-only column.
+         * Number element.
          */
         number: GlideElement;
-        
+ 
         /**
-         * "Parent contract" element (parent_contract)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Parent contract" element.
+         * @see {@link $$GlideRecord.ast_contract}
          */
         parent_contract: $$GlideElement.ast_contract;
-        
+ 
         /**
-         * "Payment amount" element (payment_amount)
-         * Type: "Currency" (currency)
-         * Maximum length: 20
-         * Default value: "0"
+         * "Payment amount" element.
          */
-        payment_amount: GlideElement;
-        
+        payment_amount: GlideElementCurrency;
+ 
         /**
-         * "Payment schedule" element (payment_schedule)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "Monthly"
+         * "Payment schedule" element.
          */
         payment_schedule: GlideElement;
-        
+ 
         /**
-         * "PO Number" element (po_number)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * "PO Number" element.
          */
         po_number: GlideElement;
-        
+ 
         /**
-         * "Process" element (process)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * This is a read-only column.
+         * Process element.
          */
         process: GlideElement;
-        
+ 
         /**
-         * "Process non-contractual SLAs" element (process_non_contractual_slas)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
+         * "Process non-contractual SLAs" element.
          */
-        process_non_contractual_slas: GlideElement;
-        
+        process_non_contractual_slas: GlideElementBoolean;
+ 
         /**
-         * "Has rate card" element (ratecard)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * This is a read-only column.
+         * "Has rate card" element.
          */
-        ratecard: GlideElement;
-        
+        ratecard: GlideElementBoolean;
+ 
         /**
-         * "Automatically renew" element (renewable)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
+         * "Automatically renew" element.
          */
-        renewable: GlideElement;
-        
+        renewable: GlideElementBoolean;
+ 
         /**
-         * "Renewal/Extension contact" element (renewal_contact)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Renewal/Extension contact" element.
+         * @see {@link $$GlideRecord.sys_user}
          */
         renewal_contact: $$GlideElement.sys_user;
-        
+ 
         /**
-         * "Renewal start date" element (renewal_date)
-         * Type: "Date" (glide_date)
-         * Maximum length: 40
+         * "Renewal start date" element.
+         * Type: Date (glide_date); scalar type: date
          */
         renewal_date: GlideElementGlideObject;
-        
+ 
         /**
-         * "Renewal end date" element (renewal_end_date)
-         * Type: "Date" (glide_date)
-         * Maximum length: 40
+         * "Renewal end date" element.
+         * Type: Date (glide_date); scalar type: date
          */
         renewal_end_date: GlideElementGlideObject;
-        
+ 
         /**
-         * "Options" element (renewal_options)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * Options element.
          */
         renewal_options: GlideElement;
-        
+ 
         /**
-         * "Sales tax" element (sales_tax)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
+         * "Sales tax" element.
          */
-        sales_tax: GlideElement;
-        
+        sales_tax: GlideElementBoolean;
+ 
         /**
-         * "Name" element (short_description)
-         * Type: "String" (string)
-         * Maximum length: 100
+         * Name element.
          */
         short_description: GlideElement;
-        
+ 
         /**
-         * "Start date" element (starts)
-         * Type: "Date" (glide_date)
-         * Maximum length: 40
+         * "Start date" element.
+         * Type: Date (glide_date); scalar type: date
          */
         starts: GlideElementGlideObject;
-        
+ 
         /**
-         * "State" element (state)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "draft"
-         * This is a read-only column.
+         * State element.
          */
         state: GlideElement;
-        
+ 
         /**
-         * "Sub total cost" element (sub_total_cost)
-         * Type: "Currency" (currency)
-         * Maximum length: 20
-         * Default value: "0"
+         * "Sub total cost" element.
          */
-        sub_total_cost: GlideElement;
-        
+        sub_total_cost: GlideElementCurrency;
+ 
         /**
-         * "Substate" element (substate)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "awaiting_review"
-         * This is a read-only column.
+         * Substate element.
          */
         substate: GlideElement;
-        
+ 
         /**
-         * "Contract type" element (sys_class_name)
-         * Type: "System Class Name" (sys_class_name)
-         * Maximum length: 80
+         * "Contract type" element.
          */
-        sys_class_name: GlideElement;
-        
+        sys_class_name: GlideElementSysClassName;
+ 
         /**
-         * "Domain" element (sys_domain)
-         * Type: "Domain ID" (domain_id)
-         * Maximum length: 32
-         * Default value: "global"
+         * Domain element.
          */
-        sys_domain: GlideElementReference;
-        
+        sys_domain: GlideElementDomainId;
+ 
         /**
-         * "Domain Path" element (sys_domain_path)
-         * Type: "Domain Path" (domain_path)
-         * Maximum length: 255
-         * Default value: "/"
+         * "Domain Path" element.
          */
         sys_domain_path: GlideElement;
-        
+ 
         /**
-         * "Tax cost" element (tax_cost)
-         * Type: "Currency" (currency)
-         * Maximum length: 20
+         * "Tax cost" element.
          */
-        tax_cost: GlideElement;
-        
+        tax_cost: GlideElementCurrency;
+ 
         /**
-         * "Tax exempt" element (tax_exempt)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Tax exempt" element.
          */
-        tax_exempt: GlideElement;
-        
+        tax_exempt: GlideElementBoolean;
+ 
         /**
-         * "Effective tax rate" element (tax_rate)
-         * Type: "Decimal" (decimal)
-         * Maximum length: 15
-         * Default value: "7.75"
+         * "Effective tax rate" element.
          */
-        tax_rate: GlideElement;
-        
+        tax_rate: GlideElementNumeric;
+ 
         /**
-         * "Terms and conditions" element (terms_and_conditions)
-         * Type: "Translated HTML" (translated_html)
-         * Maximum length: 10000
-         * This is a read-only column.
+         * "Terms and conditions" element.
          */
-        terms_and_conditions: GlideElement;
-        
+        terms_and_conditions: GlideElementTranslatedHTML;
+ 
         /**
-         * "Total cost" element (total_cost)
-         * Type: "Currency" (currency)
-         * Maximum length: 20
-         * Default value: "0"
+         * "Total cost" element.
          */
-        total_cost: GlideElement;
-        
+        total_cost: GlideElementCurrency;
+ 
         /**
-         * "Vendor" element (vendor)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Vendor element.
+         * @see {@link $$GlideRecord.core_company}
          */
         vendor: $$GlideElement.core_company;
-        
+ 
         /**
-         * "Vendor account" element (vendor_account)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * "Vendor account" element.
          */
         vendor_account: GlideElement;
-        
+ 
         /**
-         * "Contract number" element (vendor_contract)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * This is column is mandatory.
+         * "Contract number" element.
          */
         vendor_contract: GlideElement;
-        
+ 
         /**
-         * "Yearly cost" element (yearly_cost)
-         * Type: "Currency" (currency)
-         * Maximum length: 20
+         * "Yearly cost" element.
          */
-        yearly_cost: GlideElement;
+        yearly_cost: GlideElementCurrency;
     }
-
+ 
     /**
      * "Execution Plan" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * @see {@link $$GlideElement.sc_cat_item_delivery_plan}
+     * @see {@link $$GlideRecord.sc_cat_item_delivery_plan}
      */
     export interface sc_cat_item_delivery_plan extends sys_metadata {
         /**
-         * "Active" element (active)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
+         * Active element.
          */
-        active: GlideElement;
-        
+        active: GlideElementBoolean;
+ 
         /**
-         * "Advanced" element (advanced)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * Advanced element.
          */
-        advanced: GlideElement;
-        
+        advanced: GlideElementBoolean;
+ 
         /**
-         * "On Calendar" element (calendar)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "On Calendar" element.
+         * @see {@link $$GlideRecord.sys_calendar}
          */
         calendar: $$GlideElement.sys_calendar;
-        
+ 
         /**
-         * "Conditions" element (condition)
-         * Type: "Conditions" (conditions)
-         * Maximum length: 1000
+         * Conditions element.
          */
-        condition: GlideElement;
-        
+        condition: GlideElementConditions;
+ 
         /**
-         * "Name" element (name)
-         * Type: "String" (string)
-         * Maximum length: 100
+         * Name element.
          */
         name: GlideElement;
-        
+ 
         /**
-         * "Order" element (order)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
-         * Default value: "100"
+         * Order element.
          */
-        order: GlideElement;
-        
+        order: GlideElementNumeric;
+ 
         /**
-         * "Parent table" element (parent_table)
-         * Type: "Table Name" (table_name)
-         * Maximum length: 80
-         * Default value: "sc_req_item"
+         * "Parent table" element.
          */
         parent_table: GlideElement;
-        
+ 
         /**
-         * "Script" element (script)
-         * Type: "String" (string)
-         * Maximum length: 8000
+         * Script element.
          */
         script: GlideElement;
-        
+ 
         /**
-         * "Short description" element (short_description)
-         * Type: "String" (string)
-         * Maximum length: 120
+         * "Short description" element.
          */
         short_description: GlideElement;
-        
+ 
         /**
-         * "Task table" element (task_table)
-         * Type: "Table Name" (table_name)
-         * Maximum length: 80
-         * Default value: "sc_task"
+         * "Task table" element.
          */
         task_table: GlideElement;
-        
+ 
         /**
-         * "Total delivery time" element (total_delivery_time)
-         * Type: "Duration" (glide_duration)
-         * Maximum length: 40
+         * "Total delivery time" element.
+         * Type: Duration (glide_duration); scalar type: datetime
          */
         total_delivery_time: GlideElementGlideObject;
     }
-
+ 
     /**
      * "Execution Plan Task" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * @see {@link $$GlideElement.sc_cat_item_delivery_task}
+     * @see {@link $$GlideRecord.sc_cat_item_delivery_task}
      */
     export interface sc_cat_item_delivery_task extends sys_metadata {
         /**
-         * "Assigned to" element (assigned_to)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Assigned to" element.
+         * @see {@link $$GlideRecord.sys_user}
          */
         assigned_to: $$GlideElement.sys_user;
-        
+ 
         /**
-         * "Condition" element (condition)
-         * Type: "Conditions" (conditions)
-         * Maximum length: 4000
+         * Condition element.
          */
-        condition: GlideElement;
-        
+        condition: GlideElementConditions;
+ 
         /**
-         * "Condition script" element (condition_script)
-         * Type: "Script (Plain)" (script_plain)
-         * Maximum length: 4000
+         * "Condition script" element.
          */
-        condition_script: GlideElement;
-        
+        condition_script: GlideElementScript;
+ 
         /**
-         * "Delivery plan" element (delivery_plan)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Delivery plan" element.
+         * @see {@link $$GlideRecord.sc_cat_item_delivery_plan}
          */
         delivery_plan: $$GlideElement.sc_cat_item_delivery_plan;
-        
+ 
         /**
-         * "Delivery time" element (delivery_time)
-         * Type: "Duration" (glide_duration)
-         * Maximum length: 40
+         * "Delivery time" element.
+         * Type: Duration (glide_duration); scalar type: datetime
          */
         delivery_time: GlideElementGlideObject;
-        
+ 
         /**
-         * "Generation script" element (generation_script)
-         * Type: "Script (Plain)" (script_plain)
-         * Maximum length: 4000
+         * "Generation script" element.
          */
-        generation_script: GlideElement;
-        
+        generation_script: GlideElementScript;
+ 
         /**
-         * "Fulfillment group" element (group)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Fulfillment group" element.
+         * @see {@link $$GlideRecord.sys_user_group}
          */
         group: $$GlideElement.sys_user_group;
-        
+ 
         /**
-         * "Instructions" element (instructions)
-         * Type: "String" (string)
-         * Maximum length: 4000
+         * Instructions element.
          */
         instructions: GlideElement;
-        
+ 
         /**
-         * "Name" element (name)
-         * Type: "String" (string)
-         * Maximum length: 100
+         * Name element.
          */
         name: GlideElement;
-        
+ 
         /**
-         * "Order" element (order)
-         * Type: "Decimal" (decimal)
-         * Maximum length: 15
-         * Default value: "100"
+         * Order element.
          */
-        order: GlideElement;
-        
+        order: GlideElementNumeric;
+ 
         /**
-         * "Short description" element (short_description)
-         * Type: "String" (string)
-         * Maximum length: 120
+         * "Short description" element.
          */
         short_description: GlideElement;
-        
+ 
         /**
-         * "SLA" element (sla)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * SLA element.
+         * @see {@link $$GlideRecord.sysrule_escalate}
          */
         sla: $$GlideElement.sysrule_escalate;
-        
+ 
         /**
-         * "Work notes" element (work_notes)
-         * Type: "String" (string)
-         * Maximum length: 4000
+         * "Work notes" element.
          */
         work_notes: GlideElement;
     }
-
+ 
     /**
-     * "Service Offering" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * Offering glide record fields.
+     * @see {@link $$GlideElement.service_offering}
+     * @see {@link $$GlideRecord.service_offering}
      */
     export interface service_offering extends cmdb_ci_service {
         /**
-         * "Billing" element (billing)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "monthly"
+         * Billing element.
          */
         billing: GlideElement;
-        
+ 
         /**
-         * "Contract" element (contract)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Contract element.
+         * @see {@link $$GlideRecord.ast_contract}
          */
         contract: $$GlideElement.ast_contract;
-        
+ 
         /**
-         * "Description" element (description)
-         * Type: "String" (string)
-         * Maximum length: 4000
+         * Description element.
          */
         description: GlideElement;
-        
+ 
         /**
-         * "Order" element (order)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * Order element.
          */
         order: GlideElement;
-        
+ 
         /**
-         * "Price" element (price)
-         * Type: "Price" (price)
-         * Maximum length: 20
+         * Price element.
          */
-        price: GlideElement;
-        
+        price: GlideElementPrice;
+ 
         /**
-         * "Technical contact" element (technical_contact)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Technical contact" element.
+         * @see {@link $$GlideRecord.sys_user}
          */
         technical_contact: $$GlideElement.sys_user;
     }
-
+ 
     /**
-     * "Request" glide record fields.
-     * Auto-number prefix: REQ
-     * Scope: Global (global) - Global application scope
+     * Request glide record fields.
+     * @see {@link $$GlideElement.sc_request}
+     * @see {@link $$GlideRecord.sc_request}
      */
     export interface sc_request extends task {
         /**
-         * "Resolve Time" element (calendar_stc)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
+         * "Resolve Time" element.
          */
-        calendar_stc: GlideElement;
-        
+        calendar_stc: GlideElementNumeric;
+ 
         /**
-         * "Delivery address" element (delivery_address)
-         * Type: "String" (string)
-         * Maximum length: 4000
+         * "Delivery address" element.
          */
         delivery_address: GlideElement;
-        
+ 
         /**
-         * "Parent interaction" element (parent_interaction)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Parent interaction" element.
+         * @see {@link $$GlideRecord.interaction}
          */
         parent_interaction: $$GlideElement.interaction;
-        
+ 
         /**
-         * "Price" element (price)
-         * Type: "Currency" (currency)
-         * Maximum length: 20
-         * This is a read-only column.
+         * Price element.
          */
-        price: GlideElement;
-        
+        price: GlideElementCurrency;
+ 
         /**
-         * "Request state" element (request_state)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "requested"
+         * "Request state" element.
          */
         request_state: GlideElement;
-        
+ 
         /**
-         * "Requested for date" element (requested_date)
-         * Type: "Date" (glide_date)
-         * Maximum length: 40
+         * "Requested for date" element.
+         * Type: Date (glide_date); scalar type: date
          */
         requested_date: GlideElementGlideObject;
-        
+ 
         /**
-         * "Requested for" element (requested_for)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Requested for" element.
+         * @see {@link $$GlideRecord.sys_user}
          */
         requested_for: $$GlideElement.sys_user;
-        
+ 
         /**
-         * "Sourceable" element (sourceable)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * This is a read-only column.
-         */
-        sourceable: GlideElement;
-        
-        /**
-         * "Sourced" element (sourced)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * This is a read-only column.
-         */
-        sourced: GlideElement;
-        
-        /**
-         * "Special instructions" element (special_instructions)
-         * Type: "String" (string)
-         * Maximum length: 4000
+         * "Special instructions" element.
          */
         special_instructions: GlideElement;
-        
+ 
         /**
-         * "Stage" element (stage)
-         * Type: "Workflow" (workflow)
-         * Maximum length: 80
-         * Default value: "requested"
+         * Stage element.
          */
-        stage: GlideElement;
+        stage: GlideElementWorkflow;
     }
-
+ 
     /**
      * "Requested Item" glide record fields.
-     * Auto-number prefix: RITM
-     * Scope: Global (global) - Global application scope
+     * @see {@link $$GlideElement.sc_req_item}
+     * @see {@link $$GlideRecord.sc_req_item}
      */
     export interface sc_req_item extends task {
         /**
-         * "Backordered" element (backordered)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
+         * Backordered element.
          */
-        backordered: GlideElement;
-        
+        backordered: GlideElementBoolean;
+ 
         /**
-         * "Billable" element (billable)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
+         * Billable element.
          */
-        billable: GlideElement;
-        
+        billable: GlideElementBoolean;
+ 
         /**
-         * "Item" element (cat_item)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Item element.
+         * @see {@link $$GlideRecord.sc_cat_item}
          */
         cat_item: $$GlideElement.sc_cat_item;
-        
+ 
         /**
-         * "Configuration item" element (configuration_item)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Configuration item" element.
+         * @see {@link $$GlideRecord.cmdb_ci}
          */
         configuration_item: $$GlideElement.cmdb_ci;
-        
+ 
         /**
-         * "Context" element (context)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Context element.
+         * @see {@link $$GlideRecord.wf_context}
          */
         context: $$GlideElement.wf_context;
-        
+ 
         /**
-         * "Estimated delivery" element (estimated_delivery)
-         * Type: "Date/Time" (glide_date_time)
-         * Maximum length: 40
+         * "Estimated delivery" element.
+         * Type: "Date/Time" (glide_date_time); scalar type: datetime
          */
         estimated_delivery: GlideElementGlideObject;
-        
+ 
         /**
-         * "Flow Context" element (flow_context)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Flow Context" element.
+         * @see {@link $$GlideRecord.sys_flow_context}
          */
         flow_context: $$GlideElement.sys_flow_context;
-        
+ 
         /**
-         * "Order Guide" element (order_guide)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Order Guide" element.
+         * @see {@link $$GlideRecord.sc_cat_item_guide}
          */
         order_guide: $$GlideElement.sc_cat_item_guide;
-        
+ 
         /**
-         * "Price" element (price)
-         * Type: "Currency" (currency)
-         * Maximum length: 20
+         * Price element.
          */
-        price: GlideElement;
-        
+        price: GlideElementCurrency;
+ 
         /**
-         * "Quantity" element (quantity)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
-         * Default value: "1"
+         * Quantity element.
          */
-        quantity: GlideElement;
-        
+        quantity: GlideElementNumeric;
+ 
         /**
-         * "Quantity Sourced" element (quantity_sourced)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
-         * Default value: "0"
-         * This is a read-only column.
-         */
-        quantity_sourced: GlideElement;
-        
-        /**
-         * "Received" element (received)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         */
-        received: GlideElement;
-        
-        /**
-         * "Recurring Price Frequency" element (recurring_frequency)
-         * Type: "Choice" (choice)
-         * Maximum length: 40
+         * "Recurring Price Frequency" element.
          */
         recurring_frequency: GlideElement;
-        
+ 
         /**
-         * "Recurring Price" element (recurring_price)
-         * Type: "Price" (price)
-         * Maximum length: 20
-         * Default value: "0"
+         * "Recurring Price" element.
          */
-        recurring_price: GlideElement;
-        
+        recurring_price: GlideElementPrice;
+ 
         /**
-         * "Request" element (request)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Request element.
+         * @see {@link $$GlideRecord.sc_request}
          */
         request: $$GlideElement.sc_request;
-        
+ 
         /**
-         * "Requested for" element (requested_for)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Requested for" element.
+         * @see {@link $$GlideRecord.sys_user}
          */
         requested_for: $$GlideElement.sys_user;
-        
+ 
         /**
-         * "Catalog" element (sc_catalog)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         * This is a read-only column.
+         * Catalog element.
+         * @see {@link $$GlideRecord.sc_catalog}
          */
         sc_catalog: $$GlideElement.sc_catalog;
-        
+ 
         /**
-         * "Sourced" element (sourced)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
-         * This is a read-only column.
+         * Stage element.
          */
-        sourced: GlideElement;
-        
-        /**
-         * "Stage" element (stage)
-         * Type: "Workflow" (workflow)
-         * Maximum length: 80
-         * Default value: "waiting_for_approval"
-         * This is a read-only column.
-         */
-        stage: GlideElement;
+        stage: GlideElementWorkflow;
     }
-
+ 
     /**
      * "Flow engine context" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * @see {@link $$GlideElement.sys_flow_context}
+     * @see {@link $$GlideRecord.sys_flow_context}
      */
     export interface sys_flow_context extends IBaseRecord {
         /**
-         * "Application" element (application)
-         * Type: "String" (string)
-         * Maximum length: 250
-         * This is a read-only column.
+         * Application element.
          */
         application: GlideElement;
-        
+ 
         /**
-         * "Attributes" element (attributes)
-         * Type: "JSON" (json)
-         * Maximum length: 4000
-         * This is a read-only column.
+         * Attributes element.
          */
         attributes: GlideElement;
-        
+ 
         /**
-         * "Calling Source" element (calling_source)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * This is a read-only column.
+         * "Calling Source" element.
          */
         calling_source: GlideElement;
-        
+ 
         /**
-         * "Claimed by" element (claimed_by)
-         * Type: "String" (string)
-         * Maximum length: 250
-         * This is a read-only column.
+         * "Claimed by" element.
          */
         claimed_by: GlideElement;
-        
+ 
         /**
-         * "Design Time Source" element (design_source)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "FLOW_DESIGNER"
-         * This is a read-only column.
+         * "Design Time Source" element.
          */
         design_source: GlideElement;
-        
+ 
         /**
-         * "Engine Version" element (engine_version)
-         * Type: "Integer" (integer)
-         * Maximum length: 10
-         * This is a read-only column.
+         * "Engine Version" element.
          */
-        engine_version: GlideElement;
-        
+        engine_version: GlideElementNumeric;
+ 
         /**
-         * "Execution ID" element (execution_id)
-         * Type: "String" (string)
-         * Maximum length: 32
-         * This is a read-only column.
+         * "Execution ID" element.
          */
         execution_id: GlideElement;
-        
+ 
         /**
-         * "Flow" element (flow)
-         * Type: "String" (string)
-         * Maximum length: 32
-         * This is a read-only column.
+         * Flow element.
          */
         flow: GlideElement;
-        
+ 
         /**
-         * "Flow catalog model" element (flow_catalog_model)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         * This is a read-only column.
+         * "Flow catalog model" element.
+         * @see {@link $$GlideRecord.sys_flow_cat_variable_model}
          */
         flow_catalog_model: $$GlideElement.sys_flow_cat_variable_model;
-        
+ 
         /**
-         * "Is test run" element (is_test_run)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * This is a read-only column.
+         * "Is test run" element.
          */
-        is_test_run: GlideElement;
-        
+        is_test_run: GlideElementBoolean;
+ 
         /**
-         * "Name" element (name)
-         * Type: "String" (string)
-         * Maximum length: 250
-         * This is a read-only column.
+         * Name element.
          */
         name: GlideElement;
-        
+ 
         /**
-         * "Origins" element (origins)
-         * Type: "JSON" (json)
-         * Maximum length: 8000
-         * This is a read-only column.
+         * Origins element.
          */
         origins: GlideElement;
-        
+ 
         /**
-         * "Plan" element (plan)
-         * Type: "JSON" (json)
-         * Maximum length: 4000
-         * This is a read-only column.
+         * Plan element.
          */
         plan: GlideElement;
-        
+ 
         /**
-         * "Reporting" element (reporting)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "ON"
-         * This is a read-only column.
+         * Reporting element.
          */
         reporting: GlideElement;
-        
+ 
         /**
-         * "Runtime" element (run_time)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
-         * This is a read-only column.
+         * Runtime element.
          */
-        run_time: GlideElement;
-        
+        run_time: GlideElementNumeric;
+ 
         /**
-         * "Skip Schedule Cleanup" element (skip_schedule_cleanup)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Skip Schedule Cleanup" element.
          */
-        skip_schedule_cleanup: GlideElement;
-        
+        skip_schedule_cleanup: GlideElementBoolean;
+ 
         /**
-         * "Snapshot" element (snapshot)
-         * Type: "String" (string)
-         * Maximum length: 32
-         * This is a read-only column.
+         * Snapshot element.
          */
         snapshot: GlideElement;
-        
+ 
         /**
-         * "Source Record" element (source_record)
-         * Type: "Document ID" (document_id)
-         * Maximum length: 32
-         * This is a read-only column.
+         * "Source Record" element.
          */
-        source_record: GlideElementReference;
-        
+        source_record: GlideElementDocumentId;
+ 
         /**
-         * "Source Table" element (source_table)
-         * Type: "Table Name" (table_name)
-         * Maximum length: 80
-         * This is a read-only column.
+         * "Source Table" element.
          */
         source_table: GlideElement;
-        
+ 
         /**
-         * "Stages" element (stages)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         * This is a read-only column.
+         * Stages element.
+         * @see {@link $$GlideRecord.stage_state}
          */
         stages: $$GlideElement.stage_state;
-        
+ 
         /**
-         * "State" element (state)
-         * Type: "Choice" (choice)
-         * Maximum length: 40
-         * This is a read-only column.
+         * State element.
          */
         state: GlideElement;
-        
+ 
         /**
-         * "Domain" element (sys_domain)
-         * Type: "Domain ID" (domain_id)
-         * Maximum length: 32
-         * Default value: "global"
+         * Domain element.
          */
-        sys_domain: GlideElementReference;
-        
+        sys_domain: GlideElementDomainId;
+ 
         /**
-         * "Domain Path" element (sys_domain_path)
-         * Type: "Domain Path" (domain_path)
-         * Maximum length: 255
-         * Default value: "/"
+         * "Domain Path" element.
          */
         sys_domain_path: GlideElement;
-        
+ 
         /**
-         * "Transaction" element (transaction)
-         * Type: "String" (string)
-         * Maximum length: 32
-         * This is a read-only column.
+         * Transaction element.
          */
         transaction: GlideElement;
     }
 
     /**
-     * "Stockroom" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * "OT Asset Type" glide record fields.
+     * @see {@link $$GlideElement.cmdb_ot_entity_type}
+     * @see {@link $$GlideRecord.cmdb_ot_entity_type}
+     */
+    export interface cmdb_ot_entity_type extends sys_metadata {
+        /**
+         * Label element.
+         */
+        label: GlideElementTranslatedText;
+ 
+        /**
+         * Name element.
+         */
+        name: GlideElement;
+ 
+        /**
+         * "OT table" element.
+         */
+        ot_table: GlideElement;
+ 
+        /**
+         * "Parent type" element.
+         * @see {@link $$GlideRecord.cmdb_ot_entity_type}
+         */
+        parent_type: $$GlideElement.cmdb_ot_entity_type;
+ 
+        /**
+         * Domain element.
+         */
+        sys_domain: GlideElementDomainId;
+ 
+        /**
+         * "Domain Path" element.
+         */
+        sys_domain_path: GlideElement;
+    }
+ 
+    /**
+     * Stockroom glide record fields.
+     * @see {@link $$GlideElement.alm_stockroom}
+     * @see {@link $$GlideRecord.alm_stockroom}
      */
     export interface alm_stockroom extends IBaseRecord {
         /**
-         * "Assignment group" element (assignment_group)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Assignment group" element.
+         * @see {@link $$GlideRecord.sys_user_group}
          */
         assignment_group: $$GlideElement.sys_user_group;
-        
+ 
         /**
-         * "External" element (external)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * External element.
          */
-        external: GlideElement;
-        
+        external: GlideElementBoolean;
+ 
         /**
-         * "Latitude" element (latitude)
-         * Type: "Floating Point Number" (float)
-         * Maximum length: 40
+         * Latitude element.
          */
-        latitude: GlideElement;
-        
+        latitude: GlideElementNumeric;
+ 
         /**
-         * "Location" element (location)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         * This is column is mandatory.
+         * Location element.
+         * @see {@link $$GlideRecord.cmn_location}
          */
         location: $$GlideElement.cmn_location;
-        
+ 
         /**
-         * "Longitude" element (longitude)
-         * Type: "Floating Point Number" (float)
-         * Maximum length: 40
+         * Longitude element.
          */
-        longitude: GlideElement;
-        
+        longitude: GlideElementNumeric;
+ 
         /**
-         * "Manager" element (manager)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Manager element.
+         * @see {@link $$GlideRecord.sys_user}
          */
         manager: $$GlideElement.sys_user;
-        
+ 
         /**
-         * "Name" element (name)
-         * Type: "String" (string)
-         * Maximum length: 100
+         * Name element.
          */
         name: GlideElement;
-        
+ 
         /**
-         * "Domain" element (sys_domain)
-         * Type: "Domain ID" (domain_id)
-         * Maximum length: 32
-         * Default value: "global"
+         * Domain element.
          */
-        sys_domain: GlideElementReference;
-        
+        sys_domain: GlideElementDomainId;
+ 
         /**
-         * "Domain Path" element (sys_domain_path)
-         * Type: "Domain Path" (domain_path)
-         * Maximum length: 255
-         * Default value: "/"
+         * "Domain Path" element.
          */
         sys_domain_path: GlideElement;
-        
+ 
         /**
-         * "Type" element (type)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Type element.
+         * @see {@link $$GlideRecord.alm_stockroom_type}
          */
         type: $$GlideElement.alm_stockroom_type;
     }
-
+ 
     /**
-     * "Unit" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * Unit glide record fields.
+     * @see {@link $$GlideElement.cmdb_model_unit}
+     * @see {@link $$GlideRecord.cmdb_model_unit}
      */
     export interface cmdb_model_unit extends IBaseRecord {
         /**
-         * "Active" element (active)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
+         * Active element.
          */
-        active: GlideElement;
-        
+        active: GlideElementBoolean;
+ 
         /**
-         * "Code" element (code)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * Code element.
          */
         code: GlideElement;
-        
+ 
         /**
-         * "Description" element (description)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * Description element.
          */
         description: GlideElement;
-        
+ 
         /**
-         * "Domain" element (sys_domain)
-         * Type: "Domain ID" (domain_id)
-         * Maximum length: 32
-         * Default value: "global"
+         * Domain element.
          */
-        sys_domain: GlideElementReference;
-        
+        sys_domain: GlideElementDomainId;
+ 
         /**
-         * "Unit" element (unit)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * This is column is mandatory.
+         * "Domain Path" element.
+         */
+        sys_domain_path: GlideElement;
+ 
+        /**
+         * Unit element.
          */
         unit: GlideElement;
     }
-
+ 
     /**
      * "Catalog Item" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * @see {@link $$GlideElement.sc_cat_item}
+     * @see {@link $$GlideRecord.sc_cat_item}
      */
     export interface sc_cat_item extends sys_metadata {
         /**
-         * "Access Type" element (access_type)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "restricted"
+         * "Access Type" element.
          */
         access_type: GlideElement;
-        
+ 
         /**
-         * "Active" element (active)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
+         * Active element.
          */
-        active: GlideElement;
-        
+        active: GlideElementBoolean;
+ 
         /**
-         * "Availability" element (availability)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "on_desktop"
+         * Availability element.
          */
         availability: GlideElement;
-        
+ 
         /**
-         * "Billable" element (billable)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
+         * Billable element.
          */
-        billable: GlideElement;
-        
+        billable: GlideElementBoolean;
+ 
         /**
-         * "Category" element (category)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Category element.
+         * @see {@link $$GlideRecord.sc_category}
          */
         category: $$GlideElement.sc_category;
-        
+ 
         /**
-         * "Checked out" element (checked_out)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * This is a read-only column.
+         * "Checked out" element.
          */
         checked_out: GlideElement;
-        
+ 
         /**
-         * "Cost" element (cost)
-         * Type: "Decimal" (decimal)
-         * Maximum length: 15
-         * Default value: "0"
+         * Cost element.
          */
-        cost: GlideElement;
-        
+        cost: GlideElementNumeric;
+ 
         /**
-         * "Cart" element (custom_cart)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Cart element.
+         * @see {@link $$GlideRecord.sys_ui_macro}
          */
         custom_cart: $$GlideElement.sys_ui_macro;
-        
+ 
         /**
-         * "Execution Plan" element (delivery_plan)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Execution Plan" element.
+         * @see {@link $$GlideRecord.sc_cat_item_delivery_plan}
          */
         delivery_plan: $$GlideElement.sc_cat_item_delivery_plan;
-        
+ 
         /**
-         * "Delivery plan script" element (delivery_plan_script)
-         * Type: "Script (Plain)" (script_plain)
-         * Maximum length: 4000
+         * "Delivery plan script" element.
          */
-        delivery_plan_script: GlideElement;
-        
+        delivery_plan_script: GlideElementScript;
+ 
         /**
-         * "Delivery time" element (delivery_time)
-         * Type: "Duration" (glide_duration)
-         * Maximum length: 40
-         * Default value: "2 00:00:00"
+         * "Delivery time" element.
+         * Type: Duration (glide_duration); scalar type: datetime
          */
         delivery_time: GlideElementGlideObject;
-        
+ 
         /**
-         * "Description" element (description)
-         * Type: "Translated HTML" (translated_html)
-         * Maximum length: 8000
+         * Description element.
          */
-        description: GlideElement;
-        
+        description: GlideElementTranslatedHTML;
+ 
         /**
-         * "Display price property" element (display_price_property)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * This is a read-only column.
+         * "Display price property" element.
          */
         display_price_property: GlideElement;
-        
+ 
         /**
-         * "Entitlement script" element (entitlement_script)
-         * Type: "Script (Plain)" (script_plain)
-         * Maximum length: 4000
+         * "Entitlement script" element.
          */
-        entitlement_script: GlideElement;
-        
+        entitlement_script: GlideElementScript;
+ 
         /**
-         * "Flow" element (flow_designer_flow)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Flow element.
+         * @see {@link $$GlideRecord.sys_hub_flow}
          */
         flow_designer_flow: $$GlideElement.sys_hub_flow;
-        
+ 
         /**
-         * "Fulfillment automation level" element (fulfillment_automation_level)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "unspecified"
+         * "Fulfillment automation level" element.
          */
         fulfillment_automation_level: GlideElement;
-        
+ 
         /**
-         * "Fulfillment group" element (group)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Fulfillment group" element.
+         * @see {@link $$GlideRecord.sys_user_group}
          */
         group: $$GlideElement.sys_user_group;
-        
+ 
         /**
-         * "Hide on Service Portal" element (hide_sp)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Hide on Service Portal" element.
          */
-        hide_sp: GlideElement;
-        
+        hide_sp: GlideElementBoolean;
+ 
         /**
-         * "Icon" element (icon)
-         * Type: "Image" (user_image)
-         * Maximum length: 40
+         * Icon element.
          */
-        icon: GlideElement;
-        
+        icon: GlideElementUserImage;
+ 
         /**
-         * "Ignore price" element (ignore_price)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
-         * This is a read-only column.
+         * "Ignore price" element.
          */
-        ignore_price: GlideElement;
-        
+        ignore_price: GlideElementBoolean;
+ 
         /**
-         * "Image" element (image)
-         * Type: "Basic Image" (image)
-         * Maximum length: 40
+         * Image element.
          */
         image: GlideElement;
-        
+ 
         /**
-         * "List Price" element (list_price)
-         * Type: "Currency" (currency)
-         * Maximum length: 20
+         * "List Price" element.
          */
-        list_price: GlideElement;
-        
+        list_price: GlideElementCurrency;
+ 
         /**
-         * "Location" element (location)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Location element.
+         * @see {@link $$GlideRecord.cmn_location}
          */
         location: $$GlideElement.cmn_location;
-        
+ 
         /**
-         * "Mandatory Attachment" element (mandatory_attachment)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
+         * "Mandatory Attachment" element.
          */
-        mandatory_attachment: GlideElement;
-        
+        mandatory_attachment: GlideElementBoolean;
+ 
         /**
-         * "Meta" element (meta)
-         * Type: "String" (string)
-         * Maximum length: 4000
+         * Meta element.
          */
         meta: GlideElement;
-        
+ 
         /**
-         * "Hide price (mobile listings)" element (mobile_hide_price)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Hide price (mobile listings)" element.
          */
-        mobile_hide_price: GlideElement;
-        
+        mobile_hide_price: GlideElementBoolean;
+ 
         /**
-         * "Classic Mobile Picture" element (mobile_picture)
-         * Type: "Image" (user_image)
-         * Maximum length: 40
+         * "Classic Mobile Picture" element.
          */
-        mobile_picture: GlideElement;
-        
+        mobile_picture: GlideElementUserImage;
+ 
         /**
-         * "Classic Mobile Picture Type" element (mobile_picture_type)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "use_desktop_picture"
+         * "Classic Mobile Picture Type" element.
          */
         mobile_picture_type: GlideElement;
-        
+ 
         /**
-         * "Model" element (model)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Model element.
+         * @see {@link $$GlideRecord.cmdb_model}
          */
         model: $$GlideElement.cmdb_model;
-        
+ 
         /**
-         * "Name" element (name)
-         * Type: "Translated Text" (translated_text)
-         * Maximum length: 100
+         * Name element.
          */
-        name: GlideElement;
-        
+        name: GlideElementTranslatedText;
+ 
         /**
-         * "Hide Attachment" element (no_attachment_v2)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
+         * "Hide Attachment" element.
          */
-        no_attachment_v2: GlideElement;
-        
+        no_attachment_v2: GlideElementBoolean;
+ 
         /**
-         * "No cart" element (no_cart)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "No cart" element.
          */
-        no_cart: GlideElement;
-        
+        no_cart: GlideElementBoolean;
+ 
         /**
-         * "Hide 'Add to Cart'" element (no_cart_v2)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
+         * "Hide 'Add to Cart'" element.
          */
-        no_cart_v2: GlideElement;
-        
+        no_cart_v2: GlideElementBoolean;
+ 
         /**
-         * "Hide Delivery time" element (no_delivery_time_v2)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
+         * "Hide Delivery time" element.
          */
-        no_delivery_time_v2: GlideElement;
-        
+        no_delivery_time_v2: GlideElementBoolean;
+ 
         /**
-         * "No order" element (no_order)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "No order" element.
          */
-        no_order: GlideElement;
-        
+        no_order: GlideElementBoolean;
+ 
         /**
-         * "No order now" element (no_order_now)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "No order now" element.
          */
-        no_order_now: GlideElement;
-        
+        no_order_now: GlideElementBoolean;
+ 
         /**
-         * "No proceed checkout" element (no_proceed_checkout)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "No proceed checkout" element.
          */
-        no_proceed_checkout: GlideElement;
-        
+        no_proceed_checkout: GlideElementBoolean;
+ 
         /**
-         * "No quantity" element (no_quantity)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "No quantity" element.
          */
-        no_quantity: GlideElement;
-        
+        no_quantity: GlideElementBoolean;
+ 
         /**
-         * "Hide Quantity" element (no_quantity_v2)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
+         * "Hide Quantity" element.
          */
-        no_quantity_v2: GlideElement;
-        
+        no_quantity_v2: GlideElementBoolean;
+ 
         /**
-         * "No search" element (no_search)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "No search" element.
          */
-        no_search: GlideElement;
-        
+        no_search: GlideElementBoolean;
+ 
         /**
-         * "Hide 'Add to Wish List'" element (no_wishlist_v2)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
+         * "Hide 'Add to Wish List'" element.
          */
-        no_wishlist_v2: GlideElement;
-        
+        no_wishlist_v2: GlideElementBoolean;
+ 
         /**
-         * "Omit price in cart" element (omit_price)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Omit price in cart" element.
          */
-        omit_price: GlideElement;
-        
+        omit_price: GlideElementBoolean;
+ 
         /**
-         * "Order" element (order)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
-         * Default value: "0"
+         * Order element.
          */
-        order: GlideElement;
-        
+        order: GlideElementNumeric;
+ 
         /**
-         * "Ordered item link" element (ordered_item_link)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Ordered item link" element.
+         * @see {@link $$GlideRecord.sc_ordered_item_link}
          */
         ordered_item_link: $$GlideElement.sc_ordered_item_link;
-        
+ 
         /**
-         * "Owner" element (owner)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Owner element.
+         * @see {@link $$GlideRecord.sys_user}
          */
         owner: $$GlideElement.sys_user;
-        
+ 
         /**
-         * "Picture" element (picture)
-         * Type: "Image" (user_image)
-         * Maximum length: 40
+         * Picture element.
          */
-        picture: GlideElement;
-        
+        picture: GlideElementUserImage;
+ 
         /**
-         * "Preview link" element (preview)
+         * "Preview link" element.
          * Type: "Catalog Preview" (catalog_preview)
-         * Maximum length: 255
          */
         preview: GlideElement;
-        
+ 
         /**
-         * "Price" element (price)
-         * Type: "Price" (price)
-         * Maximum length: 20
-         * Default value: "0.00"
+         * Price element.
          */
-        price: GlideElement;
-        
+        price: GlideElementPrice;
+ 
         /**
-         * "Published item" element (published_ref)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         * This is a read-only column.
+         * "Published item" element.
+         * @see {@link $$GlideRecord.sc_cat_item}
          */
         published_ref: $$GlideElement.sc_cat_item;
-        
+ 
         /**
-         * "Recurring Price Frequency" element (recurring_frequency)
-         * Type: "Choice" (choice)
-         * Maximum length: 40
+         * "Recurring Price Frequency" element.
          */
         recurring_frequency: GlideElement;
-        
+ 
         /**
-         * "Recurring price" element (recurring_price)
-         * Type: "Price" (price)
-         * Maximum length: 20
+         * "Recurring price" element.
          */
-        recurring_price: GlideElement;
-        
+        recurring_price: GlideElementPrice;
+ 
         /**
-         * "Request method" element (request_method)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * "Request method" element.
          */
         request_method: GlideElement;
-        
+ 
         /**
-         * "Roles" element (roles)
-         * Type: "User Roles" (user_roles)
-         * Maximum length: 255
-         * This column is an array column.
+         * Roles element.
          */
         roles: GlideElement;
-        
+ 
         /**
-         * "Catalogs" element (sc_catalogs)
-         * Type: "List" (glide_list)
-         * Maximum length: 4000
+         * Catalogs element.
+         * Type: List (glide_list); Scalar length: undefined
+         * @see {@link $$GlideRecord.sc_catalog}
          */
-        sc_catalogs: GlideElementGlideObject;
-        
+        sc_catalogs: $$GlideElement.sc_catalog;
+ 
         /**
-         * "Created from item design" element (sc_ic_item_staging)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         * This is a read-only column.
+         * "Created from item design" element.
+         * @see {@link $$GlideRecord.sc_ic_item_staging}
          */
         sc_ic_item_staging: $$GlideElement.sc_ic_item_staging;
-        
+ 
         /**
-         * "Published version" element (sc_ic_version)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
-         * This is a read-only column.
+         * "Published version" element.
          */
-        sc_ic_version: GlideElement;
-        
+        sc_ic_version: GlideElementNumeric;
+ 
         /**
-         * "Associated template" element (sc_template)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Associated template" element.
+         * @see {@link $$GlideRecord.sc_template}
          */
         sc_template: $$GlideElement.sc_template;
-        
+ 
         /**
-         * "Short description" element (short_description)
-         * Type: "Translated Text" (translated_text)
-         * Maximum length: 200
+         * "Short description" element.
          */
-        short_description: GlideElement;
-        
+        short_description: GlideElementTranslatedText;
+ 
         /**
-         * "Expand help for all questions" element (show_variable_help_on_load)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Expand help for all questions" element.
          */
-        show_variable_help_on_load: GlideElement;
-        
+        show_variable_help_on_load: GlideElementBoolean;
+ 
         /**
-         * "Start closed" element (start_closed)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
+         * "Start closed" element.
          */
-        start_closed: GlideElement;
-        
+        start_closed: GlideElementBoolean;
+ 
         /**
-         * "State" element (state)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * This is a read-only column.
+         * State element.
          */
         state: GlideElement;
-        
+ 
         /**
-         * "Taxonomy topic" element (taxonomy_topic)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Taxonomy topic" element.
+         * @see {@link $$GlideRecord.topic}
          */
         taxonomy_topic: $$GlideElement.topic;
-        
+ 
         /**
-         * "Template" element (template)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Template element.
+         * @see {@link $$GlideRecord.sys_template}
          */
         template: $$GlideElement.sys_template;
-        
+ 
         /**
-         * "Template Manager roles" element (template_manager_roles)
-         * Type: "User Roles" (user_roles)
-         * Maximum length: 255
+         * "Template Manager roles" element.
          */
         template_manager_roles: GlideElement;
-        
+ 
         /**
-         * "Type" element (type)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "item"
+         * Type element.
          */
         type: GlideElement;
-        
+ 
         /**
-         * "Use cart layout" element (use_sc_layout)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
+         * "Use cart layout" element.
          */
-        use_sc_layout: GlideElement;
-        
+        use_sc_layout: GlideElementBoolean;
+ 
         /**
-         * "Vendor" element (vendor)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Vendor element.
+         * @see {@link $$GlideRecord.core_company}
          */
         vendor: $$GlideElement.core_company;
-        
+ 
         /**
-         * "Visible on Bundles" element (visible_bundle)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
+         * "Visible on Bundles" element.
          */
-        visible_bundle: GlideElement;
-        
+        visible_bundle: GlideElementBoolean;
+ 
         /**
-         * "Visible on Guides" element (visible_guide)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
+         * "Visible on Guides" element.
          */
-        visible_guide: GlideElement;
-        
+        visible_guide: GlideElementBoolean;
+ 
         /**
-         * "Visible elsewhere" element (visible_standalone)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
+         * "Visible elsewhere" element.
          */
-        visible_standalone: GlideElement;
-        
+        visible_standalone: GlideElementBoolean;
+ 
         /**
-         * "Workflow" element (workflow)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Workflow element.
+         * @see {@link $$GlideRecord.wf_workflow}
          */
         workflow: $$GlideElement.wf_workflow;
     }
-
+ 
     /**
      * "Order guide" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * @see {@link $$GlideElement.sc_cat_item_guide}
+     * @see {@link $$GlideRecord.sc_cat_item_guide}
      */
     export interface sc_cat_item_guide extends sc_cat_item {
         /**
-         * "Cascade Variables" element (cascade)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Cascade Variables" element.
          */
-        cascade: GlideElement;
-        
+        cascade: GlideElementBoolean;
+ 
         /**
-         * "Show Include Toggle" element (include_items)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
+         * "Show Include Toggle" element.
          */
-        include_items: GlideElement;
-        
+        include_items: GlideElementBoolean;
+ 
         /**
-         * "Order to cart" element (order_to_cart)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Order to cart" element.
          */
-        order_to_cart: GlideElement;
-        
+        order_to_cart: GlideElementBoolean;
+ 
         /**
-         * "Script" element (script)
-         * Type: "Script (Plain)" (script_plain)
-         * Maximum length: 8000
+         * Script element.
          */
-        script: GlideElement;
-        
+        script: GlideElementScript;
+ 
         /**
-         * "Two step" element (two_step)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Two step" element.
          */
-        two_step: GlideElement;
-        
+        two_step: GlideElementBoolean;
+ 
         /**
-         * "Validator" element (validator)
-         * Type: "Script (Plain)" (script_plain)
-         * Maximum length: 8000
+         * Validator element.
          */
-        validator: GlideElement;
+        validator: GlideElementScript;
     }
-
-    /**
-     * "Business Unit" glide record fields.
-     * Scope: Global (global) - Global application scope
-     */
-    export interface business_unit extends IBaseRecord {
-        /**
-         * "Business Unit Head" element (bu_head)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         */
-        bu_head: $$GlideElement.sys_user;
-        
-        /**
-         * "Company" element (company)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         */
-        company: $$GlideElement.core_company;
-        
-        /**
-         * "Description" element (description)
-         * Type: "Wide Text" (wide_text)
-         * Maximum length: 100
-         */
-        description: GlideElement;
-        
-        /**
-         * "Hierarchy level" element (hierarchy_level)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
-         */
-        hierarchy_level: GlideElement;
-        
-        /**
-         * "Name" element (name)
-         * Type: "String" (string)
-         * Maximum length: 100
-         * This is column is mandatory.
-         */
-        name: GlideElement;
-        
-        /**
-         * "Parent" element (parent)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         */
-        parent: $$GlideElement.business_unit;
-        
-        /**
-         * "Domain" element (sys_domain)
-         * Type: "Domain ID" (domain_id)
-         * Maximum length: 32
-         */
-        sys_domain: GlideElementReference;
-        
-        /**
-         * "Domain Path" element (sys_domain_path)
-         * Type: "Domain Path" (domain_path)
-         * Maximum length: 255
-         * Default value: "/"
-         */
-        sys_domain_path: GlideElement;
-    }
-
+ 
     /**
      * "Planned Task" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * @see {@link $$GlideElement.planned_task}
+     * @see {@link $$GlideRecord.planned_task}
      */
     export interface planned_task extends task {
         /**
-         * "Actual benefit" element (actual_benefits)
-         * Type: "Currency" (currency)
-         * Maximum length: 20
-         * Default value: "PPMCurrencyHelper.defaultCurrencyValue()"
-         * This is a read-only column.
+         * "Allow dates outside schedule" element.
          */
-        actual_benefits: GlideElement;
-        
+        allow_dates_outside_schedule: GlideElementBoolean;
+ 
         /**
-         * "Allow dates outside schedule" element (allow_dates_outside_schedule)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Budget cost" element.
          */
-        allow_dates_outside_schedule: GlideElement;
-        
+        budget_cost: GlideElementCurrency;
+ 
         /**
-         * "Planned benefit" element (benefits)
-         * Type: "Currency" (currency)
-         * Maximum length: 20
-         * Default value: "PPMCurrencyHelper.defaultCurrencyValue()"
-         */
-        benefits: GlideElement;
-        
-        /**
-         * "Budget cost" element (budget_cost)
-         * Type: "Currency" (currency)
-         * Maximum length: 20
-         * This is a read-only column.
-         */
-        budget_cost: GlideElement;
-        
-        /**
-         * "Calculation" element (calculation_type)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "automatic"
+         * Calculation element.
          */
         calculation_type: GlideElement;
-        
+ 
         /**
-         * "Planned capital" element (capex_cost)
-         * Type: "Currency" (currency)
-         * Maximum length: 20
+         * "Planned capital" element.
          */
-        capex_cost: GlideElement;
-        
+        capex_cost: GlideElementCurrency;
+ 
         /**
-         * "Constraint date" element (constraint_date)
-         * Type: "Date/Time" (glide_date_time)
-         * Maximum length: 40
+         * "Constraint date" element.
+         * Type: "Date/Time" (glide_date_time); scalar type: datetime
          */
         constraint_date: GlideElementGlideObject;
-        
+ 
         /**
-         * "Total Planned cost" element (cost)
-         * Type: "Currency" (currency)
-         * Maximum length: 20
-         * This is a read-only column.
+         * "Planned cost" element.
          */
-        cost: GlideElement;
-        
+        cost: GlideElementCurrency;
+ 
         /**
-         * "Critical path" element (critical_path)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Critical path" element.
          */
-        critical_path: GlideElement;
-        
+        critical_path: GlideElementBoolean;
+ 
         /**
-         * "Dependency" element (dependency)
-         * Type: "Decoration" (decoration)
-         * Maximum length: 40
-         * This is a read-only column.
+         * Dependency element.
          */
         dependency: GlideElement;
-        
+ 
         /**
-         * "Planned duration" element (duration)
-         * Type: "Duration" (glide_duration)
-         * Maximum length: 40
-         * Default value: "01 00:00:00"
+         * "Planned duration" element.
+         * Type: Duration (glide_duration); scalar type: datetime
          */
         duration: GlideElementGlideObject;
-        
+ 
         /**
-         * "Planned effort" element (effort)
-         * Type: "Duration" (glide_duration)
-         * Maximum length: 40
+         * "Planned effort" element.
+         * Type: Duration (glide_duration); scalar type: datetime
          */
         effort: GlideElementGlideObject;
-        
+ 
         /**
-         * "end date" element (end)
-         * Type: "Date" (glide_date)
-         * Maximum length: 40
+         * "end date" element.
+         * Type: Date (glide_date); scalar type: date
          */
         end: GlideElementGlideObject;
-        
+ 
         /**
-         * "Planned end date" element (end_date)
-         * Type: "Date/Time" (glide_date_time)
-         * Maximum length: 40
+         * "Planned end date" element.
+         * Type: "Date/Time" (glide_date_time); scalar type: datetime
          */
         end_date: GlideElementGlideObject;
-        
+ 
         /**
-         * "End date derived from" element (end_date_derived_from)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         * This is a read-only column.
+         * "End date derived from" element.
+         * @see {@link $$GlideRecord.planned_task}
          */
         end_date_derived_from: $$GlideElement.planned_task;
-        
+ 
         /**
-         * "Has Issue" element (has_conflict)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
-         * This is a read-only column.
+         * "Has Issue" element.
          */
-        has_conflict: GlideElement;
-        
+        has_conflict: GlideElementBoolean;
+ 
         /**
-         * "HTML description" element (html_description)
-         * Type: "HTML" (html)
-         * Maximum length: 8000
+         * "HTML description" element.
+         * Type: HTML (html); Scalar length: undefined
          */
-        html_description: GlideElement;
-        
+        html_description: GlideElementGlideObject;
+ 
         /**
-         * "Key milestone" element (key_milestone)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
+         * "Key milestone" element.
          */
-        key_milestone: GlideElement;
-        
+        key_milestone: GlideElementBoolean;
+ 
         /**
-         * "Level" element (level)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
-         * This is a read-only column.
+         * Level element.
          */
-        level: GlideElement;
-        
+        level: GlideElementNumeric;
+ 
         /**
-         * "Milestone" element (milestone)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
+         * Milestone element.
          */
-        milestone: GlideElement;
-        
+        milestone: GlideElementBoolean;
+ 
         /**
-         * "Model ID" element (model_id)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Model ID" element.
+         * @see {@link $$GlideRecord.cmdb_model}
          */
         model_id: $$GlideElement.cmdb_model;
-        
+ 
         /**
-         * "MPP task id" element (mpp_task_id)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
-         * This is a read-only column.
+         * "MPP task id" element.
          */
-        mpp_task_id: GlideElement;
-        
+        mpp_task_id: GlideElementNumeric;
+ 
         /**
-         * "Planned operating" element (opex_cost)
-         * Type: "Currency" (currency)
-         * Maximum length: 20
+         * "Planned operating" element.
          */
-        opex_cost: GlideElement;
-        
+        opex_cost: GlideElementCurrency;
+ 
         /**
-         * "Orig sys ID" element (orig_sys_id)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         * This is a read-only column.
+         * "Orig sys ID" element.
+         * @see {@link $$GlideRecord.planned_task}
          */
         orig_sys_id: $$GlideElement.planned_task;
-        
+ 
         /**
-         * "Orig top task ID" element (orig_top_task_id)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         * This is a read-only column.
+         * "Orig top task ID" element.
+         * @see {@link $$GlideRecord.planned_task}
          */
         orig_top_task_id: $$GlideElement.planned_task;
-        
+ 
         /**
-         * "Override status" element (override_status)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Override status" element.
          */
-        override_status: GlideElement;
-        
+        override_status: GlideElementBoolean;
+ 
         /**
-         * "Percent complete" element (percent_complete)
-         * Type: "Percent Complete" (percent_complete)
-         * Maximum length: 15
-         * Default value: "0"
+         * "Percent complete" element.
          */
-        percent_complete: GlideElement;
-        
+        percent_complete: GlideElementNumeric;
+ 
         /**
-         * "Phase type" element (phase_type)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "waterfall"
-         */
-        phase_type: GlideElement;
-        
-        /**
-         * "Relation applied" element (relation_applied)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         * This is a read-only column.
+         * "Relation applied" element.
+         * @see {@link $$GlideRecord.planned_task_rel_planned_task}
          */
         relation_applied: $$GlideElement.planned_task_rel_planned_task;
-        
+ 
         /**
-         * "Remaining duration" element (remaining_duration)
-         * Type: "Duration" (glide_duration)
-         * Maximum length: 40
+         * "Remaining duration" element.
+         * Type: Duration (glide_duration); scalar type: datetime
          */
         remaining_duration: GlideElementGlideObject;
-        
+ 
         /**
-         * "Remaining effort" element (remaining_effort)
-         * Type: "Duration" (glide_duration)
-         * Maximum length: 40
+         * "Remaining effort" element.
+         * Type: Duration (glide_duration); scalar type: datetime
          */
         remaining_effort: GlideElementGlideObject;
-        
+ 
         /**
-         * "Resource allocated cost" element (resource_allocated_cost)
-         * Type: "Currency" (currency)
-         * Maximum length: 20
-         * This is a read-only column.
+         * Rollup element.
          */
-        resource_allocated_cost: GlideElement;
-        
+        rollup: GlideElementBoolean;
+ 
         /**
-         * "Resource planned cost" element (resource_planned_cost)
-         * Type: "Currency" (currency)
-         * Maximum length: 20
-         * This is a read-only column.
+         * "Run calculation brs" element.
          */
-        resource_planned_cost: GlideElement;
-        
+        run_calc_brs: GlideElementBoolean;
+ 
         /**
-         * "Rollup" element (rollup)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * This is a read-only column.
-         */
-        rollup: GlideElement;
-        
-        /**
-         * "Run calculation brs" element (run_calc_brs)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
-         * This is a read-only column.
-         */
-        run_calc_brs: GlideElement;
-        
-        /**
-         * "Original end date" element (schedule_end_date)
-         * Type: "Date/Time" (glide_date_time)
-         * Maximum length: 40
-         * This is a read-only column.
+         * "Original end date" element.
+         * Type: "Date/Time" (glide_date_time); scalar type: datetime
          */
         schedule_end_date: GlideElementGlideObject;
-        
+ 
         /**
-         * "Original start date" element (schedule_start_date)
-         * Type: "Date/Time" (glide_date_time)
-         * Maximum length: 40
-         * This is a read-only column.
+         * "Original start date" element.
+         * Type: "Date/Time" (glide_date_time); scalar type: datetime
          */
         schedule_start_date: GlideElementGlideObject;
-        
+ 
         /**
-         * "Shadow" element (shadow)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
-         * This is a read-only column.
+         * Shadow element.
          */
-        shadow: GlideElement;
-        
+        shadow: GlideElementBoolean;
+ 
         /**
-         * "Software Model" element (software_model)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Software Model" element.
+         * @see {@link $$GlideRecord.cmdb_software_product_model}
          */
         software_model: $$GlideElement.cmdb_software_product_model;
-        
+ 
         /**
-         * "start date" element (start)
-         * Type: "Date" (glide_date)
-         * Maximum length: 40
+         * "start date" element.
+         * Type: Date (glide_date); scalar type: date
          */
         start: GlideElementGlideObject;
-        
+ 
         /**
-         * "Planned start date" element (start_date)
-         * Type: "Date/Time" (glide_date_time)
-         * Maximum length: 40
+         * "Planned start date" element.
+         * Type: "Date/Time" (glide_date_time); scalar type: datetime
          */
         start_date: GlideElementGlideObject;
-        
+ 
         /**
-         * "Start date derived from" element (start_date_derived_from)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         * This is a read-only column.
+         * "Start date derived from" element.
+         * @see {@link $$GlideRecord.planned_task}
          */
         start_date_derived_from: $$GlideElement.planned_task;
-        
+ 
         /**
-         * "Status" element (status)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "green"
+         * Status element.
          */
         status: GlideElement;
-        
+ 
         /**
-         * "Sub tree root" element (sub_tree_root)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         * This is a read-only column.
+         * "Sub tree root" element.
+         * @see {@link $$GlideRecord.planned_task}
          */
         sub_tree_root: $$GlideElement.planned_task;
-        
+ 
         /**
-         * "Task" element (task)
-         * Type: "Composite Field" (composite_field)
-         * Maximum length: 300
+         * Task element.
          */
         task: GlideElement;
-        
+ 
         /**
-         * "Generate time cards for top task only" element (time_card_at_top_task)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         */
-        time_card_at_top_task: GlideElement;
-        
-        /**
-         * "Time constraint" element (time_constraint)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "asap"
+         * "Time constraint" element.
          */
         time_constraint: GlideElement;
-        
+ 
         /**
-         * "Time Zone" element (time_zone)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * This is a read-only column.
+         * "Time Zone" element.
          */
         time_zone: GlideElement;
-        
+ 
         /**
-         * "Top portfolio" element (top_portfolio)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         * This is a read-only column.
-         */
-        top_portfolio: $$GlideElement.pm_portfolio;
-        
-        /**
-         * "Top program" element (top_program)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         * This is a read-only column.
-         */
-        top_program: $$GlideElement.pm_program;
-        
-        /**
-         * "Top task" element (top_task)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         * This is a read-only column.
+         * "Top task" element.
+         * @see {@link $$GlideRecord.planned_task}
          */
         top_task: $$GlideElement.planned_task;
-        
+ 
         /**
-         * "Version" element (version)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
-         * This is a read-only column.
+         * Version element.
          */
-        version: GlideElement;
-        
+        version: GlideElementNumeric;
+ 
         /**
-         * "WBS" element (wbs)
-         * Type: "String" (string)
-         * Maximum length: 80
-         * This is a read-only column.
+         * WBS element.
          */
         wbs: GlideElement;
-        
+ 
         /**
-         * "WBS Order" element (wbs_order)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
+         * "WBS Order" element.
          */
-        wbs_order: GlideElement;
-        
+        wbs_order: GlideElementNumeric;
+ 
         /**
-         * "Actual cost" element (work_cost)
-         * Type: "Currency" (currency)
-         * Maximum length: 20
-         * Default value: "PPMCurrencyHelper.defaultCurrencyValue()"
+         * "Actual cost" element.
          */
-        work_cost: GlideElement;
-        
+        work_cost: GlideElementCurrency;
+ 
         /**
-         * "Actual duration" element (work_duration)
-         * Type: "Duration" (glide_duration)
-         * Maximum length: 40
+         * "Actual duration" element.
+         * Type: Duration (glide_duration); scalar type: datetime
          */
         work_duration: GlideElementGlideObject;
-        
+ 
         /**
-         * "Actual effort" element (work_effort)
-         * Type: "Duration" (glide_duration)
-         * Maximum length: 40
+         * "Actual effort" element.
+         * Type: Duration (glide_duration); scalar type: datetime
          */
         work_effort: GlideElementGlideObject;
     }
-
+ 
     /**
      * "Task Relationship" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * @see {@link $$GlideElement.task_rel_task}
+     * @see {@link $$GlideRecord.task_rel_task}
      */
     export interface task_rel_task extends IBaseRecord {
         /**
-         * "Child" element (child)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Child element.
+         * @see {@link $$GlideRecord.task}
          */
         child: $$GlideElement.task;
-        
+ 
         /**
-         * "Parent" element (parent)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Parent element.
+         * @see {@link $$GlideRecord.task}
          */
         parent: $$GlideElement.task;
-        
+ 
         /**
-         * "Type" element (type)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         * Default value: "T1"
+         * Type element.
+         * @see {@link $$GlideRecord.task_rel_type}
          */
         type: $$GlideElement.task_rel_type;
     }
-
+ 
     /**
      * "Planned Task Relationship" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * @see {@link $$GlideElement.planned_task_rel_planned_task}
+     * @see {@link $$GlideRecord.planned_task_rel_planned_task}
      */
     export interface planned_task_rel_planned_task extends task_rel_task {
         /**
-         * "Child top task" element (child_top_task)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         * This is a read-only column.
+         * "Child top task" element.
+         * @see {@link $$GlideRecord.planned_task}
          */
         child_top_task: $$GlideElement.planned_task;
-        
+ 
         /**
-         * "External Relation" element (external)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * This is a read-only column.
+         * "External Relation" element.
          */
-        external: GlideElement;
-        
+        external: GlideElementBoolean;
+ 
         /**
-         * "Inter Task Dependency Type" element (inter_task_dependency_type)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "soft"
+         * "Inter Task Dependency Type" element.
          */
         inter_task_dependency_type: GlideElement;
-        
+ 
         /**
-         * "Lag" element (lag)
-         * Type: "Duration" (glide_duration)
-         * Maximum length: 40
-         * Default value: "0 00:00:00"
+         * Lag element.
+         * Type: Duration (glide_duration); scalar type: datetime
          */
         lag: GlideElementGlideObject;
-        
+ 
         /**
-         * "External Relation Id" element (orig_sys_id)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         * This is a read-only column.
+         * "External Relation Id" element.
+         * @see {@link $$GlideRecord.planned_task_rel_planned_task}
          */
         orig_sys_id: $$GlideElement.planned_task_rel_planned_task;
-        
+ 
         /**
-         * "Parent top task" element (parent_top_task)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         * This is a read-only column.
+         * "Parent top task" element.
+         * @see {@link $$GlideRecord.planned_task}
          */
         parent_top_task: $$GlideElement.planned_task;
-        
+ 
         /**
-         * "Process Flag" element (process_flag)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * This is a read-only column.
+         * "Process Flag" element.
          */
-        process_flag: GlideElement;
-        
+        process_flag: GlideElementBoolean;
+ 
         /**
-         * "Run calculation brs" element (run_calc_brs)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
-         * This is a read-only column.
+         * "Run calculation brs" element.
          */
-        run_calc_brs: GlideElement;
-        
+        run_calc_brs: GlideElementBoolean;
+ 
         /**
-         * "Sub Type" element (sub_type)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "fs"
+         * "Sub Type" element.
          */
         sub_type: GlideElement;
-        
+ 
         /**
-         * "Domain" element (sys_domain)
-         * Type: "Domain ID" (domain_id)
-         * Maximum length: 32
-         * Default value: "global"
+         * Domain element.
          */
-        sys_domain: GlideElementReference;
+        sys_domain: GlideElementDomainId;
     }
-
+ 
     /**
-     * "Feature" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * Feature glide record fields.
+     * @see {@link $$GlideElement.rm_feature}
+     * @see {@link $$GlideRecord.rm_feature}
      */
     export interface rm_feature extends planned_task {
         /**
-         * "Parent feature" element (parent_feature)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Parent feature" element.
+         * @see {@link $$GlideRecord.rm_feature}
          */
         parent_feature: $$GlideElement.rm_feature;
+ 
+        /**
+         * "Primary goal" element.
+         * @see {@link $$GlideRecord.sn_gf_goal}
+         */
+        primary_goal: $$GlideElement.sn_gf_goal;
+ 
+        /**
+         * "Sys ID" element.
+         */
+        sys_id: GlideElement;
     }
 
     /**
-     * "Story" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * Goal glide record fields.
+     * @see {@link $$GlideElement.sn_gf_goal}
+     * @see {@link $$GlideRecord.sn_gf_goal}
+     */
+    export interface sn_gf_goal extends sn_gf_core_goal {
+        /**
+         * "Business Unit" element.
+         * @see {@link $$GlideRecord.business_unit}
+         */
+        business_unit: $$GlideElement.business_unit;
+ 
+        /**
+         * Company element.
+         * @see {@link $$GlideRecord.core_company}
+         */
+        company: $$GlideElement.core_company;
+ 
+        /**
+         * Department element.
+         * @see {@link $$GlideRecord.cmn_department}
+         */
+        department: $$GlideElement.cmn_department;
+ 
+        /**
+         * "Strategic  priority" element.
+         * @see {@link $$GlideRecord.sn_gf_strategy}
+         */
+        strategy: $$GlideElement.sn_gf_strategy;
+ 
+        /**
+         * Team element.
+         * @see {@link $$GlideRecord.sys_user_group}
+         */
+        team: $$GlideElement.sys_user_group;
+    }
+ 
+    /**
+     * Story glide record fields.
+     * @see {@link $$GlideElement.rm_story}
+     * @see {@link $$GlideRecord.rm_story}
      */
     export interface rm_story extends rm_feature {
         /**
-         * "Acceptance criteria" element (acceptance_criteria)
-         * Type: "HTML" (html)
-         * Maximum length: 4000
+         * "Acceptance criteria" element.
+         * Type: HTML (html); Scalar length: undefined
          */
-        acceptance_criteria: GlideElement;
-        
+        acceptance_criteria: GlideElementGlideObject;
+ 
         /**
-         * "Backlog Type" element (backlog_type)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "product"
-         * This is a read-only column.
+         * "Backlog definition" element.
+         * @see {@link $$GlideRecord.backlog_definition}
+         */
+        backlog_definition: $$GlideElement.backlog_definition;
+ 
+        /**
+         * "Backlog Type" element.
          */
         backlog_type: GlideElement;
-        
+ 
         /**
-         * "Blocked" element (blocked)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * Blocked element.
          */
-        blocked: GlideElement;
-        
+        blocked: GlideElementBoolean;
+ 
         /**
-         * "Blocked reason" element (blocked_reason)
-         * Type: "String" (string)
-         * Maximum length: 1000
+         * "Blocked reason" element.
          */
         blocked_reason: GlideElement;
-        
+ 
         /**
-         * "Classification" element (classification)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "Feature"
+         * Classification element.
          */
         classification: GlideElement;
-        
+ 
         /**
-         * "Defect" element (defect)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Defect element.
+         * @see {@link $$GlideRecord.rm_defect}
          */
         defect: $$GlideElement.rm_defect;
-        
+ 
         /**
-         * "Demand" element (demand)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         * This is a read-only column.
-         */
-        demand: $$GlideElement.dmn_demand;
-        
-        /**
-         * "Enhancement" element (enhancement)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Enhancement element.
+         * @see {@link $$GlideRecord.rm_enhancement}
          */
         enhancement: $$GlideElement.rm_enhancement;
-        
+ 
         /**
-         * "Epic" element (epic)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Epic element.
+         * @see {@link $$GlideRecord.rm_epic}
          */
         epic: $$GlideElement.rm_epic;
-        
+ 
         /**
-         * "Global rank" element (global_rank)
-         * Type: "Long" (longint)
-         * Maximum length: 40
-         * This is a read-only column.
+         * "Global rank" element.
          */
-        global_rank: GlideElement;
-        
+        global_rank: GlideElementNumeric;
+ 
         /**
-         * "Group rank" element (group_rank)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
+         * "Group rank" element.
          */
-        group_rank: GlideElement;
-        
+        group_rank: GlideElementNumeric;
+ 
         /**
-         * "Product" element (product)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Original task" element.
+         * @see {@link $$GlideRecord.task}
+         */
+        original_task: $$GlideElement.task;
+ 
+        /**
+         * Product element.
+         * @see {@link $$GlideRecord.cmdb_model}
          */
         product: $$GlideElement.cmdb_model;
-        
+ 
         /**
-         * "Product rank" element (product_rank)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
+         * "Product rank" element.
          */
-        product_rank: GlideElement;
-        
+        product_rank: GlideElementNumeric;
+ 
         /**
-         * "Product Index" element (product_rel_index)
-         * Type: "Order Index" (order_index)
-         * Maximum length: 40
+         * "Product Index" element.
          */
-        product_rel_index: GlideElement;
-        
+        product_rel_index: GlideElementNumeric;
+ 
         /**
-         * "Project" element (project)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Rank element.
          */
-        project: $$GlideElement.pm_project;
-        
+        rank: GlideElementNumeric;
+ 
         /**
-         * "Project Index" element (project_index)
-         * Type: "Order Index" (order_index)
-         * Maximum length: 40
-         */
-        project_index: GlideElement;
-        
-        /**
-         * "Project phase" element (project_phase)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         */
-        project_phase: $$GlideElement.pm_project_task;
-        
-        /**
-         * "Rank" element (rank)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
-         */
-        rank: GlideElement;
-        
-        /**
-         * "Release" element (release)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Release element.
+         * @see {@link $$GlideRecord.rm_release_scrum}
          */
         release: $$GlideElement.rm_release_scrum;
-        
+ 
         /**
-         * "Release Index" element (release_index)
-         * Type: "Order Index" (order_index)
-         * Maximum length: 40
+         * "Release Index" element.
          */
-        release_index: GlideElement;
-        
+        release_index: GlideElementNumeric;
+ 
         /**
-         * "Split from" element (split_from)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Split from" element.
+         * @see {@link $$GlideRecord.rm_story}
          */
         split_from: $$GlideElement.rm_story;
-        
+ 
         /**
-         * "Sprint" element (sprint)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Sprint element.
+         * @see {@link $$GlideRecord.rm_sprint}
          */
         sprint: $$GlideElement.rm_sprint;
-        
+ 
         /**
-         * "Sprint Index" element (sprint_index)
-         * Type: "Order Index" (order_index)
-         * Maximum length: 40
+         * "Sprint Index" element.
          */
-        sprint_index: GlideElement;
-        
+        sprint_index: GlideElementNumeric;
+ 
         /**
-         * "Points" element (story_points)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
+         * Points element.
          */
-        story_points: GlideElement;
-        
+        story_points: GlideElementNumeric;
+ 
         /**
-         * "Team" element (team)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         */
-        team: $$GlideElement.scrum_pp_team;
-        
-        /**
-         * "Team Index" element (team_index)
-         * Type: "Order Index" (order_index)
-         * Maximum length: 40
-         */
-        team_index: GlideElement;
-        
-        /**
-         * "Theme" element (theme)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Theme element.
+         * @see {@link $$GlideRecord.scrum_theme}
          */
         theme: $$GlideElement.scrum_theme;
-        
+ 
         /**
-         * "Type" element (type)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * Type element.
          */
         type: GlideElement;
     }
-
+ 
     /**
-     * "Business Calendar" glide record fields.
-     * Scope: Global (global) - Global application scope
-     */
-    export interface business_calendar extends sys_metadata {
-        /**
-         * "Name" element (calendar_name)
-         * Type: "String" (string)
-         * Maximum length: 80
-         * This is column is mandatory.
-         */
-        calendar_name: GlideElement;
-        
-        /**
-         * "Description" element (description)
-         * Type: "String" (string)
-         * Maximum length: 1000
-         */
-        description: GlideElement;
-        
-        /**
-         * "Is legacy schedule" element (is_legacy_schedule)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
-         */
-        is_legacy_schedule: GlideElement;
-        
-        /**
-         * "Label" element (label)
-         * Type: "Translated Field" (translated_field)
-         * Maximum length: 80
-         * This is column is mandatory.
-         */
-        label: GlideElement;
-        
-        /**
-         * "Parent" element (parent)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         */
-        parent: $$GlideElement.business_calendar;
-        
-        /**
-         * "Plural label" element (plural_label)
-         * Type: "Translated Field" (translated_field)
-         * Maximum length: 80
-         * This is column is mandatory.
-         */
-        plural_label: GlideElement;
-        
-        /**
-         * "Domain" element (sys_domain)
-         * Type: "Domain ID" (domain_id)
-         * Maximum length: 32
-         * Default value: "global"
-         */
-        sys_domain: GlideElementReference;
-        
-        /**
-         * "Domain Path" element (sys_domain_path)
-         * Type: "Domain Path" (domain_path)
-         * Maximum length: 255
-         * Default value: "/"
-         */
-        sys_domain_path: GlideElement;
-        
-        /**
-         * "Time zone" element (time_zone)
-         * Type: "String" (string)
-         * Maximum length: 40
-         */
-        time_zone: GlideElement;
-    }
-
-    /**
-     * "Schedule" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * Schedule glide record fields.
+     * @see {@link $$GlideElement.cmn_schedule}
+     * @see {@link $$GlideRecord.cmn_schedule}
      */
     export interface cmn_schedule extends business_calendar {
         /**
-         * "Document" element (document)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * Document element.
          */
         document: GlideElement;
-        
+ 
         /**
-         * "Document key" element (document_key)
-         * Type: "String" (string)
-         * Maximum length: 32
+         * "Document key" element.
          */
         document_key: GlideElement;
-        
+ 
         /**
-         * "Name" element (name)
-         * Type: "String" (string)
-         * Maximum length: 80
+         * Name element.
          */
         name: GlideElement;
-        
+ 
         /**
-         * "Read only" element (read_only)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Read only" element.
          */
-        read_only: GlideElement;
-        
+        read_only: GlideElementBoolean;
+ 
         /**
-         * "Type" element (type)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * Type element.
          */
         type: GlideElement;
     }
-
+ 
+    /**
+     * "Business Calendar" glide record fields.
+     * @see {@link $$GlideElement.business_calendar}
+     * @see {@link $$GlideRecord.business_calendar}
+     */
+    export interface business_calendar extends sys_metadata {
+        /**
+         * Name element.
+         */
+        calendar_name: GlideElement;
+ 
+        /**
+         * Description element.
+         */
+        description: GlideElement;
+ 
+        /**
+         * "Is legacy schedule" element.
+         */
+        is_legacy_schedule: GlideElementBoolean;
+ 
+        /**
+         * Label element.
+         */
+        label: GlideElementTranslatedField;
+ 
+        /**
+         * Parent element.
+         * @see {@link $$GlideRecord.business_calendar}
+         */
+        parent: $$GlideElement.business_calendar;
+ 
+        /**
+         * "Plural label" element.
+         */
+        plural_label: GlideElementTranslatedField;
+ 
+        /**
+         * Domain element.
+         */
+        sys_domain: GlideElementDomainId;
+ 
+        /**
+         * "Domain Path" element.
+         */
+        sys_domain_path: GlideElement;
+ 
+        /**
+         * "Time zone" element.
+         */
+        time_zone: GlideElement;
+    }
+ 
     /**
      * "Business Calendar Entry" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * @see {@link $$GlideElement.business_calendar_span}
+     * @see {@link $$GlideRecord.business_calendar_span}
      */
     export interface business_calendar_span extends IBaseRecord {
         /**
-         * "Calendar" element (calendar)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         * This is column is mandatory.
+         * Calendar element.
+         * @see {@link $$GlideRecord.business_calendar}
          */
         calendar: $$GlideElement.business_calendar;
-        
+ 
         /**
-         * "Counter" element (counter)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
+         * Counter element.
          */
-        counter: GlideElement;
-        
+        counter: GlideElementNumeric;
+ 
         /**
-         * "End" element (end)
-         * Type: "Calendar Date/Time" (calendar_date_time)
-         * Maximum length: 40
-         * This is column is mandatory.
+         * End element.
+         * Type: "Calendar Date/Time" (calendar_date_time); scalar type: datetime
          */
         end: GlideElementGlideObject;
-        
+ 
         /**
-         * "Index0" element (index0)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
+         * Index0 element.
          */
-        index0: GlideElement;
-        
+        index0: GlideElementNumeric;
+ 
         /**
-         * "Index1" element (index1)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
+         * Index1 element.
          */
-        index1: GlideElement;
-        
+        index1: GlideElementNumeric;
+ 
         /**
-         * "Index2" element (index2)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
+         * Index2 element.
          */
-        index2: GlideElement;
-        
+        index2: GlideElementNumeric;
+ 
         /**
-         * "Index3" element (index3)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
+         * Index3 element.
          */
-        index3: GlideElement;
-        
+        index3: GlideElementNumeric;
+ 
         /**
-         * "Index4" element (index4)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
+         * Index4 element.
          */
-        index4: GlideElement;
-        
+        index4: GlideElementNumeric;
+ 
         /**
-         * "Index5" element (index5)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
+         * Index5 element.
          */
-        index5: GlideElement;
-        
+        index5: GlideElementNumeric;
+ 
         /**
-         * "Index6" element (index6)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
+         * Index6 element.
          */
-        index6: GlideElement;
-        
+        index6: GlideElementNumeric;
+ 
         /**
-         * "Index7" element (index7)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
+         * Index7 element.
          */
-        index7: GlideElement;
-        
+        index7: GlideElementNumeric;
+ 
         /**
-         * "Index8" element (index8)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
+         * Index8 element.
          */
-        index8: GlideElement;
-        
+        index8: GlideElementNumeric;
+ 
         /**
-         * "Index9" element (index9)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
+         * Index9 element.
          */
-        index9: GlideElement;
-        
+        index9: GlideElementNumeric;
+ 
         /**
-         * "Name" element (span_name)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         * This is column is mandatory.
+         * Name element.
+         * @see {@link $$GlideRecord.business_calendar_span_name}
          */
         span_name: $$GlideElement.business_calendar_span_name;
-        
+ 
         /**
-         * "Start" element (start)
-         * Type: "Calendar Date/Time" (calendar_date_time)
-         * Maximum length: 40
-         * This is column is mandatory.
+         * Start element.
+         * Type: "Calendar Date/Time" (calendar_date_time); scalar type: datetime
          */
         start: GlideElementGlideObject;
-        
+ 
         /**
-         * "Class" element (sys_class_name)
-         * Type: "System Class Name" (sys_class_name)
-         * Maximum length: 80
+         * Class element.
          */
-        sys_class_name: GlideElement;
+        sys_class_name: GlideElementSysClassName;
     }
-
+ 
     /**
-     * "Agreement" glide record fields.
-     * Auto-number prefix: SLA
-     * Scope: Global (global) - Global application scope
+     * Agreement glide record fields.
+     * @see {@link $$GlideElement.sla}
+     * @see {@link $$GlideRecord.sla}
      */
     export interface sla extends IBaseRecord {
         /**
-         * "Accountable user" element (accountable_user)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Accountable user" element.
+         * @see {@link $$GlideRecord.sys_user}
          */
         accountable_user: $$GlideElement.sys_user;
-        
+ 
         /**
-         * "Active" element (active)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
+         * Active element.
          */
-        active: GlideElement;
-        
+        active: GlideElementBoolean;
+ 
         /**
-         * "Avail pct" element (avail_pct)
-         * Type: "Decimal" (decimal)
-         * Maximum length: 15
-         * Default value: "90"
+         * "Avail pct" element.
          */
-        avail_pct: GlideElement;
-        
+        avail_pct: GlideElementNumeric;
+ 
         /**
-         * "Begins" element (begins)
-         * Type: "Date" (glide_date)
-         * Maximum length: 40
+         * Begins element.
+         * Type: Date (glide_date); scalar type: date
          */
         begins: GlideElementGlideObject;
-        
+ 
         /**
-         * "Business lead" element (business_lead)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Business lead" element.
+         * @see {@link $$GlideRecord.sys_user}
          */
         business_lead: $$GlideElement.sys_user;
-        
+ 
         /**
-         * "Business unit" element (business_unit)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * "Business unit" element.
          */
         business_unit: GlideElement;
-        
+ 
         /**
-         * "Calendar" element (calendar)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Calendar element.
+         * @see {@link $$GlideRecord.sys_calendar}
          */
         calendar: $$GlideElement.sys_calendar;
-        
+ 
         /**
-         * "Change procedures" element (change_procedures)
-         * Type: "HTML" (html)
-         * Maximum length: 8000
+         * "Change procedures" element.
+         * Type: HTML (html); Scalar length: undefined
          */
-        change_procedures: GlideElement;
-        
+        change_procedures: GlideElementGlideObject;
+ 
         /**
-         * "Consultant user" element (consultant_user)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Consultant user" element.
+         * @see {@link $$GlideRecord.sys_user}
          */
         consultant_user: $$GlideElement.sys_user;
-        
+ 
         /**
-         * "Contract" element (contract)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Contract element.
+         * @see {@link $$GlideRecord.ast_contract}
          */
         contract: $$GlideElement.ast_contract;
-        
+ 
         /**
-         * "Department" element (department)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Department element.
+         * @see {@link $$GlideRecord.cmn_department}
          */
         department: $$GlideElement.cmn_department;
-        
+ 
         /**
-         * "Description" element (description)
-         * Type: "HTML" (html)
-         * Maximum length: 8000
+         * Description element.
+         * Type: HTML (html); Scalar length: undefined
          */
-        description: GlideElement;
-        
+        description: GlideElementGlideObject;
+ 
         /**
-         * "Disaster recovery" element (disaster_recovery)
-         * Type: "HTML" (html)
-         * Maximum length: 8000
+         * "Disaster recovery" element.
+         * Type: HTML (html); Scalar length: undefined
          */
-        disaster_recovery: GlideElement;
-        
+        disaster_recovery: GlideElementGlideObject;
+ 
         /**
-         * "Ends" element (ends)
-         * Type: "Date" (glide_date)
-         * Maximum length: 40
+         * Ends element.
+         * Type: Date (glide_date); scalar type: date
          */
         ends: GlideElementGlideObject;
-        
+ 
         /**
-         * "Functional area" element (functional_area)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * "Functional area" element.
          */
         functional_area: GlideElement;
-        
+ 
         /**
-         * "Incident procedures" element (incident_procedures)
-         * Type: "HTML" (html)
-         * Maximum length: 8000
+         * "Incident procedures" element.
+         * Type: HTML (html); Scalar length: undefined
          */
-        incident_procedures: GlideElement;
-        
+        incident_procedures: GlideElementGlideObject;
+ 
         /**
-         * "Informed user" element (informed_user)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Informed user" element.
+         * @see {@link $$GlideRecord.sys_user}
          */
         informed_user: $$GlideElement.sys_user;
-        
+ 
         /**
-         * "Maintenance" element (maintenance)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Maintenance element.
+         * @see {@link $$GlideRecord.sys_calendar}
          */
         maintenance: $$GlideElement.sys_calendar;
-        
+ 
         /**
-         * "Name" element (name)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * Name element.
          */
         name: GlideElement;
-        
+ 
         /**
-         * "Next review" element (next_review)
-         * Type: "Date" (glide_date)
-         * Maximum length: 40
+         * "Next review" element.
+         * Type: Date (glide_date); scalar type: date
          */
         next_review: GlideElementGlideObject;
-        
+ 
         /**
-         * "Notes" element (notes)
-         * Type: "HTML" (html)
-         * Maximum length: 8000
+         * Notes element.
+         * Type: HTML (html); Scalar length: undefined
          */
-        notes: GlideElement;
-        
+        notes: GlideElementGlideObject;
+ 
         /**
-         * "Number" element (number)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * Number element.
          */
         number: GlideElement;
-        
+ 
         /**
-         * "Reponsibilities" element (reponsibilities)
-         * Type: "HTML" (html)
-         * Maximum length: 8000
+         * Reponsibilities element.
+         * Type: HTML (html); Scalar length: undefined
          */
-        reponsibilities: GlideElement;
-        
+        reponsibilities: GlideElementGlideObject;
+ 
         /**
-         * "Response time" element (response_time)
-         * Type: "Decimal" (decimal)
-         * Maximum length: 15
-         * Default value: "10"
+         * "Response time" element.
          */
-        response_time: GlideElement;
-        
+        response_time: GlideElementNumeric;
+ 
         /**
-         * "Responsible user" element (responsible_user)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Responsible user" element.
+         * @see {@link $$GlideRecord.sys_user}
          */
         responsible_user: $$GlideElement.sys_user;
-        
+ 
         /**
-         * "Security notes" element (security_notes)
-         * Type: "HTML" (html)
-         * Maximum length: 8000
+         * "Security notes" element.
+         * Type: HTML (html); Scalar length: undefined
          */
-        security_notes: GlideElement;
-        
+        security_notes: GlideElementGlideObject;
+ 
         /**
-         * "Service goals" element (service_goals)
-         * Type: "HTML" (html)
-         * Maximum length: 8000
+         * "Service goals" element.
+         * Type: HTML (html); Scalar length: undefined
          */
-        service_goals: GlideElement;
-        
+        service_goals: GlideElementGlideObject;
+ 
         /**
-         * "Short description" element (short_description)
-         * Type: "String" (string)
-         * Maximum length: 80
+         * "Short description" element.
          */
         short_description: GlideElement;
-        
+ 
         /**
-         * "Signatures" element (signatures)
-         * Type: "HTML" (html)
-         * Maximum length: 8000
+         * Signatures element.
+         * Type: HTML (html); Scalar length: undefined
          */
-        signatures: GlideElement;
-        
+        signatures: GlideElementGlideObject;
+ 
         /**
-         * "Agreement type" element (sys_class_name)
-         * Type: "System Class Name" (sys_class_name)
-         * Maximum length: 80
+         * "Agreement type" element.
          */
-        sys_class_name: GlideElement;
-        
+        sys_class_name: GlideElementSysClassName;
+ 
         /**
-         * "Technical lead" element (technical_lead)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Technical lead" element.
+         * @see {@link $$GlideRecord.sys_user}
          */
         technical_lead: $$GlideElement.sys_user;
-        
+ 
         /**
-         * "Transaction load" element (transaction_load)
-         * Type: "Decimal" (decimal)
-         * Maximum length: 15
+         * "Transaction load" element.
          */
-        transaction_load: GlideElement;
-        
+        transaction_load: GlideElementNumeric;
+ 
         /**
-         * "Users" element (users)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Users element.
+         * @see {@link $$GlideRecord.sys_user_group}
          */
         users: $$GlideElement.sys_user_group;
     }
-
-    /**
-     * "Calendar" glide record fields.
-     * Scope: Global (global) - Global application scope
-     */
-    export interface sys_calendar extends sys_metadata {
-        /**
-         * "Name" element (name)
-         * Type: "String" (string)
-         * Maximum length: 40
-         */
-        name: GlideElement;
-    }
-
+ 
     /**
      * "Service Portfolio" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * @see {@link $$GlideElement.spm_service_portfolio}
+     * @see {@link $$GlideRecord.spm_service_portfolio}
      */
     export interface spm_service_portfolio extends IBaseRecord {
         /**
-         * "Auto-create service offerings" element (create_service_offerings)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Auto-create service offerings" element.
          */
-        create_service_offerings: GlideElement;
-        
+        create_service_offerings: GlideElementBoolean;
+ 
         /**
-         * "Description" element (description)
-         * Type: "Translated Text" (translated_text)
-         * Maximum length: 4000
+         * Description element.
          */
-        description: GlideElement;
-        
+        description: GlideElementTranslatedText;
+ 
         /**
-         * "Market scope" element (market_scope)
-         * Type: "Translated Text" (translated_text)
-         * Maximum length: 40
+         * "Market scope" element.
          */
-        market_scope: GlideElement;
-        
+        market_scope: GlideElementTranslatedText;
+ 
         /**
-         * "Name" element (name)
-         * Type: "Translated Text" (translated_text)
-         * Maximum length: 80
-         * This is column is mandatory.
+         * Name element.
          */
-        name: GlideElement;
-        
+        name: GlideElementTranslatedText;
+ 
         /**
-         * "Number of offerings per service" element (offerings_per_service)
-         * Type: "Choice" (choice)
-         * Maximum length: 40
-         * Default value: "1"
+         * "Number of offerings per service" element.
          */
         offerings_per_service: GlideElement;
-        
+ 
         /**
-         * "Service portfolio manager" element (service_portfolio_manager)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Service portfolio manager" element.
+         * @see {@link $$GlideRecord.sys_user}
          */
         service_portfolio_manager: $$GlideElement.sys_user;
-        
+ 
         /**
-         * "Service portfolio owner" element (service_portfolio_owner)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Service portfolio owner" element.
+         * @see {@link $$GlideRecord.sys_user}
          */
         service_portfolio_owner: $$GlideElement.sys_user;
-        
+ 
         /**
-         * "Short description" element (short_description)
-         * Type: "Translated Text" (translated_text)
-         * Maximum length: 1000
+         * "Short description" element.
          */
-        short_description: GlideElement;
-        
+        short_description: GlideElementTranslatedText;
+ 
         /**
-         * "Domain" element (sys_domain)
-         * Type: "Domain ID" (domain_id)
-         * Maximum length: 32
-         * Default value: "global"
+         * Domain element.
          */
-        sys_domain: GlideElementReference;
-        
+        sys_domain: GlideElementDomainId;
+ 
         /**
-         * "Domain Path" element (sys_domain_path)
-         * Type: "Domain Path" (domain_path)
-         * Maximum length: 255
+         * "Domain Path" element.
          */
         sys_domain_path: GlideElement;
     }
-
+ 
+    /**
+     * Calendar glide record fields.
+     * @see {@link $$GlideElement.sys_calendar}
+     * @see {@link $$GlideRecord.sys_calendar}
+     */
+    export interface sys_calendar extends sys_metadata {
+        /**
+         * Name element.
+         */
+        name: GlideElement;
+    }
+ 
     /**
      * "Taxonomy Node" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * @see {@link $$GlideElement.spm_taxonomy_node}
+     * @see {@link $$GlideRecord.spm_taxonomy_node}
      */
     export interface spm_taxonomy_node extends IBaseRecord {
         /**
-         * "Description" element (description)
-         * Type: "Translated Text" (translated_text)
-         * Maximum length: 4000
+         * Description element.
          */
-        description: GlideElement;
-        
+        description: GlideElementTranslatedText;
+ 
         /**
-         * "Name" element (name)
-         * Type: "Translated Text" (translated_text)
-         * Maximum length: 80
-         * This is column is mandatory.
+         * Name element.
          */
-        name: GlideElement;
-        
+        name: GlideElementTranslatedText;
+ 
         /**
-         * "Parent" element (parent)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Parent element.
+         * @see {@link $$GlideRecord.spm_taxonomy_node}
          */
         parent: $$GlideElement.spm_taxonomy_node;
-        
+ 
         /**
-         * "Short description" element (short_description)
-         * Type: "Translated Text" (translated_text)
-         * Maximum length: 1000
+         * "Short description" element.
          */
-        short_description: GlideElement;
-        
+        short_description: GlideElementTranslatedText;
+ 
         /**
-         * "Service portfolio" element (spm_service_portfolio)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         * This is column is mandatory.
+         * "Service portfolio" element.
+         * @see {@link $$GlideRecord.spm_service_portfolio}
          */
         spm_service_portfolio: $$GlideElement.spm_service_portfolio;
-        
+ 
         /**
-         * "Taxonomy layer" element (spm_taxonomy_layer)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         * This is column is mandatory.
-         */
-        spm_taxonomy_layer: $$GlideElement.spm_taxonomy_layer_definition;
-        
-        /**
-         * "Owned by" element (taxonomy_node_owner)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Owned by" element.
+         * @see {@link $$GlideRecord.sys_user}
          */
         taxonomy_node_owner: $$GlideElement.sys_user;
-        
+ 
         /**
-         * "Valid from" element (valid_from)
-         * Type: "Date/Time" (glide_date_time)
-         * Maximum length: 40
+         * "Valid from" element.
+         * Type: "Date/Time" (glide_date_time); scalar type: datetime
          */
         valid_from: GlideElementGlideObject;
-        
+ 
         /**
-         * "Valid to" element (valid_to)
-         * Type: "Date/Time" (glide_date_time)
-         * Maximum length: 40
+         * "Valid to" element.
+         * Type: "Date/Time" (glide_date_time); scalar type: datetime
          */
         valid_to: GlideElementGlideObject;
     }
 
     /**
+     * "Core Goal" glide record fields.
+     * @see {@link $$GlideElement.sn_gf_core_goal}
+     * @see {@link $$GlideRecord.sn_gf_core_goal}
+     */
+    export interface sn_gf_core_goal extends IBaseRecord {
+        /**
+         * Active element.
+         */
+        active: GlideElementBoolean;
+ 
+        /**
+         * "Calendar Period" element.
+         * @see {@link $$GlideRecord.business_calendar_span}
+         */
+        calendar_period: $$GlideElement.business_calendar_span;
+ 
+        /**
+         * Category element.
+         */
+        category: GlideElement;
+ 
+        /**
+         * Classification element.
+         */
+        classification: GlideElement;
+ 
+        /**
+         * Comments element.
+         * Type: "Journal Input" (journal_input)
+         */
+        comments: GlideElementGlideObject;
+ 
+        /**
+         * Contributors element.
+         * Type: List (glide_list); Scalar length: undefined
+         * @see {@link $$GlideRecord.sys_user}
+         */
+        contributors: $$GlideElement.sys_user;
+ 
+        /**
+         * Description element.
+         * Type: HTML (html); Scalar length: undefined
+         */
+        description: GlideElementGlideObject;
+ 
+        /**
+         * "End date" element.
+         * Type: Date (glide_date); scalar type: date
+         */
+        end_date: GlideElementGlideObject;
+ 
+        /**
+         * Name element.
+         */
+        name: GlideElement;
+ 
+        /**
+         * Owner element.
+         * @see {@link $$GlideRecord.sys_user}
+         */
+        owner: $$GlideElement.sys_user;
+ 
+        /**
+         * "Parent goal" element.
+         * @see {@link $$GlideRecord.sn_gf_core_goal}
+         */
+        parent_goal: $$GlideElement.sn_gf_core_goal;
+ 
+        /**
+         * Progress element.
+         */
+        percent_complete: GlideElementNumeric;
+ 
+        /**
+         * Priority element.
+         */
+        priority: GlideElement;
+ 
+        /**
+         * "Reason for inactive" element.
+         */
+        reason_for_inactive: GlideElement;
+ 
+        /**
+         * "Roll up progress" element.
+         */
+        roll_up_progress: GlideElementBoolean;
+ 
+        /**
+         * "Start date" element.
+         * Type: Date (glide_date); scalar type: date
+         */
+        start_date: GlideElementGlideObject;
+ 
+        /**
+         * State element.
+         */
+        state: GlideElement;
+ 
+        /**
+         * Status element.
+         */
+        status: GlideElement;
+ 
+        /**
+         * Class element.
+         */
+        sys_class_name: GlideElementSysClassName;
+ 
+        /**
+         * Domain element.
+         */
+        sys_domain: GlideElementDomainId;
+ 
+        /**
+         * "Weight scale" element.
+         */
+        weight: GlideElement;
+    }
+ 
+    /**
+     * "Strategic Priority" glide record fields.
+     * @see {@link $$GlideElement.sn_gf_strategy}
+     * @see {@link $$GlideRecord.sn_gf_strategy}
+     */
+    export interface sn_gf_strategy extends IBaseRecord {
+        /**
+         * Active element.
+         */
+        active: GlideElementBoolean;
+ 
+        /**
+         * "Business Unit" element.
+         * @see {@link $$GlideRecord.business_unit}
+         */
+        business_unit: $$GlideElement.business_unit;
+ 
+        /**
+         * "Calendar Period" element.
+         * @see {@link $$GlideRecord.business_calendar_span}
+         */
+        calendar_period: $$GlideElement.business_calendar_span;
+ 
+        /**
+         * Company element.
+         * @see {@link $$GlideRecord.core_company}
+         */
+        company: $$GlideElement.core_company;
+ 
+        /**
+         * Department element.
+         * @see {@link $$GlideRecord.cmn_department}
+         */
+        department: $$GlideElement.cmn_department;
+ 
+        /**
+         * Description element.
+         * Type: HTML (html); Scalar length: undefined
+         */
+        description: GlideElementGlideObject;
+ 
+        /**
+         * "End date" element.
+         * Type: Date (glide_date); scalar type: date
+         */
+        end_date: GlideElementGlideObject;
+ 
+        /**
+         * Name element.
+         */
+        name: GlideElement;
+ 
+        /**
+         * Number element.
+         */
+        number: GlideElement;
+ 
+        /**
+         * Owner element.
+         * @see {@link $$GlideRecord.sys_user}
+         */
+        owner: $$GlideElement.sys_user;
+ 
+        /**
+         * Parent element.
+         * @see {@link $$GlideRecord.sn_gf_strategy}
+         */
+        parent: $$GlideElement.sn_gf_strategy;
+ 
+        /**
+         * "Start date" element.
+         * Type: Date (glide_date); scalar type: date
+         */
+        start_date: GlideElementGlideObject;
+ 
+        /**
+         * Domain element.
+         */
+        sys_domain: GlideElementDomainId;
+ 
+        /**
+         * Type element.
+         */
+        type: GlideElement;
+    }
+ 
+    /**
      * "Application Model" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * @see {@link $$GlideElement.cmdb_application_product_model}
+     * @see {@link $$GlideRecord.cmdb_application_product_model}
      */
     export interface cmdb_application_product_model extends cmdb_model {
     }
-
+ 
     /**
-     * "Condition" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * Condition glide record fields.
+     * @see {@link $$GlideElement.clm_condition_checker}
+     * @see {@link $$GlideRecord.clm_condition_checker}
      */
     export interface clm_condition_checker extends sys_metadata {
         /**
-         * "Compliant state" element (compliant)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Compliant state" element.
          */
-        compliant: GlideElement;
-        
+        compliant: GlideElementBoolean;
+ 
         /**
-         * "Expiration Condition" element (condition)
-         * Type: "Conditions" (conditions)
-         * Maximum length: 4000
+         * "Expiration Condition" element.
          */
-        condition: GlideElement;
-        
+        condition: GlideElementConditions;
+ 
         /**
-         * "Condition check" element (condition_check)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Condition check" element.
+         * @see {@link $$GlideRecord.clm_condition_check}
          */
         condition_check: $$GlideElement.clm_condition_check;
-        
+ 
         /**
-         * "Event name" element (event_name)
-         * Type: "String" (string)
-         * Maximum length: 100
+         * "Event name" element.
          */
         event_name: GlideElement;
-        
+ 
         /**
-         * "Name" element (name)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * Name element.
          */
         name: GlideElement;
-        
+ 
         /**
-         * "Order" element (order)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
-         * Default value: "100"
+         * Order element.
          */
-        order: GlideElement;
-        
+        order: GlideElementNumeric;
+ 
         /**
-         * "Domain" element (sys_domain)
-         * Type: "Domain ID" (domain_id)
-         * Maximum length: 32
-         * Default value: "global"
+         * Domain element.
          */
-        sys_domain: GlideElementReference;
-        
+        sys_domain: GlideElementDomainId;
+ 
         /**
-         * "Domain Path" element (sys_domain_path)
-         * Type: "Domain Path" (domain_path)
-         * Maximum length: 255
-         * Default value: "/"
+         * "Domain Path" element.
          */
         sys_domain_path: GlideElement;
-        
+ 
         /**
-         * "Table" element (table)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * This is a read-only column.
+         * Table element.
          */
         table: GlideElement;
     }
-
+ 
     /**
      * "Condition Checks" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * @see {@link $$GlideElement.clm_condition_check}
+     * @see {@link $$GlideRecord.clm_condition_check}
      */
     export interface clm_condition_check extends sys_metadata {
         /**
-         * "Category" element (category)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * Category element.
          */
         category: GlideElement;
-        
+ 
         /**
-         * "Condition field" element (condition_field)
-         * Type: "Field Name" (field_name)
-         * Maximum length: 80
-         * This is column is mandatory.
+         * "Condition field" element.
          */
         condition_field: GlideElement;
-        
+ 
         /**
-         * "Event name" element (event_name)
-         * Type: "String" (string)
-         * Maximum length: 100
+         * "Event name" element.
          */
         event_name: GlideElement;
-        
+ 
         /**
-         * "Order" element (order)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
+         * Order element.
          */
-        order: GlideElement;
-        
+        order: GlideElementNumeric;
+ 
         /**
-         * "Domain" element (sys_domain)
-         * Type: "Domain ID" (domain_id)
-         * Maximum length: 32
-         * Default value: "global"
+         * Domain element.
          */
-        sys_domain: GlideElementReference;
-        
+        sys_domain: GlideElementDomainId;
+ 
         /**
-         * "Domain Path" element (sys_domain_path)
-         * Type: "Domain Path" (domain_path)
-         * Maximum length: 255
-         * Default value: "/"
+         * "Domain Path" element.
          */
         sys_domain_path: GlideElement;
-        
+ 
         /**
-         * "Table" element (table)
-         * Type: "Table Name" (table_name)
-         * Maximum length: 80
+         * Table element.
          */
         table: GlideElement;
     }
-
+ 
     /**
-     * "Rule" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * Rule glide record fields.
+     * @see {@link $$GlideElement.sysrule}
+     * @see {@link $$GlideRecord.sysrule}
      */
     export interface sysrule extends sys_metadata {
         /**
-         * "Description" element (description)
-         * Type: "String" (string)
-         * Maximum length: 4000
+         * Description element.
          */
         description: GlideElement;
-        
+ 
         /**
-         * "Name" element (name)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * Name element.
          */
         name: GlideElement;
-        
+ 
         /**
-         * "Execution Order" element (order)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
-         * Default value: "100"
+         * "Execution Order" element.
          */
-        order: GlideElement;
-        
+        order: GlideElementNumeric;
+ 
         /**
-         * "Domain" element (sys_domain)
-         * Type: "Domain ID" (domain_id)
-         * Maximum length: 32
-         * Default value: "global"
+         * Domain element.
          */
-        sys_domain: GlideElementReference;
-        
+        sys_domain: GlideElementDomainId;
+ 
         /**
-         * "Domain Path" element (sys_domain_path)
-         * Type: "Domain Path" (domain_path)
-         * Maximum length: 255
-         * Default value: "/"
+         * "Domain Path" element.
          */
         sys_domain_path: GlideElement;
-        
+ 
         /**
-         * "Overrides" element (sys_overrides)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Overrides element.
+         * @see {@link $$GlideRecord.sysrule}
          */
         sys_overrides: $$GlideElement.sysrule;
     }
-
+ 
     /**
      * "Service Level Agreement" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * @see {@link $$GlideElement.sysrule_escalate}
+     * @see {@link $$GlideRecord.sysrule_escalate}
      */
     export interface sysrule_escalate extends sysrule {
         /**
-         * "Advanced condition" element (advanced_condition)
-         * Type: "Script" (script)
-         * Maximum length: 4000
+         * "Advanced condition" element.
          */
-        advanced_condition: GlideElement;
-        
+        advanced_condition: GlideElementScript;
+ 
         /**
-         * "Assignment script" element (assignment_script)
-         * Type: "Script" (script)
-         * Maximum length: 4000
+         * "Assignment script" element.
          */
-        assignment_script: GlideElement;
-        
+        assignment_script: GlideElementScript;
+ 
         /**
-         * "Calendar" element (calendar)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Calendar element.
+         * @see {@link $$GlideRecord.sys_calendar}
          */
         calendar: $$GlideElement.sys_calendar;
-        
+ 
         /**
-         * "Conditions" element (condition)
-         * Type: "Conditions" (conditions)
-         * Maximum length: 1000
+         * Conditions element.
          */
-        condition: GlideElement;
-        
+        condition: GlideElementConditions;
+ 
         /**
-         * "Pause Conditions" element (pause_condition)
-         * Type: "Conditions" (conditions)
-         * Maximum length: 1000
+         * "Pause Conditions" element.
          */
-        pause_condition: GlideElement;
-        
+        pause_condition: GlideElementConditions;
+ 
         /**
-         * "Reset Conditions" element (reset_condition)
-         * Type: "Conditions" (conditions)
-         * Maximum length: 1000
+         * "Reset Conditions" element.
          */
-        reset_condition: GlideElement;
-        
+        reset_condition: GlideElementConditions;
+ 
         /**
-         * "Table" element (table)
-         * Type: "Table Name" (table_name)
-         * Maximum length: 80
-         * Default value: "incident"
+         * Table element.
          */
         table: GlideElement;
-        
+ 
         /**
-         * "Threshold" element (threshold)
-         * Type: "Duration" (glide_duration)
-         * Maximum length: 40
+         * Threshold element.
+         * Type: Duration (glide_duration); scalar type: datetime
          */
         threshold: GlideElementGlideObject;
     }
-
+ 
     /**
      * "Workflow context" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * @see {@link $$GlideElement.wf_context}
+     * @see {@link $$GlideRecord.wf_context}
      */
     export interface wf_context extends IBaseRecord {
         /**
-         * "Active" element (active)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
+         * Active element.
          */
-        active: GlideElement;
-        
+        active: GlideElementBoolean;
+ 
         /**
-         * "Activity count" element (activity_count)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
-         * Default value: "0"
+         * "Activity count" element.
          */
-        activity_count: GlideElement;
-        
+        activity_count: GlideElementNumeric;
+ 
         /**
-         * "Activity index" element (activity_index)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
-         * Default value: "0"
+         * "Activity index" element.
          */
-        activity_index: GlideElement;
-        
+        activity_index: GlideElementNumeric;
+ 
         /**
-         * "Run after bus. rules run" element (after_business_rules)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Run after bus. rules run" element.
          */
-        after_business_rules: GlideElement;
-        
+        after_business_rules: GlideElementBoolean;
+ 
         /**
-         * "Auto start" element (auto_start)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
+         * "Auto start" element.
          */
-        auto_start: GlideElement;
-        
+        auto_start: GlideElementBoolean;
+ 
         /**
-         * "Stage rendering" element (column_renderer)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Stage rendering" element.
+         * @see {@link $$GlideRecord.column_renderer}
          */
         column_renderer: $$GlideElement.column_renderer;
-        
+ 
         /**
-         * "Cumulative to ERT" element (cumulated_avg_ert)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
+         * "Cumulative to ERT" element.
          */
-        cumulated_avg_ert: GlideElement;
-        
+        cumulated_avg_ert: GlideElementBoolean;
+ 
         /**
-         * "Due" element (due)
-         * Type: "Date/Time" (glide_date_time)
-         * Maximum length: 40
+         * Due element.
+         * Type: "Date/Time" (glide_date_time); scalar type: datetime
          */
         due: GlideElementGlideObject;
-        
+ 
         /**
-         * "Ended" element (ended)
-         * Type: "Date/Time" (glide_date_time)
-         * Maximum length: 40
+         * Ended element.
+         * Type: "Date/Time" (glide_date_time); scalar type: datetime
          */
         ended: GlideElementGlideObject;
-        
+ 
         /**
-         * "Available actions" element (ert_long_running_actions)
-         * Type: "UI Action List" (glide_action_list)
-         * Maximum length: 1024
-         * Default value: "51782761ac1464174baaeb9af4b9ae76,803b3c728f320100ec9a6441f0f923ef,b69c7e18eb532100ec9a82810206fea4"
+         * "Available actions" element.
+         * Type: "UI Action List" (glide_action_list); Scalar length: undefined
          */
         ert_long_running_actions: GlideElementGlideObject;
-        
+ 
         /**
-         * "Available actions" element (ert_outlier_workflow_actions)
-         * Type: "UI Action List" (glide_action_list)
-         * Maximum length: 1024
-         * Default value: "b69c7e18eb532100ec9a82810206fea4"
+         * "Available actions" element.
+         * Type: "UI Action List" (glide_action_list); Scalar length: undefined
          */
         ert_outlier_workflow_actions: GlideElementGlideObject;
-        
+ 
         /**
-         * "Related record" element (id)
-         * Type: "Document ID" (document_id)
-         * Maximum length: 32
-         * This is a read-only column.
+         * "Related record" element.
          */
-        id: GlideElementReference;
-        
+        id: GlideElementDocumentId;
+ 
         /**
-         * "Name" element (name)
-         * Type: "String" (string)
-         * Maximum length: 100
-         * This is a read-only column.
+         * Name element.
          */
         name: GlideElement;
-        
+ 
         /**
-         * "Parent" element (parent)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         * This is a read-only column.
+         * Parent element.
+         * @see {@link $$GlideRecord.wf_context}
          */
         parent: $$GlideElement.wf_context;
-        
+ 
         /**
-         * "Parent activity" element (parent_activity)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         * This is a read-only column.
+         * "Parent activity" element.
+         * @see {@link $$GlideRecord.wf_executing}
          */
         parent_activity: $$GlideElement.wf_executing;
-        
+ 
         /**
-         * "Requires ERT" element (requires_ert)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Requires ERT" element.
          */
-        requires_ert: GlideElement;
-        
+        requires_ert: GlideElementBoolean;
+ 
         /**
-         * "Result" element (result)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * Result element.
          */
         result: GlideElement;
-        
+ 
         /**
-         * "Return value" element (return_value)
-         * Type: "Name/Values" (name_values)
-         * Maximum length: 4000
-         * This is a read-only column.
+         * "Return value" element.
          */
-        return_value: GlideElement;
-        
+        return_value: GlideElementNameValue;
+ 
         /**
-         * "Running duration" element (running_duration)
-         * Type: "Duration" (glide_duration)
-         * Maximum length: 40
+         * "Running duration" element.
+         * Type: Duration (glide_duration); scalar type: datetime
          */
         running_duration: GlideElementGlideObject;
-        
+ 
         /**
-         * "Schedule" element (schedule)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Schedule element.
+         * @see {@link $$GlideRecord.cmn_schedule}
          */
         schedule: $$GlideElement.cmn_schedule;
-        
+ 
         /**
-         * "Scratchpad" element (scratchpad)
-         * Type: "Name/Values" (name_values)
-         * Maximum length: 8000
-         * This is a read-only column.
+         * Scratchpad element.
          */
-        scratchpad: GlideElement;
-        
+        scratchpad: GlideElementNameValue;
+ 
         /**
-         * "Stage" element (stage)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Stage element.
+         * @see {@link $$GlideRecord.wf_stage}
          */
         stage: $$GlideElement.wf_stage;
-        
+ 
         /**
-         * "Stage states" element (stage_state)
-         * Type: "String" (string)
-         * Maximum length: 8000
-         * This is a read-only column.
+         * "Stage states" element.
          */
         stage_state: GlideElement;
-        
+ 
         /**
-         * "Started" element (started)
-         * Type: "Date/Time" (glide_date_time)
-         * Maximum length: 40
+         * Started element.
+         * Type: "Date/Time" (glide_date_time); scalar type: datetime
          */
         started: GlideElementGlideObject;
-        
+ 
         /**
-         * "Started by" element (started_by)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Started by" element.
+         * @see {@link $$GlideRecord.sys_user}
          */
         started_by: $$GlideElement.sys_user;
-        
+ 
         /**
-         * "State" element (state)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "executing"
+         * State element.
          */
         state: GlideElement;
-        
+ 
         /**
-         * "Domain" element (sys_domain)
-         * Type: "Domain ID" (domain_id)
-         * Maximum length: 32
-         * Default value: "global"
+         * Domain element.
          */
-        sys_domain: GlideElementReference;
-        
+        sys_domain: GlideElementDomainId;
+ 
         /**
-         * "Domain Path" element (sys_domain_path)
-         * Type: "Domain Path" (domain_path)
-         * Maximum length: 255
-         * Default value: "/"
+         * "Domain Path" element.
          */
         sys_domain_path: GlideElement;
-        
+ 
         /**
-         * "Table" element (table)
-         * Type: "Short Table Name" (short_table_name)
-         * Maximum length: 40
-         * This is a read-only column.
+         * Table element.
          */
-        table: GlideElement;
-        
+        table: GlideElementShortTableName;
+ 
         /**
-         * "Timezone" element (timezone)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * Timezone element.
          */
         timezone: GlideElement;
-        
+ 
         /**
-         * "Available actions" element (without_current_wf_actions)
-         * Type: "UI Action List" (glide_action_list)
-         * Maximum length: 1024
-         * Default value: "51782761ac1464174baaeb9af4b9ae76,b69c7e18eb532100ec9a82810206fea4"
+         * "Available actions" element.
+         * Type: "UI Action List" (glide_action_list); Scalar length: undefined
          */
         without_current_wf_actions: GlideElementGlideObject;
-        
+ 
         /**
-         * "Workflow" element (workflow)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Workflow element.
+         * @see {@link $$GlideRecord.wf_workflow}
          */
         workflow: $$GlideElement.wf_workflow;
-        
+ 
         /**
-         * "Workflow version" element (workflow_version)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         * This is a read-only column.
+         * "Workflow version" element.
+         * @see {@link $$GlideRecord.wf_workflow_version}
          */
         workflow_version: $$GlideElement.wf_workflow_version;
     }
-
+ 
     /**
      * "Workflow Version" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * @see {@link $$GlideElement.wf_workflow_version}
+     * @see {@link $$GlideRecord.wf_workflow_version}
      */
     export interface wf_workflow_version extends IBaseRecord {
         /**
-         * "Active" element (active)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
+         * Active element.
          */
-        active: GlideElement;
-        
+        active: GlideElementBoolean;
+ 
         /**
-         * "Activity stages" element (activity_stages)
-         * Type: "Compressed" (compressed)
-         * Maximum length: 8000
-         * This is a read-only column.
+         * "Activity stages" element.
          */
-        activity_stages: GlideElement;
-        
+        activity_stages: GlideElementCompressed;
+ 
         /**
-         * "Run after bus. rules run" element (after_business_rules)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
+         * "Run after bus. rules run" element.
          */
-        after_business_rules: GlideElement;
-        
+        after_business_rules: GlideElementBoolean;
+ 
         /**
-         * "Checked out" element (checked_out)
-         * Type: "Date/Time" (glide_date_time)
-         * Maximum length: 40
-         * This is a read-only column.
+         * "Checked out" element.
+         * Type: "Date/Time" (glide_date_time); scalar type: datetime
          */
         checked_out: GlideElementGlideObject;
-        
+ 
         /**
-         * "Checked out by" element (checked_out_by)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         * This is a read-only column.
+         * "Checked out by" element.
+         * @see {@link $$GlideRecord.sys_user}
          */
         checked_out_by: $$GlideElement.sys_user;
-        
+ 
         /**
-         * "Stage rendering" element (column_renderer)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         * Default value: "a56213111b030100adca1e094f0713ac"
+         * "Stage rendering" element.
+         * @see {@link $$GlideRecord.column_renderer}
          */
         column_renderer: $$GlideElement.column_renderer;
-        
+ 
         /**
-         * "Condition" element (condition)
-         * Type: "Conditions" (conditions)
-         * Maximum length: 1000
+         * Condition element.
          */
-        condition: GlideElement;
-        
+        condition: GlideElementConditions;
+ 
         /**
-         * "If condition matches" element (condition_type)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * "If condition matches" element.
          */
         condition_type: GlideElement;
-        
+ 
         /**
-         * "Description" element (description)
-         * Type: "String" (string)
-         * Maximum length: 4000
+         * Description element.
          */
         description: GlideElement;
-        
+ 
         /**
-         * "Expected sequences" element (expected_sequences)
-         * Type: "Compressed" (compressed)
-         * Maximum length: 8000
-         * This is a read-only column.
+         * "Expected sequences" element.
          */
-        expected_sequences: GlideElement;
-        
+        expected_sequences: GlideElementCompressed;
+ 
         /**
-         * "Expected time" element (expected_time)
-         * Type: "Duration" (glide_duration)
-         * Maximum length: 40
+         * "Expected time" element.
+         * Type: Duration (glide_duration); scalar type: datetime
          */
         expected_time: GlideElementGlideObject;
-        
+ 
         /**
-         * "Delivery based on" element (expected_time_type)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * "Delivery based on" element.
          */
         expected_time_type: GlideElement;
-        
+ 
         /**
-         * "Full sequences" element (full_sequences)
-         * Type: "Compressed" (compressed)
-         * Maximum length: 8000
-         * This is a read-only column.
+         * "Full sequences" element.
          */
-        full_sequences: GlideElement;
-        
+        full_sequences: GlideElementCompressed;
+ 
         /**
-         * "Journal" element (journal)
-         * Type: "Journal" (journal)
-         * Maximum length: 1000
+         * Journal element.
+         * Type: Journal (journal)
          */
         journal: GlideElementGlideObject;
-        
+ 
         /**
-         * "Max activity count" element (max_activity_count)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
-         * Default value: "100"
+         * "Max activity count" element.
          */
-        max_activity_count: GlideElement;
-        
+        max_activity_count: GlideElementNumeric;
+ 
         /**
-         * "Name" element (name)
-         * Type: "String" (string)
-         * Maximum length: 100
-         * This is column is mandatory.
+         * Name element.
          */
         name: GlideElement;
-        
+ 
         /**
-         * "Not cacheable" element (not_cacheable)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Not cacheable" element.
          */
-        not_cacheable: GlideElement;
-        
+        not_cacheable: GlideElementBoolean;
+ 
         /**
-         * "On-cancel script" element (on_cancel)
-         * Type: "Script" (script)
-         * Maximum length: 1000
-         * Default value: "// This script executes if the workflow is cancelled.\r// The global variable context_sys_id contains the sys_id of the cancelled workflow context.\r"
+         * "On-cancel script" element.
          */
-        on_cancel: GlideElement;
-        
+        on_cancel: GlideElementScript;
+ 
         /**
-         * "Order" element (order)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
-         * Default value: "100"
+         * Order element.
          */
-        order: GlideElement;
-        
+        order: GlideElementNumeric;
+ 
         /**
-         * "Activity pinning" element (pin_type)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "set_by_activity"
+         * "Activity pinning" element.
          */
         pin_type: GlideElement;
-        
+ 
         /**
-         * "Published" element (published)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * This is a read-only column.
+         * Published element.
          */
-        published: GlideElement;
-        
+        published: GlideElementBoolean;
+ 
         /**
-         * "Relative duration" element (relative_duration)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Relative duration" element.
+         * @see {@link $$GlideRecord.cmn_relative_duration}
          */
         relative_duration: $$GlideElement.cmn_relative_duration;
-        
+ 
         /**
-         * "Requires ERT" element (requires_ert)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
+         * "Requires ERT" element.
          */
-        requires_ert: GlideElement;
-        
+        requires_ert: GlideElementBoolean;
+ 
         /**
-         * "Run multiple" element (run_multiple)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
+         * "Run multiple" element.
          */
-        run_multiple: GlideElement;
-        
+        run_multiple: GlideElementBoolean;
+ 
         /**
-         * "Schedule" element (schedule)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Schedule element.
+         * @see {@link $$GlideRecord.cmn_schedule}
          */
         schedule: $$GlideElement.cmn_schedule;
-        
+ 
         /**
-         * "Stage field" element (stage_field)
-         * Type: "Field Name" (field_name)
-         * Maximum length: 80
+         * "Stage field" element.
          */
         stage_field: GlideElement;
-        
+ 
         /**
-         * "Stage order" element (stage_order)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "computed"
+         * "Stage order" element.
          */
         stage_order: GlideElement;
-        
+ 
         /**
-         * "Starting activity" element (start)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Starting activity" element.
+         * @see {@link $$GlideRecord.wf_activity}
          */
         start: $$GlideElement.wf_activity;
-        
+ 
         /**
-         * "Table" element (table)
-         * Type: "Table Name" (table_name)
-         * Maximum length: 80
-         * This is column is mandatory.
+         * Table element.
          */
         table: GlideElement;
-        
+ 
         /**
-         * "Timezone" element (timezone)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * Timezone element.
          */
         timezone: GlideElement;
-        
+ 
         /**
-         * "Workflow Runtime Validation Status" element (validated)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
+         * "Workflow Runtime Validation Status" element.
          */
-        validated: GlideElement;
-        
+        validated: GlideElementBoolean;
+ 
         /**
-         * "Workflow" element (workflow)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Workflow element.
+         * @see {@link $$GlideRecord.wf_workflow}
          */
         workflow: $$GlideElement.wf_workflow;
     }
 
     /**
-     * "Workflow" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * Workflow glide record fields.
+     * @see {@link $$GlideElement.wf_workflow}
+     * @see {@link $$GlideRecord.wf_workflow}
      */
     export interface wf_workflow extends sys_metadata {
         /**
-         * "Accessible from" element (access)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "public"
+         * "Accessible from" element.
          */
         access: GlideElement;
-        
+ 
         /**
-         * "Description" element (description)
-         * Type: "String" (string)
-         * Maximum length: 4000
+         * Description element.
          */
         description: GlideElement;
-        
+ 
         /**
-         * "Name" element (name)
-         * Type: "String" (string)
-         * Maximum length: 100
-         * This is a read-only column.
+         * Name element.
          */
         name: GlideElement;
-        
+ 
         /**
-         * "Preview" element (preview)
-         * Type: "Image" (user_image)
-         * Maximum length: 40
+         * Preview element.
          */
-        preview: GlideElement;
-        
+        preview: GlideElementUserImage;
+ 
         /**
-         * "Domain" element (sys_domain)
-         * Type: "Domain ID" (domain_id)
-         * Maximum length: 32
-         * Default value: "global"
+         * Domain element.
          */
-        sys_domain: GlideElementReference;
-        
+        sys_domain: GlideElementDomainId;
+ 
         /**
-         * "Domain Path" element (sys_domain_path)
-         * Type: "Domain Path" (domain_path)
-         * Maximum length: 255
-         * Default value: "/"
+         * "Domain Path" element.
          */
         sys_domain_path: GlideElement;
-        
+ 
         /**
-         * "Sys overrides" element (sys_overrides)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Sys overrides" element.
+         * @see {@link $$GlideRecord.wf_workflow}
          */
         sys_overrides: $$GlideElement.wf_workflow;
-        
+ 
         /**
-         * "Table" element (table)
-         * Type: "Table Name" (table_name)
-         * Maximum length: 80
-         * This is a read-only column.
+         * Table element.
          */
         table: GlideElement;
-        
+ 
         /**
-         * "Template" element (template)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * Template element.
          */
-        template: GlideElement;
+        template: GlideElementBoolean;
     }
-
+ 
     /**
      * "Workflow Stage" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * @see {@link $$GlideElement.wf_stage}
+     * @see {@link $$GlideRecord.wf_stage}
      */
     export interface wf_stage extends IBaseRecord {
         /**
-         * "Name" element (name)
-         * Type: "Translated Field" (translated_field)
-         * Maximum length: 40
-         * This is column is mandatory.
+         * Name element.
          */
-        name: GlideElement;
-        
+        name: GlideElementTranslatedField;
+ 
         /**
-         * "Duration" element (ola)
-         * Type: "Duration" (glide_duration)
-         * Maximum length: 40
-         * Default value: "0 00:00:00"
+         * Duration element.
+         * Type: Duration (glide_duration); scalar type: datetime
          */
         ola: GlideElementGlideObject;
-        
+ 
         /**
-         * "Order" element (order)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
-         * Default value: "100"
-         * This is column is mandatory.
+         * Order element.
          */
-        order: GlideElement;
-        
+        order: GlideElementNumeric;
+ 
         /**
-         * "Value" element (value)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * This is column is mandatory.
+         * Value element.
          */
         value: GlideElement;
-        
+ 
         /**
-         * "Workflow version" element (workflow_version)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Workflow version" element.
+         * @see {@link $$GlideRecord.wf_workflow_version}
          */
         workflow_version: $$GlideElement.wf_workflow_version;
     }
-
+ 
     /**
      * "Workflow Executing Activity" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * @see {@link $$GlideElement.wf_executing}
+     * @see {@link $$GlideRecord.wf_executing}
      */
     export interface wf_executing extends IBaseRecord {
         /**
-         * "Activity" element (activity)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Activity element.
+         * @see {@link $$GlideRecord.wf_activity}
          */
         activity: $$GlideElement.wf_activity;
-        
+ 
         /**
-         * "Activity index" element (activity_index)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
+         * "Activity index" element.
          */
-        activity_index: GlideElement;
-        
+        activity_index: GlideElementNumeric;
+ 
         /**
-         * "Context" element (context)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Context element.
+         * @see {@link $$GlideRecord.wf_context}
          */
         context: $$GlideElement.wf_context;
-        
+ 
         /**
-         * "Due" element (due)
-         * Type: "Date/Time" (glide_date_time)
-         * Maximum length: 40
+         * Due element.
+         * Type: "Date/Time" (glide_date_time); scalar type: datetime
          */
         due: GlideElementGlideObject;
-        
+ 
         /**
-         * "Fault description" element (fault_description)
-         * Type: "String" (string)
-         * Maximum length: 4000
+         * "Fault description" element.
          */
         fault_description: GlideElement;
-        
+ 
         /**
-         * "Input Data" element (input_data)
-         * Type: "String" (string)
-         * Maximum length: 65000
+         * "Input Data" element.
          */
         input_data: GlideElement;
-        
+ 
         /**
-         * "Is parent" element (is_parent)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Is parent" element.
          */
-        is_parent: GlideElement;
-        
+        is_parent: GlideElementBoolean;
+ 
         /**
-         * "Notify Termination" element (notify_termination)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Notify Termination" element.
          */
-        notify_termination: GlideElement;
-        
+        notify_termination: GlideElementBoolean;
+ 
         /**
-         * "Output" element (output)
-         * Type: "String" (string)
-         * Maximum length: 1024000
+         * Output element.
          */
         output: GlideElement;
-        
+ 
         /**
-         * "Output Data" element (output_data)
-         * Type: "String" (string)
-         * Maximum length: 65000
+         * "Output Data" element.
          */
         output_data: GlideElement;
-        
+ 
         /**
-         * "Parent" element (parent)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Parent element.
+         * @see {@link $$GlideRecord.wf_executing}
          */
         parent: $$GlideElement.wf_executing;
-        
+ 
         /**
-         * "Previous activity" element (previous_activity)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Previous activity" element.
+         * @see {@link $$GlideRecord.wf_history}
          */
         previous_activity: $$GlideElement.wf_history;
-        
+ 
         /**
-         * "Registered events" element (registered_events)
-         * Type: "String" (string)
-         * Maximum length: 1000
-         * This is a read-only column.
+         * "Registered events" element.
          */
         registered_events: GlideElement;
-        
+ 
         /**
-         * "Result" element (result)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * Result element.
          */
         result: GlideElement;
-        
+ 
         /**
-         * "Scratchpad" element (scratchpad)
-         * Type: "Name/Values" (name_values)
-         * Maximum length: 65000
+         * Scratchpad element.
          */
-        scratchpad: GlideElement;
-        
+        scratchpad: GlideElementNameValue;
+ 
         /**
-         * "Started" element (started)
-         * Type: "Date/Time" (glide_date_time)
-         * Maximum length: 40
+         * Started element.
+         * Type: "Date/Time" (glide_date_time); scalar type: datetime
          */
         started: GlideElementGlideObject;
-        
+ 
         /**
-         * "State" element (state)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "executing"
+         * State element.
          */
         state: GlideElement;
-        
+ 
         /**
-         * "Domain" element (sys_domain)
-         * Type: "Domain ID" (domain_id)
-         * Maximum length: 32
-         * Default value: "global"
+         * Domain element.
          */
-        sys_domain: GlideElementReference;
-        
+        sys_domain: GlideElementDomainId;
+ 
         /**
-         * "Domain Path" element (sys_domain_path)
-         * Type: "Domain Path" (domain_path)
-         * Maximum length: 255
-         * Default value: "/"
+         * "Domain Path" element.
          */
         sys_domain_path: GlideElement;
-        
+ 
         /**
-         * "Workflow version" element (workflow_version)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Workflow version" element.
+         * @see {@link $$GlideRecord.wf_workflow_version}
          */
         workflow_version: $$GlideElement.wf_workflow_version;
     }
-
+ 
     /**
-     * "Macro" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * Macro glide record fields.
+     * @see {@link $$GlideElement.sys_ui_macro}
+     * @see {@link $$GlideRecord.sys_ui_macro}
      */
     export interface sys_ui_macro extends sys_metadata {
         /**
-         * "Active" element (active)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
+         * Active element.
          */
-        active: GlideElement;
-        
+        active: GlideElementBoolean;
+ 
         /**
-         * "Category" element (category)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "general"
+         * Category element.
          */
         category: GlideElement;
-        
+ 
         /**
-         * "Description" element (description)
-         * Type: "String" (string)
-         * Maximum length: 4000
+         * Description element.
          */
         description: GlideElement;
-        
+ 
         /**
-         * "Media type" element (media_type)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * "Media type" element.
          */
         media_type: GlideElement;
-        
+ 
         /**
-         * "Name" element (name)
-         * Type: "String" (string)
-         * Maximum length: 100
-         * This is column is mandatory.
+         * Name element.
          */
         name: GlideElement;
-        
+ 
         /**
-         * "API Name" element (scoped_name)
-         * Type: "String" (string)
-         * Maximum length: 100
-         * This is a read-only column.
+         * "API Name" element.
          */
         scoped_name: GlideElement;
-        
+ 
         /**
-         * "XML" element (xml)
-         * Type: "XML" (xml)
-         * Maximum length: 65000
-         * Default value: "<?xml version=\"1.0\" encoding=\"utf-8\" ?>\r\n<j:jelly trim=\"false\" xmlns:j=\"jelly:core\" xmlns:g=\"glide\" xmlns:j2=\"null\" xmlns:g2=\"null\">\r\n\r\n</j:jelly>"
+         * XML element.
          */
-        xml: GlideElement;
+        xml: GlideElementScript;
     }
-
+ 
     /**
      * "Column Renderer" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * @see {@link $$GlideElement.column_renderer}
+     * @see {@link $$GlideRecord.column_renderer}
      */
     export interface column_renderer extends sys_ui_macro {
         /**
-         * "Column" element (column)
-         * Type: "Field Name" (field_name)
-         * Maximum length: 80
-         * This is column is mandatory.
+         * Column element.
          */
         column: GlideElement;
-        
+ 
         /**
-         * "Display value" element (display_value)
-         * Type: "String" (string)
-         * Maximum length: 100
-         * This is column is mandatory.
+         * "Display value" element.
          */
         display_value: GlideElement;
-        
+ 
         /**
-         * "Options" element (options)
-         * Type: "String" (string)
-         * Maximum length: 4000
-         * This is a read-only column.
+         * Options element.
          */
         options: GlideElement;
-        
+ 
         /**
-         * "Table" element (table)
-         * Type: "Field Name" (field_name)
-         * Maximum length: 80
-         * This is column is mandatory.
+         * Table element.
          */
         table: GlideElement;
     }
-
+ 
     /**
      * "Workflow Activity" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * @see {@link $$GlideElement.wf_activity}
+     * @see {@link $$GlideRecord.wf_activity}
      */
     export interface wf_activity extends IBaseRecord {
         /**
-         * "Activity definition" element (activity_definition)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Activity definition" element.
+         * @see {@link $$GlideRecord.wf_element_definition}
          */
         activity_definition: $$GlideElement.wf_element_definition;
-        
+ 
         /**
-         * "Activity definition updated" element (activity_definition_updated)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Activity definition updated" element.
          */
-        activity_definition_updated: GlideElement;
-        
+        activity_definition_updated: GlideElementBoolean;
+ 
         /**
-         * "Databus lookup ID" element (databus_lookup_id)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
+         * "Databus lookup ID" element.
          */
-        databus_lookup_id: GlideElement;
-        
+        databus_lookup_id: GlideElementNumeric;
+ 
         /**
-         * "Height" element (height)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
+         * Height element.
          */
-        height: GlideElement;
-        
+        height: GlideElementNumeric;
+ 
         /**
-         * "Input" element (input)
-         * Type: "Data Object" (data_object)
-         * Maximum length: 65000
+         * Input element.
          */
-        input: GlideElement;
-        
+        input: GlideElementDataObject;
+ 
         /**
-         * "Is parent" element (is_parent)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Is parent" element.
          */
-        is_parent: GlideElement;
-        
+        is_parent: GlideElementBoolean;
+ 
         /**
-         * "Name" element (name)
-         * Type: "String" (string)
-         * Maximum length: 100
+         * Name element.
          */
         name: GlideElement;
-        
+ 
         /**
-         * "New activity definition" element (new_activity_definition)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "New activity definition" element.
+         * @see {@link $$GlideRecord.wf_element_definition}
          */
         new_activity_definition: $$GlideElement.wf_element_definition;
-        
+ 
         /**
-         * "Notes" element (notes)
-         * Type: "String" (string)
-         * Maximum length: 256
+         * Notes element.
          */
         notes: GlideElement;
-        
+ 
         /**
-         * "Out of date" element (out_of_date)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Out of date" element.
          */
-        out_of_date: GlideElement;
-        
+        out_of_date: GlideElementBoolean;
+ 
         /**
-         * "Parent" element (parent)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Parent element.
+         * @see {@link $$GlideRecord.wf_activity}
          */
         parent: $$GlideElement.wf_activity;
-        
+ 
         /**
-         * "Pinned" element (pinned)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * Pinned element.
          */
-        pinned: GlideElement;
-        
+        pinned: GlideElementBoolean;
+ 
         /**
-         * "Pinned version" element (pinned_version)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Pinned version" element.
+         * @see {@link $$GlideRecord.wf_versionable}
          */
         pinned_version: $$GlideElement.wf_versionable;
-        
+ 
         /**
-         * "Stage" element (stage)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Stage element.
+         * @see {@link $$GlideRecord.wf_stage}
          */
         stage: $$GlideElement.wf_stage;
-        
+ 
         /**
-         * "Timeout" element (timeout)
-         * Type: "Duration" (glide_duration)
-         * Maximum length: 40
-         * Default value: "0 00:00:00"
+         * Timeout element.
+         * Type: Duration (glide_duration); scalar type: datetime
          */
         timeout: GlideElementGlideObject;
-        
+ 
         /**
-         * "Variables" element (vars)
-         * Type: "Glide Var" (glide_var)
-         * Maximum length: 32
+         * Variables element.
+         * @see {@link $$GlideRecord.wf_activity_variable}
          */
-        vars: GlideElement;
-        
+        vars: $$GlideElement.wf_activity_variable;
+ 
         /**
-         * "Width" element (width)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
+         * Width element.
          */
-        width: GlideElement;
-        
+        width: GlideElementNumeric;
+ 
         /**
-         * "Workflow version" element (workflow_version)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Workflow version" element.
+         * @see {@link $$GlideRecord.wf_workflow_version}
          */
         workflow_version: $$GlideElement.wf_workflow_version;
-        
+ 
         /**
-         * "X" element (x)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
+         * X element.
          */
-        x: GlideElement;
-        
+        x: GlideElementNumeric;
+ 
         /**
-         * "Y" element (y)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
+         * Y element.
          */
-        y: GlideElement;
+        y: GlideElementNumeric;
     }
-
+ 
     /**
      * "Relative Duration" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * @see {@link $$GlideElement.cmn_relative_duration}
+     * @see {@link $$GlideRecord.cmn_relative_duration}
      */
     export interface cmn_relative_duration extends sys_metadata {
         /**
-         * "Active" element (active)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
+         * Active element.
          */
-        active: GlideElement;
-        
+        active: GlideElementBoolean;
+ 
         /**
-         * "Name" element (name)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * Name element.
          */
         name: GlideElement;
-        
+ 
         /**
-         * "Script" element (script)
-         * Type: "Script (Plain)" (script_plain)
-         * Maximum length: 4000
-         * Default value: "// Perform relative duration calculation using the 'calculator' variable (which is a DurationCalculator object)\r"
+         * Script element.
          */
-        script: GlideElement;
+        script: GlideElementScript;
     }
-
+ 
     /**
      * "Workflow Activity History" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * @see {@link $$GlideElement.wf_history}
+     * @see {@link $$GlideRecord.wf_history}
      */
     export interface wf_history extends IBaseRecord {
         /**
-         * "Activity" element (activity)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Activity element.
+         * @see {@link $$GlideRecord.wf_activity}
          */
         activity: $$GlideElement.wf_activity;
-        
+ 
         /**
-         * "Activity index" element (activity_index)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
+         * "Activity index" element.
          */
-        activity_index: GlideElement;
-        
+        activity_index: GlideElementNumeric;
+ 
         /**
-         * "Context" element (context)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Context element.
+         * @see {@link $$GlideRecord.wf_context}
          */
         context: $$GlideElement.wf_context;
-        
+ 
         /**
-         * "Due" element (due)
-         * Type: "Date/Time" (glide_date_time)
-         * Maximum length: 40
+         * Due element.
+         * Type: "Date/Time" (glide_date_time); scalar type: datetime
          */
         due: GlideElementGlideObject;
-        
+ 
         /**
-         * "Ended" element (ended)
-         * Type: "Date/Time" (glide_date_time)
-         * Maximum length: 40
+         * Ended element.
+         * Type: "Date/Time" (glide_date_time); scalar type: datetime
          */
         ended: GlideElementGlideObject;
-        
+ 
         /**
-         * "Fault Description" element (fault_description)
-         * Type: "String" (string)
-         * Maximum length: 4000
+         * "Fault Description" element.
          */
         fault_description: GlideElement;
-        
+ 
         /**
-         * "Input Data" element (input_data)
-         * Type: "String" (string)
-         * Maximum length: 65000
+         * "Input Data" element.
          */
         input_data: GlideElement;
-        
+ 
         /**
-         * "Is parent" element (is_parent)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Is parent" element.
          */
-        is_parent: GlideElement;
-        
+        is_parent: GlideElementBoolean;
+ 
         /**
-         * "Output" element (output)
-         * Type: "String" (string)
-         * Maximum length: 1024000
+         * Output element.
          */
         output: GlideElement;
-        
+ 
         /**
-         * "Output Data" element (output_data)
-         * Type: "String" (string)
-         * Maximum length: 65000
+         * "Output Data" element.
          */
         output_data: GlideElement;
-        
+ 
         /**
-         * "Parent" element (parent)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Parent element.
+         * @see {@link $$GlideRecord.wf_executing}
          */
         parent: $$GlideElement.wf_executing;
-        
+ 
         /**
-         * "Result" element (result)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * Result element.
          */
         result: GlideElement;
-        
+ 
         /**
-         * "Rolled back by" element (rolled_back_by)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
+         * "Rolled back by" element.
          */
-        rolled_back_by: GlideElement;
-        
+        rolled_back_by: GlideElementNumeric;
+ 
         /**
-         * "Started" element (started)
-         * Type: "Date/Time" (glide_date_time)
-         * Maximum length: 40
+         * Started element.
+         * Type: "Date/Time" (glide_date_time); scalar type: datetime
          */
         started: GlideElementGlideObject;
-        
+ 
         /**
-         * "State" element (state)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * State element.
          */
         state: GlideElement;
-        
+ 
         /**
-         * "Domain" element (sys_domain)
-         * Type: "Domain ID" (domain_id)
-         * Maximum length: 32
-         * Default value: "global"
+         * Domain element.
          */
-        sys_domain: GlideElementReference;
-        
+        sys_domain: GlideElementDomainId;
+ 
         /**
-         * "Domain Path" element (sys_domain_path)
-         * Type: "Domain Path" (domain_path)
-         * Maximum length: 255
-         * Default value: "/"
+         * "Domain Path" element.
          */
         sys_domain_path: GlideElement;
-        
+ 
         /**
-         * "Workflow version" element (workflow_version)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Workflow version" element.
+         * @see {@link $$GlideRecord.wf_workflow_version}
          */
         workflow_version: $$GlideElement.wf_workflow_version;
     }
-
+ 
     /**
      * "Workflow Element Definition" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * @see {@link $$GlideElement.wf_element_definition}
+     * @see {@link $$GlideRecord.wf_element_definition}
      */
     export interface wf_element_definition extends sys_metadata {
         /**
-         * "Accessible from" element (access)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "public"
+         * "Accessible from" element.
          */
         access: GlideElement;
-        
+ 
         /**
-         * "Attributes" element (attributes)
-         * Type: "String" (string)
-         * Maximum length: 255
+         * Attributes element.
          */
         attributes: GlideElement;
-        
+ 
         /**
-         * "Provider" element (base_provider)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         * This is a read-only column.
+         * Provider element.
+         * @see {@link $$GlideRecord.wf_element_provider}
          */
         base_provider: $$GlideElement.wf_element_provider;
-        
+ 
         /**
-         * "Category" element (category)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * Category element.
          */
         category: GlideElement;
-        
+ 
         /**
-         * "Default height" element (default_height)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
+         * "Default height" element.
          */
-        default_height: GlideElement;
-        
+        default_height: GlideElementNumeric;
+ 
         /**
-         * "Default width" element (default_width)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
+         * "Default width" element.
          */
-        default_width: GlideElement;
-        
+        default_width: GlideElementNumeric;
+ 
         /**
-         * "Description" element (description)
-         * Type: "String" (string)
-         * Maximum length: 4000
+         * Description element.
          */
         description: GlideElement;
-        
+ 
         /**
-         * "Image" element (image)
-         * Type: "Basic Image" (image)
-         * Maximum length: 100
+         * Image element.
          */
         image: GlideElement;
-        
+ 
         /**
-         * "Name" element (name)
-         * Type: "Translated Text" (translated_text)
-         * Maximum length: 40
-         * This is column is mandatory.
+         * Name element.
          */
-        name: GlideElement;
-        
+        name: GlideElementTranslatedText;
+ 
         /**
-         * "Style" element (style)
-         * Type: "String" (string)
-         * Maximum length: 255
+         * Style element.
          */
         style: GlideElement;
-        
+ 
         /**
-         * "Version Container" element (version_container_id)
-         * Type: "String" (string)
-         * Maximum length: 100
+         * "Version Container" element.
          */
         version_container_id: GlideElement;
     }
 
     /**
+     * "Activity Variables" glide record fields.
+     * @see {@link $$GlideElement.wf_activity_variable}
+     * @see {@link $$GlideRecord.wf_activity_variable}
+     */
+    export interface wf_activity_variable extends var_dictionary {
+        /**
+         * Model element.
+         * @see {@link $$GlideRecord.wf_activity_definition}
+         */
+        model: $$GlideElement.wf_activity_definition;
+    }
+ 
+    /**
      * "Element Provider" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * @see {@link $$GlideElement.wf_element_provider}
+     * @see {@link $$GlideRecord.wf_element_provider}
      */
     export interface wf_element_provider extends IBaseRecord {
         /**
-         * "Default image" element (default_image)
-         * Type: "Basic Image" (image)
-         * Maximum length: 100
+         * "Default image" element.
          */
         default_image: GlideElement;
-        
+ 
         /**
-         * "Name" element (name)
-         * Type: "String" (string)
-         * Maximum length: 100
+         * Name element.
          */
         name: GlideElement;
-        
+ 
         /**
-         * "Provider" element (provider)
-         * Type: "String" (string)
-         * Maximum length: 100
+         * Provider element.
          */
         provider: GlideElement;
     }
-
+ 
     /**
      * "Flow catalog variable model" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * @see {@link $$GlideElement.sys_flow_cat_variable_model}
+     * @see {@link $$GlideRecord.sys_flow_cat_variable_model}
      */
     export interface sys_flow_cat_variable_model extends IBaseRecord {
         /**
-         * "ID" element (id)
-         * Type: "String" (string)
-         * Maximum length: 32
+         * ID element.
          */
         id: GlideElement;
-        
+ 
         /**
-         * "Name" element (name)
-         * Type: "String" (string)
-         * Maximum length: 255
+         * Name element.
          */
         name: GlideElement;
-        
+ 
         /**
-         * "Application" element (sys_scope)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Application element.
+         * @see {@link $$GlideRecord.sys_scope}
          */
         sys_scope: $$GlideElement.sys_scope;
     }
-
+ 
     /**
-     * "Interaction" glide record fields.
-     * Auto-number prefix: IMS
-     * Scope: Global (global) - Global application scope
+     * Interaction glide record fields.
+     * @see {@link $$GlideElement.interaction}
+     * @see {@link $$GlideRecord.interaction}
      */
     export interface interaction extends IBaseRecord {
         /**
-         * "Active" element (active)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
+         * Active element.
          */
-        active: GlideElement;
-        
+        active: GlideElementBoolean;
+ 
         /**
-         * "Application" element (application)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         * This is a read-only column.
+         * Application element.
+         * @see {@link $$GlideRecord.sys_scope}
          */
         application: $$GlideElement.sys_scope;
-        
+ 
         /**
-         * "Assigned At" element (assigned_at)
-         * Type: "Date/Time" (glide_date_time)
-         * Maximum length: 40
+         * "Assigned At" element.
+         * Type: "Date/Time" (glide_date_time); scalar type: datetime
          */
         assigned_at: GlideElementGlideObject;
-        
+ 
         /**
-         * "Assigned to" element (assigned_to)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Assigned to" element.
+         * @see {@link $$GlideRecord.sys_user}
          */
         assigned_to: $$GlideElement.sys_user;
-        
+ 
         /**
-         * "Assignment group" element (assignment_group)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Assignment group" element.
+         * @see {@link $$GlideRecord.sys_user_group}
          */
         assignment_group: $$GlideElement.sys_user_group;
-        
+ 
         /**
-         * "Auto resolution" element (auto_resolution)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Auto resolution" element.
          */
-        auto_resolution: GlideElement;
-        
+        auto_resolution: GlideElementBoolean;
+ 
         /**
-         * "Caller Phone Number" element (caller_phone_number)
-         * Type: "Phone Number (E164)" (phone_number_e164)
-         * Maximum length: 40
+         * "Caller Phone Number" element.
          */
-        caller_phone_number: GlideElement;
-        
+        caller_phone_number: GlideElementPhoneNumber;
+ 
         /**
-         * "Category" element (category)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * Category element.
          */
         category: GlideElement;
-        
+ 
         /**
-         * "Channel Metadata Record" element (channel_metadata_document)
-         * Type: "Document ID" (document_id)
-         * Maximum length: 32
+         * "Channel Metadata Record" element.
          */
-        channel_metadata_document: GlideElementReference;
-        
+        channel_metadata_document: GlideElementDocumentId;
+ 
         /**
-         * "Channel Metadata Table" element (channel_metadata_table)
-         * Type: "Table Name" (table_name)
-         * Maximum length: 80
+         * "Channel Metadata Table" element.
          */
         channel_metadata_table: GlideElement;
-        
+ 
         /**
-         * "Channel user profile" element (channel_user_profile)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Channel user profile" element.
+         * @see {@link $$GlideRecord.sys_cs_channel_user_profile}
          */
         channel_user_profile: $$GlideElement.sys_cs_channel_user_profile;
-        
+ 
         /**
-         * "Client host" element (client_host)
-         * Type: "String" (string)
-         * Maximum length: 256
+         * "Client host" element.
          */
         client_host: GlideElement;
-        
+ 
         /**
-         * "Client Session Id" element (client_session_id)
-         * Type: "String" (string)
-         * Maximum length: 256
+         * "Client Session Id" element.
          */
         client_session_id: GlideElement;
-        
+ 
         /**
-         * "Closed" element (closed_at)
-         * Type: "Date/Time" (glide_date_time)
-         * Maximum length: 40
+         * Closed element.
+         * Type: "Date/Time" (glide_date_time); scalar type: datetime
          */
         closed_at: GlideElementGlideObject;
-        
+ 
         /**
-         * "Closed by" element (closed_by)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Closed by" element.
+         * @see {@link $$GlideRecord.sys_user}
          */
         closed_by: $$GlideElement.sys_user;
-        
+ 
         /**
-         * "Company" element (company)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Company element.
+         * @see {@link $$GlideRecord.core_company}
          */
         company: $$GlideElement.core_company;
-        
+ 
         /**
-         * "Context" element (context)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Context element.
+         * @see {@link $$GlideRecord.v_interaction_context}
          */
         context: $$GlideElement.v_interaction_context;
-        
+ 
         /**
-         * "Context Record" element (context_document)
-         * Type: "Document ID" (document_id)
-         * Maximum length: 32
+         * "Context Record" element.
          */
-        context_document: GlideElementReference;
-        
+        context_document: GlideElementDocumentId;
+ 
         /**
-         * "Context Table" element (context_table)
-         * Type: "Table Name" (table_name)
-         * Maximum length: 80
+         * "Context Table" element.
          */
         context_table: GlideElement;
-        
+ 
         /**
-         * "Customer Satisfaction Score" element (csat_score)
-         * Type: "Decimal" (decimal)
-         * Maximum length: 15
-         * This is a read-only column.
+         * "Customer Satisfaction Score" element.
          */
-        csat_score: GlideElement;
-        
+        csat_score: GlideElementNumeric;
+ 
         /**
-         * "Direction" element (direction)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "inbound"
+         * Direction element.
          */
         direction: GlideElement;
-        
+ 
         /**
-         * "Duration" element (duration)
-         * Type: "Duration" (glide_duration)
-         * Maximum length: 40
-         * This is a read-only column.
+         * Duration element.
+         * Type: Duration (glide_duration); scalar type: datetime
          */
         duration: GlideElementGlideObject;
-        
+ 
         /**
-         * "Help Requested" element (help_requested)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Help requested" element.
          */
-        help_requested: GlideElement;
-        
+        help_requested: GlideElementBoolean;
+ 
         /**
-         * "Internal Transcript" element (internal_transcript)
-         * Type: "String" (string)
-         * Maximum length: 16000
-         * This is a read-only column.
+         * "Internal Transcript" element.
          */
         internal_transcript: GlideElement;
-        
+ 
         /**
-         * "Location" element (location)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Location element.
+         * @see {@link $$GlideRecord.cmn_location}
          */
         location: $$GlideElement.cmn_location;
-        
+ 
         /**
-         * "Number" element (number)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * Number element.
          */
         number: GlideElement;
-        
+ 
         /**
-         * "Opened" element (opened_at)
-         * Type: "Date/Time" (glide_date_time)
-         * Maximum length: 40
+         * Opened element.
+         * Type: "Date/Time" (glide_date_time); scalar type: datetime
          */
         opened_at: GlideElementGlideObject;
-        
+ 
         /**
-         * "Opened by" element (opened_by)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Opened by" element.
+         * @see {@link $$GlideRecord.sys_user}
          */
         opened_by: $$GlideElement.sys_user;
-        
+ 
         /**
-         * "Opened for" element (opened_for)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Opened for" element.
+         * @see {@link $$GlideRecord.sys_user}
          */
         opened_for: $$GlideElement.sys_user;
-        
+ 
         /**
-         * "Parent" element (parent)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Parent element.
+         * @see {@link $$GlideRecord.interaction}
          */
         parent: $$GlideElement.interaction;
-        
+ 
         /**
-         * "Provider application" element (provider_application)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Provider application" element.
+         * @see {@link $$GlideRecord.sys_cs_provider_application}
          */
         provider_application: $$GlideElement.sys_cs_provider_application;
-        
+ 
         /**
-         * "Recording URL" element (recording_url)
-         * Type: "URL" (url)
-         * Maximum length: 1024
+         * "Recording URL" element.
          */
-        recording_url: GlideElement;
-        
+        recording_url: GlideElementURL;
+ 
         /**
-         * "Sentiment" element (sentiment)
-         * Type: "Decimal" (decimal)
-         * Maximum length: 15
+         * Sentiment element.
          */
-        sentiment: GlideElement;
-        
+        sentiment: GlideElementNumeric;
+ 
         /**
-         * "Short description" element (short_description)
-         * Type: "String" (string)
-         * Maximum length: 160
+         * "Short description" element.
          */
         short_description: GlideElement;
-        
+ 
         /**
-         * "State" element (state)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "new"
+         * State element.
          */
         state: GlideElement;
-        
+ 
         /**
-         * "State Changed On" element (state_changed_on)
-         * Type: "Date/Time" (glide_date_time)
-         * Maximum length: 40
+         * "State Changed On" element.
+         * Type: "Date/Time" (glide_date_time); scalar type: datetime
          */
         state_changed_on: GlideElementGlideObject;
-        
+ 
         /**
-         * "State Reason" element (state_reason)
-         * Type: "Choice" (choice)
-         * Maximum length: 40
+         * "State Reason" element.
          */
         state_reason: GlideElement;
-        
+ 
         /**
-         * "Subcategory" element (subcategory)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * Subcategory element.
          */
         subcategory: GlideElement;
-        
+ 
         /**
-         * "Subtype" element (subtype)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * This is a read-only column.
+         * Subtype element.
          */
         subtype: GlideElement;
-        
+ 
         /**
-         * "Interaction class name" element (sys_class_name)
-         * Type: "System Class Name" (sys_class_name)
-         * Maximum length: 80
+         * "Interaction class name" element.
          */
-        sys_class_name: GlideElement;
-        
+        sys_class_name: GlideElementSysClassName;
+ 
         /**
-         * "Domain" element (sys_domain)
-         * Type: "Domain ID" (domain_id)
-         * Maximum length: 32
-         * Default value: "global"
+         * Domain element.
          */
-        sys_domain: GlideElementReference;
-        
+        sys_domain: GlideElementDomainId;
+ 
         /**
-         * "Domain Path" element (sys_domain_path)
-         * Type: "Domain Path" (domain_path)
-         * Maximum length: 255
-         * Default value: "/"
+         * "Domain Path" element.
          */
         sys_domain_path: GlideElement;
-        
+ 
         /**
-         * "System Wrap Up" element (system_wrap_up)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "System Wrap Up" element.
          */
-        system_wrap_up: GlideElement;
-        
+        system_wrap_up: GlideElementBoolean;
+ 
         /**
-         * "Transcript" element (transcript)
-         * Type: "String" (string)
-         * Maximum length: 16000
-         * This is a read-only column.
+         * Transcript element.
          */
         transcript: GlideElement;
-        
+ 
         /**
-         * "Type" element (type)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * This is column is mandatory.
+         * Type element.
          */
         type: GlideElement;
-        
+ 
         /**
-         * "User language" element (user_language)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * "User language" element.
          */
         user_language: GlideElement;
-        
+ 
         /**
-         * "Verified" element (verified)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * Verified element.
          */
-        verified: GlideElement;
-        
+        verified: GlideElementBoolean;
+ 
         /**
-         * "Virtual agent" element (virtual_agent)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Virtual agent" element.
          */
-        virtual_agent: GlideElement;
-        
+        virtual_agent: GlideElementBoolean;
+ 
         /**
-         * "Voice used" element (voice_used)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Voice used" element.
          */
-        voice_used: GlideElement;
-        
+        voice_used: GlideElementBoolean;
+ 
         /**
-         * "Wait time" element (wait_time)
-         * Type: "Duration" (glide_duration)
-         * Maximum length: 40
-         * This is a read-only column.
+         * "Wait time" element.
+         * Type: Duration (glide_duration); scalar type: datetime
          */
         wait_time: GlideElementGlideObject;
-        
+ 
         /**
-         * "Work notes" element (work_notes)
+         * "Work notes" element.
          * Type: "Journal Input" (journal_input)
-         * Maximum length: 4000
          */
         work_notes: GlideElementGlideObject;
-        
+ 
         /**
-         * "Wrap Up Duration" element (wrap_up_duration)
-         * Type: "Duration" (glide_duration)
-         * Maximum length: 40
-         * This is a read-only column.
+         * "Wrap Up Duration" element.
+         * Type: Duration (glide_duration); scalar type: datetime
          */
         wrap_up_duration: GlideElementGlideObject;
     }
-
+ 
     /**
      * "Provider Channel Identity" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * @see {@link $$GlideElement.sys_cs_provider_application}
+     * @see {@link $$GlideRecord.sys_cs_provider_application}
      */
     export interface sys_cs_provider_application extends sys_metadata {
         /**
-         * "Default Portal" element (default_portal)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Default Portal" element.
+         * @see {@link $$GlideRecord.sp_portal}
          */
         default_portal: $$GlideElement.sp_portal;
-        
+ 
         /**
-         * "Inbound ID" element (inbound_id)
-         * Type: "String" (string)
-         * Maximum length: 255
-         * This is column is mandatory.
+         * "Inbound ID" element.
          */
         inbound_id: GlideElement;
-        
+ 
         /**
-         * "Message auth" element (message_auth)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Message auth" element.
+         * @see {@link $$GlideRecord.provider_auth}
          */
         message_auth: $$GlideElement.provider_auth;
-        
+ 
         /**
-         * "Name" element (name)
-         * Type: "String" (string)
-         * Maximum length: 80
-         * This is column is mandatory.
+         * Name element.
          */
         name: GlideElement;
-        
+ 
         /**
-         * "Provider" element (provider)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         * This is column is mandatory.
+         * Provider element.
+         * @see {@link $$GlideRecord.sys_cs_provider}
          */
         provider: $$GlideElement.sys_cs_provider;
-        
+ 
         /**
-         * "Short description" element (short_description)
-         * Type: "String" (string)
-         * Maximum length: 255
+         * "Short description" element.
          */
         short_description: GlideElement;
-        
+ 
         /**
-         * "Domain" element (sys_domain)
-         * Type: "Domain ID" (domain_id)
-         * Maximum length: 32
-         * Default value: "global"
+         * Domain element.
          */
-        sys_domain: GlideElementReference;
-        
+        sys_domain: GlideElementDomainId;
+ 
         /**
-         * "Trusted media domains" element (trusted_media_domains)
-         * Type: "String" (string)
-         * Maximum length: 6400
+         * "Trusted media domains" element.
          */
         trusted_media_domains: GlideElement;
     }
-
+ 
     /**
      * "Interaction Context" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * @see {@link $$GlideElement.v_interaction_context}
+     * @see {@link $$GlideRecord.v_interaction_context}
      */
     export interface v_interaction_context {
         /**
-         * "Sys ID" element (sys_id)
-         * Type: "Sys ID (GUID)" (GUID)
-         * Maximum length: 32
+         * "Sys ID" element.
          */
         sys_id: GlideElement;
-        
+ 
         /**
-         * "Agent zero context id" element (u_liveagent_agent_zero_context_id)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * "Agent zero context id" element.
          */
         u_liveagent_agent_zero_context_id: GlideElement;
-        
+ 
         /**
-         * "application" element (u_liveagent_application)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * application element.
          */
         u_liveagent_application: GlideElement;
-        
+ 
         /**
-         * "devicetype" element (u_liveagent_devicetype)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * devicetype element.
          */
         u_liveagent_devicetype: GlideElement;
-        
+ 
         /**
-         * "esc_pre_chat_ask_a_question" element (u_liveagent_esc_pre_chat_ask_a_question)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * esc_pre_chat_ask_a_question element.
          */
         u_liveagent_esc_pre_chat_ask_a_question: GlideElement;
-        
+ 
         /**
-         * "interaction_id" element (u_liveagent_interaction_id)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * interaction_id element.
          */
         u_liveagent_interaction_id: GlideElement;
-        
+ 
         /**
-         * "language" element (u_liveagent_language)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * language element.
          */
         u_liveagent_language: GlideElement;
-        
+ 
         /**
-         * "page" element (u_liveagent_page)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * page element.
          */
         u_liveagent_page: GlideElement;
-        
+ 
         /**
-         * "portal" element (u_liveagent_portal)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * portal element.
          */
         u_liveagent_portal: GlideElement;
-        
+ 
         /**
-         * "post_assessment_instance" element (u_liveagent_post_assessment_instance)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * post_assessment_instance element.
          */
         u_liveagent_post_assessment_instance: GlideElement;
-        
+ 
         /**
-         * "post_chat_survey_name" element (u_liveagent_post_chat_survey_name)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * post_chat_survey_name element.
          */
         u_liveagent_post_chat_survey_name: GlideElement;
-        
+ 
         /**
-         * "pre_assessment_instance" element (u_liveagent_pre_assessment_instance)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * pre_assessment_instance element.
          */
         u_liveagent_pre_assessment_instance: GlideElement;
-        
+ 
         /**
-         * "pre_chat_survey_name" element (u_liveagent_pre_chat_survey_name)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * pre_chat_survey_name element.
          */
         u_liveagent_pre_chat_survey_name: GlideElement;
-        
+ 
         /**
-         * "queue" element (u_liveagent_queue)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * queue element.
          */
         u_liveagent_queue: GlideElement;
-        
+ 
         /**
-         * "search_text" element (u_liveagent_search_text)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * search_text element.
          */
         u_liveagent_search_text: GlideElement;
-        
+ 
         /**
-         * "short_description" element (u_liveagent_short_description)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * short_description element.
          */
         u_liveagent_short_description: GlideElement;
-        
+ 
         /**
-         * "sys_id" element (u_liveagent_sys_id)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * sys_id element.
          */
         u_liveagent_sys_id: GlideElement;
-        
+ 
         /**
-         * "table" element (u_liveagent_table)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * table element.
          */
         u_liveagent_table: GlideElement;
     }
-
+ 
     /**
      * "Channel User Profile" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * @see {@link $$GlideElement.sys_cs_channel_user_profile}
+     * @see {@link $$GlideRecord.sys_cs_channel_user_profile}
      */
     export interface sys_cs_channel_user_profile extends IBaseRecord {
         /**
-         * "Active" element (active)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
+         * Active element.
          */
-        active: GlideElement;
-        
+        active: GlideElementBoolean;
+ 
         /**
-         * "Channel" element (channel)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         * This is column is mandatory.
+         * Channel element.
+         * @see {@link $$GlideRecord.sys_cs_channel}
          */
         channel: $$GlideElement.sys_cs_channel;
-        
+ 
         /**
-         * "Channel user ID" element (channel_user_id)
-         * Type: "String" (string)
-         * Maximum length: 255
-         * This is column is mandatory.
+         * "Channel user ID" element.
          */
         channel_user_id: GlideElement;
-        
+ 
         /**
-         * "Display Name" element (display_name)
-         * Type: "String" (string)
-         * Maximum length: 256
-         * This is a read-only column.
+         * "Display Name" element.
          */
         display_name: GlideElement;
-        
+ 
         /**
-         * "Expired on" element (expired_on)
-         * Type: "Date/Time" (glide_date_time)
-         * Maximum length: 40
-         * This is a read-only column.
+         * "Expired on" element.
+         * Type: "Date/Time" (glide_date_time); scalar type: datetime
          */
         expired_on: GlideElementGlideObject;
-        
+ 
         /**
-         * "Timezone" element (timezone)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * Timezone element.
          */
         timezone: GlideElement;
-        
+ 
         /**
-         * "User document" element (user_document)
-         * Type: "Document ID" (document_id)
-         * Maximum length: 32
+         * "User document" element.
          */
-        user_document: GlideElementReference;
-        
+        user_document: GlideElementDocumentId;
+ 
         /**
-         * "User table" element (user_table)
-         * Type: "Table Name" (table_name)
-         * Maximum length: 80
+         * "User table" element.
          */
         user_table: GlideElement;
     }
-
+ 
     /**
      * "Messaging Channel" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * @see {@link $$GlideElement.sys_cs_channel}
+     * @see {@link $$GlideRecord.sys_cs_channel}
      */
     export interface sys_cs_channel extends sys_metadata {
         /**
-         * "Enable Notifications" element (enable_notification)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Enable Notifications" element.
          */
-        enable_notification: GlideElement;
-        
+        enable_notification: GlideElementBoolean;
+ 
         /**
-         * "Icon" element (icon)
-         * Type: "Image" (user_image)
-         * Maximum length: 100
+         * Icon element.
          */
-        icon: GlideElement;
-        
+        icon: GlideElementUserImage;
+ 
         /**
-         * "Live Agent Only" element (live_agent_only)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Live Agent Only" element.
          */
-        live_agent_only: GlideElement;
-        
+        live_agent_only: GlideElementBoolean;
+ 
         /**
-         * "Name" element (name)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * This is column is mandatory.
+         * Name element.
          */
         name: GlideElement;
-        
+ 
         /**
-         * "Secure" element (secure)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * Secure element.
          */
-        secure: GlideElement;
-        
+        secure: GlideElementBoolean;
+ 
         /**
-         * "Enable Sentiment Analysis" element (sentiment_enabled)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Enable Sentiment Analysis" element.
          */
-        sentiment_enabled: GlideElement;
-        
+        sentiment_enabled: GlideElementBoolean;
+ 
         /**
-         * "Store app page link" element (store_app_page_link)
-         * Type: "String" (string)
-         * Maximum length: 2000
+         * "Store app page link" element.
          */
         store_app_page_link: GlideElement;
-        
+ 
         /**
-         * "Synchronous" element (synchronous)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * Synchronous element.
          */
-        synchronous: GlideElement;
-        
+        synchronous: GlideElementBoolean;
+ 
         /**
-         * "Domain" element (sys_domain)
-         * Type: "Domain ID" (domain_id)
-         * Maximum length: 32
-         * Default value: "global"
+         * Domain element.
          */
         sys_domain: GlideElementReference;
-        
+ 
         /**
-         * "Conversation Idle Timeout" element (timeout)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
+         * "Conversation Idle Timeout" element.
          */
-        timeout: GlideElement;
-        
+        timeout: GlideElementNumeric;
+ 
         /**
-         * "Type" element (type)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "messaging"
+         * Type element.
          */
         type: GlideElement;
-        
+ 
         /**
-         * "Support typing indicator" element (typing_indicators_enabled)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Support typing indicator" element.
          */
-        typing_indicators_enabled: GlideElement;
-        
+        typing_indicators_enabled: GlideElementBoolean;
+ 
         /**
-         * "Opted in all topics by default" element (whitelisted)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
+         * "Opted in all topics by default" element.
          */
-        whitelisted: GlideElement;
+        whitelisted: GlideElementBoolean;
     }
-
+ 
     /**
      * "Provider Channel" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * @see {@link $$GlideElement.sys_cs_provider}
+     * @see {@link $$GlideRecord.sys_cs_provider}
      */
     export interface sys_cs_provider extends sys_metadata {
         /**
-         * "Account linking type" element (account_link_type)
-         * Type: "Choice" (choice)
-         * Maximum length: 40
-         * Default value: "basic"
+         * "Account linking type" element.
          */
         account_link_type: GlideElement;
-        
+ 
         /**
-         * "Automatic link action" element (automatic_link_action)
-         * Type: "String" (string)
-         * Maximum length: 255
+         * "Automatic link action" element.
          */
         automatic_link_action: GlideElement;
-        
+ 
         /**
-         * "Auto link users' ServiceNow profiles" element (automatic_link_enabled)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Auto link users' ServiceNow profiles" element.
          */
-        automatic_link_enabled: GlideElement;
-        
+        automatic_link_enabled: GlideElementBoolean;
+ 
         /**
-         * "Channel" element (channel)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         * This is column is mandatory.
+         * Channel element.
+         * @see {@link $$GlideRecord.sys_cs_channel}
          */
         channel: $$GlideElement.sys_cs_channel;
-        
+ 
         /**
-         * "Contextual action" element (contextual_action)
-         * Type: "String" (string)
-         * Maximum length: 255
+         * "Contextual action" element.
          */
         contextual_action: GlideElement;
-        
+ 
         /**
-         * "HTML to Image conversion required" element (html_with_image_link)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "HTML to Image conversion required" element.
          */
-        html_with_image_link: GlideElement;
-        
+        html_with_image_link: GlideElementBoolean;
+ 
         /**
-         * "Link account action" element (link_account_action)
-         * Type: "String" (string)
-         * Maximum length: 255
+         * "Link account action" element.
          */
         link_account_action: GlideElement;
-        
+ 
         /**
-         * "Allow account linking" element (link_account_enabled)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
+         * "Allow account linking" element.
          */
-        link_account_enabled: GlideElement;
-        
+        link_account_enabled: GlideElementBoolean;
+ 
         /**
-         * "Maintain message ordering" element (message_order)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Maintain message ordering" element.
          */
-        message_order: GlideElement;
-        
+        message_order: GlideElementBoolean;
+ 
         /**
-         * "Name" element (name)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * This is column is mandatory.
+         * Name element.
          */
         name: GlideElement;
-        
+ 
         /**
-         * "Provider attributes action" element (provider_attributes_action)
-         * Type: "String" (string)
-         * Maximum length: 255
-         * This is column is mandatory.
+         * "Provider attributes action" element.
          */
         provider_attributes_action: GlideElement;
-        
+ 
         /**
-         * "Response processor action" element (response_processor_action)
-         * Type: "String" (string)
-         * Maximum length: 255
+         * "Response processor action" element.
          */
         response_processor_action: GlideElement;
-        
+ 
         /**
-         * "Sender action" element (sender_action)
-         * Type: "String" (string)
-         * Maximum length: 255
+         * "Sender action" element.
          */
         sender_action: GlideElement;
-        
+ 
         /**
-         * "Sender subflow" element (sender_subflow)
-         * Type: "String" (string)
-         * Maximum length: 255
+         * "Sender subflow" element.
          */
         sender_subflow: GlideElement;
-        
+ 
         /**
-         * "Domain" element (sys_domain)
-         * Type: "Domain ID" (domain_id)
-         * Maximum length: 32
-         * Default value: "global"
+         * Domain element.
          */
-        sys_domain: GlideElementReference;
-        
+        sys_domain: GlideElementDomainId;
+ 
         /**
-         * "Trusted media domains" element (trusted_media_domains)
-         * Type: "String" (string)
-         * Maximum length: 6400
+         * "Trusted media domains" element.
          */
         trusted_media_domains: GlideElement;
-        
+ 
         /**
-         * "Version" element (version)
-         * Type: "Choice" (choice)
-         * Maximum length: 40
-         * This is column is mandatory.
+         * Version element.
          */
         version: GlideElement;
     }
 
     /**
+     * Variables glide record fields.
+     * @see {@link $$GlideElement.var_dictionary}
+     * @see {@link $$GlideRecord.var_dictionary}
+     */
+    export interface var_dictionary extends sys_dictionary {
+        /**
+         * Help element.
+         */
+        help: GlideElement;
+ 
+        /**
+         * Hint element.
+         */
+        hint: GlideElement;
+ 
+        /**
+         * Label element.
+         */
+        label: GlideElement;
+ 
+        /**
+         * "Model ID" element.
+         */
+        model_id: GlideElementDocumentId;
+ 
+        /**
+         * "Model Table" element.
+         */
+        model_table: GlideElement;
+ 
+        /**
+         * Order element.
+         */
+        order: GlideElementNumeric;
+    }
+ 
+    /**
+     * "Workflow Activity Definition" glide record fields.
+     * @see {@link $$GlideElement.wf_activity_definition}
+     * @see {@link $$GlideRecord.wf_activity_definition}
+     */
+    export interface wf_activity_definition extends wf_element_definition {
+        /**
+         * Action element.
+         */
+        action: GlideElementBoolean;
+ 
+        /**
+         * "JS class name" element.
+         */
+        js_class_name: GlideElement;
+ 
+        /**
+         * Script element.
+         */
+        script: GlideElementScript;
+ 
+        /**
+         * Table element.
+         */
+        table: GlideElement;
+    }
+ 
+    /**
      * "Provider Auth" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * @see {@link $$GlideElement.provider_auth}
+     * @see {@link $$GlideRecord.provider_auth}
      */
     export interface provider_auth extends IBaseRecord {
         /**
-         * "Group name" element (group_name)
-         * Type: "String" (string)
-         * Maximum length: 255
+         * "Group name" element.
          */
         group_name: GlideElement;
-        
+ 
         /**
-         * "Name" element (name)
-         * Type: "String" (string)
-         * Maximum length: 255
-         * This is column is mandatory.
+         * Name element.
          */
         name: GlideElement;
-        
+ 
         /**
-         * "Provider" element (provider_name)
-         * Type: "String" (string)
-         * Maximum length: 255
-         * This is column is mandatory.
+         * Provider element.
          */
         provider_name: GlideElement;
-        
+ 
         /**
-         * "Service Portal" element (service_portal)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Service Portal" element.
+         * @see {@link $$GlideRecord.sp_portal}
          */
         service_portal: $$GlideElement.sp_portal;
-        
+ 
         /**
-         * "Auth type" element (sys_class_name)
-         * Type: "System Class Name" (sys_class_name)
-         * Maximum length: 255
+         * "Auth type" element.
          */
-        sys_class_name: GlideElement;
-        
+        sys_class_name: GlideElementSysClassName;
+ 
         /**
-         * "Domain" element (sys_domain)
-         * Type: "Domain ID" (domain_id)
-         * Maximum length: 32
-         * Default value: "global"
+         * Domain element.
          */
-        sys_domain: GlideElementReference;
+        sys_domain: GlideElementDomainId;
+ 
+        /**
+         * "Domain Path" element.
+         */
+        sys_domain_path: GlideElement;
     }
-
-    /**
-     * "Service Portal" glide record fields.
-     * Scope: Global (global) - Global application scope
-     */
-    export interface sp_portal extends sys_metadata {
-        /**
-         * "CSS variables" element (css_variables)
-         * Type: "Properties" (properties)
-         * Maximum length: 16777215
-         */
-        css_variables: GlideElement;
-        
-        /**
-         * "Dark theme" element (dark_theme)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         */
-        dark_theme: $$GlideElement.sp_theme;
-        
-        /**
-         * "Default" element (default)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         */
-        default: GlideElement;
-        
-        /**
-         * "Enable AI Search" element (enable_ais)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         */
-        enable_ais: GlideElement;
-        
-        /**
-         * "Enable certificate based authentication" element (enable_certificate_based_authentication)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
-         */
-        enable_certificate_based_authentication: GlideElement;
-        
-        /**
-         * "Enable favorites" element (enable_favorites)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         */
-        enable_favorites: GlideElement;
-        
-        /**
-         * "Hide portal name" element (hide_portal_name)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         */
-        hide_portal_name: GlideElement;
-        
-        /**
-         * "Homepage" element (homepage)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         */
-        homepage: $$GlideElement.sp_page;
-        
-        /**
-         * "Icon" element (icon)
-         * Type: "Image" (user_image)
-         * Maximum length: 40
-         */
-        icon: GlideElement;
-        
-        /**
-         * "Knowledge base" element (kb_knowledge_base)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         */
-        kb_knowledge_base: $$GlideElement.kb_knowledge_base;
-        
-        /**
-         * "KB home page" element (kb_knowledge_page)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         */
-        kb_knowledge_page: $$GlideElement.sp_page;
-        
-        /**
-         * "Login page" element (login_page)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         */
-        login_page: $$GlideElement.sp_page;
-        
-        /**
-         * "Logo" element (logo)
-         * Type: "Image" (user_image)
-         * Maximum length: 40
-         */
-        logo: GlideElement;
-        
-        /**
-         * "404 page" element (notfound_page)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         */
-        notfound_page: $$GlideElement.sp_page;
-        
-        /**
-         * "Quick start config" element (quick_start_config)
-         * Type: "JSON" (json)
-         * Maximum length: 4000
-         */
-        quick_start_config: GlideElement;
-        
-        /**
-         * "Catalog" element (sc_catalog)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         */
-        sc_catalog: $$GlideElement.sc_catalog;
-        
-        /**
-         * "Catalog home page" element (sc_catalog_page)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         */
-        sc_catalog_page: $$GlideElement.sp_page;
-        
-        /**
-         * "Catalog category home page" element (sc_category_page)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         */
-        sc_category_page: $$GlideElement.sp_page;
-        
-        /**
-         * "Search Application" element (search_application)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         */
-        search_application: $$GlideElement.sys_search_context_config;
-        
-        /**
-         * "Search Results Configuration" element (search_results_configuration)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         */
-        search_results_configuration: $$GlideElement.sys_ux_composite_data;
-        
-        /**
-         * "Chat Queue" element (sp_chat_queue)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         */
-        sp_chat_queue: $$GlideElement.chat_queue;
-        
-        /**
-         * "Main menu" element (sp_rectangle_menu)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         */
-        sp_rectangle_menu: $$GlideElement.sp_instance_menu;
-        
-        /**
-         * "Social QA Knowledge Base" element (sqanda_knowledge_base)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         */
-        sqanda_knowledge_base: $$GlideElement.kb_knowledge_base;
-        
-        /**
-         * "Theme" element (theme)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         */
-        theme: $$GlideElement.sp_theme;
-        
-        /**
-         * "Title" element (title)
-         * Type: "Translated Text" (translated_text)
-         * Maximum length: 100
-         * This is column is mandatory.
-         */
-        title: GlideElement;
-        
-        /**
-         * "Text Index Group" element (ts_index_group)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         */
-        ts_index_group: $$GlideElement.ts_index_group;
-        
-        /**
-         * "URL suffix" element (url_suffix)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * This is column is mandatory.
-         */
-        url_suffix: GlideElement;
-    }
-
+ 
     /**
      * "Text Index Group" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * @see {@link $$GlideElement.ts_index_group}
+     * @see {@link $$GlideRecord.ts_index_group}
      */
     export interface ts_index_group extends sys_metadata {
         /**
-         * "Active" element (active)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * This is a read-only column.
+         * Active element.
          */
-        active: GlideElement;
-        
+        active: GlideElementBoolean;
+ 
         /**
-         * "Label" element (label)
-         * Type: "String" (string)
-         * Maximum length: 255
-         * This is column is mandatory.
+         * Label element.
          */
         label: GlideElement;
-        
+ 
         /**
-         * "Name" element (name)
-         * Type: "String" (string)
-         * Maximum length: 255
-         * This is a read-only column.
+         * Name element.
          */
         name: GlideElement;
-        
+ 
         /**
-         * "Tables" element (tables)
-         * Type: "List" (glide_list)
-         * Maximum length: 1024
-         * This is column is mandatory.
+         * Tables element.
+         * Type: List (glide_list); Scalar length: undefined
+         * @see {@link $$GlideRecord.ts_configuration}
          */
-        tables: GlideElementGlideObject;
+        tables: $$GlideElement.ts_configuration;
     }
-
+ 
     /**
-     * "Theme" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * Theme glide record fields.
+     * @see {@link $$GlideElement.sp_theme}
+     * @see {@link $$GlideRecord.sp_theme}
      */
     export interface sp_theme extends sys_metadata {
         /**
-         * "CSS variables" element (css_variables)
-         * Type: "Properties" (properties)
-         * Maximum length: 16777215
+         * "CSS variables" element.
          */
         css_variables: GlideElement;
-        
+ 
         /**
-         * "Footer" element (footer)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Footer element.
+         * @see {@link $$GlideRecord.sp_header_footer}
          */
         footer: $$GlideElement.sp_header_footer;
-        
+ 
         /**
-         * "Fixed footer" element (footer_fixed)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
+         * "Fixed footer" element.
          */
-        footer_fixed: GlideElement;
-        
+        footer_fixed: GlideElementBoolean;
+ 
         /**
-         * "Header" element (header)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Header element.
+         * @see {@link $$GlideRecord.sp_header_footer}
          */
         header: $$GlideElement.sp_header_footer;
-        
+ 
         /**
-         * "Name" element (name)
-         * Type: "String" (string)
-         * Maximum length: 100
+         * Name element.
          */
         name: GlideElement;
-        
+ 
         /**
-         * "Fixed header" element (navbar_fixed)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
+         * "Fixed header" element.
          */
-        navbar_fixed: GlideElement;
-        
+        navbar_fixed: GlideElementBoolean;
+ 
         /**
-         * "Turn off SCSS compilation" element (turn_off_scss_compilation)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Turn off SCSS compilation" element.
          */
-        turn_off_scss_compilation: GlideElement;
+        turn_off_scss_compilation: GlideElementBoolean;
     }
-
+ 
     /**
-     * "Instance" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * Instance glide record fields.
+     * @see {@link $$GlideElement.sp_instance}
+     * @see {@link $$GlideRecord.sp_instance}
      */
     export interface sp_instance extends sys_metadata {
         /**
-         * "Active" element (active)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
+         * Active element.
          */
-        active: GlideElement;
-        
+        active: GlideElementBoolean;
+ 
         /**
-         * "Bootstrap class name" element (class_name)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * "Bootstrap class name" element.
          */
         class_name: GlideElement;
-        
+ 
         /**
-         * "Bootstrap color" element (color)
-         * Type: "Bootstrap color" (bootstrap_color)
-         * Maximum length: 40
-         * Default value: "default"
+         * "Bootstrap color" element.
          */
         color: GlideElement;
-        
+ 
         /**
-         * "CSS" element (css)
-         * Type: "CSS" (css)
-         * Maximum length: 65000
+         * CSS element.
          */
         css: GlideElement;
-        
+ 
         /**
-         * "Glyph" element (glyph)
-         * Type: "Glyph Icon (Bootstrap)" (glyphicon)
-         * Maximum length: 40
+         * Glyph element.
          */
         glyph: GlideElement;
-        
+ 
         /**
-         * "ID" element (id)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * ID element.
          */
         id: GlideElement;
-        
+ 
         /**
-         * "Order" element (order)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
-         * Default value: "1"
+         * Order element.
          */
-        order: GlideElement;
-        
+        order: GlideElementNumeric;
+ 
         /**
-         * "Roles" element (roles)
-         * Type: "User Roles" (user_roles)
-         * Maximum length: 255
-         * This column is an array column.
+         * Roles element.
          */
         roles: GlideElement;
-        
+ 
         /**
-         * "Short description" element (short_description)
-         * Type: "Translated Text" (translated_text)
-         * Maximum length: 255
+         * "Short description" element.
          */
-        short_description: GlideElement;
-        
+        short_description: GlideElementTranslatedText;
+ 
         /**
-         * "Bootstrap size" element (size)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "md"
+         * "Bootstrap size" element.
          */
         size: GlideElement;
-        
+ 
         /**
-         * "Column" element (sp_column)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Column element.
+         * @see {@link $$GlideRecord.sp_column}
          */
         sp_column: $$GlideElement.sp_column;
-        
+ 
         /**
-         * "Widget" element (sp_widget)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Widget element.
+         * @see {@link $$GlideRecord.sp_widget}
          */
         sp_widget: $$GlideElement.sp_widget;
-        
+ 
         /**
-         * "Title" element (title)
-         * Type: "Translated Text" (translated_text)
-         * Maximum length: 100
+         * Title element.
          */
-        title: GlideElement;
-        
+        title: GlideElementTranslatedText;
+ 
         /**
-         * "HREF / URL" element (url)
-         * Type: "String" (string)
-         * Maximum length: 255
+         * "HREF / URL" element.
          */
         url: GlideElement;
-        
+ 
         /**
-         * "Additional options, JSON format" element (widget_parameters)
-         * Type: "Script (server side)" (script_server)
-         * Maximum length: 65000
+         * "Additional options, JSON format" element.
          */
         widget_parameters: GlideElement;
     }
-
+ 
     /**
      * "Instance with Menu" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * @see {@link $$GlideElement.sp_instance_menu}
+     * @see {@link $$GlideRecord.sp_instance_menu}
      */
     export interface sp_instance_menu extends sp_instance {
     }
-
+ 
     /**
      * "Chat Queue" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * @see {@link $$GlideElement.chat_queue}
+     * @see {@link $$GlideRecord.chat_queue}
      */
     export interface chat_queue extends IBaseRecord {
         /**
-         * "Active" element (active)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
+         * Active element.
          */
-        active: GlideElement;
-        
+        active: GlideElementBoolean;
+ 
         /**
-         * "Assignment group" element (assignment_group)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Assignment group" element.
+         * @see {@link $$GlideRecord.sys_user_group}
          */
         assignment_group: $$GlideElement.sys_user_group;
-        
+ 
         /**
-         * "Average wait time" element (average_wait_time)
-         * Type: "Duration" (glide_duration)
-         * Maximum length: 40
-         * Default value: "0 00:00:30"
+         * "Average wait time" element.
+         * Type: Duration (glide_duration); scalar type: datetime
          */
         average_wait_time: GlideElementGlideObject;
-        
+ 
         /**
-         * "Confirm problem" element (confirm_problem)
-         * Type: "Translated Field" (translated_field)
-         * Maximum length: 255
-         * Default value: "Thank you for contacting support. Someone will be with you shortly to assist you."
+         * "Confirm problem" element.
          */
-        confirm_problem: GlideElement;
-        
+        confirm_problem: GlideElementTranslatedField;
+ 
         /**
-         * "Escalate to" element (escalate_to)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Escalate to" element.
+         * @see {@link $$GlideRecord.chat_queue}
          */
         escalate_to: $$GlideElement.chat_queue;
-        
+ 
         /**
-         * "Initial agent response" element (initial_agent_response)
-         * Type: "Translated Field" (translated_field)
-         * Maximum length: 255
-         * Default value: "Thank you for contacting support.  I am looking into your question now and will be with you shortly."
+         * "Initial agent response" element.
          */
-        initial_agent_response: GlideElement;
-        
+        initial_agent_response: GlideElementTranslatedField;
+ 
         /**
-         * "Name" element (name)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * Name element.
          */
         name: GlideElement;
-        
+ 
         /**
-         * "Not available" element (not_available)
-         * Type: "Translated HTML" (translated_html)
-         * Maximum length: 1000
-         * Default value: "Chat support is currently unavailable.  Please contact us again Monday thru Friday, 8am to 5pm PST."
+         * "Not available" element.
          */
-        not_available: GlideElement;
-        
+        not_available: GlideElementTranslatedHTML;
+ 
         /**
-         * "Question" element (question)
-         * Type: "Translated Field" (translated_field)
-         * Maximum length: 255
-         * Default value: "How can we help you?"
+         * Question element.
          */
-        question: GlideElement;
-        
+        question: GlideElementTranslatedField;
+ 
         /**
-         * "Schedule" element (schedule)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Schedule element.
+         * @see {@link $$GlideRecord.cmn_schedule}
          */
         schedule: $$GlideElement.cmn_schedule;
     }
-
+ 
     /**
      * "EVAM Definition" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * @see {@link $$GlideElement.sys_ux_composite_data}
+     * @see {@link $$GlideRecord.sys_ux_composite_data}
      */
     export interface sys_ux_composite_data extends sys_metadata {
         /**
-         * "Active" element (active)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
+         * Active element.
          */
-        active: GlideElement;
-        
+        active: GlideElementBoolean;
+ 
         /**
-         * "Base Filter Label" element (base_filter_label)
-         * Type: "Translated Field" (translated_field)
-         * Maximum length: 100
-         * Default value: "Default"
-         * This is column is mandatory.
+         * "Base Filter Label" element.
          */
-        base_filter_label: GlideElement;
-        
+        base_filter_label: GlideElementTranslatedField;
+ 
         /**
-         * "Name" element (name)
-         * Type: "String" (string)
-         * Maximum length: 100
-         * This is column is mandatory.
+         * Name element.
          */
         name: GlideElement;
-        
+ 
         /**
-         * "Query Parameters" element (query_parameters)
-         * Type: "String" (string)
-         * Maximum length: 8000
+         * "Query Parameters" element.
          */
         query_parameters: GlideElement;
-        
+ 
         /**
-         * "Required Roles" element (required_roles)
-         * Type: "User Roles" (user_roles)
-         * Maximum length: 255
-         * This column is an array column.
+         * "Required Roles" element.
          */
         required_roles: GlideElement;
-        
+ 
         /**
-         * "Sort Order" element (sort_order)
-         * Type: "Choice" (choice)
-         * Maximum length: 40
-         * Default value: "descend"
+         * "Sort Order" element.
          */
         sort_order: GlideElement;
     }
 
     /**
-     * "Search Context Configuration" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * "Text Index Configuration" glide record fields.
+     * @see {@link $$GlideElement.ts_configuration}
+     * @see {@link $$GlideRecord.ts_configuration}
+     */
+    export interface ts_configuration extends sys_metadata {
+        /**
+         * "Applies to" element.
+         */
+        applies_to: GlideElement;
+ 
+        /**
+         * Format element.
+         */
+        format: GlideElement;
+ 
+        /**
+         * "Index group" element.
+         * @see {@link $$GlideRecord.ts_index_group}
+         */
+        index_group: $$GlideElement.ts_index_group;
+ 
+        /**
+         * Table element.
+         */
+        table: GlideElement;
+    }
+ 
+    /**
+     * "Search Application Configuration" glide record fields.
+     * @see {@link $$GlideElement.sys_search_context_config}
+     * @see {@link $$GlideRecord.sys_search_context_config}
      */
     export interface sys_search_context_config extends sys_metadata {
         /**
-         * "Application ID" element (application_id)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         * This is a read-only column.
-         */
-        application_id: $$GlideElement.sys_scope;
-        
-        /**
-         * "EVAM Definition" element (evam_definition)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "EVAM Definition" element.
+         * @see {@link $$GlideRecord.sys_ux_composite_data}
          */
         evam_definition: $$GlideElement.sys_ux_composite_data;
-        
+ 
         /**
-         * "Genius Results Limit" element (genius_results_limit)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
+         * "Genius Results Limit" element.
          */
-        genius_results_limit: GlideElement;
-        
+        genius_results_limit: GlideElementNumeric;
+ 
         /**
-         * "Enable Hit-Highlighting" element (hit_highlighting)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
+         * "Enable Hit-Highlighting" element.
          */
-        hit_highlighting: GlideElement;
-        
+        hit_highlighting: GlideElementBoolean;
+ 
         /**
-         * "Name" element (name)
-         * Type: "Translated Text" (translated_text)
-         * Maximum length: 50
-         * This is column is mandatory.
+         * Name element.
          */
-        name: GlideElement;
-        
+        name: GlideElementTranslatedText;
+ 
         /**
-         * "Search Engine" element (search_engine)
-         * Type: "Choice" (choice)
-         * Maximum length: 40
-         * Default value: "ai_search"
-         * This is column is mandatory.
+         * "Search Engine" element.
          */
         search_engine: GlideElement;
-        
+ 
         /**
-         * "Search Profile" element (search_profile)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         * This is column is mandatory.
+         * "Search Profile" element.
+         * @see {@link $$GlideRecord.ais_search_profile}
          */
         search_profile: $$GlideElement.ais_search_profile;
-        
+ 
         /**
-         * "Search Results Limit" element (search_results_limit)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
-         * Default value: "10"
-         * This is column is mandatory.
+         * "Search Results Limit" element.
          */
-        search_results_limit: GlideElement;
-        
+        search_results_limit: GlideElementNumeric;
+ 
         /**
-         * "Enable Typo Handling" element (spell_check)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
+         * "Enable Typo Handling" element.
          */
-        spell_check: GlideElement;
-        
+        spell_check: GlideElementBoolean;
+ 
         /**
-         * "Suggestions limit" element (suggestions_to_show_limit)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
-         * Default value: "10"
+         * "Suggestions Limit" element.
          */
-        suggestions_to_show_limit: GlideElement;
-        
+        suggestions_to_show_limit: GlideElementNumeric;
+ 
         /**
-         * "Text Index Group" element (ts_index_group)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Text Index Group" element.
+         * @see {@link $$GlideRecord.ts_index_group}
          */
         ts_index_group: $$GlideElement.ts_index_group;
-        
+ 
         /**
-         * "View" element (view)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * View element.
+         * @see {@link $$GlideRecord.sys_ui_view}
          */
         view: $$GlideElement.sys_ui_view;
     }
-
+ 
     /**
-     * "Page" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * Page glide record fields.
+     * @see {@link $$GlideElement.sp_page}
+     * @see {@link $$GlideRecord.sp_page}
      */
     export interface sp_page extends sys_metadata {
         /**
-         * "Category" element (category)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "custom"
+         * Category element.
          */
         category: GlideElement;
-        
+ 
         /**
-         * "Page Specific CSS" element (css)
-         * Type: "CSS" (css)
-         * Maximum length: 65000
+         * "Page Specific CSS" element.
          */
         css: GlideElement;
-        
+ 
         /**
-         * "Draft" element (draft)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
+         * Draft element.
          */
-        draft: GlideElement;
-        
+        draft: GlideElementBoolean;
+ 
         /**
-         * "Dynamic page title" element (dynamic_title_structure)
-         * Type: "Translated Text" (translated_text)
-         * Maximum length: 100
+         * "Dynamic page title" element.
          */
-        dynamic_title_structure: GlideElement;
-        
+        dynamic_title_structure: GlideElementTranslatedText;
+ 
         /**
-         * "Human readable url structure" element (human_readable_url_structure)
-         * Type: "String" (string)
-         * Maximum length: 100
+         * "Human readable url structure" element.
          */
         human_readable_url_structure: GlideElement;
-        
+ 
         /**
-         * "ID" element (id)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * This is column is mandatory.
+         * ID element.
          */
         id: GlideElement;
-        
+ 
         /**
-         * "Internal" element (internal)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
+         * Internal element.
          */
-        internal: GlideElement;
-        
+        internal: GlideElementBoolean;
+ 
         /**
-         * "Omit watcher" element (omit_watcher)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
+         * "Omit watcher" element.
          */
-        omit_watcher: GlideElement;
-        
+        omit_watcher: GlideElementBoolean;
+ 
         /**
-         * "Public" element (public)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
+         * Public element.
          */
-        public: GlideElement;
-        
+        public: GlideElementBoolean;
+ 
         /**
-         * "Roles" element (roles)
-         * Type: "User Roles" (user_roles)
-         * Maximum length: 100
-         * This column is an array column.
+         * Roles element.
          */
         roles: GlideElement;
-        
+ 
         /**
-         * "SEO script" element (seo_script)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "SEO script" element.
+         * @see {@link $$GlideRecord.sys_script_include}
          */
         seo_script: $$GlideElement.sys_script_include;
-        
+ 
         /**
-         * "Short description" element (short_description)
-         * Type: "Translated Text" (translated_text)
-         * Maximum length: 100
+         * "Short description" element.
          */
-        short_description: GlideElement;
-        
+        short_description: GlideElementTranslatedText;
+ 
         /**
-         * "Title" element (title)
-         * Type: "Translated Text" (translated_text)
-         * Maximum length: 100
+         * Title element.
          */
-        title: GlideElement;
-        
+        title: GlideElementTranslatedText;
+ 
         /**
-         * "Use SEO script" element (use_seo_script)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
+         * "Use SEO script" element.
          */
-        use_seo_script: GlideElement;
+        use_seo_script: GlideElementBoolean;
     }
-
+ 
     /**
-     * "Catalog" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * Catalog glide record fields.
+     * @see {@link $$GlideElement.sc_catalog}
+     * @see {@link $$GlideRecord.sc_catalog}
      */
     export interface sc_catalog extends sys_metadata {
         /**
-         * "Active" element (active)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
+         * Active element.
          */
-        active: GlideElement;
-        
+        active: GlideElementBoolean;
+ 
         /**
-         * "Background Color" element (background_color)
-         * Type: "Color" (color)
-         * Maximum length: 40
-         * Default value: "white"
+         * Description element.
          */
-        background_color: GlideElement;
-        
+        description: GlideElementTranslatedText;
+ 
         /**
-         * "Description" element (description)
-         * Type: "Translated Text" (translated_text)
-         * Maximum length: 4000
-         */
-        description: GlideElement;
-        
-        /**
-         * "'Continue Shopping' page" element (desktop_continue_shopping)
-         * Type: "String" (string)
-         * Maximum length: 3000
+         * "'Continue Shopping' page" element.
          */
         desktop_continue_shopping: GlideElement;
-        
+ 
         /**
-         * "'Catalog Home' Page" element (desktop_home_page)
-         * Type: "String" (string)
-         * Maximum length: 3000
+         * "'Catalog Home' Page" element.
          */
         desktop_home_page: GlideElement;
-        
+ 
         /**
-         * "Desktop image" element (desktop_image)
-         * Type: "Image" (user_image)
-         * Maximum length: 40
+         * "Desktop image" element.
          */
-        desktop_image: GlideElement;
-        
+        desktop_image: GlideElementUserImage;
+ 
         /**
-         * "Editors" element (editors)
-         * Type: "List" (glide_list)
-         * Maximum length: 1024
+         * Editors element.
+         * Type: List (glide_list); Scalar length: undefined
+         * @see {@link $$GlideRecord.sys_user}
          */
-        editors: GlideElementGlideObject;
-        
+        editors: $$GlideElement.sys_user;
+ 
         /**
-         * "Enable Wish List" element (enable_wish_list)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Enable Wish List" element.
          */
-        enable_wish_list: GlideElement;
-        
+        enable_wish_list: GlideElementBoolean;
+ 
         /**
-         * "Manager" element (manager)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Manager element.
+         * @see {@link $$GlideRecord.sys_user}
          */
         manager: $$GlideElement.sys_user;
-        
+ 
         /**
-         * "Title" element (title)
-         * Type: "Translated Field" (translated_field)
-         * Maximum length: 100
-         * This is column is mandatory.
+         * Title element.
          */
-        title: GlideElement;
+        title: GlideElementTranslatedField;
     }
-
+ 
     /**
      * "Knowledge Base" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * @see {@link $$GlideElement.kb_knowledge_base}
+     * @see {@link $$GlideRecord.kb_knowledge_base}
      */
     export interface kb_knowledge_base extends IBaseRecord {
         /**
-         * "Active" element (active)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
+         * Active element.
          */
-        active: GlideElement;
-        
+        active: GlideElementBoolean;
+ 
         /**
-         * "Application" element (application)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         * This is column is mandatory.
+         * Application element.
+         * @see {@link $$GlideRecord.sys_scope}
          */
         application: $$GlideElement.sys_scope;
-        
+ 
         /**
-         * "Approval description" element (approval_description)
-         * Type: "Translated Text" (translated_text)
-         * Maximum length: 4000
+         * "Approval description" element.
          */
-        approval_description: GlideElement;
-        
+        approval_description: GlideElementTranslatedText;
+ 
         /**
-         * "Article Validity" element (article_validity)
-         * Type: "Integer" (integer)
-         * Maximum length: 32
+         * "Article Validity" element.
          */
-        article_validity: GlideElement;
-        
+        article_validity: GlideElementNumeric;
+ 
         /**
-         * "Card color" element (card_color)
-         * Type: "Color" (color)
-         * Maximum length: 40
+         * "Card color" element.
          */
         card_color: GlideElement;
-        
+ 
         /**
-         * "Data policy" element (data_policy)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Data policy" element.
+         * @see {@link $$GlideRecord.sys_data_policy2}
          */
         data_policy: $$GlideElement.sys_data_policy2;
-        
+ 
         /**
-         * "Description" element (description)
-         * Type: "Translated Text" (translated_text)
-         * Maximum length: 4000
+         * Description element.
          */
-        description: GlideElement;
-        
+        description: GlideElementTranslatedText;
+ 
         /**
-         * "Disable category editing" element (disable_category_editing)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Disable category editing" element.
          */
-        disable_category_editing: GlideElement;
-        
+        disable_category_editing: GlideElementBoolean;
+ 
         /**
-         * "Disable commenting" element (disable_commenting)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Disable commenting" element.
          */
-        disable_commenting: GlideElement;
-        
+        disable_commenting: GlideElementBoolean;
+ 
         /**
-         * "Disable mark as helpful" element (disable_mark_as_helpful)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Disable mark as helpful" element.
          */
-        disable_mark_as_helpful: GlideElement;
-        
+        disable_mark_as_helpful: GlideElementBoolean;
+ 
         /**
-         * "Disable rating" element (disable_rating)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Disable rating" element.
          */
-        disable_rating: GlideElement;
-        
+        disable_rating: GlideElementBoolean;
+ 
         /**
-         * "Disable suggesting" element (disable_suggesting)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Disable suggesting" element.
          */
-        disable_suggesting: GlideElement;
-        
+        disable_suggesting: GlideElementBoolean;
+ 
         /**
-         * "Enable social questions and answers" element (enable_socialqa)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
+         * "Enable social questions and answers" element.
          */
-        enable_socialqa: GlideElement;
-        
+        enable_socialqa: GlideElementBoolean;
+ 
         /**
-         * "Icon" element (icon)
-         * Type: "Image" (user_image)
-         * Maximum length: 40
+         * Icon element.
          */
-        icon: GlideElement;
-        
+        icon: GlideElementUserImage;
+ 
         /**
-         * "Managers" element (kb_managers)
-         * Type: "List" (glide_list)
-         * Maximum length: 4000
+         * Managers element.
+         * Type: List (glide_list); Scalar length: undefined
+         * @see {@link $$GlideRecord.sys_user}
          */
-        kb_managers: GlideElementGlideObject;
-        
+        kb_managers: $$GlideElement.sys_user;
+ 
         /**
-         * "Release version" element (kb_version)
-         * Type: "Choice" (choice)
-         * Maximum length: 40
-         * Default value: "3"
-         * This is a read-only column.
+         * "Release version" element.
          */
         kb_version: GlideElement;
-        
+ 
         /**
-         * "Mandatory fields" element (mandatory_fields)
-         * Type: "Slush Bucket" (slushbucket)
-         * Maximum length: 1000
+         * "Mandatory fields" element.
          */
         mandatory_fields: GlideElement;
-        
+ 
         /**
-         * "Order" element (order)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
+         * Order element.
          */
-        order: GlideElement;
-        
+        order: GlideElementNumeric;
+ 
         /**
-         * "Owner" element (owner)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         * This is column is mandatory.
+         * Owner element.
+         * @see {@link $$GlideRecord.sys_user}
          */
         owner: $$GlideElement.sys_user;
-        
+ 
         /**
-         * "Question annotation" element (question_annotation)
-         * Type: "Translated HTML" (translated_html)
-         * Maximum length: 65000
+         * "Question annotation" element.
          */
-        question_annotation: GlideElement;
-        
+        question_annotation: GlideElementTranslatedHTML;
+ 
         /**
-         * "Retire workflow" element (retire_workflow)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         * Default value: "3d18ef12c30031000096dfdc64d3aeb6"
+         * "Retire workflow" element.
+         * @see {@link $$GlideRecord.wf_workflow}
          */
         retire_workflow: $$GlideElement.wf_workflow;
-        
+ 
         /**
-         * "Domain" element (sys_domain)
-         * Type: "Domain ID" (domain_id)
-         * Maximum length: 32
-         * Default value: "global"
+         * Domain element.
          */
-        sys_domain: GlideElementReference;
-        
+        sys_domain: GlideElementDomainId;
+ 
         /**
-         * "Domain Path" element (sys_domain_path)
-         * Type: "Domain Path" (domain_path)
-         * Maximum length: 255
-         * Default value: "/"
+         * "Domain Path" element.
          */
         sys_domain_path: GlideElement;
-        
+ 
         /**
-         * "Table" element (table)
-         * Type: "Table Name" (table_name)
-         * Maximum length: 80
-         * Default value: "kb_knowledge"
-         * This is a read-only column.
+         * Table element.
          */
         table: GlideElement;
-        
+ 
         /**
-         * "Set default knowledge field values" element (template)
-         * Type: "Template Value" (template_value)
-         * Maximum length: 65000
+         * "Set default knowledge field values" element.
          */
-        template: GlideElement;
-        
+        template: GlideElementWorkflowConditions;
+ 
         /**
-         * "Title" element (title)
-         * Type: "Translated Text" (translated_text)
-         * Maximum length: 100
-         * This is column is mandatory.
+         * Title element.
          */
-        title: GlideElement;
-        
+        title: GlideElementTranslatedText;
+ 
         /**
-         * "Publish workflow" element (workflow)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         * Default value: "fbe441019f112100d8f8700c267fcf1a"
+         * "Publish workflow" element.
+         * @see {@link $$GlideRecord.wf_workflow}
          */
         workflow: $$GlideElement.wf_workflow;
     }
-
+ 
     /**
-     * "Widget" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * Widget glide record fields.
+     * @see {@link $$GlideElement.sp_widget}
+     * @see {@link $$GlideRecord.sp_widget}
      */
     export interface sp_widget extends sys_metadata {
         /**
-         * "Category" element (category)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "custom"
+         * Category element.
          */
         category: GlideElement;
-        
+ 
         /**
-         * "Client controller" element (client_script)
-         * Type: "Script" (script)
-         * Maximum length: 8000
+         * "Client controller" element.
          */
-        client_script: GlideElement;
-        
+        client_script: GlideElementScript;
+ 
         /**
-         * "controllerAs" element (controller_as)
-         * Type: "String" (string)
-         * Maximum length: 100
-         * Default value: "c"
+         * controllerAs element.
          */
         controller_as: GlideElement;
-        
+ 
         /**
-         * "CSS" element (css)
-         * Type: "CSS" (css)
-         * Maximum length: 8000
+         * CSS element.
          */
         css: GlideElement;
-        
+ 
         /**
-         * "Data table" element (data_table)
-         * Type: "Table Name" (table_name)
-         * Maximum length: 80
-         * Default value: "sp_instance"
-         * This is column is mandatory.
+         * "Data table" element.
          */
         data_table: GlideElement;
-        
+ 
         /**
-         * "Demo data" element (demo_data)
-         * Type: "JSON" (json)
-         * Maximum length: 8000
+         * "Demo data" element.
          */
         demo_data: GlideElement;
-        
+ 
         /**
-         * "Description" element (description)
-         * Type: "String" (string)
-         * Maximum length: 300
+         * Description element.
          */
         description: GlideElement;
-        
+ 
         /**
-         * "Docs" element (docs)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Docs element.
+         * @see {@link $$GlideRecord.sp_documentation}
          */
         docs: $$GlideElement.sp_documentation;
-        
+ 
         /**
-         * "Fields" element (field_list)
-         * Type: "Field List" (field_list)
-         * Maximum length: 1000
+         * Fields element.
          */
         field_list: GlideElement;
-        
+ 
         /**
-         * "Has preview" element (has_preview)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
+         * "Has preview" element.
          */
-        has_preview: GlideElement;
-        
+        has_preview: GlideElementBoolean;
+ 
         /**
-         * "ID" element (id)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * ID element.
          */
         id: GlideElement;
-        
+ 
         /**
-         * "Internal" element (internal)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
+         * Internal element.
          */
-        internal: GlideElement;
-        
+        internal: GlideElementBoolean;
+ 
         /**
-         * "Link" element (link)
-         * Type: "Script" (script)
-         * Maximum length: 65000
-         * Default value: "function link(scope, element, attrs, controller) {\r  \r}"
+         * Link element.
          */
-        link: GlideElement;
-        
+        link: GlideElementScript;
+ 
         /**
-         * "Name" element (name)
-         * Type: "Translated Field" (translated_field)
-         * Maximum length: 40
-         * This is column is mandatory.
+         * Name element.
          */
-        name: GlideElement;
-        
+        name: GlideElementTranslatedField;
+ 
         /**
-         * "Option schema" element (option_schema)
-         * Type: "JSON" (json)
-         * Maximum length: 8000
+         * "Option schema" element.
          */
         option_schema: GlideElement;
-        
+ 
         /**
-         * "Public" element (public)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
+         * Public element.
          */
-        public: GlideElement;
-        
+        public: GlideElementBoolean;
+ 
         /**
-         * "Roles" element (roles)
-         * Type: "User Roles" (user_roles)
-         * Maximum length: 255
-         * This column is an array column.
+         * Roles element.
          */
         roles: GlideElement;
-        
+ 
         /**
-         * "Server script" element (script)
-         * Type: "Script" (script)
-         * Maximum length: 65000
+         * "Server script" element.
          */
-        script: GlideElement;
-        
+        script: GlideElementScript;
+ 
         /**
-         * "Servicenow" element (servicenow)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
+         * Servicenow element.
          */
-        servicenow: GlideElement;
-        
+        servicenow: GlideElementBoolean;
+ 
         /**
-         * "Body HTML template" element (template)
-         * Type: "HTML Template" (html_template)
-         * Maximum length: 65000
+         * "Body HTML template" element.
          */
         template: GlideElement;
     }
-
+ 
     /**
      * "Header | Footer" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * @see {@link $$GlideElement.sp_header_footer}
+     * @see {@link $$GlideRecord.sp_header_footer}
      */
     export interface sp_header_footer extends sp_widget {
         /**
-         * "Static" element (static)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
+         * Static element.
          */
-        static: GlideElement;
+        static: GlideElementBoolean;
     }
-
+ 
     /**
      * "Service Portal Documentation" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * @see {@link $$GlideElement.sp_documentation}
+     * @see {@link $$GlideRecord.sp_documentation}
      */
     export interface sp_documentation extends sys_metadata {
         /**
-         * "Content" element (content)
-         * Type: "String" (string)
-         * Maximum length: 65000
+         * Content element.
          */
         content: GlideElement;
-        
+ 
         /**
-         * "Title" element (title)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * Title element.
          */
         title: GlideElement;
     }
-
+ 
     /**
-     * "Column" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * Column glide record fields.
+     * @see {@link $$GlideElement.sp_column}
+     * @see {@link $$GlideRecord.sp_column}
      */
     export interface sp_column extends sys_metadata {
         /**
-         * "CSS class" element (class_name)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * "CSS class" element.
          */
         class_name: GlideElement;
-        
+ 
         /**
-         * "Order" element (order)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
+         * Order element.
          */
-        order: GlideElement;
-        
+        order: GlideElementNumeric;
+ 
         /**
-         * "Size - md" element (size)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
+         * "Size - md" element.
          */
-        size: GlideElement;
-        
+        size: GlideElementNumeric;
+ 
         /**
-         * "Size - lg" element (size_lg)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
+         * "Size - lg" element.
          */
-        size_lg: GlideElement;
-        
+        size_lg: GlideElementNumeric;
+ 
         /**
-         * "Size - sm" element (size_sm)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
+         * "Size - sm" element.
          */
-        size_sm: GlideElement;
-        
+        size_sm: GlideElementNumeric;
+ 
         /**
-         * "Size - xs" element (size_xs)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
+         * "Size - xs" element.
          */
-        size_xs: GlideElement;
-        
+        size_xs: GlideElementNumeric;
+ 
         /**
-         * "Row" element (sp_row)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Row element.
+         * @see {@link $$GlideRecord.sp_row}
          */
         sp_row: $$GlideElement.sp_row;
     }
 
     /**
-     * "Row" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * Row glide record fields.
+     * @see {@link $$GlideElement.sp_row}
+     * @see {@link $$GlideRecord.sp_row}
      */
     export interface sp_row extends sys_metadata {
         /**
-         * "CSS class" element (class_name)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * "CSS class" element.
          */
         class_name: GlideElement;
-        
+ 
         /**
-         * "Order" element (order)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
+         * Order element.
          */
-        order: GlideElement;
-        
+        order: GlideElementNumeric;
+ 
         /**
-         * "Column" element (sp_column)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Column element.
+         * @see {@link $$GlideRecord.sp_column}
          */
         sp_column: $$GlideElement.sp_column;
-        
+ 
         /**
-         * "Container" element (sp_container)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Container element.
+         * @see {@link $$GlideRecord.sp_container}
          */
         sp_container: $$GlideElement.sp_container;
     }
-
+ 
     /**
-     * "Container" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * Container glide record fields.
+     * @see {@link $$GlideElement.sp_container}
+     * @see {@link $$GlideRecord.sp_container}
      */
     export interface sp_container extends sys_metadata {
         /**
-         * "Background color" element (background_color)
-         * Type: "Color" (color)
-         * Maximum length: 40
+         * "Background color" element.
          */
         background_color: GlideElement;
-        
+ 
         /**
-         * "Background image" element (background_image)
-         * Type: "Image" (user_image)
-         * Maximum length: 40
+         * "Background image" element.
          */
-        background_image: GlideElement;
-        
+        background_image: GlideElementUserImage;
+ 
         /**
-         * "Background style" element (background_style)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "default"
+         * "Background style" element.
          */
         background_style: GlideElement;
-        
+ 
         /**
-         * "Bootstrap alternative" element (bootstrap_alt)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
+         * "Bootstrap alternative" element.
          */
-        bootstrap_alt: GlideElement;
-        
+        bootstrap_alt: GlideElementBoolean;
+ 
         /**
-         * "Parent class" element (class_name)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * "Parent class" element.
          */
         class_name: GlideElement;
-        
+ 
         /**
-         * "CSS class" element (container_class_name)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * "CSS class" element.
          */
         container_class_name: GlideElement;
-        
+ 
         /**
-         * "Name" element (name)
-         * Type: "String" (string)
-         * Maximum length: 255
+         * Name element.
          */
         name: GlideElement;
-        
+ 
         /**
-         * "Order" element (order)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
+         * Order element.
          */
-        order: GlideElement;
-        
+        order: GlideElementNumeric;
+ 
         /**
-         * "Page" element (sp_page)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Page element.
+         * @see {@link $$GlideRecord.sp_page}
          */
         sp_page: $$GlideElement.sp_page;
-        
+ 
         /**
-         * "Move to header" element (subheader)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
+         * "Move to header" element.
          */
-        subheader: GlideElement;
-        
+        subheader: GlideElementBoolean;
+ 
         /**
-         * "Screen reader title" element (title)
-         * Type: "String" (string)
-         * Maximum length: 100
+         * "Screen reader title" element.
          */
         title: GlideElement;
-        
+ 
         /**
-         * "Width" element (width)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "container"
+         * Width element.
          */
         width: GlideElement;
     }
-
+ 
     /**
      * "AI Search Search Profile" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * @see {@link $$GlideElement.ais_search_profile}
+     * @see {@link $$GlideRecord.ais_search_profile}
      */
     export interface ais_search_profile extends sys_metadata {
         /**
-         * "Active" element (active)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
+         * Active element.
          */
-        active: GlideElement;
-        
+        active: GlideElementBoolean;
+ 
         /**
-         * "Description" element (description)
-         * Type: "String" (string)
-         * Maximum length: 512
+         * Description element.
          */
         description: GlideElement;
-        
+ 
         /**
-         * "Genius result assembly" element (genius_result_assembly)
-         * Type: "String" (string)
-         * Maximum length: 255
-         * This is a read-only column.
+         * "Genius result assembly" element.
          */
         genius_result_assembly: GlideElement;
-        
+ 
         /**
-         * "Label" element (label)
-         * Type: "String" (string)
-         * Maximum length: 200
-         * This is column is mandatory.
+         * Label element.
          */
         label: GlideElement;
-        
+ 
         /**
-         * "Name" element (name)
-         * Type: "String" (string)
-         * Maximum length: 200
-         * This is a read-only column.
+         * Name element.
          */
         name: GlideElement;
-        
+ 
         /**
-         * "Publish ID" element (publish_id)
-         * Type: "Sys ID (GUID)" (GUID)
-         * Maximum length: 36
-         * This is a read-only column.
+         * "Publish ID" element.
          */
         publish_id: GlideElement;
-        
+ 
         /**
-         * "State" element (state)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "NEW"
-         * This is a read-only column.
+         * State element.
          */
         state: GlideElement;
     }
-
+ 
     /**
      * "Script Include" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * @see {@link $$GlideElement.sys_script_include}
+     * @see {@link $$GlideRecord.sys_script_include}
      */
     export interface sys_script_include extends sys_metadata {
         /**
-         * "Accessible from" element (access)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "package_private"
+         * "Accessible from" element.
          */
         access: GlideElement;
-        
+ 
         /**
-         * "Active" element (active)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
+         * Active element.
          */
-        active: GlideElement;
-        
+        active: GlideElementBoolean;
+ 
         /**
-         * "API Name" element (api_name)
-         * Type: "String" (string)
-         * Maximum length: 100
+         * "API Name" element.
          */
         api_name: GlideElement;
-        
+ 
         /**
-         * "Caller Access" element (caller_access)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * "Caller Access" element.
          */
         caller_access: GlideElement;
-        
+ 
         /**
-         * "Client callable" element (client_callable)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
+         * "Client callable" element.
          */
-        client_callable: GlideElement;
-        
+        client_callable: GlideElementBoolean;
+ 
         /**
-         * "Description" element (description)
-         * Type: "String" (string)
-         * Maximum length: 4000
+         * Description element.
          */
         description: GlideElement;
-        
+ 
         /**
-         * "Name" element (name)
-         * Type: "String" (string)
-         * Maximum length: 100
+         * Name element.
          */
         name: GlideElement;
-        
+ 
         /**
-         * "Script" element (script)
-         * Type: "Script (Plain)" (script_plain)
-         * Maximum length: 8000
+         * Script element.
          */
-        script: GlideElement;
+        script: GlideElementScript;
     }
-
+ 
     /**
      * "Data Policy" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * @see {@link $$GlideElement.sys_data_policy2}
+     * @see {@link $$GlideRecord.sys_data_policy2}
      */
     export interface sys_data_policy2 extends sys_metadata {
         /**
-         * "Active" element (active)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
+         * Active element.
          */
-        active: GlideElement;
-        
+        active: GlideElementBoolean;
+ 
         /**
-         * "Apply to import sets" element (apply_import_set)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
+         * "Apply to import sets" element.
          */
-        apply_import_set: GlideElement;
-        
+        apply_import_set: GlideElementBoolean;
+ 
         /**
-         * "Apply to SOAP" element (apply_soap)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
+         * "Apply to SOAP" element.
          */
-        apply_soap: GlideElement;
-        
+        apply_soap: GlideElementBoolean;
+ 
         /**
-         * "Conditions" element (conditions)
-         * Type: "Conditions" (conditions)
-         * Maximum length: 1000
+         * Conditions element.
          */
-        conditions: GlideElement;
-        
+        conditions: GlideElementConditions;
+ 
         /**
-         * "Description" element (description)
-         * Type: "String" (string)
-         * Maximum length: 4000
+         * Description element.
          */
         description: GlideElement;
-        
+ 
         /**
-         * "Use as UI Policy on client" element (enforce_ui)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
+         * "Use as UI Policy on client" element.
          */
-        enforce_ui: GlideElement;
-        
+        enforce_ui: GlideElementBoolean;
+ 
         /**
-         * "Inherit" element (inherit)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * Inherit element.
          */
-        inherit: GlideElement;
-        
+        inherit: GlideElementBoolean;
+ 
         /**
-         * "Model ID" element (model_id)
-         * Type: "Document ID" (document_id)
-         * Maximum length: 32
+         * "Model ID" element.
          */
-        model_id: GlideElementReference;
-        
+        model_id: GlideElementDocumentId;
+ 
         /**
-         * "Table" element (model_table)
-         * Type: "Table Name" (table_name)
-         * Maximum length: 80
-         * This is column is mandatory.
+         * Table element.
          */
         model_table: GlideElement;
-        
+ 
         /**
-         * "Reverse if false" element (reverse_if_false)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
+         * "Reverse if false" element.
          */
-        reverse_if_false: GlideElement;
-        
+        reverse_if_false: GlideElementBoolean;
+ 
         /**
-         * "Short description" element (short_description)
-         * Type: "String" (string)
-         * Maximum length: 255
+         * "Short description" element.
          */
         short_description: GlideElement;
-        
+ 
         /**
-         * "Domain" element (sys_domain)
-         * Type: "Domain ID" (domain_id)
-         * Maximum length: 32
-         * Default value: "global"
+         * Domain element.
          */
-        sys_domain: GlideElementReference;
-        
+        sys_domain: GlideElementDomainId;
+ 
         /**
-         * "Domain Path" element (sys_domain_path)
-         * Type: "Domain Path" (domain_path)
-         * Maximum length: 255
-         * Default value: "/"
+         * "Domain Path" element.
          */
         sys_domain_path: GlideElement;
-        
+ 
         /**
-         * "Overrides" element (sys_overrides)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Overrides element.
+         * @see {@link $$GlideRecord.sys_data_policy2}
          */
         sys_overrides: $$GlideElement.sys_data_policy2;
     }
-
+ 
     /**
      * "Stage State" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * @see {@link $$GlideElement.stage_state}
+     * @see {@link $$GlideRecord.stage_state}
      */
     export interface stage_state extends IBaseRecord {
         /**
-         * "Stage renderer" element (column_renderer)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         * Default value: "007c2f021b020100adca1e094f0713b4"
+         * "Stage renderer" element.
+         * @see {@link $$GlideRecord.column_renderer}
          */
         column_renderer: $$GlideElement.column_renderer;
-        
+ 
         /**
-         * "Field" element (field)
-         * Type: "Field Name" (field_name)
-         * Maximum length: 80
+         * Field element.
          */
         field: GlideElement;
-        
+ 
         /**
-         * "ID" element (id)
-         * Type: "Document ID" (document_id)
-         * Maximum length: 32
+         * ID element.
          */
-        id: GlideElementReference;
-        
+        id: GlideElementDocumentId;
+ 
         /**
-         * "Stage Status" element (stage_status)
-         * Type: "String" (string)
-         * Maximum length: 4000
+         * "Stage Status" element.
          */
         stage_status: GlideElement;
-        
+ 
         /**
-         * "Table" element (table)
-         * Type: "Table Name" (table_name)
-         * Maximum length: 80
+         * Table element.
          */
         table: GlideElement;
     }
-
+ 
     /**
      * "Stockroom Type" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * @see {@link $$GlideElement.alm_stockroom_type}
+     * @see {@link $$GlideRecord.alm_stockroom_type}
      */
     export interface alm_stockroom_type extends IBaseRecord {
         /**
-         * "Description" element (description)
-         * Type: "String" (string)
-         * Maximum length: 100
+         * Description element.
          */
         description: GlideElement;
-        
+ 
         /**
-         * "External stockroom" element (external)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "External stockroom" element.
          */
-        external: GlideElement;
-        
+        external: GlideElementBoolean;
+ 
         /**
-         * "Name" element (name)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * Name element.
          */
         name: GlideElement;
-        
+ 
         /**
-         * "Priority" element (priority)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
+         * Priority element.
          */
-        priority: GlideElement;
-        
+        priority: GlideElementNumeric;
+ 
         /**
-         * "Shipment required" element (shipment_required)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
+         * "Shipment required" element.
          */
-        shipment_required: GlideElement;
-        
+        shipment_required: GlideElementBoolean;
+ 
         /**
-         * "Domain" element (sys_domain)
-         * Type: "Domain ID" (domain_id)
-         * Maximum length: 32
-         * Default value: "global"
+         * Domain element.
          */
-        sys_domain: GlideElementReference;
-        
+        sys_domain: GlideElementDomainId;
+ 
         /**
-         * "Value" element (value)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * "Domain Path" element.
+         */
+        sys_domain_path: GlideElement;
+ 
+        /**
+         * Value element.
          */
         value: GlideElement;
     }
-
+ 
     /**
-     * "Category" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * Category glide record fields.
+     * @see {@link $$GlideElement.sc_category}
+     * @see {@link $$GlideRecord.sc_category}
      */
     export interface sc_category extends sys_metadata {
         /**
-         * "Active" element (active)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
+         * Active element.
          */
-        active: GlideElement;
-        
+        active: GlideElementBoolean;
+ 
         /**
-         * "Description" element (description)
-         * Type: "Translated Text" (translated_text)
-         * Maximum length: 4000
+         * Description element.
          */
-        description: GlideElement;
-        
+        description: GlideElementTranslatedText;
+ 
         /**
-         * "Entitlement script" element (entitlement_script)
-         * Type: "Script (Plain)" (script_plain)
-         * Maximum length: 4000
+         * "Entitlement script" element.
          */
-        entitlement_script: GlideElement;
-        
+        entitlement_script: GlideElementScript;
+ 
         /**
-         * "Header icon" element (header_icon)
-         * Type: "Image" (user_image)
-         * Maximum length: 40
+         * "Header icon" element.
          */
-        header_icon: GlideElement;
-        
+        header_icon: GlideElementUserImage;
+ 
         /**
-         * "Homepage image" element (homepage_image)
-         * Type: "Image" (user_image)
-         * Maximum length: 40
+         * "Homepage image" element.
          */
-        homepage_image: GlideElement;
-        
+        homepage_image: GlideElementUserImage;
+ 
         /**
-         * "Homepage renderer" element (homepage_renderer)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         * Default value: "47ebe8aa3742300054b6a3549dbe5dfa"
-         * This is column is mandatory.
+         * "Homepage renderer" element.
+         * @see {@link $$GlideRecord.sc_homepage_renderer}
          */
         homepage_renderer: $$GlideElement.sc_homepage_renderer;
-        
+ 
         /**
-         * "Icon" element (icon)
-         * Type: "Image" (user_image)
-         * Maximum length: 40
+         * Icon element.
          */
-        icon: GlideElement;
-        
+        icon: GlideElementUserImage;
+ 
         /**
-         * "Image" element (image)
-         * Type: "Basic Image" (image)
-         * Maximum length: 40
+         * Image element.
          */
         image: GlideElement;
-        
+ 
         /**
-         * "Location" element (location)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Location element.
+         * @see {@link $$GlideRecord.cmn_location}
          */
         location: $$GlideElement.cmn_location;
-        
+ 
         /**
-         * "Hide description (classic mobile browsing)" element (mobile_hide_description)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Hide description (classic mobile browsing)" element.
          */
-        mobile_hide_description: GlideElement;
-        
+        mobile_hide_description: GlideElementBoolean;
+ 
         /**
-         * "Classic Mobile Picture" element (mobile_picture)
-         * Type: "Image" (user_image)
-         * Maximum length: 40
+         * "Classic Mobile Picture" element.
          */
-        mobile_picture: GlideElement;
-        
+        mobile_picture: GlideElementUserImage;
+ 
         /**
-         * "Mobile Subcategory Render Type" element (mobile_subcategory_render_type)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "list"
+         * "Mobile Subcategory Render Type" element.
          */
         mobile_subcategory_render_type: GlideElement;
-        
+ 
         /**
-         * "Module link" element (module)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Module link" element.
+         * @see {@link $$GlideRecord.sys_app_module}
          */
         module: $$GlideElement.sys_app_module;
-        
+ 
         /**
-         * "Order" element (order)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
-         * Default value: "0"
+         * Order element.
          */
-        order: GlideElement;
-        
+        order: GlideElementNumeric;
+ 
         /**
-         * "Parent" element (parent)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Parent element.
+         * @see {@link $$GlideRecord.sc_category}
          */
         parent: $$GlideElement.sc_category;
-        
+ 
         /**
-         * "Roles" element (roles)
-         * Type: "User Roles" (user_roles)
-         * Maximum length: 255
-         * This column is an array column.
+         * Roles element.
          */
         roles: GlideElement;
-        
+ 
         /**
-         * "Catalog" element (sc_catalog)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Catalog element.
+         * @see {@link $$GlideRecord.sc_catalog}
          */
         sc_catalog: $$GlideElement.sc_catalog;
-        
+ 
         /**
-         * "Title" element (title)
-         * Type: "Translated Text" (translated_text)
-         * Maximum length: 100
-         * This is column is mandatory.
+         * Title element.
          */
-        title: GlideElement;
+        title: GlideElementTranslatedText;
     }
-
+ 
     /**
-     * "Module" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * Module glide record fields.
+     * @see {@link $$GlideElement.sys_app_module}
+     * @see {@link $$GlideRecord.sys_app_module}
      */
     export interface sys_app_module extends sys_metadata {
         /**
-         * "Active" element (active)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
+         * Active element.
          */
-        active: GlideElement;
-        
+        active: GlideElementBoolean;
+ 
         /**
-         * "Application menu" element (application)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Application menu" element.
+         * @see {@link $$GlideRecord.sys_app_application}
          */
         application: $$GlideElement.sys_app_application;
-        
+ 
         /**
-         * "Assessment" element (assessment)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Assessment element.
+         * @see {@link $$GlideRecord.asmt_metric_type}
          */
         assessment: $$GlideElement.asmt_metric_type;
-        
+ 
         /**
-         * "Device type" element (device_type)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * "Device type" element.
          */
         device_type: GlideElement;
-        
+ 
         /**
-         * "Filter" element (filter)
-         * Type: "Conditions" (conditions)
-         * Maximum length: 3500
+         * Filter element.
          */
-        filter: GlideElement;
-        
+        filter: GlideElementConditions;
+ 
         /**
-         * "Hint" element (hint)
-         * Type: "Translated Field" (translated_field)
-         * Maximum length: 255
+         * Hint element.
          */
-        hint: GlideElement;
-        
+        hint: GlideElementTranslatedField;
+ 
         /**
-         * "Homepage" element (homepage)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Homepage element.
+         * @see {@link $$GlideRecord.sys_portal_page}
          */
         homepage: $$GlideElement.sys_portal_page;
-        
+ 
         /**
-         * "Image (UI11)" element (image)
-         * Type: "Basic Image" (image)
-         * Maximum length: 100
+         * "Image (UI11)" element.
          */
         image: GlideElement;
-        
+ 
         /**
-         * "Link type" element (link_type)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "LIST"
+         * "Link type" element.
          */
         link_type: GlideElement;
-        
+ 
         /**
-         * "Map page" element (map_page)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Map page" element.
+         * @see {@link $$GlideRecord.cmn_map_page}
          */
         map_page: $$GlideElement.cmn_map_page;
-        
+ 
         /**
-         * "Mobile title" element (mobile_title)
-         * Type: "Translated Field" (translated_field)
-         * Maximum length: 80
+         * "Mobile title" element.
          */
-        mobile_title: GlideElement;
-        
+        mobile_title: GlideElementTranslatedField;
+ 
         /**
-         * "Mobile view name" element (mobile_view_name)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "Mobile"
+         * "Mobile view name" element.
          */
         mobile_view_name: GlideElement;
-        
+ 
         /**
-         * "Table" element (name)
-         * Type: "Table Name" (table_name)
-         * Maximum length: 80
+         * Table element.
          */
         name: GlideElement;
-        
+ 
         /**
-         * "Order" element (order)
-         * Type: "Decimal" (decimal)
-         * Maximum length: 15
+         * Order element.
          */
-        order: GlideElement;
-        
+        order: GlideElementNumeric;
+ 
         /**
-         * "Override application menu roles" element (override_menu_roles)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Override application menu roles" element.
          */
-        override_menu_roles: GlideElement;
-        
+        override_menu_roles: GlideElementBoolean;
+ 
         /**
-         * "Arguments" element (query)
-         * Type: "String" (string)
-         * Maximum length: 3500
+         * Arguments element.
          */
         query: GlideElement;
-        
+ 
         /**
-         * "Report" element (report)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Report element.
+         * @see {@link $$GlideRecord.sys_report}
          */
         report: $$GlideElement.sys_report;
-        
+ 
         /**
-         * "Roles" element (roles)
-         * Type: "User Roles" (user_roles)
-         * Maximum length: 100
-         * This column is an array column.
+         * Roles element.
          */
         roles: GlideElement;
-        
+ 
         /**
-         * "Domain" element (sys_domain)
-         * Type: "Domain ID" (domain_id)
-         * Maximum length: 32
-         * Default value: "global"
+         * Domain element.
          */
-        sys_domain: GlideElementReference;
-        
+        sys_domain: GlideElementDomainId;
+ 
         /**
-         * "Domain Path" element (sys_domain_path)
-         * Type: "Domain Path" (domain_path)
-         * Maximum length: 255
-         * Default value: "/"
+         * "Domain Path" element.
          */
         sys_domain_path: GlideElement;
-        
+ 
         /**
-         * "Overrides" element (sys_overrides)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Overrides element.
+         * @see {@link $$GlideRecord.sys_app_module}
          */
         sys_overrides: $$GlideElement.sys_app_module;
-        
+ 
         /**
-         * "Timeline page" element (timeline_page)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Timeline page" element.
+         * @see {@link $$GlideRecord.cmn_timeline_page}
          */
         timeline_page: $$GlideElement.cmn_timeline_page;
-        
+ 
         /**
-         * "Title" element (title)
-         * Type: "Translated Field" (translated_field)
-         * Maximum length: 80
+         * Title element.
          */
-        title: GlideElement;
-        
+        title: GlideElementTranslatedField;
+ 
         /**
-         * "Uncancelable by Other Modules" element (uncancelable)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Uncancelable by Other Modules" element.
          */
-        uncancelable: GlideElement;
-        
+        uncancelable: GlideElementBoolean;
+ 
         /**
-         * "View name" element (view_name)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * "View name" element.
          */
         view_name: GlideElement;
-        
+ 
         /**
-         * "Window name" element (window_name)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * "Window name" element.
          */
         window_name: GlideElement;
     }
 
     /**
      * "Timeline Page" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * @see {@link $$GlideElement.cmn_timeline_page}
+     * @see {@link $$GlideRecord.cmn_timeline_page}
      */
     export interface cmn_timeline_page extends sys_metadata {
         /**
-         * "Allow start time dragging" element (allow_drag_left)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Allow start time dragging" element.
          */
-        allow_drag_left: GlideElement;
-        
+        allow_drag_left: GlideElementBoolean;
+ 
         /**
-         * "Allow end time dragging" element (allow_drag_right)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Allow end time dragging" element.
          */
-        allow_drag_right: GlideElement;
-        
+        allow_drag_right: GlideElementBoolean;
+ 
         /**
-         * "Allow horizontal moving" element (allow_dragging)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Allow horizontal moving" element.
          */
-        allow_dragging: GlideElement;
-        
+        allow_dragging: GlideElementBoolean;
+ 
         /**
-         * "Auto refresh" element (auto_refresh)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "0"
+         * "Auto refresh" element.
          */
         auto_refresh: GlideElement;
-        
+ 
         /**
-         * "Condition" element (condition)
-         * Type: "Conditions" (conditions)
-         * Maximum length: 4000
+         * Condition element.
          */
-        condition: GlideElement;
-        
+        condition: GlideElementConditions;
+ 
         /**
-         * "CSS span color" element (css_span_color)
-         * Type: "String" (string)
-         * Maximum length: 10
+         * "CSS span color" element.
          */
         css_span_color: GlideElement;
-        
+ 
         /**
-         * "End date field" element (end_date_field)
-         * Type: "Field Name" (field_name)
-         * Maximum length: 80
-         * This is column is mandatory.
+         * "End date field" element.
          */
         end_date_field: GlideElement;
-        
+ 
         /**
-         * "Span text fields" element (labels)
-         * Type: "Field List" (field_list)
-         * Maximum length: 80
-         * Default value: "short_description"
+         * "Span text fields" element.
          */
         labels: GlideElement;
-        
+ 
         /**
-         * "Name" element (name)
-         * Type: "Translated Field" (translated_field)
-         * Maximum length: 40
-         * This is column is mandatory.
+         * Name element.
          */
-        name: GlideElement;
-        
+        name: GlideElementTranslatedField;
+ 
         /**
-         * "Perform custom sort" element (perform_custom_sort)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Perform custom sort" element.
          */
-        perform_custom_sort: GlideElement;
-        
+        perform_custom_sort: GlideElementBoolean;
+ 
         /**
-         * "Range calculator" element (range_calculator)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Range calculator" element.
+         * @see {@link $$GlideRecord.sys_script_include}
          */
         range_calculator: $$GlideElement.sys_script_include;
-        
+ 
         /**
-         * "Show grid lines" element (show_grid_lines)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
+         * "Show grid lines" element.
          */
-        show_grid_lines: GlideElement;
-        
+        show_grid_lines: GlideElementBoolean;
+ 
         /**
-         * "Show left pane" element (show_left_pane)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Show left pane" element.
          */
-        show_left_pane: GlideElement;
-        
+        show_left_pane: GlideElementBoolean;
+ 
         /**
-         * "Show span text" element (show_span_text)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
+         * "Show span text" element.
          */
-        show_span_text: GlideElement;
-        
+        show_span_text: GlideElementBoolean;
+ 
         /**
-         * "Show summary pane" element (show_summary_pane)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
+         * "Show summary pane" element.
          */
-        show_summary_pane: GlideElement;
-        
+        show_summary_pane: GlideElementBoolean;
+ 
         /**
-         * "Show tooltips" element (show_tooltips)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
+         * "Show tooltips" element.
          */
-        show_tooltips: GlideElement;
-        
+        show_tooltips: GlideElementBoolean;
+ 
         /**
-         * "Sort by" element (sort_by)
-         * Type: "Field Name" (field_name)
-         * Maximum length: 80
+         * "Sort by" element.
          */
         sort_by: GlideElement;
-        
+ 
         /**
-         * "Sort by order" element (sort_by_order)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "ASC"
+         * "Sort by order" element.
          */
         sort_by_order: GlideElement;
-        
+ 
         /**
-         * "Start date field" element (start_date_field)
-         * Type: "Field Name" (field_name)
-         * Maximum length: 80
-         * This is column is mandatory.
+         * "Start date field" element.
          */
         start_date_field: GlideElement;
-        
+ 
         /**
-         * "Suffix" element (suffix)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * Suffix element.
          */
         suffix: GlideElement;
-        
+ 
         /**
-         * "Table" element (table)
-         * Type: "Table Name" (table_name)
-         * Maximum length: 80
-         * Default value: "task"
-         * This is column is mandatory.
+         * Table element.
          */
         table: GlideElement;
-        
+ 
         /**
-         * "Tooltip text fields" element (tooltip_label)
-         * Type: "Field List" (field_list)
-         * Maximum length: 4000
-         * Default value: "number,short_description"
+         * "Tooltip text fields" element.
          */
         tooltip_label: GlideElement;
     }
-
+ 
     /**
      * "Catalog Renderer" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * @see {@link $$GlideElement.sc_renderer}
+     * @see {@link $$GlideRecord.sc_renderer}
      */
     export interface sc_renderer extends sys_metadata {
         /**
-         * "Name" element (name)
-         * Type: "Translated Text" (translated_text)
-         * Maximum length: 100
+         * Name element.
          */
-        name: GlideElement;
-        
+        name: GlideElementTranslatedText;
+ 
         /**
-         * "Order" element (order)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
-         * Default value: "0"
+         * Order element.
          */
-        order: GlideElement;
+        order: GlideElementNumeric;
     }
-
+ 
     /**
      * "Homepage Category Renderer" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * @see {@link $$GlideElement.sc_homepage_renderer}
+     * @see {@link $$GlideRecord.sc_homepage_renderer}
      */
     export interface sc_homepage_renderer extends sc_renderer {
         /**
-         * "Macro" element (macro)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Macro element.
+         * @see {@link $$GlideRecord.sys_ui_macro}
          */
         macro: $$GlideElement.sys_ui_macro;
-        
+ 
         /**
-         * "Render title" element (render_title)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
+         * "Render title" element.
          */
-        render_title: GlideElement;
+        render_title: GlideElementBoolean;
     }
-
+ 
     /**
-     * "Report" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * Report glide record fields.
+     * @see {@link $$GlideElement.sys_report}
+     * @see {@link $$GlideRecord.sys_report}
      */
     export interface sys_report extends sys_metadata {
         /**
-         * "Additional Group By" element (additional_groupby)
-         * Type: "String" (string)
-         * Maximum length: 4000
+         * "Additional Group By" element.
          */
         additional_groupby: GlideElement;
-        
+ 
         /**
-         * "Aggregate" element (aggregate)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "COUNT"
+         * Aggregate element.
          */
         aggregate: GlideElement;
-        
+ 
         /**
-         * "Aggregation Source" element (aggregation_source)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * "Aggregation Source" element.
          */
         aggregation_source: GlideElement;
-        
+ 
         /**
-         * "Allow data label overlap" element (allow_data_label_overlap)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Allow data label overlap" element.
          */
-        allow_data_label_overlap: GlideElement;
-        
+        allow_data_label_overlap: GlideElementBoolean;
+ 
         /**
-         * "Apply aliases" element (apply_alias)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
+         * "Apply aliases" element.
          */
-        apply_alias: GlideElement;
-        
+        apply_alias: GlideElementBoolean;
+ 
         /**
-         * "Axis max color" element (axis_max_color)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Axis max color" element.
+         * @see {@link $$GlideRecord.sys_report_color}
          */
         axis_max_color: $$GlideElement.sys_report_color;
-        
+ 
         /**
-         * "Axis min color" element (axis_min_color)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Axis min color" element.
+         * @see {@link $$GlideRecord.sys_report_color}
          */
         axis_min_color: $$GlideElement.sys_report_color;
-        
+ 
         /**
-         * "Bar unstack" element (bar_unstack)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Bar unstack" element.
          */
-        bar_unstack: GlideElement;
-        
+        bar_unstack: GlideElementBoolean;
+ 
         /**
-         * "Calendar" element (calendar)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * Calendar element.
          */
         calendar: GlideElement;
-        
+ 
         /**
-         * "Chart background color" element (chart_background_color)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Chart background color" element.
+         * @see {@link $$GlideRecord.sys_report_color}
          */
         chart_background_color: $$GlideElement.sys_report_color;
-        
+ 
         /**
-         * "Chart border color" element (chart_border_color)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Chart border color" element.
+         * @see {@link $$GlideRecord.sys_report_color}
          */
         chart_border_color: $$GlideElement.sys_report_color;
-        
+ 
         /**
-         * "Chart border radius" element (chart_border_radius)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
-         * Default value: "0"
+         * "Chart border radius" element.
          */
-        chart_border_radius: GlideElement;
-        
+        chart_border_radius: GlideElementNumeric;
+ 
         /**
-         * "Chart border width" element (chart_border_width)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
-         * Default value: "1"
+         * "Chart border width" element.
          */
-        chart_border_width: GlideElement;
-        
+        chart_border_width: GlideElementNumeric;
+ 
         /**
-         * "Chart height" element (chart_height)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
+         * "Chart height" element.
          */
-        chart_height: GlideElement;
-        
+        chart_height: GlideElementNumeric;
+ 
         /**
-         * "Chart size" element (chart_size)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "large"
+         * "Chart size" element.
          */
         chart_size: GlideElement;
-        
+ 
         /**
-         * "Chart subtitle" element (chart_subtitle)
-         * Type: "String" (string)
-         * Maximum length: 100
+         * "Chart subtitle" element.
          */
         chart_subtitle: GlideElement;
-        
+ 
         /**
-         * "Chart subtitle color" element (chart_subtitle_color)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Chart subtitle color" element.
+         * @see {@link $$GlideRecord.sys_report_color}
          */
         chart_subtitle_color: $$GlideElement.sys_report_color;
-        
+ 
         /**
-         * "Chart subtitle size" element (chart_subtitle_size)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
-         * Default value: "14"
+         * "Chart subtitle size" element.
          */
-        chart_subtitle_size: GlideElement;
-        
+        chart_subtitle_size: GlideElementNumeric;
+ 
         /**
-         * "Chart subtitle style" element (chart_subtitle_style)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "normal"
+         * "Chart subtitle style" element.
          */
         chart_subtitle_style: GlideElement;
-        
+ 
         /**
-         * "Chart title" element (chart_title)
-         * Type: "String" (string)
-         * Maximum length: 100
+         * "Chart title" element.
          */
         chart_title: GlideElement;
-        
+ 
         /**
-         * "Chart title color" element (chart_title_color)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Chart title color" element.
+         * @see {@link $$GlideRecord.sys_report_color}
          */
         chart_title_color: $$GlideElement.sys_report_color;
-        
+ 
         /**
-         * "Chart title size" element (chart_title_size)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
-         * Default value: "16"
+         * "Chart title size" element.
          */
-        chart_title_size: GlideElement;
-        
+        chart_title_size: GlideElementNumeric;
+ 
         /**
-         * "Chart title style" element (chart_title_style)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "normal"
+         * "Chart title style" element.
          */
         chart_title_style: GlideElement;
-        
+ 
         /**
-         * "Chart title x position" element (chart_title_x_position)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
+         * "Chart title x position" element.
          */
-        chart_title_x_position: GlideElement;
-        
+        chart_title_x_position: GlideElementNumeric;
+ 
         /**
-         * "Chart title y position" element (chart_title_y_position)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
+         * "Chart title y position" element.
          */
-        chart_title_y_position: GlideElement;
-        
+        chart_title_y_position: GlideElementNumeric;
+ 
         /**
-         * "Chart width" element (chart_width)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
+         * "Chart width" element.
          */
-        chart_width: GlideElement;
-        
+        chart_width: GlideElementNumeric;
+ 
         /**
-         * "Report Color" element (color)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Report Color" element.
+         * @see {@link $$GlideRecord.sys_report_color}
          */
         color: $$GlideElement.sys_report_color;
-        
+ 
         /**
-         * "Color palette" element (color_palette)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Color palette" element.
+         * @see {@link $$GlideRecord.pa_chart_color_schemes}
          */
         color_palette: $$GlideElement.pa_chart_color_schemes;
-        
+ 
         /**
-         * "Report Colors" element (colors)
-         * Type: "String" (string)
-         * Maximum length: 255
+         * "Report Colors" element.
          */
         colors: GlideElement;
-        
+ 
         /**
-         * "Column" element (column)
-         * Type: "String" (string)
-         * Maximum length: 4000
+         * Column element.
          */
         column: GlideElement;
-        
+ 
         /**
-         * "Percentages" element (compute_percent)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "aggregate"
+         * Percentages element.
          */
         compute_percent: GlideElement;
-        
+ 
         /**
-         * "Content" element (content)
-         * Type: "HTML" (html)
-         * Maximum length: 8000
+         * Content element.
+         * Type: HTML (html); Scalar length: undefined
          */
-        content: GlideElement;
-        
+        content: GlideElementGlideObject;
+ 
         /**
-         * "Created by user" element (created_by_user)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Created by user" element.
+         * @see {@link $$GlideRecord.sys_user}
          */
         created_by_user: $$GlideElement.sys_user;
-        
+ 
         /**
-         * "Custom chart size" element (custom_chart_size)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
+         * "Custom chart size" element.
          */
-        custom_chart_size: GlideElement;
-        
+        custom_chart_size: GlideElementBoolean;
+ 
         /**
-         * "Custom chart title position" element (custom_chart_title_position)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Custom chart title position" element.
          */
-        custom_chart_title_position: GlideElement;
-        
+        custom_chart_title_position: GlideElementBoolean;
+ 
         /**
-         * "Custom config" element (custom_config)
-         * Type: "String" (string)
-         * Maximum length: 5000
+         * "Custom config" element.
          */
         custom_config: GlideElement;
-        
+ 
         /**
-         * "Decimal precision" element (decimal_precision)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
-         * Default value: "2"
+         * "Decimal precision" element.
          */
-        decimal_precision: GlideElement;
-        
+        decimal_precision: GlideElementNumeric;
+ 
         /**
-         * "Description" element (description)
-         * Type: "String" (string)
-         * Maximum length: 4000
+         * Description element.
          */
         description: GlideElement;
-        
+ 
         /**
-         * "Direction" element (direction)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "minimize"
+         * Direction element.
          */
         direction: GlideElement;
-        
+ 
         /**
-         * "Display column lines" element (display_column_lines)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Display column lines" element.
          */
-        display_column_lines: GlideElement;
-        
+        display_column_lines: GlideElementBoolean;
+ 
         /**
-         * "Display grid" element (display_grid)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
+         * "Display grid" element.
          */
-        display_grid: GlideElement;
-        
+        display_grid: GlideElementBoolean;
+ 
         /**
-         * "Display row lines" element (display_row_lines)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Display row lines" element.
          */
-        display_row_lines: GlideElement;
-        
+        display_row_lines: GlideElementBoolean;
+ 
         /**
-         * "Donut width percent" element (donut_width_percent)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
-         * Default value: "30"
+         * "Donut width percent" element.
          */
-        donut_width_percent: GlideElement;
-        
+        donut_width_percent: GlideElementNumeric;
+ 
         /**
-         * "End time" element (end_time)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * "End time" element.
          */
         end_time: GlideElement;
-        
+ 
         /**
-         * "Export report details" element (exp_report_attrs)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
+         * "Export report details" element.
          */
-        exp_report_attrs: GlideElement;
-        
+        exp_report_attrs: GlideElementBoolean;
+ 
         /**
-         * "Field Name" element (field)
-         * Type: "String" (string)
-         * Maximum length: 255
+         * "Field Name" element.
          */
         field: GlideElement;
-        
+ 
         /**
-         * "Select fields for list" element (field_list)
-         * Type: "Field List" (field_list)
-         * Maximum length: 4000
+         * "Select fields for list" element.
          */
         field_list: GlideElement;
-        
+ 
         /**
-         * "Filter" element (filter)
-         * Type: "Conditions" (conditions)
-         * Maximum length: 4000
+         * Filter element.
          */
-        filter: GlideElement;
-        
+        filter: GlideElementConditions;
+ 
         /**
-         * "Formatting configuration" element (formatting_configuration)
-         * Type: "String" (string)
-         * Maximum length: 8000
+         * "Formatting configuration" element.
          */
         formatting_configuration: GlideElement;
-        
+ 
         /**
-         * "From" element (from)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
+         * From element.
          */
-        from: GlideElement;
-        
+        from: GlideElementNumeric;
+ 
         /**
-         * "Funnel neck percent" element (funnel_neck_percent)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
-         * Default value: "30"
+         * "Funnel neck percent" element.
          */
-        funnel_neck_percent: GlideElement;
-        
+        funnel_neck_percent: GlideElementNumeric;
+ 
         /**
-         * "Gauge autoscale" element (gauge_autoscale)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
+         * "Gauge autoscale" element.
          */
-        gauge_autoscale: GlideElement;
-        
+        gauge_autoscale: GlideElementBoolean;
+ 
         /**
-         * "Group" element (group)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Group element.
+         * @see {@link $$GlideRecord.sys_user_group}
          */
         group: $$GlideElement.sys_user_group;
-        
+ 
         /**
-         * "Import table" element (import_table)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Import table" element.
+         * @see {@link $$GlideRecord.sys_report_import_table}
          */
         import_table: $$GlideElement.sys_report_import_table;
-        
+ 
         /**
-         * "Interval" element (interval)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "year"
+         * Interval element.
          */
         interval: GlideElement;
-        
+ 
         /**
-         * "Is published" element (is_published)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Is published" element.
          */
-        is_published: GlideElement;
-        
+        is_published: GlideElementBoolean;
+ 
         /**
-         * "Is real time" element (is_real_time)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Is real time" element.
          */
-        is_real_time: GlideElement;
-        
+        is_real_time: GlideElementBoolean;
+ 
         /**
-         * "Is scheduled" element (is_scheduled)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Is scheduled" element.
          */
-        is_scheduled: GlideElement;
-        
+        is_scheduled: GlideElementBoolean;
+ 
         /**
-         * "Legend align columns" element (legend_align_columns)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
+         * "Legend align columns" element.
          */
-        legend_align_columns: GlideElement;
-        
+        legend_align_columns: GlideElementBoolean;
+ 
         /**
-         * "Legend background color" element (legend_background_color)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Legend background color" element.
+         * @see {@link $$GlideRecord.sys_report_color}
          */
         legend_background_color: $$GlideElement.sys_report_color;
-        
+ 
         /**
-         * "Legend border color" element (legend_border_color)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Legend border color" element.
+         * @see {@link $$GlideRecord.sys_report_color}
          */
         legend_border_color: $$GlideElement.sys_report_color;
-        
+ 
         /**
-         * "Legend border radius" element (legend_border_radius)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
-         * Default value: "0"
+         * "Legend border radius" element.
          */
-        legend_border_radius: GlideElement;
-        
+        legend_border_radius: GlideElementNumeric;
+ 
         /**
-         * "Legend border width" element (legend_border_width)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
-         * Default value: "1"
+         * "Legend border width" element.
          */
-        legend_border_width: GlideElement;
-        
+        legend_border_width: GlideElementNumeric;
+ 
         /**
-         * "Legend horizontal alignment" element (legend_horizontal_alignment)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "center"
+         * "Legend horizontal alignment" element.
          */
         legend_horizontal_alignment: GlideElement;
-        
+ 
         /**
-         * "Legend items left align" element (legend_items_left_align)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Legend items left align" element.
          */
-        legend_items_left_align: GlideElement;
-        
+        legend_items_left_align: GlideElementBoolean;
+ 
         /**
-         * "Legend vertical alignment" element (legend_vertical_alignment)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "bottom"
+         * "Legend vertical alignment" element.
          */
         legend_vertical_alignment: GlideElement;
-        
+ 
         /**
-         * "List UI view" element (list_ui_view)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "List UI view" element.
+         * @see {@link $$GlideRecord.sys_ui_view}
          */
         list_ui_view: $$GlideElement.sys_ui_view;
-        
+ 
         /**
-         * "Location Field Name" element (location_field)
-         * Type: "String" (string)
-         * Maximum length: 255
+         * "Location Field Name" element.
          */
         location_field: GlideElement;
-        
+ 
         /**
-         * "Lower limit" element (lower_limit)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
+         * "Lower limit" element.
          */
-        lower_limit: GlideElement;
-        
+        lower_limit: GlideElementNumeric;
+ 
         /**
-         * "Map" element (map)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Map element.
+         * @see {@link $$GlideRecord.sys_report_map}
          */
         map: $$GlideElement.sys_report_map;
-        
+ 
         /**
-         * "Map Location" element (map_source)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Map Location" element.
+         * @see {@link $$GlideRecord.sys_report_map_source}
          */
         map_source: $$GlideElement.sys_report_map_source;
-        
+ 
         /**
-         * "Select fields for orderBy" element (orderby_list)
-         * Type: "Field List" (field_list)
-         * Maximum length: 4000
+         * "Select fields for orderBy" element.
          */
         orderby_list: GlideElement;
-        
+ 
         /**
-         * "Other threshold" element (other_threshold)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
-         * Default value: "-2"
+         * "Other threshold" element.
          */
-        other_threshold: GlideElement;
-        
+        other_threshold: GlideElementNumeric;
+ 
         /**
-         * "Others" element (others)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "yes"
+         * Others element.
          */
         others: GlideElement;
-        
+ 
         /**
-         * "Page hdrftr" element (page_hdrftr)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Page hdrftr" element.
+         * @see {@link $$GlideRecord.sys_report_page_hdrftr}
          */
         page_hdrftr: $$GlideElement.sys_report_page_hdrftr;
-        
+ 
         /**
-         * "Pivot expanded" element (pivot_expanded)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
+         * "Pivot expanded" element.
          */
-        pivot_expanded: GlideElement;
-        
+        pivot_expanded: GlideElementBoolean;
+ 
         /**
-         * "Report drilldown" element (report_drilldown)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Report drilldown" element.
+         * @see {@link $$GlideRecord.sys_report_drill}
          */
         report_drilldown: $$GlideElement.sys_report_drill;
-        
+ 
         /**
-         * "Report source" element (report_source)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Report source" element.
+         * @see {@link $$GlideRecord.sys_report_source}
          */
         report_source: $$GlideElement.sys_report_source;
-        
+ 
         /**
-         * "Roles" element (roles)
-         * Type: "User Roles" (user_roles)
-         * Maximum length: 255
-         * This column is an array column.
+         * Roles element.
          */
         roles: GlideElement;
-        
+ 
         /**
-         * "Row" element (row)
-         * Type: "String" (string)
-         * Maximum length: 4000
+         * Row element.
          */
         row: GlideElement;
-        
+ 
         /**
-         * "Service Catalog Group By Item Id" element (sc_groupby_item_id)
-         * Type: "String" (string)
-         * Maximum length: 4000
+         * "Service Catalog Group By Item Id" element.
          */
         sc_groupby_item_id: GlideElement;
-        
+ 
         /**
-         * "Service Catalog Group By Variable Id" element (sc_groupby_variable_id)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * "Service Catalog Group By Variable Id" element.
          */
         sc_groupby_variable_id: GlideElement;
-        
+ 
         /**
-         * "Service Catalog Stack By Item Id" element (sc_stackby_item_id)
-         * Type: "String" (string)
-         * Maximum length: 4000
+         * "Service Catalog Stack By Item Id" element.
          */
         sc_stackby_item_id: GlideElement;
-        
+ 
         /**
-         * "Service Catalog Stack By Variable Id" element (sc_stackby_variable_id)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * "Service Catalog Stack By Variable Id" element.
          */
         sc_stackby_variable_id: GlideElement;
-        
+ 
         /**
-         * "Score color" element (score_color)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Score color" element.
+         * @see {@link $$GlideRecord.sys_report_color}
          */
         score_color: $$GlideElement.sys_report_color;
-        
+ 
         /**
-         * "Series name text" element (series_name_text)
-         * Type: "String" (string)
-         * Maximum length: 255
+         * "Series name text" element.
          */
         series_name_text: GlideElement;
-        
+ 
         /**
-         * "Chart color" element (set_color)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * "Chart color" element.
          */
         set_color: GlideElement;
-        
+ 
         /**
-         * "Show chart border" element (show_chart_border)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Show chart border" element.
          */
-        show_chart_border: GlideElement;
-        
+        show_chart_border: GlideElementBoolean;
+ 
         /**
-         * "Show chart data label" element (show_chart_data_label)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Show chart data label" element.
          */
-        show_chart_data_label: GlideElement;
-        
+        show_chart_data_label: GlideElementBoolean;
+ 
         /**
-         * "Show chart title" element (show_chart_title)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "report"
+         * "Show chart title" element.
          */
         show_chart_title: GlideElement;
-        
+ 
         /**
-         * "Show chart total" element (show_chart_total)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Show chart total" element.
          */
-        show_chart_total: GlideElement;
-        
+        show_chart_total: GlideElementBoolean;
+ 
         /**
-         * "Show data label position middle" element (show_data_label_position_middle)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Show data label position middle" element.
          */
-        show_data_label_position_middle: GlideElement;
-        
+        show_data_label_position_middle: GlideElementBoolean;
+ 
         /**
-         * "Show empty" element (show_empty)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
+         * "Show empty" element.
          */
-        show_empty: GlideElement;
-        
+        show_empty: GlideElementBoolean;
+ 
         /**
-         * "Show geographical label" element (show_geographical_label)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Show geographical label" element.
          */
-        show_geographical_label: GlideElement;
-        
+        show_geographical_label: GlideElementBoolean;
+ 
         /**
-         * "Show legend" element (show_legend)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
+         * "Show legend" element.
          */
-        show_legend: GlideElement;
-        
+        show_legend: GlideElementBoolean;
+ 
         /**
-         * "Show legend border" element (show_legend_border)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Show legend border" element.
          */
-        show_legend_border: GlideElement;
-        
+        show_legend_border: GlideElementBoolean;
+ 
         /**
-         * "Show marker" element (show_marker)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Show marker" element.
          */
-        show_marker: GlideElement;
-        
+        show_marker: GlideElementBoolean;
+ 
         /**
-         * "Show zero" element (show_zero)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Show zero" element.
          */
-        show_zero: GlideElement;
-        
+        show_zero: GlideElementBoolean;
+ 
         /**
-         * "Source type" element (source_type)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * "Source type" element.
          */
         source_type: GlideElement;
-        
+ 
         /**
-         * "Start time" element (start_time)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * "Start time" element.
          */
         start_time: GlideElement;
-        
+ 
         /**
-         * "Style config" element (style_config)
-         * Type: "String" (string)
-         * Maximum length: 8000
+         * "Style config" element.
          */
         style_config: GlideElement;
-        
+ 
         /**
-         * "Sumfield" element (sumfield)
-         * Type: "String" (string)
-         * Maximum length: 255
+         * Sumfield element.
          */
         sumfield: GlideElement;
-        
+ 
         /**
-         * "Table" element (table)
-         * Type: "Table Name" (table_name)
-         * Maximum length: 80
+         * Table element.
          */
         table: GlideElement;
-        
+ 
         /**
-         * "Title" element (title)
-         * Type: "String" (string)
-         * Maximum length: 100
+         * Title element.
          */
         title: GlideElement;
-        
+ 
         /**
-         * "Title horizontal alignment" element (title_horizontal_alignment)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "center"
+         * "Title horizontal alignment" element.
          */
         title_horizontal_alignment: GlideElement;
-        
+ 
         /**
-         * "Title vertical alignment" element (title_vertical_alignment)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "top"
+         * "Title vertical alignment" element.
          */
         title_vertical_alignment: GlideElement;
-        
+ 
         /**
-         * "To" element (to)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
+         * To element.
          */
-        to: GlideElement;
-        
+        to: GlideElementNumeric;
+ 
         /**
-         * "Trend Field" element (trend_field)
-         * Type: "String" (string)
-         * Maximum length: 255
+         * "Trend Field" element.
          */
         trend_field: GlideElement;
-        
+ 
         /**
-         * "Type" element (type)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "list"
+         * Type element.
          */
         type: GlideElement;
-        
+ 
         /**
-         * "Upper limit" element (upper_limit)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
+         * "Upper limit" element.
          */
-        upper_limit: GlideElement;
-        
+        upper_limit: GlideElementNumeric;
+ 
         /**
-         * "Use color heatmap" element (use_color_heatmap)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Use color heatmap" element.
          */
-        use_color_heatmap: GlideElement;
-        
+        use_color_heatmap: GlideElementBoolean;
+ 
         /**
-         * "Use null in trend" element (use_null_in_trend)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Use null in trend" element.
          */
-        use_null_in_trend: GlideElement;
-        
+        use_null_in_trend: GlideElementBoolean;
+ 
         /**
-         * "User" element (user)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * User element.
          */
         user: GlideElement;
-        
+ 
         /**
-         * "X axis allow decimals" element (x_axis_allow_decimals)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
+         * "X axis allow decimals" element.
          */
-        x_axis_allow_decimals: GlideElement;
-        
+        x_axis_allow_decimals: GlideElementBoolean;
+ 
         /**
-         * "X axis display grid" element (x_axis_display_grid)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "X axis display grid" element.
          */
-        x_axis_display_grid: GlideElement;
-        
+        x_axis_display_grid: GlideElementBoolean;
+ 
         /**
-         * "X axis grid color" element (x_axis_grid_color)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "X axis grid color" element.
+         * @see {@link $$GlideRecord.sys_report_color}
          */
         x_axis_grid_color: $$GlideElement.sys_report_color;
-        
+ 
         /**
-         * "X axis grid dotted" element (x_axis_grid_dotted)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "X axis grid dotted" element.
          */
-        x_axis_grid_dotted: GlideElement;
-        
+        x_axis_grid_dotted: GlideElementBoolean;
+ 
         /**
-         * "X axis grid width" element (x_axis_grid_width)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
-         * Default value: "0"
+         * "X axis grid width" element.
          */
-        x_axis_grid_width: GlideElement;
-        
+        x_axis_grid_width: GlideElementNumeric;
+ 
         /**
-         * "X axis label bold" element (x_axis_label_bold)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "X axis label bold" element.
          */
-        x_axis_label_bold: GlideElement;
-        
+        x_axis_label_bold: GlideElementBoolean;
+ 
         /**
-         * "X axis label color" element (x_axis_label_color)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "X axis label color" element.
+         * @see {@link $$GlideRecord.sys_report_color}
          */
         x_axis_label_color: $$GlideElement.sys_report_color;
-        
+ 
         /**
-         * "X axis label size" element (x_axis_label_size)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
-         * Default value: "11"
+         * "X axis label size" element.
          */
-        x_axis_label_size: GlideElement;
-        
+        x_axis_label_size: GlideElementNumeric;
+ 
         /**
-         * "Label tilt" element (x_axis_label_tilt)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "0"
+         * "Label tilt" element.
          */
         x_axis_label_tilt: GlideElement;
-        
+ 
         /**
-         * "X axis opposite" element (x_axis_opposite)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "X axis opposite" element.
          */
-        x_axis_opposite: GlideElement;
-        
+        x_axis_opposite: GlideElementBoolean;
+ 
         /**
-         * "X axis title" element (x_axis_title)
-         * Type: "String" (string)
-         * Maximum length: 1000
+         * "X axis title" element.
          */
         x_axis_title: GlideElement;
-        
+ 
         /**
-         * "X axis title bold" element (x_axis_title_bold)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
+         * "X axis title bold" element.
          */
-        x_axis_title_bold: GlideElement;
-        
+        x_axis_title_bold: GlideElementBoolean;
+ 
         /**
-         * "X axis title color" element (x_axis_title_color)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "X axis title color" element.
+         * @see {@link $$GlideRecord.sys_report_color}
          */
         x_axis_title_color: $$GlideElement.sys_report_color;
-        
+ 
         /**
-         * "X axis title size" element (x_axis_title_size)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
-         * Default value: "12"
+         * "X axis title size" element.
          */
-        x_axis_title_size: GlideElement;
-        
+        x_axis_title_size: GlideElementNumeric;
+ 
         /**
-         * "Y axis allow decimals" element (y_axis_allow_decimals)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
+         * "Y axis allow decimals" element.
          */
-        y_axis_allow_decimals: GlideElement;
-        
+        y_axis_allow_decimals: GlideElementBoolean;
+ 
         /**
-         * "Y axis display grid" element (y_axis_display_grid)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
+         * "Y axis display grid" element.
          */
-        y_axis_display_grid: GlideElement;
-        
+        y_axis_display_grid: GlideElementBoolean;
+ 
         /**
-         * "Y axis from" element (y_axis_from)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
+         * "Y axis from" element.
          */
-        y_axis_from: GlideElement;
-        
+        y_axis_from: GlideElementNumeric;
+ 
         /**
-         * "Y axis grid color" element (y_axis_grid_color)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Y axis grid color" element.
+         * @see {@link $$GlideRecord.sys_report_color}
          */
         y_axis_grid_color: $$GlideElement.sys_report_color;
-        
+ 
         /**
-         * "Y axis grid dotted" element (y_axis_grid_dotted)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Y axis grid dotted" element.
          */
-        y_axis_grid_dotted: GlideElement;
-        
+        y_axis_grid_dotted: GlideElementBoolean;
+ 
         /**
-         * "Y axis grid width" element (y_axis_grid_width)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
-         * Default value: "1"
+         * "Y axis grid width" element.
          */
-        y_axis_grid_width: GlideElement;
-        
+        y_axis_grid_width: GlideElementNumeric;
+ 
         /**
-         * "Y axis label bold" element (y_axis_label_bold)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Y axis label bold" element.
          */
-        y_axis_label_bold: GlideElement;
-        
+        y_axis_label_bold: GlideElementBoolean;
+ 
         /**
-         * "Y axis label color" element (y_axis_label_color)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Y axis label color" element.
+         * @see {@link $$GlideRecord.sys_report_color}
          */
         y_axis_label_color: $$GlideElement.sys_report_color;
-        
+ 
         /**
-         * "Y axis label size" element (y_axis_label_size)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
-         * Default value: "11"
+         * "Y axis label size" element.
          */
-        y_axis_label_size: GlideElement;
-        
+        y_axis_label_size: GlideElementNumeric;
+ 
         /**
-         * "Y axis label tilt" element (y_axis_label_tilt)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "0"
+         * "Y axis label tilt" element.
          */
         y_axis_label_tilt: GlideElement;
-        
+ 
         /**
-         * "Y axis opposite" element (y_axis_opposite)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Y axis opposite" element.
          */
-        y_axis_opposite: GlideElement;
-        
+        y_axis_opposite: GlideElementBoolean;
+ 
         /**
-         * "Y axis title" element (y_axis_title)
-         * Type: "String" (string)
-         * Maximum length: 1000
+         * "Y axis title" element.
          */
         y_axis_title: GlideElement;
-        
+ 
         /**
-         * "Y axis title bold" element (y_axis_title_bold)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
+         * "Y axis title bold" element.
          */
-        y_axis_title_bold: GlideElement;
-        
+        y_axis_title_bold: GlideElementBoolean;
+ 
         /**
-         * "Y axis title color" element (y_axis_title_color)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Y axis title color" element.
+         * @see {@link $$GlideRecord.sys_report_color}
          */
         y_axis_title_color: $$GlideElement.sys_report_color;
-        
+ 
         /**
-         * "Y axis title size" element (y_axis_title_size)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
-         * Default value: "12"
+         * "Y axis title size" element.
          */
-        y_axis_title_size: GlideElement;
-        
+        y_axis_title_size: GlideElementNumeric;
+ 
         /**
-         * "Y axis to" element (y_axis_to)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
+         * "Y axis to" element.
          */
-        y_axis_to: GlideElement;
+        y_axis_to: GlideElementNumeric;
     }
-
+ 
     /**
      * "Flow Block" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * @see {@link $$GlideElement.sys_hub_flow_block}
+     * @see {@link $$GlideRecord.sys_hub_flow_block}
      */
     export interface sys_hub_flow_block extends sys_metadata {
         /**
-         * "Label Cache" element (label_cache)
-         * Type: "String" (string)
-         * Maximum length: 8000
+         * "Label Cache" element.
          */
         label_cache: GlideElement;
-        
+ 
         /**
-         * "Name" element (name)
-         * Type: "Translated Text" (translated_text)
-         * Maximum length: 255
-         * This is column is mandatory.
+         * Name element.
          */
         name: GlideElement;
-        
+ 
         /**
-         * "Domain" element (sys_domain)
-         * Type: "Domain ID" (domain_id)
-         * Maximum length: 32
-         * Default value: "global"
+         * Domain element.
          */
-        sys_domain: GlideElementReference;
-        
+        sys_domain: GlideElementDomainId;
+ 
         /**
-         * "Domain Path" element (sys_domain_path)
-         * Type: "Domain Path" (domain_path)
-         * Maximum length: 255
-         * Default value: "/"
+         * "Domain Path" element.
          */
         sys_domain_path: GlideElement;
-        
+ 
         /**
-         * "Sys overrides" element (sys_overrides)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Sys overrides" element.
+         * @see {@link $$GlideRecord.sys_hub_flow_block}
          */
         sys_overrides: $$GlideElement.sys_hub_flow_block;
     }
-
+ 
     /**
      * "Flow Base" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * @see {@link $$GlideElement.sys_hub_flow_base}
+     * @see {@link $$GlideRecord.sys_hub_flow_base}
      */
     export interface sys_hub_flow_base extends sys_hub_flow_block {
         /**
-         * "Accessible From" element (access)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "public"
-         * This is column is mandatory.
+         * "Accessible From" element.
          */
         access: GlideElement;
-        
+ 
         /**
-         * "ACLs" element (acls)
-         * Type: "List" (glide_list)
-         * Maximum length: 1024
+         * ACLs element.
+         * Type: List (glide_list); Scalar length: undefined
+         * @see {@link $$GlideRecord.sys_security_acl}
          */
-        acls: GlideElementGlideObject;
-        
+        acls: $$GlideElement.sys_security_acl;
+ 
         /**
-         * "Active" element (active)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
-         * This is column is mandatory.
+         * Active element.
          */
-        active: GlideElement;
-        
+        active: GlideElementBoolean;
+ 
         /**
-         * "Annotation" element (annotation)
-         * Type: "Translated Text" (translated_text)
-         * Maximum length: 250
+         * Annotation element.
          */
-        annotation: GlideElement;
-        
+        annotation: GlideElementTranslatedText;
+ 
         /**
-         * "Callable by Client API" element (callable_by_client_api)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Callable by Client API" element.
          */
-        callable_by_client_api: GlideElement;
-        
+        callable_by_client_api: GlideElementBoolean;
+ 
         /**
-         * "Category" element (category)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Category element.
+         * @see {@link $$GlideRecord.sys_hub_category}
          */
         category: $$GlideElement.sys_hub_category;
-        
+ 
         /**
-         * "Copied from" element (copied_from)
-         * Type: "String" (string)
-         * Maximum length: 32
+         * "Copied from" element.
          */
         copied_from: GlideElement;
-        
+ 
         /**
-         * "Copied from name" element (copied_from_name)
-         * Type: "String" (string)
-         * Maximum length: 32
+         * "Copied from name" element.
          */
         copied_from_name: GlideElement;
-        
+ 
         /**
-         * "Description" element (description)
-         * Type: "String" (string)
-         * Maximum length: 4000
+         * Description element.
          */
         description: GlideElement;
-        
+ 
         /**
-         * "Internal name" element (internal_name)
-         * Type: "String" (string)
-         * Maximum length: 255
+         * "Internal name" element.
          */
         internal_name: GlideElement;
-        
+ 
         /**
-         * "Natural Language Title" element (natlang)
-         * Type: "String" (string)
-         * Maximum length: 4000
+         * "Natural Language Title" element.
          */
         natlang: GlideElement;
-        
+ 
         /**
-         * "Outputs" element (outputs)
-         * Type: "Glide Var" (glide_var)
-         * Maximum length: 32
+         * Outputs element.
+         * @see {@link $$GlideRecord.sys_hub_flow_output}
          */
-        outputs: GlideElement;
-        
+        outputs: $$GlideElement.sys_hub_flow_output;
+ 
         /**
-         * "Remote trigger ID" element (remote_trigger_id)
-         * Type: "String" (string)
-         * Maximum length: 32
+         * "Remote trigger ID" element.
          */
         remote_trigger_id: GlideElement;
-        
+ 
         /**
-         * "Run As" element (run_as)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "system"
+         * "Run As" element.
          */
         run_as: GlideElement;
-        
+ 
         /**
-         * "Run flow with roles" element (run_with_roles)
-         * Type: "List" (glide_list)
-         * Maximum length: 1024
-         * This is a read-only column.
+         * "Run flow with roles" element.
+         * Type: List (glide_list); Scalar length: undefined
+         * @see {@link $$GlideRecord.sys_user_role}
          */
-        run_with_roles: GlideElementGlideObject;
-        
+        run_with_roles: $$GlideElement.sys_user_role;
+ 
         /**
-         * "Sc callable" element (sc_callable)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Sc callable" element.
          */
-        sc_callable: GlideElement;
-        
+        sc_callable: GlideElementBoolean;
+ 
         /**
-         * "Status" element (status)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "draft"
-         * This is column is mandatory.
+         * Status element.
          */
         status: GlideElement;
-        
+ 
         /**
-         * "Flow Type" element (type)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "flow"
-         * This is column is mandatory.
+         * "Flow Type" element.
          */
         type: GlideElement;
     }
-
+ 
     /**
-     * "Flow" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * Flow glide record fields.
+     * @see {@link $$GlideElement.sys_hub_flow}
+     * @see {@link $$GlideRecord.sys_hub_flow}
      */
     export interface sys_hub_flow extends sys_hub_flow_base {
         /**
-         * "Compiler build" element (compiler_build)
-         * Type: "String" (string)
-         * Maximum length: 255
+         * "Compiler build" element.
          */
         compiler_build: GlideElement;
-        
+ 
         /**
-         * "Latest snapshot" element (latest_snapshot)
-         * Type: "String" (string)
-         * Maximum length: 32
+         * "Latest snapshot" element.
          */
         latest_snapshot: GlideElement;
-        
+ 
         /**
-         * "Main snapshot" element (master_snapshot)
-         * Type: "String" (string)
-         * Maximum length: 32
+         * "Main snapshot" element.
          */
         master_snapshot: GlideElement;
-        
+ 
         /**
-         * "Pre-Compiled" element (pre_compiled)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Pre-Compiled" element.
          */
-        pre_compiled: GlideElement;
-        
+        pre_compiled: GlideElementBoolean;
+ 
         /**
-         * "Show draft actions" element (show_draft_actions)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Show draft actions" element.
          */
-        show_draft_actions: GlideElement;
-        
+        show_draft_actions: GlideElementBoolean;
+ 
         /**
-         * "Show triggered flows" element (show_triggered_flows)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Show triggered flows" element.
          */
-        show_triggered_flows: GlideElement;
+        show_triggered_flows: GlideElementBoolean;
     }
-
+ 
     /**
      * "Action Category" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * @see {@link $$GlideElement.sys_hub_category}
+     * @see {@link $$GlideRecord.sys_hub_category}
      */
     export interface sys_hub_category extends sys_metadata {
         /**
-         * "Name" element (name)
-         * Type: "Translated Text" (translated_text)
-         * Maximum length: 255
+         * Name element.
          */
-        name: GlideElement;
-        
+        name: GlideElementTranslatedText;
+ 
         /**
-         * "Order" element (order)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
-         * Default value: "100"
+         * Order element.
          */
-        order: GlideElement;
+        order: GlideElementNumeric;
     }
-
+ 
     /**
      * "Color Definition" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * @see {@link $$GlideElement.sys_report_color}
+     * @see {@link $$GlideRecord.sys_report_color}
      */
     export interface sys_report_color extends sys_metadata {
         /**
-         * "Color" element (color)
-         * Type: "Color" (color)
-         * Maximum length: 40
-         * This is column is mandatory.
+         * Color element.
          */
         color: GlideElement;
-        
+ 
         /**
-         * "Display" element (display)
-         * Type: "Color Display" (color_display)
-         * Maximum length: 40
+         * Display element.
          */
         display: GlideElement;
-        
+ 
         /**
-         * "Name" element (name)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * This is column is mandatory.
+         * Name element.
          */
         name: GlideElement;
-        
+ 
         /**
-         * "Themeable color" element (themeable_color)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Themeable color" element.
+         * @see {@link $$GlideRecord.sys_ux_theme_property}
          */
         themeable_color: $$GlideElement.sys_ux_theme_property;
     }
 
     /**
+     * "Access Control" glide record fields.
+     * @see {@link $$GlideElement.sys_security_acl}
+     * @see {@link $$GlideRecord.sys_security_acl}
+     */
+    export interface sys_security_acl extends sys_metadata {
+        /**
+         * Active element.
+         */
+        active: GlideElementBoolean;
+ 
+        /**
+         * "Admin overrides" element.
+         */
+        admin_overrides: GlideElementBoolean;
+ 
+        /**
+         * Advanced element.
+         */
+        advanced: GlideElementBoolean;
+ 
+        /**
+         * Condition element.
+         */
+        condition: GlideElementConditions;
+ 
+        /**
+         * Description element.
+         */
+        description: GlideElement;
+ 
+        /**
+         * Name element.
+         */
+        name: GlideElement;
+ 
+        /**
+         * Operation element.
+         * @see {@link $$GlideRecord.sys_security_operation}
+         */
+        operation: $$GlideElement.sys_security_operation;
+ 
+        /**
+         * Script element.
+         */
+        script: GlideElementScript;
+ 
+        /**
+         * Type element.
+         * @see {@link $$GlideRecord.sys_security_type}
+         */
+        type: $$GlideElement.sys_security_type;
+    }
+ 
+    /**
+     * "Flow Outputs" glide record fields.
+     * @see {@link $$GlideElement.sys_hub_flow_output}
+     * @see {@link $$GlideRecord.sys_hub_flow_output}
+     */
+    export interface sys_hub_flow_output extends var_dictionary {
+        /**
+         * Model element.
+         * @see {@link $$GlideRecord.sys_hub_flow_base}
+         */
+        model: $$GlideElement.sys_hub_flow_base;
+    }
+ 
+    /**
      * "UX Theme Property" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * @see {@link $$GlideElement.sys_ux_theme_property}
+     * @see {@link $$GlideRecord.sys_ux_theme_property}
      */
     export interface sys_ux_theme_property extends sys_metadata {
         /**
-         * "CSS custom property" element (custom_property)
-         * Type: "String" (string)
-         * Maximum length: 255
+         * "CSS custom property" element.
          */
         custom_property: GlideElement;
-        
+ 
         /**
-         * "Default value" element (default_value)
-         * Type: "String" (string)
-         * Maximum length: 255
+         * "Default value" element.
          */
         default_value: GlideElement;
-        
+ 
         /**
-         * "Display name" element (display_name)
-         * Type: "String" (string)
-         * Maximum length: 255
-         * This is a read-only column.
+         * "Display name" element.
          */
         display_name: GlideElement;
-        
+ 
         /**
-         * "Inherits" element (inherits)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Inherits element.
+         * @see {@link $$GlideRecord.sys_ux_theme_property}
          */
         inherits: $$GlideElement.sys_ux_theme_property;
-        
+ 
         /**
-         * "Name" element (name)
-         * Type: "String" (string)
-         * Maximum length: 255
-         * This is column is mandatory.
+         * Name element.
          */
         name: GlideElement;
-        
+ 
         /**
-         * "Namespace" element (namespace)
-         * Type: "String" (string)
-         * Maximum length: 255
+         * Namespace element.
          */
         namespace: GlideElement;
-        
+ 
         /**
-         * "Schema" element (schema)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Schema element.
+         * @see {@link $$GlideRecord.sys_ux_theme_property_schema}
          */
         schema: $$GlideElement.sys_ux_theme_property_schema;
-        
+ 
         /**
-         * "SCSS variable" element (variable)
-         * Type: "String" (string)
-         * Maximum length: 255
+         * "SCSS variable" element.
          */
         variable: GlideElement;
     }
-
+ 
     /**
      * "UX Theme Property Schema" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * @see {@link $$GlideElement.sys_ux_theme_property_schema}
+     * @see {@link $$GlideRecord.sys_ux_theme_property_schema}
      */
     export interface sys_ux_theme_property_schema extends sys_metadata {
         /**
-         * "Name" element (name)
-         * Type: "String" (string)
-         * Maximum length: 255
-         * This is column is mandatory.
+         * Name element.
          */
         name: GlideElement;
     }
-
+ 
     /**
      * "Ordered Item Link" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * @see {@link $$GlideElement.sc_ordered_item_link}
+     * @see {@link $$GlideRecord.sc_ordered_item_link}
      */
     export interface sc_ordered_item_link extends sys_metadata {
         /**
-         * "Link text" element (link_text)
-         * Type: "String" (string)
-         * Maximum length: 100
+         * "Link text" element.
          */
         link_text: GlideElement;
-        
+ 
         /**
-         * "Link URL" element (link_url)
-         * Type: "String" (string)
-         * Maximum length: 255
+         * "Link URL" element.
          */
         link_url: GlideElement;
-        
+ 
         /**
-         * "Name" element (name)
-         * Type: "String" (string)
-         * Maximum length: 100
+         * Name element.
          */
         name: GlideElement;
-        
+ 
         /**
-         * "Target" element (target)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "_blank"
+         * Target element.
          */
         target: GlideElement;
     }
-
+ 
     /**
-     * "Item" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * Item glide record fields.
+     * @see {@link $$GlideElement.sc_ic_item_staging}
+     * @see {@link $$GlideRecord.sc_ic_item_staging}
      */
     export interface sc_ic_item_staging extends sys_metadata {
         /**
-         * "Active" element (active)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
-         * This is a read-only column.
+         * Active element.
          */
-        active: GlideElement;
-        
+        active: GlideElementBoolean;
+ 
         /**
-         * "Approval definitions changed" element (aprvl_defn_changed)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
-         * This is a read-only column.
+         * "Approval definitions changed" element.
          */
-        aprvl_defn_changed: GlideElement;
-        
+        aprvl_defn_changed: GlideElementBoolean;
+ 
         /**
-         * "Availability" element (availability)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "on_desktop"
+         * Availability element.
          */
         availability: GlideElement;
-        
+ 
         /**
-         * "One off cost" element (cost)
-         * Type: "Price" (price)
-         * Maximum length: 20
+         * "One off cost" element.
          */
-        cost: GlideElement;
-        
+        cost: GlideElementPrice;
+ 
         /**
-         * "Edit Counter" element (counter)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
-         * Default value: "0"
+         * "Edit Counter" element.
          */
-        counter: GlideElement;
-        
+        counter: GlideElementNumeric;
+ 
         /**
-         * "Description" element (description)
-         * Type: "Translated HTML" (translated_html)
-         * Maximum length: 8000
+         * Description element.
          */
-        description: GlideElement;
-        
+        description: GlideElementTranslatedHTML;
+ 
         /**
-         * "Desktop image" element (desktop_image)
-         * Type: "Image" (user_image)
-         * Maximum length: 40
+         * "Desktop image" element.
          */
-        desktop_image: GlideElement;
-        
+        desktop_image: GlideElementUserImage;
+ 
         /**
-         * "Entitlements" element (entitlements)
-         * Type: "String" (string)
-         * Maximum length: 4000
-         * Default value: "{'cmn_department':[],'cmn_location':[],'sys_user_group':[]}"
-         * This is a read-only column.
+         * Entitlements element.
          */
         entitlements: GlideElement;
-        
+ 
         /**
-         * "Fulfillment group" element (fulfillment_group)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Fulfillment group" element.
+         * @see {@link $$GlideRecord.sys_user_group}
          */
         fulfillment_group: $$GlideElement.sys_user_group;
-        
+ 
         /**
-         * "Fulfillment user" element (fulfillment_user)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Fulfillment user" element.
+         * @see {@link $$GlideRecord.sys_user}
          */
         fulfillment_user: $$GlideElement.sys_user;
-        
+ 
         /**
-         * "Item type" element (item_type)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "sc_cat_item"
+         * "Item type" element.
          */
         item_type: GlideElement;
-        
+ 
         /**
-         * "Layout changed" element (layout_changed)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
-         * This is a read-only column.
+         * "Layout changed" element.
          */
-        layout_changed: GlideElement;
-        
+        layout_changed: GlideElementBoolean;
+ 
         /**
-         * "Mobile image" element (mobile_image)
-         * Type: "Image" (user_image)
-         * Maximum length: 40
+         * "Mobile image" element.
          */
-        mobile_image: GlideElement;
-        
+        mobile_image: GlideElementUserImage;
+ 
         /**
-         * "Name" element (name)
-         * Type: "Translated Text" (translated_text)
-         * Maximum length: 100
-         * This is column is mandatory.
+         * Name element.
          */
-        name: GlideElement;
-        
+        name: GlideElementTranslatedText;
+ 
         /**
-         * "Recurring cost" element (recurring_cost)
-         * Type: "Price" (price)
-         * Maximum length: 20
+         * "Recurring cost" element.
          */
-        recurring_cost: GlideElement;
-        
+        recurring_cost: GlideElementPrice;
+ 
         /**
-         * "Recurring cost frequency" element (recurring_frequency)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * "Recurring cost frequency" element.
          */
         recurring_frequency: GlideElement;
-        
+ 
         /**
-         * "Published item" element (sc_cat_item)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         * This is a read-only column.
+         * "Published item" element.
+         * @see {@link $$GlideRecord.sc_cat_item}
          */
         sc_cat_item: $$GlideElement.sc_cat_item;
-        
+ 
         /**
-         * "Catalogs" element (sc_catalogs)
-         * Type: "List" (glide_list)
-         * Maximum length: 4000
-         * This is column is mandatory.
+         * Catalogs element.
+         * Type: List (glide_list); Scalar length: undefined
+         * @see {@link $$GlideRecord.sc_catalog}
          */
-        sc_catalogs: GlideElementGlideObject;
-        
+        sc_catalogs: $$GlideElement.sc_catalog;
+ 
         /**
-         * "Categories" element (sc_categories)
-         * Type: "List" (glide_list)
-         * Maximum length: 1024
+         * Categories element.
+         * Type: List (glide_list); Scalar length: undefined
+         * @see {@link $$GlideRecord.sc_category}
          */
-        sc_categories: GlideElementGlideObject;
-        
+        sc_categories: $$GlideElement.sc_category;
+ 
         /**
-         * "Short description" element (short_description)
-         * Type: "Translated Text" (translated_text)
-         * Maximum length: 120
+         * "Short description" element.
          */
-        short_description: GlideElement;
-        
+        short_description: GlideElementTranslatedText;
+ 
         /**
-         * "State" element (state)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "draft"
-         * This is a read-only column.
+         * State element.
          */
         state: GlideElement;
-        
+ 
         /**
-         * "Submission message" element (submission_message)
-         * Type: "Translated Text" (translated_text)
-         * Maximum length: 1000
+         * "Submission message" element.
          */
-        submission_message: GlideElement;
-        
+        submission_message: GlideElementTranslatedText;
+ 
         /**
-         * "Table name" element (table_name)
-         * Type: "Table Name" (table_name)
-         * Maximum length: 80
+         * "Table name" element.
          */
         table_name: GlideElement;
-        
+ 
         /**
-         * "Task definitions changed" element (task_defn_changed)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
-         * This is a read-only column.
+         * "Task definitions changed" element.
          */
-        task_defn_changed: GlideElement;
-        
+        task_defn_changed: GlideElementBoolean;
+ 
         /**
-         * "Variables definition changed" element (var_defn_changed)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
-         * This is a read-only column.
+         * "Variables definition changed" element.
          */
-        var_defn_changed: GlideElement;
-        
+        var_defn_changed: GlideElementBoolean;
+ 
         /**
-         * "Variables meta changed" element (var_meta_changed)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
-         * This is a read-only column.
+         * "Variables meta changed" element.
          */
-        var_meta_changed: GlideElement;
-        
+        var_meta_changed: GlideElementBoolean;
+ 
         /**
-         * "Version" element (version)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "1"
-         * This is a read-only column.
+         * Version element.
          */
         version: GlideElement;
-        
+ 
         /**
-         * "Workflow" element (workflow)
-         * Type: "String" (string)
-         * Maximum length: 4000
-         * This is a read-only column.
+         * Workflow element.
          */
         workflow: GlideElement;
     }
-
+ 
     /**
      * "Catalog Template" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * @see {@link $$GlideElement.sc_template}
+     * @see {@link $$GlideRecord.sc_template}
      */
     export interface sc_template extends sys_metadata {
         /**
-         * "Active" element (active)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
+         * Active element.
          */
-        active: GlideElement;
-        
+        active: GlideElementBoolean;
+ 
         /**
-         * "Available for" element (available_for)
-         * Type: "List" (glide_list)
-         * Maximum length: 1024
+         * "Available for" element.
+         * Type: List (glide_list); Scalar length: undefined
+         * @see {@link $$GlideRecord.user_criteria}
          */
-        available_for: GlideElementGlideObject;
-        
+        available_for: $$GlideElement.user_criteria;
+ 
         /**
-         * "Catalog item" element (cat_item)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Catalog item" element.
+         * @see {@link $$GlideRecord.sc_cat_item}
          */
         cat_item: $$GlideElement.sc_cat_item;
-        
+ 
         /**
-         * "Name" element (name)
-         * Type: "Translated Text" (translated_text)
-         * Maximum length: 100
+         * Name element.
          */
-        name: GlideElement;
-        
+        name: GlideElementTranslatedText;
+ 
         /**
-         * "Short description" element (short_description)
-         * Type: "Translated Text" (translated_text)
-         * Maximum length: 200
+         * "Short description" element.
          */
-        short_description: GlideElement;
-        
+        short_description: GlideElementTranslatedText;
+ 
         /**
-         * "Use template scope for creating records" element (use_template_scope)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
+         * "Use template scope for creating records" element.
          */
-        use_template_scope: GlideElement;
+        use_template_scope: GlideElementBoolean;
     }
-
+ 
     /**
-     * "Topic" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * Topic glide record fields.
+     * @see {@link $$GlideElement.topic}
+     * @see {@link $$GlideRecord.topic}
      */
     export interface topic extends sys_metadata {
         /**
-         * "Active" element (active)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
+         * Active element.
          */
-        active: GlideElement;
-        
+        active: GlideElementBoolean;
+ 
         /**
-         * "Apply template to child topics" element (apply_to_child_topics)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Apply template to child topics" element.
          */
-        apply_to_child_topics: GlideElement;
-        
+        apply_to_child_topics: GlideElementBoolean;
+ 
         /**
-         * "Banner Image" element (banner_image)
-         * Type: "Image" (user_image)
-         * Maximum length: 40
+         * "Banner Image" element.
          */
-        banner_image: GlideElement;
-        
+        banner_image: GlideElementUserImage;
+ 
         /**
-         * "Description" element (description)
-         * Type: "Translated Text" (translated_text)
-         * Maximum length: 120
+         * Description element.
          */
-        description: GlideElement;
-        
+        description: GlideElementTranslatedText;
+ 
         /**
-         * "Icon" element (icon)
-         * Type: "Image" (user_image)
-         * Maximum length: 40
+         * Icon element.
          */
-        icon: GlideElement;
-        
+        icon: GlideElementUserImage;
+ 
         /**
-         * "Name" element (name)
-         * Type: "Translated Text" (translated_text)
-         * Maximum length: 60
-         * This is column is mandatory.
+         * Name element.
          */
-        name: GlideElement;
-        
+        name: GlideElementTranslatedText;
+ 
         /**
-         * "Order" element (order)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
+         * Order element.
          */
-        order: GlideElement;
-        
+        order: GlideElementNumeric;
+ 
         /**
-         * "Parent topic" element (parent_topic)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Parent topic" element.
+         * @see {@link $$GlideRecord.topic}
          */
         parent_topic: $$GlideElement.topic;
-        
+ 
         /**
-         * "Taxonomy" element (taxonomy)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         * This is column is mandatory.
+         * Taxonomy element.
+         * @see {@link $$GlideRecord.taxonomy}
          */
         taxonomy: $$GlideElement.taxonomy;
-        
+ 
         /**
-         * "Template" element (template)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         * This is column is mandatory.
+         * Template element.
+         * @see {@link $$GlideRecord.sp_page}
          */
         template: $$GlideElement.sp_page;
-        
+ 
         /**
-         * "Topic based navigation" element (topic_based_navigation)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Topic based navigation" element.
          */
-        topic_based_navigation: GlideElement;
-        
+        topic_based_navigation: GlideElementBoolean;
+ 
         /**
-         * "Topic contributor" element (topic_contributor)
-         * Type: "List" (glide_list)
-         * Maximum length: 1024
+         * "Topic contributor" element.
+         * Type: List (glide_list); Scalar length: undefined
+         * @see {@link $$GlideRecord.user_criteria}
          */
-        topic_contributor: GlideElementGlideObject;
-        
+        topic_contributor: $$GlideElement.user_criteria;
+ 
         /**
-         * "Topic manager" element (topic_manager)
-         * Type: "List" (glide_list)
-         * Maximum length: 1024
+         * "Topic manager" element.
+         * Type: List (glide_list); Scalar length: undefined
+         * @see {@link $$GlideRecord.user_criteria}
          */
-        topic_manager: GlideElementGlideObject;
-        
+        topic_manager: $$GlideElement.user_criteria;
+ 
         /**
-         * "Topic path" element (topic_path)
-         * Type: "Translated Text" (translated_text)
-         * Maximum length: 1024
+         * "Topic path" element.
          */
-        topic_path: GlideElement;
+        topic_path: GlideElementTranslatedText;
     }
-
+ 
     /**
-     * "Taxonomy" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * Taxonomy glide record fields.
+     * @see {@link $$GlideElement.taxonomy}
+     * @see {@link $$GlideRecord.taxonomy}
      */
     export interface taxonomy extends sys_metadata {
         /**
-         * "Active" element (active)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
+         * Active element.
          */
-        active: GlideElement;
-        
+        active: GlideElementBoolean;
+ 
         /**
-         * "Description" element (description)
-         * Type: "Translated Text" (translated_text)
-         * Maximum length: 120
+         * Description element.
          */
-        description: GlideElement;
-        
+        description: GlideElementTranslatedText;
+ 
         /**
-         * "Managers" element (managers)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Managers element.
+         * @see {@link $$GlideRecord.user_criteria}
          */
         managers: $$GlideElement.user_criteria;
-        
+ 
         /**
-         * "Name" element (name)
-         * Type: "Translated Text" (translated_text)
-         * Maximum length: 60
-         * This is column is mandatory.
+         * Name element.
          */
-        name: GlideElement;
-        
+        name: GlideElementTranslatedText;
+ 
         /**
-         * "Domain" element (sys_domain)
-         * Type: "Domain ID" (domain_id)
-         * Maximum length: 32
-         * Default value: "global"
+         * Domain element.
          */
-        sys_domain: GlideElementReference;
+        sys_domain: GlideElementDomainId;
+ 
+        /**
+         * "Domain Path" element.
+         */
+        sys_domain_path: GlideElement;
     }
 
     /**
+     * Operation glide record fields.
+     * @see {@link $$GlideElement.sys_security_operation}
+     * @see {@link $$GlideRecord.sys_security_operation}
+     */
+    export interface sys_security_operation extends sys_metadata {
+        /**
+         * Description element.
+         */
+        description: GlideElement;
+ 
+        /**
+         * Name element.
+         */
+        name: GlideElement;
+ 
+        /**
+         * Order element.
+         */
+        order: GlideElementNumeric;
+    }
+ 
+    /**
+     * Type glide record fields.
+     * @see {@link $$GlideElement.sys_security_type}
+     * @see {@link $$GlideRecord.sys_security_type}
+     */
+    export interface sys_security_type extends sys_metadata {
+        /**
+         * Description element.
+         */
+        description: GlideElement;
+    }
+ 
+    /**
      * "User Criteria" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * @see {@link $$GlideElement.user_criteria}
+     * @see {@link $$GlideRecord.user_criteria}
      */
     export interface user_criteria extends sys_metadata {
         /**
-         * "Active" element (active)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
+         * Active element.
          */
-        active: GlideElement;
-        
+        active: GlideElementBoolean;
+ 
         /**
-         * "Advanced" element (advanced)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * Advanced element.
          */
-        advanced: GlideElement;
-        
+        advanced: GlideElementBoolean;
+ 
         /**
-         * "Companies" element (company)
-         * Type: "List" (glide_list)
-         * Maximum length: 1024
+         * Companies element.
+         * Type: List (glide_list); Scalar length: undefined
+         * @see {@link $$GlideRecord.core_company}
          */
-        company: GlideElementGlideObject;
-        
+        company: $$GlideElement.core_company;
+ 
         /**
-         * "Departments" element (department)
-         * Type: "List" (glide_list)
-         * Maximum length: 1024
+         * Departments element.
+         * Type: List (glide_list); Scalar length: undefined
+         * @see {@link $$GlideRecord.cmn_department}
          */
-        department: GlideElementGlideObject;
-        
+        department: $$GlideElement.cmn_department;
+ 
         /**
-         * "Groups" element (group)
-         * Type: "List" (glide_list)
-         * Maximum length: 1024
+         * Groups element.
+         * Type: List (glide_list); Scalar length: undefined
+         * @see {@link $$GlideRecord.sys_user_group}
          */
-        group: GlideElementGlideObject;
-        
+        group: $$GlideElement.sys_user_group;
+ 
         /**
-         * "Locations" element (location)
-         * Type: "List" (glide_list)
-         * Maximum length: 1024
+         * Locations element.
+         * Type: List (glide_list); Scalar length: undefined
+         * @see {@link $$GlideRecord.cmn_location}
          */
-        location: GlideElementGlideObject;
-        
+        location: $$GlideElement.cmn_location;
+ 
         /**
-         * "Match All" element (match_all)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Match All" element.
          */
-        match_all: GlideElement;
-        
+        match_all: GlideElementBoolean;
+ 
         /**
-         * "Name" element (name)
-         * Type: "String" (string)
-         * Maximum length: 100
-         * This is column is mandatory.
+         * Name element.
          */
         name: GlideElement;
-        
+ 
         /**
-         * "Roles" element (role)
-         * Type: "List" (glide_list)
-         * Maximum length: 1024
+         * Roles element.
+         * Type: List (glide_list); Scalar length: undefined
+         * @see {@link $$GlideRecord.sys_user_role}
          */
-        role: GlideElementGlideObject;
-        
+        role: $$GlideElement.sys_user_role;
+ 
         /**
-         * "Script" element (script)
-         * Type: "Script (Plain)" (script_plain)
-         * Maximum length: 8000
+         * Script element.
          */
-        script: GlideElement;
-        
+        script: GlideElementScript;
+ 
         /**
-         * "Domain" element (sys_domain)
-         * Type: "Domain ID" (domain_id)
-         * Maximum length: 32
-         * Default value: "global"
+         * Domain element.
          */
-        sys_domain: GlideElementReference;
-        
+        sys_domain: GlideElementDomainId;
+ 
         /**
-         * "Domain Path" element (sys_domain_path)
-         * Type: "Domain Path" (domain_path)
-         * Maximum length: 255
-         * Default value: "/"
+         * "Domain Path" element.
          */
         sys_domain_path: GlideElement;
-        
+ 
         /**
-         * "Users" element (user)
-         * Type: "List" (glide_list)
-         * Maximum length: 1024
+         * Users element.
+         * Type: List (glide_list); Scalar length: undefined
+         * @see {@link $$GlideRecord.sys_user}
          */
-        user: GlideElementGlideObject;
+        user: $$GlideElement.sys_user;
     }
-
+ 
     /**
-     * "Template" glide record fields.
-     * Auto-number prefix: TEMPLATE
-     * Scope: Global (global) - Global application scope
+     * Template glide record fields.
+     * @see {@link $$GlideElement.sys_template}
+     * @see {@link $$GlideRecord.sys_template}
      */
     export interface sys_template extends sys_metadata {
         /**
-         * "Active" element (active)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
+         * Active element.
          */
-        active: GlideElement;
-        
+        active: GlideElementBoolean;
+ 
         /**
-         * "Global" element (global)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * Global element.
          */
-        global: GlideElement;
-        
+        global: GlideElementBoolean;
+ 
         /**
-         * "Group" element (group)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Group element.
+         * @see {@link $$GlideRecord.sys_user_group}
          */
         group: $$GlideElement.sys_user_group;
-        
+ 
         /**
-         * "Groups" element (groups)
-         * Type: "List" (glide_list)
-         * Maximum length: 1024
+         * Groups element.
+         * Type: List (glide_list); Scalar length: undefined
+         * @see {@link $$GlideRecord.sys_user_group}
          */
-        groups: GlideElementGlideObject;
-        
+        groups: $$GlideElement.sys_user_group;
+ 
         /**
-         * "Link element" element (link_element)
-         * Type: "Field Name" (field_name)
-         * Maximum length: 80
+         * "Link element" element.
          */
         link_element: GlideElement;
-        
+ 
         /**
-         * "Name" element (name)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * Name element.
          */
         name: GlideElement;
-        
+ 
         /**
-         * "Next Related Template" element (next)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Next Related Template" element.
+         * @see {@link $$GlideRecord.sys_template}
          */
         next: $$GlideElement.sys_template;
-        
+ 
         /**
-         * "Next Related Child Template" element (next_child)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Next Related Child Template" element.
+         * @see {@link $$GlideRecord.sys_template}
          */
         next_child: $$GlideElement.sys_template;
-        
+ 
         /**
-         * "Roles" element (roles)
-         * Type: "User Roles" (user_roles)
-         * Maximum length: 100
-         * This column is an array column.
+         * Roles element.
          */
         roles: GlideElement;
-        
+ 
         /**
-         * "Short description" element (short_description)
-         * Type: "String" (string)
-         * Maximum length: 100
+         * "Short description" element.
          */
         short_description: GlideElement;
-        
+ 
         /**
-         * "Show on template bar" element (show_on_template_bar)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
+         * "Show on template bar" element.
          */
-        show_on_template_bar: GlideElement;
-        
+        show_on_template_bar: GlideElementBoolean;
+ 
         /**
-         * "Stand alone" element (stand_alone)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Stand alone" element.
          */
-        stand_alone: GlideElement;
-        
+        stand_alone: GlideElementBoolean;
+ 
         /**
-         * "Domain" element (sys_domain)
-         * Type: "Domain ID" (domain_id)
-         * Maximum length: 32
-         * Default value: "global"
+         * Domain element.
          */
-        sys_domain: GlideElementReference;
-        
+        sys_domain: GlideElementDomainId;
+ 
         /**
-         * "Table" element (table)
-         * Type: "Table Name" (table_name)
-         * Maximum length: 80
+         * "Domain Path" element.
+         */
+        sys_domain_path: GlideElement;
+ 
+        /**
+         * Table element.
          */
         table: GlideElement;
-        
+ 
         /**
-         * "Template" element (template)
-         * Type: "Template Value" (template_value)
-         * Maximum length: 65000
+         * Template element.
          */
-        template: GlideElement;
-        
+        template: GlideElementWorkflowConditions;
+ 
         /**
-         * "User" element (user)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * User element.
+         * @see {@link $$GlideRecord.sys_user}
          */
         user: $$GlideElement.sys_user;
-        
+ 
         /**
-         * "View" element (view)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * View element.
          */
         view: GlideElement;
     }
-
+ 
     /**
      * "Map Page" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * @see {@link $$GlideElement.cmn_map_page}
+     * @see {@link $$GlideRecord.cmn_map_page}
      */
     export interface cmn_map_page extends sys_metadata {
         /**
-         * "Center map on" element (center_address)
-         * Type: "String" (string)
-         * Maximum length: 255
-         * Default value: "Yogododji, Africa"
+         * "Center map on" element.
          */
         center_address: GlideElement;
-        
+ 
         /**
-         * "Center latitude" element (center_latitude)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * "Center latitude" element.
          */
         center_latitude: GlideElement;
-        
+ 
         /**
-         * "Center longitude" element (center_longitude)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * "Center longitude" element.
          */
         center_longitude: GlideElement;
-        
+ 
         /**
-         * "Controls size" element (controls_size)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "large"
+         * "Controls size" element.
          */
         controls_size: GlideElement;
-        
+ 
         /**
-         * "Coordinates retrieved on" element (coordinates_retrieved_on)
-         * Type: "Date/Time" (glide_date_time)
-         * Maximum length: 40
+         * "Coordinates retrieved on" element.
+         * Type: "Date/Time" (glide_date_time); scalar type: datetime
          */
         coordinates_retrieved_on: GlideElementGlideObject;
-        
+ 
         /**
-         * "Disabled Map Controls" element (disable_map_controls)
-         * Type: "List" (glide_list)
-         * Maximum length: 1024
+         * "Disabled Map Controls" element.
+         * Type: List (glide_list); Scalar length: undefined
          */
         disable_map_controls: GlideElementGlideObject;
-        
+ 
         /**
-         * "Disable nav bar" element (disable_nav_bar)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
+         * "Disable nav bar" element.
          */
-        disable_nav_bar: GlideElement;
-        
+        disable_nav_bar: GlideElementBoolean;
+ 
         /**
-         * "Filter" element (filter)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Filter element.
+         * @see {@link $$GlideRecord.cmn_map_filter}
          */
         filter: $$GlideElement.cmn_map_filter;
-        
+ 
         /**
-         * "Initial zoom" element (initial_zoom)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
-         * Default value: "2"
+         * "Initial zoom" element.
          */
-        initial_zoom: GlideElement;
-        
+        initial_zoom: GlideElementNumeric;
+ 
         /**
-         * "Name" element (name)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * Name element.
          */
-        name: GlideElement;
-        
+        name: GlideElementTranslatedField;
+ 
         /**
-         * "Map overview" element (overview)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
+         * "Map overview" element.
          */
-        overview: GlideElement;
-        
+        overview: GlideElementBoolean;
+ 
         /**
-         * "Refresh on zoom" element (refresh_on_zoom)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Refresh on zoom" element.
          */
-        refresh_on_zoom: GlideElement;
-        
+        refresh_on_zoom: GlideElementBoolean;
+ 
         /**
-         * "Roles" element (roles)
-         * Type: "User Roles" (user_roles)
-         * Maximum length: 255
-         * This column is an array column.
+         * Roles element.
          */
         roles: GlideElement;
-        
+ 
         /**
-         * "Script" element (script)
-         * Type: "Script (Plain)" (script_plain)
-         * Maximum length: 8000
+         * Script element.
          */
-        script: GlideElement;
-        
+        script: GlideElementScript;
+ 
         /**
-         * "Show device location" element (show_device_location)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
+         * "Show device location" element.
          */
-        show_device_location: GlideElement;
-        
+        show_device_location: GlideElementBoolean;
+ 
         /**
-         * "Suffix" element (suffix)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * Suffix element.
          */
         suffix: GlideElement;
-        
+ 
         /**
-         * "Type" element (type)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "satellite"
+         * Type element.
          */
         type: GlideElement;
-        
+ 
         /**
-         * "Type selection" element (type_selection)
-         * Type: "String" (string)
-         * Maximum length: 40
-         * Default value: "buttons"
+         * "Type selection" element.
          */
         type_selection: GlideElement;
-        
+ 
         /**
-         * "Use advanced configuration" element (use_advanced_configuration)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
+         * "Use advanced configuration" element.
          */
-        use_advanced_configuration: GlideElement;
+        use_advanced_configuration: GlideElementBoolean;
     }
-
+ 
     /**
      * "Map Item" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * @see {@link $$GlideElement.cmn_map_item}
+     * @see {@link $$GlideRecord.cmn_map_item}
      */
     export interface cmn_map_item extends sys_metadata {
         /**
-         * "Name" element (name)
-         * Type: "Translated Field" (translated_field)
-         * Maximum length: 40
+         * Name element.
          */
-        name: GlideElement;
+        name: GlideElementTranslatedField;
     }
-
+ 
     /**
      * "Map Page Filter" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * @see {@link $$GlideElement.cmn_map_filter}
+     * @see {@link $$GlideRecord.cmn_map_filter}
      */
     export interface cmn_map_filter extends cmn_map_item {
     }
-
+ 
     /**
      * "Portal Page" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * @see {@link $$GlideElement.sys_portal_page}
+     * @see {@link $$GlideRecord.sys_portal_page}
      */
     export interface sys_portal_page extends sys_metadata {
         /**
-         * "Layout" element (layout)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Layout element.
+         * @see {@link $$GlideRecord.sys_ui_macro}
          */
         layout: $$GlideElement.sys_ui_macro;
-        
+ 
         /**
-         * "Order" element (order)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
+         * Order element.
          */
-        order: GlideElement;
-        
+        order: GlideElementNumeric;
+ 
         /**
-         * "Read roles" element (read_roles)
-         * Type: "User Roles" (user_roles)
-         * Maximum length: 255
-         * This column is an array column.
+         * "Read roles" element.
          */
         read_roles: GlideElement;
-        
+ 
         /**
-         * "Write roles" element (roles)
-         * Type: "User Roles" (user_roles)
-         * Maximum length: 255
-         * This column is an array column.
+         * "Write roles" element.
          */
         roles: GlideElement;
-        
+ 
         /**
-         * "Selectable" element (selectable)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
+         * Selectable element.
          */
-        selectable: GlideElement;
-        
+        selectable: GlideElementBoolean;
+ 
         /**
-         * "Domain" element (sys_domain)
-         * Type: "Domain ID" (domain_id)
-         * Maximum length: 32
-         * Default value: "global"
+         * Domain element.
          */
-        sys_domain: GlideElementReference;
-        
+        sys_domain: GlideElementDomainId;
+ 
         /**
-         * "Domain Path" element (sys_domain_path)
-         * Type: "Domain Path" (domain_path)
-         * Maximum length: 255
-         * Default value: "/"
+         * "Domain Path" element.
          */
         sys_domain_path: GlideElement;
-        
+ 
         /**
-         * "Overrides" element (sys_overrides)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Overrides element.
+         * @see {@link $$GlideRecord.sys_portal_page}
          */
         sys_overrides: $$GlideElement.sys_portal_page;
-        
+ 
         /**
-         * "Title" element (title)
-         * Type: "Translated Field" (translated_field)
-         * Maximum length: 100
+         * Title element.
          */
-        title: GlideElement;
-        
+        title: GlideElementTranslatedField;
+ 
         /**
-         * "User" element (user)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * User element.
+         * @see {@link $$GlideRecord.sys_user}
          */
         user: $$GlideElement.sys_user;
-        
+ 
         /**
-         * "View" element (view)
-         * Type: "String" (string)
-         * Maximum length: 100
+         * View element.
          */
         view: GlideElement;
     }
-
+ 
     /**
      * "Assessment Metric Type" glide record fields.
-     * Scope: Global (global) - Global application scope
+     * @see {@link $$GlideElement.asmt_metric_type}
+     * @see {@link $$GlideRecord.asmt_metric_type}
      */
     export interface asmt_metric_type extends sys_metadata {
         /**
-         * "Active" element (active)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
+         * Active element.
          */
-        active: GlideElement;
-        
+        active: GlideElementBoolean;
+ 
         /**
-         * "Allow Public" element (allow_public)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
-         * This is a read-only column.
+         * "Allow Public" element.
          */
-        allow_public: GlideElement;
-        
+        allow_public: GlideElementBoolean;
+ 
         /**
-         * "Allow retake" element (allow_retake)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Allow retake" element.
          */
-        allow_retake: GlideElement;
-        
+        allow_retake: GlideElementBoolean;
+ 
         /**
-         * "Anonymize responses" element (anonymize)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Anonymize responses" element.
          */
-        anonymize: GlideElement;
-        
+        anonymize: GlideElementBoolean;
+ 
         /**
-         * "Business rule" element (business_rule)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         * This is a read-only column.
+         * "Business rule" element.
+         * @see {@link $$GlideRecord.sys_script}
          */
         business_rule: $$GlideElement.sys_script;
-        
+ 
         /**
-         * "Chat Survey" element (chat_survey)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Chat Survey" element.
          */
-        chat_survey: GlideElement;
-        
+        chat_survey: GlideElementBoolean;
+ 
         /**
-         * "Condition" element (condition)
-         * Type: "Conditions" (conditions)
-         * Maximum length: 1000
+         * Condition element.
          */
-        condition: GlideElement;
-        
+        condition: GlideElementConditions;
+ 
         /**
-         * "Default matrix filter" element (default_filter)
-         * Type: "Choice" (choice)
-         * Maximum length: 40
+         * "Default matrix filter" element.
          */
         default_filter: GlideElement;
-        
+ 
         /**
-         * "Deletion business rule" element (delete_business_rule)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         * This is a read-only column.
+         * "Deletion business rule" element.
+         * @see {@link $$GlideRecord.sys_script}
          */
         delete_business_rule: $$GlideElement.sys_script;
-        
+ 
         /**
-         * "Description" element (description)
-         * Type: "Translated Text" (translated_text)
-         * Maximum length: 1000
+         * Description element.
          */
-        description: GlideElement;
-        
+        description: GlideElementTranslatedText;
+ 
         /**
-         * "Disable UI Action" element (disable_ui_action)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         * This is a read-only column.
+         * "Disable UI Action" element.
+         * @see {@link $$GlideRecord.sys_ui_action}
          */
         disable_ui_action: $$GlideElement.sys_ui_action;
-        
+ 
         /**
-         * "Display all filters" element (display_all_filters)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
+         * "Display all filters" element.
          */
-        display_all_filters: GlideElement;
-        
+        display_all_filters: GlideElementBoolean;
+ 
         /**
-         * "Filter field" element (display_field)
-         * Type: "Field Name" (field_name)
-         * Maximum length: 80
-         * This is column is mandatory.
+         * "Filter field" element.
          */
         display_field: GlideElement;
-        
+ 
         /**
-         * "Assessment duration" element (duration)
-         * Type: "Duration" (glide_duration)
-         * Maximum length: 40
-         * Default value: "14 00:00:00"
+         * "Assessment duration" element.
+         * Type: Duration (glide_duration); scalar type: datetime
          */
         duration: GlideElementGlideObject;
-        
+ 
         /**
-         * "Enable UI Action" element (enable_ui_action)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         * This is a read-only column.
+         * "Enable UI Action" element.
+         * @see {@link $$GlideRecord.sys_ui_action}
          */
         enable_ui_action: $$GlideElement.sys_ui_action;
-        
+ 
         /**
-         * "End note" element (end_note)
-         * Type: "Translated HTML" (translated_html)
-         * Maximum length: 8000
+         * "End note" element.
          */
-        end_note: GlideElement;
-        
+        end_note: GlideElementTranslatedHTML;
+ 
         /**
-         * "Enforce condition" element (enforce_condition)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
+         * "Enforce condition" element.
          */
-        enforce_condition: GlideElement;
-        
+        enforce_condition: GlideElementBoolean;
+ 
         /**
-         * "Evaluation method" element (evaluation_method)
-         * Type: "Choice" (choice)
-         * Maximum length: 40
-         * Default value: "assessment"
-         * This is a read-only column.
+         * "Evaluation method" element.
          */
         evaluation_method: GlideElement;
-        
+ 
         /**
-         * "Filter condition" element (filter_condition)
-         * Type: "Conditions" (conditions)
-         * Maximum length: 1000
+         * "Filter condition" element.
          */
-        filter_condition: GlideElement;
-        
+        filter_condition: GlideElementConditions;
+ 
         /**
-         * "Filter table" element (filter_table)
-         * Type: "String" (string)
-         * Maximum length: 40
+         * "Filter table" element.
          */
         filter_table: GlideElement;
-        
+ 
         /**
-         * "Introduction" element (introduction)
-         * Type: "Translated HTML" (translated_html)
-         * Maximum length: 8000
+         * Introduction element.
          */
-        introduction: GlideElement;
-        
+        introduction: GlideElementTranslatedHTML;
+ 
         /**
-         * "Scheduled job" element (job)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         * This is a read-only column.
+         * "Scheduled job" element.
+         * @see {@link $$GlideRecord.sys_trigger}
          */
         job: $$GlideElement.sys_trigger;
-        
+ 
         /**
-         * "Live feed" element (live_feed)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
+         * "Live feed" element.
          */
-        live_feed: GlideElement;
-        
+        live_feed: GlideElementBoolean;
+ 
         /**
-         * "Name" element (name)
-         * Type: "Translated Text" (translated_text)
-         * Maximum length: 255
-         * This is column is mandatory.
+         * Name element.
          */
-        name: GlideElement;
-        
+        name: GlideElementTranslatedText;
+ 
         /**
-         * "Do not show survey introduction notes" element (not_show_intro_note)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "Do not show survey introduction notes" element.
          */
-        not_show_intro_note: GlideElement;
-        
+        not_show_intro_note: GlideElementBoolean;
+ 
         /**
-         * "Notify if overdue" element (notify_if_overdue)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
+         * "Notify if overdue" element.
          */
-        notify_if_overdue: GlideElement;
-        
+        notify_if_overdue: GlideElementBoolean;
+ 
         /**
-         * "Send notifications" element (notify_user)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "true"
+         * "Send notifications" element.
          */
-        notify_user: GlideElement;
-        
+        notify_user: GlideElementBoolean;
+ 
         /**
-         * "One Click Survey" element (one_click_survey)
-         * Type: "True/False" (boolean)
-         * Maximum length: 40
-         * Default value: "false"
+         * "One Click Survey" element.
          */
-        one_click_survey: GlideElement;
-        
+        one_click_survey: GlideElementBoolean;
+ 
         /**
-         * "Assessment manager" element (overdue_notify_user)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Assessment manager" element.
+         * @see {@link $$GlideRecord.sys_user}
          */
         overdue_notify_user: $$GlideElement.sys_user;
-        
+ 
         /**
-         * "Pagination setting for Service Portal view" element (portal_pagination)
-         * Type: "Choice" (choice)
-         * Maximum length: 40
-         * Default value: "category"
+         * "Pagination setting for Service Portal view" element.
          */
         portal_pagination: GlideElement;
-        
+ 
         /**
-         * "State" element (publish_state)
-         * Type: "Choice" (choice)
-         * Maximum length: 40
-         * Default value: "draft"
+         * State element.
          */
         publish_state: GlideElement;
-        
+ 
         /**
-         * "Roles" element (roles)
-         * Type: "User Roles" (user_roles)
-         * Maximum length: 200
+         * Roles element.
          */
         roles: GlideElement;
-        
+ 
         /**
-         * "Sample metric" element (sample_metric)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * "Sample metric" element.
+         * @see {@link $$GlideRecord.asmt_metric}
          */
         sample_metric: $$GlideElement.asmt_metric;
-        
+ 
         /**
-         * "Scale factor" element (scale_factor)
-         * Type: "Integer" (integer)
-         * Maximum length: 40
-         * This is column is mandatory.
+         * "Scale factor" element.
          */
-        scale_factor: GlideElement;
-        
+        scale_factor: GlideElementNumeric;
+ 
         /**
-         * "Schedule period" element (schedule_period)
-         * Type: "Choice" (choice)
-         * Maximum length: 40
-         * Default value: "0"
+         * "Schedule period" element.
          */
         schedule_period: GlideElement;
-        
+ 
         /**
-         * "Schedule type" element (schedule_type)
-         * Type: "Choice" (choice)
-         * Maximum length: 40
-         * Default value: "on_demand"
+         * "Schedule type" element.
          */
         schedule_type: GlideElement;
-        
+ 
         /**
-         * "Scoring type" element (scoring_type)
-         * Type: "Choice" (choice)
-         * Maximum length: 40
-         * Default value: "percent"
+         * "Scoring type" element.
          */
         scoring_type: GlideElement;
-        
+ 
         /**
-         * "Signature" element (signature)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
+         * Signature element.
+         * @see {@link $$GlideRecord.asmt_signature}
          */
         signature: $$GlideElement.asmt_signature;
-        
+ 
         /**
-         * "Source table" element (source_table)
-         * Type: "Table Name" (table_name)
-         * Maximum length: 80
+         * "Source table" element.
          */
         source_table: GlideElement;
-        
+ 
         /**
-         * "Owners" element (survey_owners)
-         * Type: "List" (glide_list)
-         * Maximum length: 1024
+         * Owners element.
+         * Type: List (glide_list); Scalar length: undefined
+         * @see {@link $$GlideRecord.sys_user}
          */
-        survey_owners: GlideElementGlideObject;
-        
+        survey_owners: $$GlideElement.sys_user;
+ 
         /**
-         * "Domain" element (sys_domain)
-         * Type: "Domain ID" (domain_id)
-         * Maximum length: 32
-         * Default value: "global"
+         * Domain element.
          */
-        sys_domain: GlideElementReference;
-        
+        sys_domain: GlideElementDomainId;
+ 
         /**
-         * "Domain Path" element (sys_domain_path)
-         * Type: "Domain Path" (domain_path)
-         * Maximum length: 255
-         * Default value: "/"
+         * "Domain Path" element.
          */
         sys_domain_path: GlideElement;
-        
+ 
         /**
-         * "Table" element (table)
-         * Type: "Table Name" (table_name)
-         * Maximum length: 80
-         * This is column is mandatory.
+         * Table element.
          */
         table: GlideElement;
-        
+ 
         /**
-         * "Return URL" element (url)
-         * Type: "String" (string)
-         * Maximum length: 500
+         * "Return URL" element.
          */
         url: GlideElement;
-        
+ 
         /**
-         * "User field" element (user_field)
-         * Type: "Field Name" (field_name)
-         * Maximum length: 80
+         * "User field" element.
          */
         user_field: GlideElement;
-        
+ 
         /**
-         * "Business rule" element (user_field_business_rule)
-         * Type: "Reference" (reference)
-         * Maximum length: 32
-         * This is a read-only column.
+         * "Business rule" element.
+         * @see {@link $$GlideRecord.sys_script}
          */
         user_field_business_rule: $$GlideElement.sys_script;
     }
+    
+    // #endregion
+
+    // #region Not Done
 
     /**
      * "Business Rule" glide record fields.
@@ -39121,4 +36242,6 @@ declare namespace $$tableFields {
          */
         version: GlideElement;
     }
+    
+    // #endregion
 }
