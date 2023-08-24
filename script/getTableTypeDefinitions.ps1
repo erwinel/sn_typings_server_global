@@ -2,6 +2,9 @@ Param(
     [string[]]$TableNames = @('task', 'sc_cat_item'),
     [Uri]$BaseUri = 'https://dev145540.service-now.com'
 )
+<#
+Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process
+#>
 if ($null -eq $Script:SnCredentials) { $Script:SnCredentials = Get-Credential -Message 'SN Login' }
 $Script:SysDictionaryPath = $PSScriptRoot | Join-Path -ChildPath 'sys_dictionary';
 if (-not ($Script:SysDictionaryPath | Test-Path)) { New-Item -Path $Script:SysDictionaryPath -ItemType Directory -Name 'sys_dictionary' };
@@ -11,12 +14,12 @@ class SysScope {
     [string]$name;
     [string]$short_description;
 
-    static [SysScope] Load([string]$Value, [Hashtable]$Data) {
+    static [SysScope] Load([string]$Value, [PSObject]$JsonData) {
         $SysScope = [SysScope]@{
-            sys_id = [GlideType]::NullIfEmpty($Data['sys_id']);
+            sys_id = [GlideType]::NullIfEmpty($JsonData.sys_id);
             value = [GlideType]::NullIfEmpty($Value);
-            name = [GlideType]::DefaultIfEmpty($Data['name'], $Value);
-            short_description = [GlideType]::NullIfEmpty($Data['short_description']);
+            name = [GlideType]::DefaultIfEmpty($JsonData.name, $Value);
+            short_description = [GlideType]::NullIfEmpty($JsonData.short_description);
         };
         if ($null -ne $SysScope.value -and $null -ne $SysScope.name -and -not [string]::IsNullOrWhiteSpace($SysScope.sys_id)) { return $SysScope }
         return $null;
@@ -66,15 +69,15 @@ class TableInfo {
     [string]$super_class;
     [string]$number_prefix;
 
-    static [TableInfo] Load([string]$Name, [Hashtable]$Data) {
+    static [TableInfo] Load([string]$Name, [PSObject]$JsonData) {
         $TableInfo = [TableInfo]@{
-            sys_id = [GlideType]::NullIfEmpty($Data['sys_id']);
+            sys_id = [GlideType]::NullIfEmpty($JsonData.sys_id);
             name = [GlideType]::NullIfEmpty($Name);
-            label = [GlideType]::DefaultIfEmpty($Data['label'], $Name);
-            is_extendable = [GlideType]::IsTrue($Data['is_extendable']);
-            scope = [GlideType]::NullIfEmpty($Data['scope']);
-            super_class = [GlideType]::NullIfEmpty($Data['super_class']);
-            number_prefix = [GlideType]::NullIfEmpty($Data['number_prefix']);
+            label = [GlideType]::DefaultIfEmpty($JsonData.label, $Name);
+            is_extendable = [GlideType]::IsTrue($JsonData.is_extendable);
+            scope = [GlideType]::NullIfEmpty($JsonData.scope);
+            super_class = [GlideType]::NullIfEmpty($JsonData.super_class);
+            number_prefix = [GlideType]::NullIfEmpty($JsonData.number_prefix);
         };
         if ($null -ne $TableInfo.name -and -not [string]::IsNullOrWhiteSpace($TableInfo.sys_id)) { return $TableInfo }
         return $null;
@@ -88,8 +91,15 @@ class TableInfo {
             label = [GlideType]::DefaultIfEmpty($JsonObj.label, $n);
             is_extendable = [GlideType]::IsTrue($JsonObj.is_extendable);
             scope = [GlideType]::NullIfEmpty($JsonObj.scope);
-            number_prefix = [GlideType]::NullIfEmpty($JsonObj.number_prefix);
         };
+        if ($null -ne $JsonObj.number_ref) {
+            [Uri]$Uri = $null;
+            if ([string]::IsNullOrWhiteSpace($JsonObj.number_ref.link) -or -not [Uri]::TryCreate($JsonObj.number_ref.link, [UriKind]::Absolute, [ref]$Uri)) {
+                $TableInfo.number_prefix = $TypeDb.FetchNumberRef($JsonObj.number_ref.value, $null);
+            } else {
+                $TableInfo.number_prefix = $TypeDb.FetchNumberRef($JsonObj.number_ref.value, $Uri);
+            }
+        }
         if ($null -eq $TableInfo.name -or [string]::IsNullOrWhiteSpace($TableInfo.sys_id)) { return $null }
         if ($TypeDb.TableDefinitions.ContainsKey($TableInfo.name)) {
             Write-Warning -Message "Duplicate table: $(($TableInfo.name | ConvertTo-Json))";
@@ -207,17 +217,17 @@ class GlideType {
         return $GlideType;
     }
 
-    static [GlideType] Load([string]$Name, [Hashtable]$Data) {
+    static [GlideType] Load([string]$Name, [PSObject]$JsonData) {
         $GlideType = [GlideType]@{
-            sys_id = [GlideType]::NullIfEmpty($Data['sys_id']);
+            sys_id = [GlideType]::NullIfEmpty($JsonData.sys_id);
             name = [GlideType]::NullIfEmpty($Name);
-            label = [GlideType]::DefaultIfEmpty($Data['label'], $Name);
-            scalar_type = [GlideType]::DefaultIfEmpty($Data['scalar_type'], 'string');
-            scalar_length = [GlideType]::AsInt($Data['scalar_length']);
-            class_name = [GlideType]::NullIfEmpty($Data['class_name']);
-            scope = [GlideType]::NullIfEmpty($Data['scope']);
-            use_original_value = [GlideType]::IsTrue($Data['use_original_value']);
-            visible = [GlideType]::IsTrue($Data['visible']);
+            label = [GlideType]::DefaultIfEmpty($JsonData.label, $Name);
+            scalar_type = [GlideType]::DefaultIfEmpty($JsonData.scalar_type, 'string');
+            scalar_length = [GlideType]::AsInt($JsonData.scalar_length);
+            class_name = [GlideType]::NullIfEmpty($JsonData.class_name);
+            scope = [GlideType]::NullIfEmpty($JsonData.scope);
+            use_original_value = [GlideType]::IsTrue($JsonData.use_original_value);
+            visible = [GlideType]::IsTrue($JsonData.visible);
         };
         if ($null -ne $GlideType.name -and $null -ne $GlideType.scalar_type -and -not [string]::IsNullOrWhiteSpace($GlideType.sys_id)) { return $GlideType }
         return $null;
@@ -259,22 +269,22 @@ class FieldInfo {
     [bool]$read_only;
     [bool]$unique;
 
-    static [FieldInfo] Load([string]$Name, [Hashtable]$Data) {
-        $n = [GlideType]::NullIfEmpty($Data['name']);;
+    static [FieldInfo] Load([string]$Name, [PSObject]$JsonData) {
+        $n = [GlideType]::NullIfEmpty($JsonData.name);;
         $FieldInfo = [FieldInfo]@{
-            sys_id = [GlideType]::NullIfEmpty($Data['sys_id']);
+            sys_id = [GlideType]::NullIfEmpty($JsonData.sys_id);
             name = $n;
-            label = [GlideType]::DefaultIfEmpty($Data['column_label'], $n);
-            active = [GlideType]::IsTrue($Data['active']);
-            array = [GlideType]::IsTrue($Data['array']);
-            comments = [GlideType]::NullIfEmpty($Data['comments']);
-            default_value = [GlideType]::NullIfEmpty($Data['default_value']);
-            display = [GlideType]::IsTrue($Data['display']);
-            mandatory = [GlideType]::IsTrue($Data['mandatory']);
-            max_length = [GlideType]::AsInt($Data['max_length']);
-            primary = [GlideType]::IsTrue($Data['primary']);
-            read_only = [GlideType]::IsTrue($Data['read_only']);
-            unique = [GlideType]::IsTrue($Data['unique']);
+            label = [GlideType]::DefaultIfEmpty($JsonData.column_label, $n);
+            active = [GlideType]::IsTrue($JsonData.active);
+            array = [GlideType]::IsTrue($JsonData.array);
+            comments = [GlideType]::NullIfEmpty($JsonData.comments);
+            default_value = [GlideType]::NullIfEmpty($JsonData.default_value);
+            display = [GlideType]::IsTrue($JsonData.display);
+            mandatory = [GlideType]::IsTrue($JsonData.mandatory);
+            max_length = [GlideType]::AsInt($JsonData.max_length);
+            primary = [GlideType]::IsTrue($JsonData.primary);
+            read_only = [GlideType]::IsTrue($JsonData.read_only);
+            unique = [GlideType]::IsTrue($JsonData.unique);
         }
         if ($null -ne $FieldInfo.name -and -not [string]::IsNullOrWhiteSpace($FieldInfo.sys_id)) { return $FieldInfo }
         return $null;
@@ -361,6 +371,7 @@ class TypeDb {
     [Uri]$BaseUri;
     [string]$DbPath;
     [string]$CurrentActivity;
+    [System.Collections.Generic.Dictionary[string,string]]$NumberRefMap = [System.Collections.Generic.Dictionary[string,string]]::new([System.StringComparer]::InvariantCultureIgnoreCase);
     [System.Collections.Generic.Dictionary[string,string]]$TypeSysIdMap = [System.Collections.Generic.Dictionary[string,string]]::new([System.StringComparer]::InvariantCultureIgnoreCase);
     [System.Collections.Generic.Dictionary[string,string]]$TableSysIdMap = [System.Collections.Generic.Dictionary[string,string]]::new([System.StringComparer]::InvariantCultureIgnoreCase);
     [System.Collections.Generic.Dictionary[string,string]]$ScopeSysIdMap = [System.Collections.Generic.Dictionary[string,string]]::new([System.StringComparer]::InvariantCultureIgnoreCase);
@@ -378,34 +389,32 @@ class TypeDb {
         $this.DbPath = $DbPath;
         try {
             if ($DbPath | Test-Path) {
-                $Hashtable = (Get-Content -LiteralPath $DbPath -Encoding utf8 -Force -ErrorAction Stop) | ConvertFrom-Json -AsHashtable;
-                [Hashtable]$h = $Hashtable['types'];
-                if ($null -ne $h) {
-                    $enumerator = $h.GetEnumerator();
-                    while ($enumerator.MoveNext()) {
-                        $GlideType = [GlideType]::Load($enumerator.Key, $enumerator.Value);
+                [PSObject]$JsonData = (Get-Content -LiteralPath $DbPath -Encoding utf8 -Force -ErrorAction Stop) | ConvertFrom-Json;
+                [PSObject]$TypesJson = $JsonData.types;
+                if ($null -ne $TypesJson) {
+                    ($TypesJson | Get-Member -MemberType NoteProperty) | ForEach-Object {
+                        $GlideType = [GlideType]::Load($_.Name, $TypesJson.($_.Name));
                         if ($null -ne $GlideType) {
                             $this.TypeSysIdMap[$GlideType.sys_id] = $GlideType.name;
                             $this.Types[$GlideType.name] = $GlideType;
                         }
                     }
                 }
-                [Hashtable]$h = $Hashtable['scopes'];
-                if ($null -ne $h) {
-                    $enumerator = $h.GetEnumerator();
-                    while ($enumerator.MoveNext()) {
-                        $SysScope = [SysScope]::Load($enumerator.Key, $enumerator.Value);
+                
+                [PSObject]$ScopesJson = $JsonData.scopes;
+                if ($null -ne $ScopesJson) {
+                    ($ScopesJson | Get-Member -MemberType NoteProperty) | ForEach-Object {
+                        $SysScope = [SysScope]::Load($_.Name, $ScopesJson.($_.Name));
                         if ($null -ne $SysScope) {
                             $this.ScopeSysIdMap[$SysScope.sys_id] = $SysScope.value;
                             $this.Scopes[$SysScope.value] = $SysScope;
                         }
                     }
                 }
-                [Hashtable]$h = $Hashtable['tables'];
-                if ($null -ne $h) {
-                    $enumerator = $h.GetEnumerator();
-                    while ($enumerator.MoveNext()) {
-                        $TableInfo = [TableInfo]::Load($enumerator.Key, $enumerator.Value);
+                [PSObject]$TablesJson = $JsonData.tables;
+                if ($null -ne $TablesJson) {
+                    ($TablesJson | Get-Member -MemberType NoteProperty) | ForEach-Object {
+                        $TableInfo = [TableInfo]::Load($_.Name, $TablesJson.($_.Name));
                         if ($null -ne $TableInfo) {
                             $this.TypeSysIdMap[$TableInfo.sys_id] = $TableInfo.name;
                             $this.TableDefinitions[$TableInfo.name] = $TableInfo;
@@ -465,6 +474,30 @@ class TypeDb {
         }
     }
 
+    [string] FetchNumberRef([string]$id, [Uri]$Url) {
+        [string]$Result = $null;
+        if ($this.NumberRefMap.TryGetValue($id, [ref]$Result)) { return $Result }
+        if ($null -eq $Url) { return $null }
+        $IsActivityInitiator = [string]::IsNullOrWhiteSpace($this.CurrentActivity); 
+        if ($IsActivityInitiator) { $this.CurrentActivity = 'Getting Number Ref'; }
+        try {
+            Write-Progress -Activity $this.CurrentActivity -Status 'Getting number ref from remote' -CurrentOperation $Url.AbsoluteUri;
+            $Response = Invoke-WebRequest -Uri $Url -Method Get -Credential $Script:SnCredentials -Headers @{
+                Accept = "application/json";
+            } -ErrorAction Stop;
+            if ([string]::IsNullOrWhiteSpace($Response.Content)) { return $null }
+            $JsonObj = $Response.Content | ConvertFrom-Json -ErrorAction Stop;
+            if ($null -eq $JsonObj -or $null -eq $JsonObj.result -or [string]::IsNullOrWhiteSpace($JsonObj.result.prefix)) { return $null }
+            $this.NumberRefMap[$id] = $JsonObj.result.prefix;
+            return $JsonObj.result.prefix;
+        } finally {
+            if ($IsActivityInitiator) {
+                Write-Progress -Activity $this.CurrentActivity -Status 'Finished' -Completed;
+                $this.CurrentActivity = $null;
+            }
+        }
+    }
+
     [GlideType] FetchType([string]$id, [Uri]$Url) {
         [GlideType]$Result = $null;
         if ($this.Types.TryGetValue($id, [ref]$Result) -or ($this.TypeSysIdMap.TryGetValue($id, [ref]$id) -and $this.Types.TryGetValue($id, [ref]$Result))) { return $Result }
@@ -514,6 +547,8 @@ class TypeDb {
     [TableInfo] FetchTableInfo([string]$SysId, [Uri]$Url) {
         $sc = '';
         if ($this.TableSysIdMap.TryGetValue($SysId, [ref]$sc)) { return $this.TableDefinitions[$sc] }
+        [TableInfo]$TableInfo = $null;
+        if ($this.TableDefinitions.TryGetValue($SysId, [ref]$TableInfo)) { return $TableInfo }
         if ($null -eq $Url) { return $null }
         Write-Progress -Activity $this.CurrentActivity -Status 'Getting super class from remote' -CurrentOperation $Url.AbsoluteUri;
         $Response = Invoke-WebRequest -Uri $Url -Method Get -Credential $Script:SnCredentials -Headers @{
@@ -535,7 +570,7 @@ class TypeDb {
             $UriBuilder = [System.UriBuilder]::new($this.BaseUri);
             $UriBuilder.Path = '/api/now/table/sys_db_object';
             $Query = "name=$TableName";
-            $UriBuilder.Query = "?sysparm_query=$([Uri]::EscapeDataString($Query))";
+            $UriBuilder.Query = "sysparm_query=$([Uri]::EscapeDataString($Query))";
             $Uri = $UriBuilder.Uri.AbsoluteUri;
             Write-Progress -Activity $this.CurrentActivity -Status 'Getting remote data' -CurrentOperation $Uri;
             $Response = Invoke-WebRequest -Uri $Uri -Method Get -Credential $Script:SnCredentials -Headers @{
@@ -564,7 +599,7 @@ class TypeDb {
             $UriBuilder = [System.UriBuilder]::new($this.BaseUri);
             $UriBuilder.Path = '/api/now/table/sys_dictionary';
             $Query = "name=$TableName";
-            $UriBuilder.Query = "?sysparm_query=$([Uri]::EscapeDataString($Query))";
+            $UriBuilder.Query = "sysparm_query=$([Uri]::EscapeDataString($Query))";
             $Uri = $UriBuilder.Uri.AbsoluteUri;
             Write-Progress -Activity $this.CurrentActivity -Status 'Getting remote data' -CurrentOperation $Uri;
             $Response = Invoke-WebRequest -Uri $Uri -Method Get -Credential $Script:SnCredentials -Headers @{
@@ -586,4 +621,5 @@ class TypeDb {
 #if ($null -eq $Script:TypeDb) {
     $Script:TypeDb = [TypeDb]::new($BaseUri, ($PSScriptRoot | Join-Path -ChildPath 'type_db.json'));
 #}
-$Script:TypeDb.GetTableFields('incident');
+$TableInfo = $Script:TypeDb.GetTableInfo('incident');
+$TableInfo
