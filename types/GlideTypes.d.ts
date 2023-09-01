@@ -1,15 +1,14 @@
 /// <reference path="./Packages.d.ts" />
 /// <reference path="./$$rhino.d.ts" />
 
+//#region TypeDefs
+
 declare type EncryptionAlgorithmHashType = "MD-2" | "MD-5" | "SHA-1" | "SHA-224" | "SHA-256" | "SHA-384" | "SHA-512";
 
 declare type EncryptionAlgorithmSignType = "NONEwithRSA" | "MD2withRSA" | "MD5withRSA" | "SHA1withRSA" | "SHA224withRSA" | "SHA256withRSA" | "SHA384withRSA" |
     "SHA512withRSA" | "NONEwithDSA" | "SHA1withDSA" | "SHA224withDSA" | "SHA256withDSA" | "NONEwithECDSA" | "SHA1withECDSA" | "SHA224withECDSA" | "SHA256withECDSA" |
     "SHA384withECDSA" | "SHA512withECDSA";
 
-/**
- *
- */
 declare type TaskAppproval = "not requested" | "cancelled" | "requested" | "duplicate" | "not_required" | "approved" | "rejected";
 
 /**
@@ -17,91 +16,76 @@ declare type TaskAppproval = "not requested" | "cancelled" | "requested" | "dupl
  */
 declare type TaskContactType = "email" | "endpoint_security" | "ids_ips" | "network_monitoring" | "phone" | "self-service" | "siem" | "virtual_agent" | "vulnerability_response" | "walk-in";
 
-/**
- *
- */
-declare type TaskEscalationValue = 0 | 1 | 2 | 3;
+declare type TaskEscalationNumber = 0 | 1 | 2 | 3;
 declare type TaskEscalationString = "0" | "1" | "2" | "3";
-declare type TaskEscalation = TaskEscalationValue | TaskEscalationString;
+declare type TaskEscalationValue = TaskEscalationNumber | TaskEscalationString;
 
 /**
  *
  * @description 1="1 - High"; 2="2 - Medium"; 3="3 - Low"
  */
-declare type Task3ScaleValue = 1 | 2 | 3;
+declare type Task3ScaleNumber = 1 | 2 | 3;
 declare type Task3ScaleString = "1" | "2" | "3";
-declare type Task3Scale = Task3ScaleValue | Task3ScaleString;
+declare type Task3ScaleValue = Task3ScaleNumber | Task3ScaleString;
 
-/**
- *
- */
-declare type TaskPriorityValue = 1 | 2 | 3 | 4 | 5;
+declare type TaskPriorityNumber = 1 | 2 | 3 | 4 | 5;
 declare type TaskPriorityString = "1" | "2" | "3" | "4" | "5";
-declare type TaskPriority = TaskPriorityValue | TaskPriorityString;
+declare type TaskPriorityValue = TaskPriorityNumber | TaskPriorityString;
 
 /**
  *
  * @description -5="Pending"; 1="Open"; 2="Work in Progress"; 3="Closed Complete"; 4="Closed Incomplete"; 7="Closed Skipped"
  */
-declare type TaskStateValue = -5 | 1 | 2 | 3 | 4 | 7;
+declare type TaskStateNumber = -5 | 1 | 2 | 3 | 4 | 7;
 declare type TaskStateString = "-5" | "1" | "2" | "3" | "4" | "7";
-declare type TaskState = TaskStateValue | TaskStateString;
+declare type TaskStateValue = TaskStateNumber | TaskStateString;
 
-/**
- *
- */
 declare type IncidentCloseCode = "Solved (Work Around)" | "Solved (Permanently)" | "Solved Remotely (Work Around)" | "Solved Remotely (Permanently)" | "Not Solved (Not Reproducible)" | "Not Solved (Too Costly)" | "Closed/Resolved by Caller";
 
 /**
  *
  * @description 1="Awaiting Caller"; 5="Awaiting Change"; 3="Awaiting Problem"; 4="Awaiting Vendor"
  */
-declare type IncidentHoldReasonValue = 1 | 5 | 3 | 4;
+declare type IncidentHoldReasonNumber = 1 | 5 | 3 | 4;
 declare type IncidentHoldReasonString = "1" | "5" | "3" | "4";
-declare type IncidentHoldReason = IncidentHoldReasonValue | IncidentHoldReasonString;
+declare type IncidentHoldReasonValue = IncidentHoldReasonNumber | IncidentHoldReasonString;
 
 /**
  *
  * @description 1="New"; 2="In Progress"; 3="On Hold"; 6="Resolved"; 7="Closed"; 8="Canceled"
  */
-declare type IncidentStateValue = 1 | 2 | 3 | 6 | 7 | 8;
+declare type IncidentStateNumber = 1 | 2 | 3 | 6 | 7 | 8;
 declare type IncidentStateString = "1" | "2" | "3" | "6" | "7" | "8";
-declare type IncidentState = IncidentStateValue | IncidentStateString;
+declare type IncidentStateValue = IncidentStateNumber | IncidentStateString;
 
-/**
- *
- */
-declare type IncidentNotifyValue = 1 | 2 | 3;
+declare type IncidentNotifyNumber = 1 | 2 | 3;
 declare type IncidentNotifyString = "1" | "2" | "3";
-declare type IncidentNotify = IncidentNotifyValue | IncidentNotifyString;
+declare type IncidentNotifyValue = IncidentNotifyNumber | IncidentNotifyString;
 
 /**
  *
  * @description 1="Success"; 2="Fail"
  */
-declare type ChangeReviewStatusValue = 1 | 2;
+declare type ChangeReviewStatusNumber = 1 | 2;
 declare type ChangeReviewStatusString = "1" | "2";
-declare type ChangeReviewStatus = ChangeReviewStatusValue | ChangeReviewStatusString;
+declare type ChangeReviewStatusValue = ChangeReviewStatusNumber | ChangeReviewStatusString;
 
 /**
  *
  * @description 2="High"; 3="Moderate"; 4="Low"
  */
-declare type ChangeRiskValue = 2 | 3 | 4;
+declare type ChangeRiskNumber = 2 | 3 | 4;
 declare type ChangeRiskString = "2" | "3" | "4";
-declare type ChangeRisk = ChangeRiskValue | ChangeRiskString;
+declare type ChangeRiskValue = ChangeRiskNumber | ChangeRiskString;
 
 /**
  *
  * @description 1="Massive"; 2="Large"; 3="Medium"; 4="Small"; 5="Tiny"
  */
-declare type ChangeScopeValue = 1 | 2 | 3 | 4 | 5;
+declare type ChangeScopeNumber = 1 | 2 | 3 | 4 | 5;
 declare type ChangeScopeString = "1" | "2" | "3" | "4" | "5";
-declare type ChangeScope = ChangeScopeValue | ChangeScopeString;
+declare type ChangeScopeValue = ChangeScopeNumber | ChangeScopeString;
 
-/**
- *
- */
 declare type ChangeType = "standard" | "normal" | "emergency";
 
 /**
@@ -114,25 +98,161 @@ declare type ChangeCloseCode = "successful" | "successful_issues" | "unsuccessfu
  *
  * @description 1="Open"; 3="Pending Change"; 2="Known Error"; 4="Closed/Resolved"
  */
-declare type ProblemStateValue = 1 | 3 | 2 | 4;
+declare type ProblemStateNumber = 1 | 3 | 2 | 4;
 declare type ProblemStateString = "1" | "3" | "2" | "4";
-declare type ProblemState = ProblemStateValue | ProblemStateString;
-
-/**
- *
- */
-declare type GlideProgressWorkerState = "starting" | "running" | "complete" | "cancelled" | "unknown";
-
-/**
- *
- */
-declare type GlideProgressWorkerCompletionCode = "success" | "cancelled" | "error";
+declare type ProblemStateValue = ProblemStateNumber | ProblemStateString;
 
 /**
  *
  * @description "requested"="Pending Approval"; "in_process"="Approved"; "closed_complete"="Closed Complete"; "closed_incomplete"="Closed Incomplete"; "closed_cancelled"="Closed Cancelled"; "closed_rejected"="Closed Rejected"; "closed_skipped"="Closed Skipped"
  */
 declare type IRequestState = "requested" | "in_process" | "closed_complete" | "closed_incomplete" | "closed_cancelled" | "closed_rejected" | "closed_skipped";
+
+/**
+ * Query operator values that can be used for string value comparisons.
+ */
+declare type StringQueryOperator = "=" | "!=" | "IN" | "NOT IN" | "STARTSWITH" | "ENDSWITH" | "CONTAINS" | "DOES NOT CONTAIN" | "INSTANCEOF";
+
+/**
+ * Query operator values that can be used for numerical operations.
+ */
+declare type NumberQueryOperator = "=" | "!=" | ">" | ">=" | "<" | "<=";
+
+/**
+ * Query operator values.
+ */
+declare type QueryOperator = StringQueryOperator | NumberQueryOperator;
+
+/**
+ * Type values for the "Type" field of the "Service Availibility" table (service_availility.type).
+ */
+declare type service_availabilityType = "daily" | "weekly" | "monthly" | "annually" | "last7days" | "last30days" | "last12months";
+
+declare type AggregateType = "min" | "max" | "sum" | "avg" | "count";
+
+declare type GlideProgressWorkerState = "starting" | "running" | "complete" | "cancelled" | "unknown";
+
+declare type GlideProgressWorkerCompletionCode = "success" | "cancelled" | "error";
+
+/**
+ * Represents an object type.
+ */
+type GlideJSType = "null" | "string" | "number" | "boolean" | "function" | "object";
+
+/**
+ * Names of workflow events availablein the base system.
+ * 
+ * This was created by referencing {@link https://docs.servicenow.com/bundle/utah-servicenow-platform/page/administer/workflow-administration/reference/r_WorkflowEventsInTheBaseSystem.html}
+ * @enum {string}
+ */
+declare enum BaseSystemWorkflowEventNames {
+    /**
+     * Informs records in the Workflow Executing Activity [wf_executing] table about the completion of other activities in the same workflow context.
+     * If the activity is allowed to set the boolean value for wf_executing.notify_termination, then set the value to true (activity.notify_termination = true) during the onExecute event.
+     * Source: Workflow Engine, Process Terminations; Thread: Current thread, current mutex; Listeners: Join activity
+     * @summary String value used by activity definitions to respond to the onActivityComplete event handler.
+     */
+    activityComplete = "activityComplete",
+    /**
+     * From within activity definitions:
+     * 
+     * Informs all wf_executing records in a context that the workflow is being canceled.
+     * The End activity uses the global workflow.broadcastEvent('cancel') to interrupt the currently running wf_executing records. This changes the state of those records to Cancelled.
+     * Source: End activity; Thread: Current thread, current mutex; Listeners: All activities, onCancel event handler
+     * 
+     * Outside current context:
+     * 
+     * This event is the same as the cancel event above and handled the same. However, the management of this event is subtly different.
+     * This event informs all wf_executing records in a context that the workflow is being canceled.
+     * The event is managed via the onCancel event handler of each executing activity definition, but the event is called differently.
+     * In particular, the call to cancel from outside an activity definition is blocked by the current mutex.
+     * This is a significant difference in that the event does not interrupt a currently executing activity that is still operating within the parameters of the current mutex.
+     * Any script can call cancel on a known executing context via the workflow script include.
+     * Source: Any script include, scheduled job, UI action, or other source; Thread: Current thread, private mutex; Listeners:All activities, onCancel event handler
+     * @summary String value used by workflow activities to respond to a request for cancellation.
+     */
+    cancel = "cancel",
+    /**
+     * Informs wf_executing records for approval activities about an approval that completed and triggered the timer event.
+     * Approval Coordinator both registers for the event and triggers the event. The child approvals have listeners that determine their approval state.
+     * Source: Approval Coordinator triggers the event during its onExecute; Thread: Current thread, current mutex;
+     * Listeners: Approval Coordinator, Approval - User, and Approval - Group all have onDetermineApprovalState event handlers.
+     * If the state is anything but Requested, the activity is considered finished, and the approval state (Approved, Rejected, Cancelled) is set to the wf_executing.result column
+     * @summary String value used by approval activities to respond to a change in the overall approval status of the current record.
+     */
+    determineApprovalState = "determineApprovalState",
+    /**
+     * Informs a record in the wf_executing table with the initial state of Executing to proceed with its primary work.
+     * The workflow engine, for each transition executed, creates an executing record with a state of Executing. Once created, the executing record is put in a queue for processing.
+     * For each item in the queue, the Rhino globals are established, the activity definition that drives the executing record is instantiated, and the run() function is called.
+     * When the state of a record is Executing, this function always calls onExecute.
+     * Source: Workflow engine, via the WFActivity Handler; Thread: Current thread, current mutex; Listeners: All activities, onExecute event handler
+     * 
+     * Lock Activities
+     * 
+     * This is also the string value used by the Lock activity to respond to a waiting lock that is ready to make another attempt to obtain a specific lock.
+     * For Lock activities, this informs a wf_executing record waiting to execute that the specified wait interval has passed and that it should attempt to get the lock again.
+     * The execute event for a Lock activity is different because it is called on a separate thread, at specified intervals, and is treated as an outside event.
+     * Source: Lock activity via a scheduled job; Thread: Worker thread, private mutex; Listeners: Lock activity, onExecute event handler
+     * @summary String value used by workflow activities to respond to a Timer activity that has expired.
+     */
+    execute = "execute",
+    /**
+     * When a main workflow calls a subflow, the workflow keeps the ID of the subflow's context in the scratchpad. When the subflow is complete, it triggers the listener event via a business rule.
+     * The listener event is passed to the parent context on completion of a subflow and is managed by the onListener action of the workflow activity.
+     * Source: Business rule that is triggered by the update of a workflow that has a parent; Thread: Current thread, current mutex;
+     * Listeners: This event is used by a subflow to inform it's parent flow that it is complete. The parent workflow will react to this event and continue.
+     * @summary String value that the workflow (subflow) activity triggers as an event.
+     */
+    listener = "listener",
+    /**
+     * When an SLA is paused, the SLA workflows must be paused if there is a timer running.
+     * Use is exclusive to the SLA timer.
+     * Source: SLA; Thread: Business rule thread, private mutex; Listeners: Timer activity
+     * @summary String value sent to a workflow from an SLA to pause the Timer activity.
+     */
+    pause = "pause",
+    /**
+     * String value triggered in the workflow by an Orchestration activity indicating that the MID Server has completed a task.
+     * The onProbe_complete event handler is in the WebServiceActivityHandler and is used by most Orchestration activities.
+     * Source: Event used to restate a workflow that is waiting for the MID Server to process a task or activity; Thread: Worker thread, private mutex; Listeners: Orchestration activities
+     * @summary String value triggered in the workflow by an Orchestration activity indicating that the MID Server has completed a task.
+     */
+    probe_complete = "probe_complete",
+    /**
+     * When an SLA is resumed, the SLA workflows must be resumed as well.
+     * Use is exclusive to the SLA timer.
+     * Source: SLA; Thread: Business rule thread, private mutex; Listeners: Timer activity
+     * @summary String value used by the Timer activity to resume a paused timer (see {@link BaseSystemWorkflowEventNames#pause}).
+     */
+    resume = "resume",
+    /**
+     * The End activity checks for this event. This is only in the End activity.
+     * Source: Any script can trigger or broadcast the stop event via a script include or workflow Run Script activity; Thread: Current thread, current mutex;
+     * Listeners: This event is used by the End activity to exclude the Cancel activity and allow a workflow to end, even if canceled.
+     * @summary The End activity checks for this event.
+     */
+    stop = "stop",
+    /**
+     * Allows wf_executing records to be informed about a timer activity that has completed and has fired the timer event.
+     * The Timer activity schedules a job that calls a script. The script calls fireEvent (wf_executing, timer).
+     * Source: Timer activity via a scheduled job; Thread: Worker thread, private mutex; Listeners: Timer activity, onTimer event handler
+     * @summary String value used by workflow activities to respond to a Timer activity that has expired.
+     */
+    timer = "timer",
+    /**
+     * Informs records in the Workflow Executing Activity [wf_executing] table about an otherEvent that has completed.
+     * The Join activity transitions from n number of preceding activities. These preceding activities all create a wf_executing record, which causes a check to see if the record already exists.
+     * If the Join already exists, then the Join created by the executing transition sets the wf_executing record for deletion.
+     * Source: Join activity; Thread: Current thread, current mutex; Listeners: Join activity, onOtherEvent event handler
+     * @summary String value used by the Join activity to respond to an otherEvent.
+     */
+    otherEvent = "otherEvent"
+}
+
+declare type WorkflowOperationType = "insert" | "update" | "delete";
+
+//#endregion
 
 /**
  * Defines members that are common to both GlideRecord and GlideElement objects
@@ -220,7 +340,7 @@ declare interface IGlideElement extends IDbObject {
      */
     getChoiceValue(): string;
     /**
-     * Returns the clear text value for Password (2 way encrypted) fields in scoped applications.
+     * Returns the clear text value for Password (2 way encrypted) fields in applications.
      * @returns {string} The clear text password.
      */
     getDecryptedValue(): string;
@@ -286,84 +406,6 @@ declare interface IGlideElement extends IDbObject {
     setValue(value: any): void;
 }
 
-declare type QuestionList = Packages.java.util.ArrayList<Question>;
-
-declare interface IQuestionSet {
-    getMandatoryName(): Packages.java.lang.String;
-    getLabelClass(): Packages.java.lang.String;
-    getWidgetClass(): Packages.java.lang.String;
-    getTableClass(): Packages.java.lang.String;
-    isUseSpacers(): $$rhino.Boolean;
-    setUseSpacers(bln: $$rhino.Boolean): void;
-    getMode(): $$rhino.Number;
-    setMode(i: $$rhino.Number): void;
-    getQuestion(): Packages.java.util.List<Question>;
-    setQuestion(list: QuestionList): void;
-}
-declare abstract class QuestionSet implements IQuestionSet {
-    getMandatoryName(): Packages.java.lang.String;
-    getLabelClass(): Packages.java.lang.String;
-    getWidgetClass(): Packages.java.lang.String;
-    getTableClass(): Packages.java.lang.String;
-    isUseSpacers(): $$rhino.Boolean;
-    setUseSpacers(bln: $$rhino.Boolean): void;
-    getMode(): $$rhino.Number;
-    setMode(i: $$rhino.Number): void;
-    getQuestion(): Packages.java.util.List<Question>;
-    setQuestion(list: QuestionList): void;
-    isPopup(): $$rhino.Boolean;
-    isPrint(): $$rhino.Boolean;
-    isShowHelpOnLoad(): $$rhino.Boolean;
-}
-
-declare abstract class Question {
-    getColumncount(): $$rhino.Number;
-    setColumncount(i: $$rhino.Number): void;
-    getContainerLayout(): Packages.java.lang.String;
-    setContainerLayout(n: $$rhino.String): void;
-    isValueEmpty(): $$rhino.Boolean;
-    isVariableEditor(): $$rhino.Boolean;
-    getSet(): QuestionSet;
-    setSet(set: QuestionSet);
-    getDisplayValue(): Packages.java.lang.String;
-    setDisplayValue(n: $$rhino.String): void;
-    canRead(): $$rhino.Boolean;
-    canWrite(): $$rhino.Boolean;
-    canCreate(): $$rhino.Boolean;
-    getMode(): $$rhino.Number;
-    getReadOnly(): $$rhino.Boolean;
-    setReadOnly(bln: $$rhino.Boolean): void;
-    isReadOnly(): $$rhino.Boolean;
-    getName(): Packages.java.lang.String;
-    setName(n: $$rhino.String): void;
-    getId(): Packages.java.lang.String;
-    setId(n: $$rhino.String): void;
-    getLabel(): Packages.java.lang.String;
-    setLabel(n: $$rhino.String): void;
-    getMaxLength(): Packages.java.lang.Integer;
-    setMaxLength(n: $$rhino.Number): void;
-    getValue(): Packages.java.lang.String;
-    setValue(n: $$rhino.String): void;
-    getType(): Packages.java.lang.String;
-    setType(n: $$rhino.Number): void;
-    getCategory(): Packages.java.lang.String;
-    setCategory(n: $$rhino.String): void;
-    isMandatory(): $$rhino.Boolean;
-    setMandatory(bln: $$rhino.Boolean): void;
-    isShowHelp(): $$rhino.Boolean;
-    setShowHelp(bln: $$rhino.Boolean): void;
-    isNumeric(): $$rhino.Boolean;
-    isDate(): $$rhino.Boolean;
-    isActive(): $$rhino.Boolean;
-    getCatalogItem(): Packages.java.lang.String;
-    setCatalogItem(n: $$rhino.String): void;
-}
-declare interface ISharedItemOptionQuestionSet extends IQuestionSet {
-    getCatalogItemID(): Packages.java.lang.String;
-    setCatalogItemID(n: $$rhino.String): void;
-    getFlatQuestions(): Packages.java.util.List<Question>;
-    getFlatQuestionsAndContainers(): Packages.java.util.List<Question>;
-}
 declare class Choice {
     constructor(value: $$rhino.String, label: $$rhino.String, sys_id?: $$rhino.String);
     getLabel(): Packages.java.lang.String;
@@ -387,92 +429,56 @@ declare class Choice {
     isReference(): $$rhino.Boolean;
     isMissing(): $$rhino.Boolean;
 }
-declare class ChoiceList implements Packages.java.util.ArrayList<Choice> {
-    add(e: Choice): $$rhino.Boolean;
-    add(index: $$rhino.Number, element: Choice): void;
-    addAll(c: Packages.java.util.Collection<Choice>): $$rhino.Boolean;
-    addAll(index: $$rhino.Number, c: Packages.java.util.Collection<Choice>): $$rhino.Boolean;
-    clear(): void;
-    clone(): Packages.java.lang.Object;
-    contains(o: any): $$rhino.Boolean;
-    ensureCapacity(minCapacity: $$rhino.Number): void;
-    get(index: $$rhino.Number): Choice;
-    isEmpty(): $$rhino.Boolean;
-    iterator(): Packages.java.util.Iterator<Choice>;
-    lastIndexOf(o: any): $$rhino.Number;
-    listIterator(): Packages.java.util.ListIterator<Choice>;
-    listIterator(index: $$rhino.Number): Packages.java.util.ListIterator<Choice>;
-    remove(index: $$rhino.Number): Choice;
-    remove(o: any): $$rhino.Boolean;
-    removeAll(c: Packages.java.util.Collection<any>): $$rhino.Boolean;
-    retainAll(c: Packages.java.util.Collection<any>): $$rhino.Boolean;
-    set(index: $$rhino.Number, element: Choice): Choice;
-    size(): $$rhino.Number;
-    subList(fromIndex: $$rhino.Number, toIndex: $$rhino.Number): Packages.java.util.List<Choice>;
-    toArray();
-    trimToSize(): void;
-    hashCode(): $$rhino.Number;
-    containsAll(c: Packages.java.util.Collection<any>): $$rhino.Boolean;
-    toString(): $$rhino.String;
-    equals(obj: any): $$rhino.Boolean;
-    sort(): void;
-    getChoice(i: $$rhino.Number | $$rhino.String): Choice;
-    getChoiceNoTrim(i: $$rhino.String): Choice;
-    getSelectedIndex(): Packages.java.lang.Integer;
-    indexOf(o: any): Packages.java.lang.Integer;
-    indexOfNoTrim(o: any): Packages.java.lang.Integer;
-    addFirst(c: Choice): void;
-    addNone(): Choice;
-    removeNone(): void;
-    removeChoice(i: $$rhino.Number | $$rhino.String): Choice;
-    removeChoice(c: Choice): void;
-    getLabelOf(value: $$rhino.String): Packages.java.lang.String;
-    getValueOf(label: $$rhino.String): Packages.java.lang.String;
-    has(value: $$rhino.String): $$rhino.Boolean;
-    isReferenceList(): $$rhino.Boolean;
-    getSize(): Packages.java.lang.Integer;
-    static getChoiceList(tableName: $$rhino.String, fieldName: $$rhino.String): ChoiceList;
-}
-declare interface IItemOptionsQuestionSet extends ISharedItemOptionQuestionSet {
-    getChoices(n: $$rhino.String, bln: $$rhino.Boolean): ChoiceList;
-    getCartItem(): GlideRecord;
-}
-declare interface IVariablePoolQuestionSet extends IItemOptionsQuestionSet {
-    getItemOptionID(qstn: Question): Packages.java.lang.String;
-    getRequestID(): Packages.java.lang.String;
-    getTaskID(): Packages.java.lang.String;
-}
-declare interface IGlideElementGlideObject extends IGlideElement {
-    
-}
-declare interface IGlideVariableComponent extends IGlideElementGlideObject {
-    isMultiRow(): boolean;
-}
-declare interface IGlideElementVariable extends IGlideVariableComponent {
-    getQuestion(): Question;
-}
-declare interface IGlideElementVariables extends IGlideElement {
-    getVariablePoolQuestionSet(): IVariablePoolQuestionSet;
-    getAllIds(): IJavaArray<any>;
-}
-/**
- * Query operator values that can be used for string value comparisons.
- */
-declare type StringQueryOperator = "=" | "!=" | "IN" | "NOT IN" | "STARTSWITH" | "ENDSWITH" | "CONTAINS" | "DOES NOT CONTAIN" | "INSTANCEOF";
 
 /**
- * Query operator values that can be used for numerical operations.
+ * @see {@link https://docs.servicenow.com/bundle/utah-api-reference/page/app-store/dev_portal/API_reference/CMDBQueryBuilderAPI/concept/CMDBQueryBuilderAPI.html}
+ * @see {@link https://developer.servicenow.com/dev.do#!/reference/api/utah/server_legacy/CMDBQueryBuilderAPI}
+ * @todo Add CMDBQueryBuilderAPI members
  */
-declare type NumberQueryOperator = "=" | "!=" | ">" | ">=" | "<" | "<=";
+declare class CMDBQueryBuilderAPI {
+}
 
 /**
- * Query operator values.
+ * @see {@link https://docs.servicenow.com/bundle/utah-api-reference/page/app-store/dev_portal/API_reference/CMDBUtil/concept/c_CMDBUtilAPI.html}
+ * @see {@link https://developer.servicenow.com/dev.do#!/reference/api/utah/server_legacy/c_CMDBUtilAPI}
+ * @todo Add CMDBUtil members
  */
-declare type QueryOperator = StringQueryOperator | NumberQueryOperator;
+declare class CMDBUtil {
+}
+
+/**
+ * @see {@link https://docs.servicenow.com/bundle/utah-api-reference/page/app-store/dev_portal/API_reference/ColorBoth/concept/ColorBothAPI.html}
+ * @todo Add Color members
+ */
+declare class Color {
+}
+
+declare class EmailWatermark {
+    getWatermark(): string;
+}
+
+/**
+ * The EmailOutbound class implements the email object for applications.
+* @description You can use the EmailOutbound methods with the email global object available in mail scripts.The email object behaves identically for global and applications.
+ */
+declare class EmailOutbound extends GlideEmail {
+    constructor(actionType_OR_action?: string | GlideRecord, m?: EmailWatermark);
+    save(): void;
+}
+
+/**
+ * @see {@link https://docs.servicenow.com/bundle/utah-api-reference/page/app-store/dev_portal/API_reference/Event/concept/EventAPI.html}
+ * @see {@link https://developer.servicenow.com/dev.do#!/reference/api/utah/server_legacy/EventAPI}
+ * @todo Add Event members
+ */
+declare class Event {
+}
 
 /**
  * GlideAggregate enables you to easily create database aggregation queries.
- * @description The scoped GlideAggregate class is an extension of GlideRecord and provides database aggregation (COUNT, SUM, MIN, MAX, AVG) queries. This functionality can be helpful when creating customized reports or in calculations for calculated fields. The GlideAggregate class works only on number fields.When you use GlideAggregate on currency or price fields, you are working with the reference currency value. Be sure to convert the aggregate values to the user's session currency for display. Because the conversion rate between the currency or price value (displayed value) and its reference currency value (aggregation value) might change, the result may not be what the user expects.
+ * @description The GlideAggregate class is an extension of GlideRecord and provides database aggregation (COUNT, SUM, MIN, MAX, AVG) queries. This functionality can be helpful when creating customized reports or in calculations for calculated fields. The GlideAggregate class works only on number fields.When you use GlideAggregate on currency or price fields, you are working with the reference currency value. Be sure to convert the aggregate values to the user's session currency for display. Because the conversion rate between the currency or price value (displayed value) and its reference currency value (aggregation value) might change, the result may not be what the user expects.
+ * @see {@link https://docs.servicenow.com/bundle/utah-api-reference/page/app-store/dev_portal/API_reference/GlideAggregate/concept/c_GlideAggregateAPI.html}
+ * @see {@link https://developer.servicenow.com/dev.do#!/reference/api/utah/server_legacy/c_GlideAggregateAPI}
  */
 declare class GlideAggregate extends GlideRecord {
     /**
@@ -523,57 +529,57 @@ declare class GlideAggregate extends GlideRecord {
     setGroup(b: boolean): void;
 }
 
-/**
- * GlideQueryCondition object.
- */
-declare class GlideQueryCondition {
-    protected constructor();
-    /**
-     * Adds an AND condition to the current condition.
-     * @param {string} name The name of a field.
-     * @param {QueryOperator} oper The operator for the query (=,!=,>,>=,<,<=,IN,NOT IN,STARTSWITH,ENDSWITH,CONTAINS,DOES NOT CONTAIN,INSTANCEOF).
-     * @param {*} value The value to query on.
-     * @returns {GlideQueryCondition} A reference to a GlideQueryConditon that was added to the GlideRecord.
-     */
-    addCondition(name: string, oper: QueryOperator, value: any): GlideQueryCondition;
-    /**
-     * Adds an AND condition to the current condition. Assumes the equals operator.
-     * @param {string} name The name of a field.
-     * @param {*} value The value of a field.
-     * @returns {GlideQueryCondition} A reference to a GlideQueryConditon that was added to the GlideRecord.
-     */
-    addCondition(name: string, value: any): GlideQueryCondition;
-    /**
-     * Adds an AND condition to the current condition.
-     * @param {GlideQueryCondition} queryCondition Condition to add.
-     * @returns {GlideQueryCondition} A reference to a GlideQueryConditon that was added to the GlideRecord.
-     */
-    addCondition(queryCondition: GlideQueryCondition): GlideQueryCondition
-    /**
-     * Adds an OR condition to the current condition.
-     * @param {string} name The name of a field.
-     * @param {QueryOperator} oper The operator for the query (=,!=,>,>=,<,<=,IN,NOT IN,STARTSWITH,ENDSWITH,CONTAINS,DOES NOT CONTAIN,INSTANCEOF).
-     * @param {*} value The value to query on.
-     * @returns {GlideQueryCondition} A reference to a GlideQueryConditon that was added to the GlideRecord.
-     */
-    addOrCondition(name: string, oper: QueryOperator, value: any): GlideQueryCondition;
-    /**
-     * Adds an OR condition to the current condition. Assumes the equals operator.
-     * @param {string} name The name of a field.
-     * @param {*} value The value to query on.
-     * @returns {GlideQueryCondition} A reference to a GlideQueryConditon that was added to the GlideRecord.
-     */
-    addOrCondition(name: string, value: any): GlideQueryCondition;
-    /**
-     * Adds an OR condition to the current condition. Assumes the equals operator.
-     * @param {GlideQueryCondition} queryCondition Condition to add.
-     * @returns {GlideQueryCondition} A reference to a GlideQueryConditon that was added to the GlideRecord.
-     */
-    addOrCondition(queryCondition: GlideQueryCondition): GlideQueryCondition;
+declare class GlideChoiceList implements Packages.java.util.ArrayList<Choice> {
+    add(e: Choice): $$rhino.Boolean;
+    add(index: $$rhino.Number, element: Choice): void;
+    addAll(c: Packages.java.util.Collection<Choice>): $$rhino.Boolean;
+    addAll(index: $$rhino.Number, c: Packages.java.util.Collection<Choice>): $$rhino.Boolean;
+    clear(): void;
+    clone(): Packages.java.lang.Object;
+    contains(o: any): $$rhino.Boolean;
+    ensureCapacity(minCapacity: $$rhino.Number): void;
+    get(index: $$rhino.Number): Choice;
+    isEmpty(): $$rhino.Boolean;
+    iterator(): Packages.java.util.Iterator<Choice>;
+    lastIndexOf(o: any): $$rhino.Number;
+    listIterator(): Packages.java.util.ListIterator<Choice>;
+    listIterator(index: $$rhino.Number): Packages.java.util.ListIterator<Choice>;
+    remove(index: $$rhino.Number): Choice;
+    remove(o: any): $$rhino.Boolean;
+    removeAll(c: Packages.java.util.Collection<any>): $$rhino.Boolean;
+    retainAll(c: Packages.java.util.Collection<any>): $$rhino.Boolean;
+    set(index: $$rhino.Number, element: Choice): Choice;
+    size(): $$rhino.Number;
+    subList(fromIndex: $$rhino.Number, toIndex: $$rhino.Number): Packages.java.util.List<Choice>;
+    toArray();
+    trimToSize(): void;
+    hashCode(): $$rhino.Number;
+    containsAll(c: Packages.java.util.Collection<any>): $$rhino.Boolean;
+    toString(): $$rhino.String;
+    equals(obj: any): $$rhino.Boolean;
+    sort(): void;
+    getChoice(i: $$rhino.Number | $$rhino.String): Choice;
+    getChoiceNoTrim(i: $$rhino.String): Choice;
+    getSelectedIndex(): Packages.java.lang.Integer;
+    indexOf(o: any): Packages.java.lang.Integer;
+    indexOfNoTrim(o: any): Packages.java.lang.Integer;
+    addFirst(c: Choice): void;
+    addNone(): Choice;
+    removeNone(): void;
+    removeChoice(i: $$rhino.Number | $$rhino.String): Choice;
+    removeChoice(c: Choice): void;
+    getLabelOf(value: $$rhino.String): Packages.java.lang.String;
+    getValueOf(label: $$rhino.String): Packages.java.lang.String;
+    has(value: $$rhino.String): $$rhino.Boolean;
+    isReferenceList(): $$rhino.Boolean;
+    getSize(): Packages.java.lang.Integer;
+    static getChoiceList(tableName: $$rhino.String, fieldName: $$rhino.String): ChoiceList;
 }
 
 /**
- * The scoped GlideDate class provides methods for performing operations on GlideDate objects, such as instantiating GlideDate objects or working with GlideDate fields.
+ * The GlideDate class provides methods for performing operations on GlideDate objects, such as instantiating GlideDate objects or working with GlideDate fields.
+ * @see {@link https://docs.servicenow.com/bundle/utah-api-reference/page/app-store/dev_portal/API_reference/GlideDate/concept/GlideDateAPI.html}
+ * @see {@link https://developer.servicenow.com/dev.do#!/reference/api/utah/server_legacy/c_GlideDateGlobalAPI}
  */
 declare class GlideDate {
     /**
@@ -637,8 +643,10 @@ declare class GlideDate {
 }
 
 /**
- * The scoped GlideDateTime class provides methods for performing operations on GlideDateTime objects, such as instantiating GlideDateTime objects or working with glide_date_time fields.
+ * The GlideDateTime class provides methods for performing operations on GlideDateTime objects, such as instantiating GlideDateTime objects or working with glide_date_time fields.
  * @description Use the GlideDateTime methods to perform date-time operations, such as instantiating a GlideDateTime object, performing date-time calculations, formatting a date-time, or converting between date-time formats.
+ * @see {@link https://docs.servicenow.com/bundle/utah-api-reference/page/app-store/dev_portal/API_reference/GlideDateTime/concept/c_GlideDateTimeAPI.html}
+ * @see {@link https://developer.servicenow.com/dev.do#!/reference/api/utah/server_legacy/c_GlideDateTimeAPI}
  */
 declare class GlideDateTime {
     /**
@@ -976,8 +984,9 @@ declare class GlideDateTime {
 }
 
 /**
- * The scoped GlideDuration class provides methods for working with spans of time or durations.
- * @description GlideDuration objects store the duration as a date and time from January 1, 1970, 00:00:00. As a result, setValue() and getValue() use the scoped GlideDateTime object for parameters and return values.
+ * The GlideDuration class provides methods for working with spans of time or durations.
+ * @description GlideDuration objects store the duration as a date and time from January 1, 1970, 00:00:00. As a result, setValue() and getValue() use the GlideDateTime object for parameters and return values.
+ * @see {@link https://docs.servicenow.com/bundle/utah-api-reference/page/app-store/dev_portal/API_reference/glideDurationScoped/concept/c_GlideDurationScopedAPI.html}
  */
 declare class GlideDuration {
     /**
@@ -994,7 +1003,7 @@ declare class GlideDuration {
     /**
      * Instantiates a GlideDuration object by cloning the value of another GlideDuration object.
      * @constructor
-     * @param {GlideDuration} another - Another scoped GlideDuration object.
+     * @param {GlideDuration} another - Another GlideDuration object.
      */
     constructor(another: GlideDuration);
     /**
@@ -1057,743 +1066,25 @@ declare class GlideDuration {
     subtract(duration: GlideDuration): void;
 }
 
-/**
- * The scoped GlideTime class provides methods for performing operations on GlideTime objects, such as instantiating GlideTime objects or working with GlideTime fields.
- */
-declare class GlideTime {
-    /**
-     * Instantiates a GlideTime object with the current time.
-     * @constructor
-     */
-    constructor();
-    /**
-     * Instantiates a GlideTime object with the specified time.
-     * @constructor
-     * @param {number} milliseconds - The datetime in milliseconds.
-     */
-    constructor(milliseconds: number);
-    /**
-     * Gets the time in the specified format.
-     * @param {string} format - The time format.
-     * @returns {string} The time in the specified format.
-     */
-    getByFormat(format: string): string;
-    /**
-     * Gets the time in the current user's display format and time zone.
-     * @returns {string} The time in the user's format and time zone.
-     */
-    getDisplayValue(): string;
-    /**
-     * Gets the display value in the current user's time zone and the internal format (HH:mm:ss).
-     * @returns {string} The time value for the GlideTime object in the current user's time zone and the internal time format of HH:mm:ss.
-     */
-    getDisplayValueInternal(): string;
-    /**
-     * Returns the hours part of the time using the local time zone.
-     * @returns {number} The hours using the local time zone.
-     */
-    getHourLocalTime(): number;
-    /**
-     * Returns the hours part of the time using the local time zone. The number of hours is based on a 24 hour clock.
-     * @returns {number} The hours using the local time zone. The number of hours is based on a 24 hour clock.
-     */
-    getHourOfDayLocalTime(): number;
-    /**
-     * Returns the hours part of the time using the UTC time zone. The number of hours is based on a 24 hour clock.
-     * @returns {number} The hours using the UTC time zone. The number of hours is based on a 24 hour clock.
-     */
-    getHourOfDayUTC(): number;
-    /**
-     * Returns the hours part of the time using the UTC time zone. The number of hours is based on a 12 hour clock. Noon and midnight are represented by 0, not 12.
-     * @returns {number} The hours using the UTC time zone. The number of hours is based on a 12 hour clock. Noon and midnight are represented by 0, not 12.
-     */
-    getHourUTC(): number;
-    /**
-     * Returns the number of minutes using the local time zone.
-     * @returns {number} The number of minutes using the local time zone.
-     */
-    getMinutesLocalTime(): number;
-    /**
-     * Returns the number of minutes in the hour based on the UTC time zone.
-     * @returns {number} The number of minutes in the hour using the UTC time zone.
-     */
-    getMinutesUTC(): number;
-    /**
-     * Returns the number of seconds in the current minute.
-     * @returns {number} The number of seconds in the minute.
-     */
-    getSeconds(): number;
-    /**
-     * Gets the time value stored in the database by the GlideTime object in the internal format, HH:mm:ss, and the system time zone.
-     * @returns {string} The time value in the internal fomat and system time zone.
-     */
-    getValue(): string;
-    /**
-     * Sets a time value using the current user's display format and time zone.
-     * @param {string} asDisplayed - The time in the current user's display format and time zone. The parameter must be formatted using the current user's preferred display format, such as HH:mm:ss.
-     */
-    setDisplayValue(asDisplayed: string): void;
-    /**
-     * Sets the time of the GlideTime object in the internal time zone.
-     * @param {string} o - The time in hh:mm:ss format.
-     */
-    setValue(o: string): void;
-    /**
-     * Gets the duration difference between two GlideTime object values.
-     * @param {GlideTime} startTime - The start value.
-     * @param {GlideTime} endTime - The end value.
-     * @returns {GlideDuration} The duration between the two values.
-     */
-    subtract(startTime: GlideTime, endTime: GlideTime): GlideDuration;
+declare interface IGlideElementGlideObject extends IGlideElement {
+    
+}
+
+declare interface IGlideElementVariable extends IGlideVariableComponent {
+    getQuestion(): Question;
+}
+
+declare interface IGlideElementVariables extends IGlideElement {
+    getVariablePoolQuestionSet(): IVariablePoolQuestionSet;
+    getAllIds(): IJavaArray<any>;
 }
 
 /**
  * The Scoped GlideElement API provides a number of convenient script methods for dealing with fields and their values. Scoped GlideElement methods are available for the fields of the current GlideRecord.
+ * @see {@link https://docs.servicenow.com/bundle/utah-api-reference/page/app-store/dev_portal/API_reference/GlideElement_global/concept/c_GlideElementAPI.html}
+ * @see {@link https://developer.servicenow.com/dev.do#!/reference/api/utah/server_legacy/c_GlideElementAPI}
  */
 declare class GlideElement implements IGlideElement { // sys_dictionary.comments
-    protected constructor();
-    changes(): boolean;
-    changesFrom(o: any): boolean;
-    changesTo(o: any): boolean;
-    dateNumericValue(): number;
-    getBooleanAttribute(attributeName: string): boolean;
-    getChoices(dependent?: string | undefined): any[];
-    getChoiceValue(): string;
-    getDecryptedValue(): string;
-    getDisplayValue(maxCharacters?: number | undefined): string;
-    getGlobalDisplayValue(): string;
-    getHTMLValue(maxChars?: number | undefined): string;
-    getJournalEntry(mostRecent: number): string;
-    getName(): string;
-    nil(): boolean;
-    setDateNumericValue(milliseconds: number): void;
-    setDisplayValue(value: any): void;
-    setError(errorMessage: string): void;
-    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
-    setValue(value: any): void;
-    canCreate(): boolean;
-    canRead(): boolean;
-    canWrite(): boolean;
-    getAttribute(attributeName: string): string;
-    getED(): GlideElementDescriptor;
-    getLabel(): string;
-    getTableName(): string;
-}
-
-declare class GlideElementBoolean implements IGlideElement { // sys_dictionary.audit
-    protected constructor();
-    changes(): boolean;
-    changesFrom(o: any): boolean;
-    changesTo(o: any): boolean;
-    dateNumericValue(): number;
-    getBooleanAttribute(attributeName: string): boolean;
-    getChoices(dependent?: string | undefined): any[];
-    getChoiceValue(): string;
-    getDecryptedValue(): string;
-    getDisplayValue(maxCharacters?: number | undefined): string;
-    getGlobalDisplayValue(): string;
-    getHTMLValue(maxChars?: number | undefined): string;
-    getJournalEntry(mostRecent: number): string;
-    getName(): string;
-    nil(): boolean;
-    setDateNumericValue(milliseconds: number): void;
-    setDisplayValue(value: any): void;
-    setError(errorMessage: string): void;
-    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
-    setValue(value: any): void;
-    canCreate(): boolean;
-    canRead(): boolean;
-    canWrite(): boolean;
-    getAttribute(attributeName: string): string;
-    getED(): GlideElementDescriptor;
-    getLabel(): string;
-    getTableName(): string;
-}
-
-declare class GlideElementPhoneNumber implements IGlideElement {
-    protected constructor();
-    changes(): boolean;
-    changesFrom(o: any): boolean;
-    changesTo(o: any): boolean;
-    dateNumericValue(): number;
-    getBooleanAttribute(attributeName: string): boolean;
-    getChoices(dependent?: string | undefined): any[];
-    getChoiceValue(): string;
-    getDecryptedValue(): string;
-    getDisplayValue(maxCharacters?: number | undefined): string;
-    getGlobalDisplayValue(): string;
-    getHTMLValue(maxChars?: number | undefined): string;
-    getJournalEntry(mostRecent: number): string;
-    getName(): string;
-    nil(): boolean;
-    setDateNumericValue(milliseconds: number): void;
-    setDisplayValue(value: any): void;
-    setError(errorMessage: string): void;
-    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
-    setValue(value: any): void;
-    canCreate(): boolean;
-    canRead(): boolean;
-    canWrite(): boolean;
-    getAttribute(attributeName: string): string;
-    getED(): GlideElementDescriptor;
-    getLabel(): string;
-    getTableName(): string;
-}
-
-declare class GlideElementGlideObject implements IGlideElement { // incident.sys_created_on
-    protected constructor();
-    changes(): boolean;
-    changesFrom(o: any): boolean;
-    changesTo(o: any): boolean;
-    dateNumericValue(): number;
-    getBooleanAttribute(attributeName: string): boolean;
-    getChoices(dependent?: string | undefined): any[];
-    getChoiceValue(): string;
-    getDecryptedValue(): string;
-    getDisplayValue(maxCharacters?: number | undefined): string;
-    getGlobalDisplayValue(): string;
-    getHTMLValue(maxChars?: number | undefined): string;
-    getJournalEntry(mostRecent: number): string;
-    getName(): string;
-    nil(): boolean;
-    setDateNumericValue(milliseconds: number): void;
-    setDisplayValue(value: any): void;
-    setError(errorMessage: string): void;
-    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
-    setValue(value: any): void;
-    canCreate(): boolean;
-    canRead(): boolean;
-    canWrite(): boolean;
-    getAttribute(attributeName: string): string;
-    getED(): GlideElementDescriptor;
-    getLabel(): string;
-    getTableName(): string;
-    /**
-     * Returns the number of milliseconds since January 1, 1970, 00:00:00 GMT for a duration field. Does not require the creation of a GlideDateTime object because the duration field is already a GlideDateTime object.
-     * @returns {number} Number of milliseconds since January 1, 1970, 00:00:00 GMT.
-     */
-    dateNumericValue(): number;
-
-    /**
-     * Sets the value of a date/time element to the specified number of milliseconds since January 1, 1970 00:00:00 GMT.
-     * @param {number} milliseconds - Number of milliseconds since 1/1/1970
-     */
-    setDateNumericValue(milliseconds: number): void;
-}
-
-declare class GlideElementIPAddress implements IGlideElement {
-    protected constructor();
-    changes(): boolean;
-    changesFrom(o: any): boolean;
-    changesTo(o: any): boolean;
-    dateNumericValue(): number;
-    getBooleanAttribute(attributeName: string): boolean;
-    getChoices(dependent?: string | undefined): any[];
-    getChoiceValue(): string;
-    getDecryptedValue(): string;
-    getDisplayValue(maxCharacters?: number | undefined): string;
-    getGlobalDisplayValue(): string;
-    getHTMLValue(maxChars?: number | undefined): string;
-    getJournalEntry(mostRecent: number): string;
-    getName(): string;
-    nil(): boolean;
-    setDateNumericValue(milliseconds: number): void;
-    setDisplayValue(value: any): void;
-    setError(errorMessage: string): void;
-    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
-    setValue(value: any): void;
-    canCreate(): boolean;
-    canRead(): boolean;
-    canWrite(): boolean;
-    getAttribute(attributeName: string): string;
-    getED(): GlideElementDescriptor;
-    getLabel(): string;
-    getTableName(): string;
-}
-
-declare class GlideElementNumeric implements IGlideElement { // sys_dictionary.defaultsort
-    protected constructor();
-    changes(): boolean;
-    changesFrom(o: any): boolean;
-    changesTo(o: any): boolean;
-    dateNumericValue(): number;
-    getBooleanAttribute(attributeName: string): boolean;
-    getChoices(dependent?: string | undefined): any[];
-    getChoiceValue(): string;
-    getDecryptedValue(): string;
-    getDisplayValue(maxCharacters?: number | undefined): string;
-    getGlobalDisplayValue(): string;
-    getHTMLValue(maxChars?: number | undefined): string;
-    getJournalEntry(mostRecent: number): string;
-    getName(): string;
-    nil(): boolean;
-    setDateNumericValue(milliseconds: number): void;
-    setDisplayValue(value: any): void;
-    setError(errorMessage: string): void;
-    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
-    setValue(value: any): void;
-    canCreate(): boolean;
-    canRead(): boolean;
-    canWrite(): boolean;
-    getAttribute(attributeName: string): string;
-    getED(): GlideElementDescriptor;
-    getLabel(): string;
-    getTableName(): string;
-}
-
-declare type GlideElementHierarchicalVariables = GlideElement;
-
-declare class GlideElementSysClassName implements IGlideElement { // task.sys_class_name
-    protected constructor();
-    changes(): boolean;
-    changesFrom(o: any): boolean;
-    changesTo(o: any): boolean;
-    dateNumericValue(): number;
-    getBooleanAttribute(attributeName: string): boolean;
-    getChoices(dependent?: string | undefined): any[];
-    getChoiceValue(): string;
-    getDecryptedValue(): string;
-    getDisplayValue(maxCharacters?: number | undefined): string;
-    getGlobalDisplayValue(): string;
-    getHTMLValue(maxChars?: number | undefined): string;
-    getJournalEntry(mostRecent: number): string;
-    getName(): string;
-    nil(): boolean;
-    setDateNumericValue(milliseconds: number): void;
-    setDisplayValue(value: any): void;
-    setError(errorMessage: string): void;
-    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
-    setValue(value: any): void;
-    canCreate(): boolean;
-    canRead(): boolean;
-    canWrite(): boolean;
-    getAttribute(attributeName: string): string;
-    getED(): GlideElementDescriptor;
-    getLabel(): string;
-    getTableName(): string;
-}
-
-declare class GlideElementDocumentId implements IGlideElement { // incident.origin_id
-    protected constructor();
-    changes(): boolean;
-    changesFrom(o: any): boolean;
-    changesTo(o: any): boolean;
-    dateNumericValue(): number;
-    getBooleanAttribute(attributeName: string): boolean;
-    getChoices(dependent?: string | undefined): any[];
-    getChoiceValue(): string;
-    getDecryptedValue(): string;
-    getDisplayValue(maxCharacters?: number | undefined): string;
-    getGlobalDisplayValue(): string;
-    getHTMLValue(maxChars?: number | undefined): string;
-    getJournalEntry(mostRecent: number): string;
-    getName(): string;
-    nil(): boolean;
-    setDateNumericValue(milliseconds: number): void;
-    setDisplayValue(value: any): void;
-    setError(errorMessage: string): void;
-    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
-    setValue(value: any): void;
-    canCreate(): boolean;
-    canRead(): boolean;
-    canWrite(): boolean;
-    getAttribute(attributeName: string): string;
-    getED(): GlideElementDescriptor;
-    getLabel(): string;
-    getTableName(): string;
-}
-
-declare class GlideElementDomainId implements IGlideElement { // task.sys_domain
-    protected constructor();
-    changes(): boolean;
-    changesFrom(o: any): boolean;
-    changesTo(o: any): boolean;
-    dateNumericValue(): number;
-    getBooleanAttribute(attributeName: string): boolean;
-    getChoices(dependent?: string | undefined): any[];
-    getChoiceValue(): string;
-    getDecryptedValue(): string;
-    getDisplayValue(maxCharacters?: number | undefined): string;
-    getGlobalDisplayValue(): string;
-    getHTMLValue(maxChars?: number | undefined): string;
-    getJournalEntry(mostRecent: number): string;
-    getName(): string;
-    nil(): boolean;
-    setDateNumericValue(milliseconds: number): void;
-    setDisplayValue(value: any): void;
-    setError(errorMessage: string): void;
-    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
-    setValue(value: any): void;
-    canCreate(): boolean;
-    canRead(): boolean;
-    canWrite(): boolean;
-    getAttribute(attributeName: string): string;
-    getED(): GlideElementDescriptor;
-    getLabel(): string;
-    getTableName(): string;
-}
-
-declare class GlideElementRelatedTags implements IGlideElement { // incident.sys_tags
-    protected constructor();
-    changes(): boolean;
-    changesFrom(o: any): boolean;
-    changesTo(o: any): boolean;
-    dateNumericValue(): number;
-    getBooleanAttribute(attributeName: string): boolean;
-    getChoices(dependent?: string | undefined): any[];
-    getChoiceValue(): string;
-    getDecryptedValue(): string;
-    getDisplayValue(maxCharacters?: number | undefined): string;
-    getGlobalDisplayValue(): string;
-    getHTMLValue(maxChars?: number | undefined): string;
-    getJournalEntry(mostRecent: number): string;
-    getName(): string;
-    nil(): boolean;
-    setDateNumericValue(milliseconds: number): void;
-    setDisplayValue(value: any): void;
-    setError(errorMessage: string): void;
-    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
-    setValue(value: any): void;
-    canCreate(): boolean;
-    canRead(): boolean;
-    canWrite(): boolean;
-    getAttribute(attributeName: string): string;
-    getED(): GlideElementDescriptor;
-    getLabel(): string;
-    getTableName(): string;
-}
-
-declare class GlideElementTranslatedField implements IGlideElement { // sys_glide_object.label
-    protected constructor();
-    changes(): boolean;
-    changesFrom(o: any): boolean;
-    changesTo(o: any): boolean;
-    dateNumericValue(): number;
-    getBooleanAttribute(attributeName: string): boolean;
-    getChoices(dependent?: string | undefined): any[];
-    getChoiceValue(): string;
-    getDecryptedValue(): string;
-    getDisplayValue(maxCharacters?: number | undefined): string;
-    getGlobalDisplayValue(): string;
-    getHTMLValue(maxChars?: number | undefined): string;
-    getJournalEntry(mostRecent: number): string;
-    getName(): string;
-    nil(): boolean;
-    setDateNumericValue(milliseconds: number): void;
-    setDisplayValue(value: any): void;
-    setError(errorMessage: string): void;
-    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
-    setValue(value: any): void;
-    canCreate(): boolean;
-    canRead(): boolean;
-    canWrite(): boolean;
-    getAttribute(attributeName: string): string;
-    getED(): GlideElementDescriptor;
-    getLabel(): string;
-    getTableName(): string;
-}
-
-declare class GlideElementDocumentation implements IGlideElement { // sys_dictionary.column_label
-    protected constructor();
-    changes(): boolean;
-    changesFrom(o: any): boolean;
-    changesTo(o: any): boolean;
-    dateNumericValue(): number;
-    getBooleanAttribute(attributeName: string): boolean;
-    getChoices(dependent?: string | undefined): any[];
-    getChoiceValue(): string;
-    getDecryptedValue(): string;
-    getDisplayValue(maxCharacters?: number | undefined): string;
-    getGlobalDisplayValue(): string;
-    getHTMLValue(maxChars?: number | undefined): string;
-    getJournalEntry(mostRecent: number): string;
-    getName(): string;
-    nil(): boolean;
-    setDateNumericValue(milliseconds: number): void;
-    setDisplayValue(value: any): void;
-    setError(errorMessage: string): void;
-    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
-    setValue(value: any): void;
-    canCreate(): boolean;
-    canRead(): boolean;
-    canWrite(): boolean;
-    getAttribute(attributeName: string): string;
-    getED(): GlideElementDescriptor;
-    getLabel(): string;
-    getTableName(): string;
-}
-
-declare class GlideElementScript implements IGlideElement { // sys_dictionary.calculation
-    protected constructor();
-    changes(): boolean;
-    changesFrom(o: any): boolean;
-    changesTo(o: any): boolean;
-    dateNumericValue(): number;
-    getBooleanAttribute(attributeName: string): boolean;
-    getChoices(dependent?: string | undefined): any[];
-    getChoiceValue(): string;
-    getDecryptedValue(): string;
-    getDisplayValue(maxCharacters?: number | undefined): string;
-    getGlobalDisplayValue(): string;
-    getHTMLValue(maxChars?: number | undefined): string;
-    getJournalEntry(mostRecent: number): string;
-    getName(): string;
-    nil(): boolean;
-    setDateNumericValue(milliseconds: number): void;
-    setDisplayValue(value: any): void;
-    setError(errorMessage: string): void;
-    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
-    setValue(value: any): void;
-    canCreate(): boolean;
-    canRead(): boolean;
-    canWrite(): boolean;
-    getAttribute(attributeName: string): string;
-    getED(): GlideElementDescriptor;
-    getLabel(): string;
-    getTableName(): string;
-}
-
-declare class GlideElementConditions implements IGlideElement { // sys_dictionary.reference_qual_condition
-    protected constructor();
-    changes(): boolean;
-    changesFrom(o: any): boolean;
-    changesTo(o: any): boolean;
-    dateNumericValue(): number;
-    getBooleanAttribute(attributeName: string): boolean;
-    getChoices(dependent?: string | undefined): any[];
-    getChoiceValue(): string;
-    getDecryptedValue(): string;
-    getDisplayValue(maxCharacters?: number | undefined): string;
-    getGlobalDisplayValue(): string;
-    getHTMLValue(maxChars?: number | undefined): string;
-    getJournalEntry(mostRecent: number): string;
-    getName(): string;
-    nil(): boolean;
-    setDateNumericValue(milliseconds: number): void;
-    setDisplayValue(value: any): void;
-    setError(errorMessage: string): void;
-    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
-    setValue(value: any): void;
-    canCreate(): boolean;
-    canRead(): boolean;
-    canWrite(): boolean;
-    getAttribute(attributeName: string): string;
-    getED(): GlideElementDescriptor;
-    getLabel(): string;
-    getTableName(): string;
-}
-
-declare class GlideElementVariables implements IGlideElement { // task.variables
-    protected constructor();
-    changes(): boolean;
-    changesFrom(o: any): boolean;
-    changesTo(o: any): boolean;
-    dateNumericValue(): number;
-    getBooleanAttribute(attributeName: string): boolean;
-    getChoices(dependent?: string | undefined): any[];
-    getChoiceValue(): string;
-    getDecryptedValue(): string;
-    getDisplayValue(maxCharacters?: number | undefined): string;
-    getGlobalDisplayValue(): string;
-    getHTMLValue(maxChars?: number | undefined): string;
-    getJournalEntry(mostRecent: number): string;
-    getName(): string;
-    nil(): boolean;
-    setDateNumericValue(milliseconds: number): void;
-    setDisplayValue(value: any): void;
-    setError(errorMessage: string): void;
-    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
-    setValue(value: any): void;
-    canCreate(): boolean;
-    canRead(): boolean;
-    canWrite(): boolean;
-    getAttribute(attributeName: string): string;
-    getED(): GlideElementDescriptor;
-    getLabel(): string;
-    getTableName(): string;
-}
-
-declare class GlideElementPassword implements IGlideElement { // sys_user.user_password
-    protected constructor();
-    changes(): boolean;
-    changesFrom(o: any): boolean;
-    changesTo(o: any): boolean;
-    dateNumericValue(): number;
-    getBooleanAttribute(attributeName: string): boolean;
-    getChoices(dependent?: string | undefined): any[];
-    getChoiceValue(): string;
-    getDecryptedValue(): string;
-    getDisplayValue(maxCharacters?: number | undefined): string;
-    getGlobalDisplayValue(): string;
-    getHTMLValue(maxChars?: number | undefined): string;
-    getJournalEntry(mostRecent: number): string;
-    getName(): string;
-    nil(): boolean;
-    setDateNumericValue(milliseconds: number): void;
-    setDisplayValue(value: any): void;
-    setError(errorMessage: string): void;
-    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
-    setValue(value: any): void;
-    canCreate(): boolean;
-    canRead(): boolean;
-    canWrite(): boolean;
-    getAttribute(attributeName: string): string;
-    getED(): GlideElementDescriptor;
-    getLabel(): string;
-    getTableName(): string;
-}
-
-declare class GlideElementUserImage implements IGlideElement { // sys_user.photo
-    protected constructor();
-    changes(): boolean;
-    changesFrom(o: any): boolean;
-    changesTo(o: any): boolean;
-    dateNumericValue(): number;
-    getBooleanAttribute(attributeName: string): boolean;
-    getChoices(dependent?: string | undefined): any[];
-    getChoiceValue(): string;
-    getDecryptedValue(): string;
-    getDisplayValue(maxCharacters?: number | undefined): string;
-    getGlobalDisplayValue(): string;
-    getHTMLValue(maxChars?: number | undefined): string;
-    getJournalEntry(mostRecent: number): string;
-    getName(): string;
-    nil(): boolean;
-    setDateNumericValue(milliseconds: number): void;
-    setDisplayValue(value: any): void;
-    setError(errorMessage: string): void;
-    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
-    setValue(value: any): void;
-    canCreate(): boolean;
-    canRead(): boolean;
-    canWrite(): boolean;
-    getAttribute(attributeName: string): string;
-    getED(): GlideElementDescriptor;
-    getLabel(): string;
-    getTableName(): string;
-}
-
-declare class GlideElementTranslatedText implements IGlideElement { // sys_ux_event.description
-    protected constructor();
-    changes(): boolean;
-    changesFrom(o: any): boolean;
-    changesTo(o: any): boolean;
-    dateNumericValue(): number;
-    getBooleanAttribute(attributeName: string): boolean;
-    getChoices(dependent?: string | undefined): any[];
-    getChoiceValue(): string;
-    getDecryptedValue(): string;
-    getDisplayValue(maxCharacters?: number | undefined): string;
-    getGlobalDisplayValue(): string;
-    getHTMLValue(maxChars?: number | undefined): string;
-    getJournalEntry(mostRecent: number): string;
-    getName(): string;
-    nil(): boolean;
-    setDateNumericValue(milliseconds: number): void;
-    setDisplayValue(value: any): void;
-    setError(errorMessage: string): void;
-    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
-    setValue(value: any): void;
-    canCreate(): boolean;
-    canRead(): boolean;
-    canWrite(): boolean;
-    getAttribute(attributeName: string): string;
-    getED(): GlideElementDescriptor;
-    getLabel(): string;
-    getTableName(): string;
-}
-
-declare class GlideElementCounter implements IGlideElement { // sys_update_xml.sys_recorded_at
-    protected constructor();
-    changes(): boolean;
-    changesFrom(o: any): boolean;
-    changesTo(o: any): boolean;
-    dateNumericValue(): number;
-    getBooleanAttribute(attributeName: string): boolean;
-    getChoices(dependent?: string | undefined): any[];
-    getChoiceValue(): string;
-    getDecryptedValue(): string;
-    getDisplayValue(maxCharacters?: number | undefined): string;
-    getGlobalDisplayValue(): string;
-    getHTMLValue(maxChars?: number | undefined): string;
-    getJournalEntry(mostRecent: number): string;
-    getName(): string;
-    nil(): boolean;
-    setDateNumericValue(milliseconds: number): void;
-    setDisplayValue(value: any): void;
-    setError(errorMessage: string): void;
-    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
-    setValue(value: any): void;
-    canCreate(): boolean;
-    canRead(): boolean;
-    canWrite(): boolean;
-    getAttribute(attributeName: string): string;
-    getED(): GlideElementDescriptor;
-    getLabel(): string;
-    getTableName(): string;
-}
-
-declare class GlideElementCurrency implements IGlideElement { // sc_cat_item.list_price
-    protected constructor();
-    changes(): boolean;
-    changesFrom(o: any): boolean;
-    changesTo(o: any): boolean;
-    dateNumericValue(): number;
-    getBooleanAttribute(attributeName: string): boolean;
-    getChoices(dependent?: string | undefined): any[];
-    getChoiceValue(): string;
-    getDecryptedValue(): string;
-    getDisplayValue(maxCharacters?: number | undefined): string;
-    getGlobalDisplayValue(): string;
-    getHTMLValue(maxChars?: number | undefined): string;
-    getJournalEntry(mostRecent: number): string;
-    getName(): string;
-    nil(): boolean;
-    setDateNumericValue(milliseconds: number): void;
-    setDisplayValue(value: any): void;
-    setError(errorMessage: string): void;
-    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
-    setValue(value: any): void;
-    canCreate(): boolean;
-    canRead(): boolean;
-    canWrite(): boolean;
-    getAttribute(attributeName: string): string;
-    getED(): GlideElementDescriptor;
-    getLabel(): string;
-    getTableName(): string;
-}
-
-declare class GlideElementPrice implements IGlideElement { // sc_cat_item.recurring_price
-    protected constructor();
-    changes(): boolean;
-    changesFrom(o: any): boolean;
-    changesTo(o: any): boolean;
-    dateNumericValue(): number;
-    getBooleanAttribute(attributeName: string): boolean;
-    getChoices(dependent?: string | undefined): any[];
-    getChoiceValue(): string;
-    getDecryptedValue(): string;
-    getDisplayValue(maxCharacters?: number | undefined): string;
-    getGlobalDisplayValue(): string;
-    getHTMLValue(maxChars?: number | undefined): string;
-    getJournalEntry(mostRecent: number): string;
-    getName(): string;
-    nil(): boolean;
-    setDateNumericValue(milliseconds: number): void;
-    setDisplayValue(value: any): void;
-    setError(errorMessage: string): void;
-    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
-    setValue(value: any): void;
-    canCreate(): boolean;
-    canRead(): boolean;
-    canWrite(): boolean;
-    getAttribute(attributeName: string): string;
-    getED(): GlideElementDescriptor;
-    getLabel(): string;
-    getTableName(): string;
-}
-
-declare class GlideElementShortFieldName implements IGlideElement { // sys_history_line.field
     protected constructor();
     changes(): boolean;
     changesFrom(o: any): boolean;
@@ -1853,7 +1144,7 @@ declare class GlideElementAudio implements IGlideElement { // db_audio.audio
     getTableName(): string;
 }
 
-declare class GlideElementReplicationPayload implements IGlideElement { // sys_replication_queue1.payload
+declare class GlideElementBoolean implements IGlideElement { // sys_dictionary.audit
     protected constructor();
     changes(): boolean;
     changesFrom(o: any): boolean;
@@ -1943,7 +1234,7 @@ declare class GlideElementCompressed implements IGlideElement { // wf_workflow_v
     getTableName(): string;
 }
 
-declare class GlideElementTranslatedHTML implements IGlideElement { // sys_script.message
+declare class GlideElementConditions implements IGlideElement { // sys_dictionary.reference_qual_condition
     protected constructor();
     changes(): boolean;
     changesFrom(o: any): boolean;
@@ -1973,7 +1264,7 @@ declare class GlideElementTranslatedHTML implements IGlideElement { // sys_scrip
     getTableName(): string;
 }
 
-declare class GlideElementURL implements IGlideElement { // v_plugin.help
+declare class GlideElementCounter implements IGlideElement { // sys_update_xml.sys_recorded_at
     protected constructor();
     changes(): boolean;
     changesFrom(o: any): boolean;
@@ -2003,37 +1294,7 @@ declare class GlideElementURL implements IGlideElement { // v_plugin.help
     getTableName(): string;
 }
 
-declare class GlideElementWorkflowConditions implements IGlideElement { // sys_template.template    
-    protected constructor();
-    changes(): boolean;
-    changesFrom(o: any): boolean;
-    changesTo(o: any): boolean;
-    dateNumericValue(): number;
-    getBooleanAttribute(attributeName: string): boolean;
-    getChoices(dependent?: string | undefined): any[];
-    getChoiceValue(): string;
-    getDecryptedValue(): string;
-    getDisplayValue(maxCharacters?: number | undefined): string;
-    getGlobalDisplayValue(): string;
-    getHTMLValue(maxChars?: number | undefined): string;
-    getJournalEntry(mostRecent: number): string;
-    getName(): string;
-    nil(): boolean;
-    setDateNumericValue(milliseconds: number): void;
-    setDisplayValue(value: any): void;
-    setError(errorMessage: string): void;
-    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
-    setValue(value: any): void;
-    canCreate(): boolean;
-    canRead(): boolean;
-    canWrite(): boolean;
-    getAttribute(attributeName: string): string;
-    getED(): GlideElementDescriptor;
-    getLabel(): string;
-    getTableName(): string;
-}
-
-declare class GlideElementShortTableName implements IGlideElement { // sys_email.target_table    
+declare class GlideElementCurrency implements IGlideElement { // sc_cat_item.list_price
     protected constructor();
     changes(): boolean;
     changesFrom(o: any): boolean;
@@ -2093,6 +1354,165 @@ declare class GlideElementDataObject implements IGlideElement { // wf_activity.i
     getTableName(): string;
 }
 
+/**
+ * The GlideElementDescriptor API provides information about individual fields.
+ * @description There is no constructor for this class. Use the GlideElement getED() method to obtain a ElementDescriptor object.
+ * @see {@link https://docs.servicenow.com/bundle/utah-api-reference/page/app-store/dev_portal/API_reference/glideElementDescriptor/concept/c_GlideElementDescriptorScopedAPI.html}
+ */
+declare class GlideElementDescriptor {
+    protected constructor();
+    /**
+     * Returns the encryption type used for attachments on the element's table.
+     * @returns {string | Packages.java.lang.String} The encryption type used on attachments. Returns null if attachments on the element's table are not being encrypted.
+     */
+    getAttachmentEncryptionType(): string | Packages.java.lang.String;
+    /**
+     * Returns the element's encryption type.
+     * @returns {string | Packages.java.lang.String} The element's encryption type. Returns null if the element is not encrypted.
+     */
+    getEncryptionType(): string | Packages.java.lang.String;
+    /**
+     * Returns the element's internal data type.
+     * @returns {string | Packages.java.lang.String} The element's internal data type.
+     */
+    getInternalType(): string | Packages.java.lang.String;
+    /**
+     * Returns the element's label.
+     * @returns {string | Packages.java.lang.String} The element's label.
+     */
+    getLabel(): string | Packages.java.lang.String;
+    /**
+     * Returns the element's length.
+     * @returns {number} The element's size.
+     */
+    getLength(): number;
+    /**
+     * Returns the element's name.
+     * @returns {string} The element's name.
+     */
+    getName(): string | Packages.java.lang.String;
+    /**
+     * Returns the element's plural label.
+     * @returns {string} The element's plural label.
+     */
+    getPlural(): string | Packages.java.lang.String;
+    /**
+     * Returns true if an encrypted attachment has been added to the table.
+     * @returns {boolean} Returns true if an encrypted attachment has been added to the table.
+     */
+    hasAttachmentsEncrypted(): boolean;
+    /**
+     * Returns true if the element is an automatically generated or system field.
+     * @returns {boolean} True if the element is automatically generated or a system field.
+     */
+    isAutoOrSysID(): boolean;
+    /**
+     * Returns true if the element is defined as a dropdown choice in its dictionary definition.
+     * @returns {boolean} Returns true if the element is defined as a dropdown choice. Returns true even if there are no entries defined in the choice table. The last choice type, suggestion, does not return true.
+     */
+    isChoiceTable(): boolean;
+    /**
+     * Returns true if an element is encrypted.
+     * @returns {boolean} Returns true if the element is encrypted, false otherwise.
+     */
+    isEdgeEncrypted(): boolean;
+    /**
+     * Returns true if the element is a virtual element.
+     * @returns {boolean} Returns true if the element is a virtual element.
+     */
+    isVirtual(): boolean;
+}
+
+declare class GlideElementDocumentation implements IGlideElement { // sys_dictionary.column_label
+    protected constructor();
+    changes(): boolean;
+    changesFrom(o: any): boolean;
+    changesTo(o: any): boolean;
+    dateNumericValue(): number;
+    getBooleanAttribute(attributeName: string): boolean;
+    getChoices(dependent?: string | undefined): any[];
+    getChoiceValue(): string;
+    getDecryptedValue(): string;
+    getDisplayValue(maxCharacters?: number | undefined): string;
+    getGlobalDisplayValue(): string;
+    getHTMLValue(maxChars?: number | undefined): string;
+    getJournalEntry(mostRecent: number): string;
+    getName(): string;
+    nil(): boolean;
+    setDateNumericValue(milliseconds: number): void;
+    setDisplayValue(value: any): void;
+    setError(errorMessage: string): void;
+    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
+    setValue(value: any): void;
+    canCreate(): boolean;
+    canRead(): boolean;
+    canWrite(): boolean;
+    getAttribute(attributeName: string): string;
+    getED(): GlideElementDescriptor;
+    getLabel(): string;
+    getTableName(): string;
+}
+
+declare class GlideElementDocumentId implements IGlideElement { // incident.origin_id
+    protected constructor();
+    changes(): boolean;
+    changesFrom(o: any): boolean;
+    changesTo(o: any): boolean;
+    dateNumericValue(): number;
+    getBooleanAttribute(attributeName: string): boolean;
+    getChoices(dependent?: string | undefined): any[];
+    getChoiceValue(): string;
+    getDecryptedValue(): string;
+    getDisplayValue(maxCharacters?: number | undefined): string;
+    getGlobalDisplayValue(): string;
+    getHTMLValue(maxChars?: number | undefined): string;
+    getJournalEntry(mostRecent: number): string;
+    getName(): string;
+    nil(): boolean;
+    setDateNumericValue(milliseconds: number): void;
+    setDisplayValue(value: any): void;
+    setError(errorMessage: string): void;
+    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
+    setValue(value: any): void;
+    canCreate(): boolean;
+    canRead(): boolean;
+    canWrite(): boolean;
+    getAttribute(attributeName: string): string;
+    getED(): GlideElementDescriptor;
+    getLabel(): string;
+    getTableName(): string;
+}
+
+declare class GlideElementDomainId implements IGlideElement { // task.sys_domain
+    protected constructor();
+    changes(): boolean;
+    changesFrom(o: any): boolean;
+    changesTo(o: any): boolean;
+    dateNumericValue(): number;
+    getBooleanAttribute(attributeName: string): boolean;
+    getChoices(dependent?: string | undefined): any[];
+    getChoiceValue(): string;
+    getDecryptedValue(): string;
+    getDisplayValue(maxCharacters?: number | undefined): string;
+    getGlobalDisplayValue(): string;
+    getHTMLValue(maxChars?: number | undefined): string;
+    getJournalEntry(mostRecent: number): string;
+    getName(): string;
+    nil(): boolean;
+    setDateNumericValue(milliseconds: number): void;
+    setDisplayValue(value: any): void;
+    setError(errorMessage: string): void;
+    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
+    setValue(value: any): void;
+    canCreate(): boolean;
+    canRead(): boolean;
+    canWrite(): boolean;
+    getAttribute(attributeName: string): string;
+    getED(): GlideElementDescriptor;
+    getLabel(): string;
+    getTableName(): string;
+}
+
 declare class GlideElementFullUTF8 implements IGlideElement { // sys_email.subject    
     protected constructor();
     changes(): boolean;
@@ -2123,7 +1543,48 @@ declare class GlideElementFullUTF8 implements IGlideElement { // sys_email.subje
     getTableName(): string;
 }
 
-declare class GlideElementIcon implements IGlideElement { // sys_run_level.icon    
+declare class GlideElementGlideObject implements IGlideElement { // incident.sys_created_on
+    protected constructor();
+    changes(): boolean;
+    changesFrom(o: any): boolean;
+    changesTo(o: any): boolean;
+    dateNumericValue(): number;
+    getBooleanAttribute(attributeName: string): boolean;
+    getChoices(dependent?: string | undefined): any[];
+    getChoiceValue(): string;
+    getDecryptedValue(): string;
+    getDisplayValue(maxCharacters?: number | undefined): string;
+    getGlobalDisplayValue(): string;
+    getHTMLValue(maxChars?: number | undefined): string;
+    getJournalEntry(mostRecent: number): string;
+    getName(): string;
+    nil(): boolean;
+    setDateNumericValue(milliseconds: number): void;
+    setDisplayValue(value: any): void;
+    setError(errorMessage: string): void;
+    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
+    setValue(value: any): void;
+    canCreate(): boolean;
+    canRead(): boolean;
+    canWrite(): boolean;
+    getAttribute(attributeName: string): string;
+    getED(): GlideElementDescriptor;
+    getLabel(): string;
+    getTableName(): string;
+    /**
+     * Returns the number of milliseconds since January 1, 1970, 00:00:00 GMT for a duration field. Does not require the creation of a GlideDateTime object because the duration field is already a GlideDateTime object.
+     * @returns {number} Number of milliseconds since January 1, 1970, 00:00:00 GMT.
+     */
+    dateNumericValue(): number;
+
+    /**
+     * Sets the value of a date/time element to the specified number of milliseconds since January 1, 1970 00:00:00 GMT.
+     * @param {number} milliseconds - Number of milliseconds since 1/1/1970
+     */
+    setDateNumericValue(milliseconds: number): void;
+}
+
+declare class GlideElementGlideVar implements IGlideElement { // wf_activity.vars    
     protected constructor();
     changes(): boolean;
     changesFrom(o: any): boolean;
@@ -2153,7 +1614,9 @@ declare class GlideElementIcon implements IGlideElement { // sys_run_level.icon
     getTableName(): string;
 }
 
-declare class GlideElementGlideVar implements IGlideElement { // wf_activity.vars    
+declare type GlideElementHierarchicalVariables = GlideElement;
+
+declare class GlideElementIcon implements IGlideElement { // sys_run_level.icon    
     protected constructor();
     changes(): boolean;
     changesFrom(o: any): boolean;
@@ -2213,7 +1676,7 @@ declare class GlideElementInternalType implements IGlideElement { // sys_script_
     getTableName(): string;
 }
 
-declare class GlideElementSimpleNameValue implements IGlideElement { // syslog.context_map    
+declare class GlideElementIPAddress implements IGlideElement {
     protected constructor();
     changes(): boolean;
     changesFrom(o: any): boolean;
@@ -2244,6 +1707,410 @@ declare class GlideElementSimpleNameValue implements IGlideElement { // syslog.c
 }
 
 declare class GlideElementNameValue implements IGlideElement { // wf_context.return_value    
+    protected constructor();
+    changes(): boolean;
+    changesFrom(o: any): boolean;
+    changesTo(o: any): boolean;
+    dateNumericValue(): number;
+    getBooleanAttribute(attributeName: string): boolean;
+    getChoices(dependent?: string | undefined): any[];
+    getChoiceValue(): string;
+    getDecryptedValue(): string;
+    getDisplayValue(maxCharacters?: number | undefined): string;
+    getGlobalDisplayValue(): string;
+    getHTMLValue(maxChars?: number | undefined): string;
+    getJournalEntry(mostRecent: number): string;
+    getName(): string;
+    nil(): boolean;
+    setDateNumericValue(milliseconds: number): void;
+    setDisplayValue(value: any): void;
+    setError(errorMessage: string): void;
+    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
+    setValue(value: any): void;
+    canCreate(): boolean;
+    canRead(): boolean;
+    canWrite(): boolean;
+    getAttribute(attributeName: string): string;
+    getED(): GlideElementDescriptor;
+    getLabel(): string;
+    getTableName(): string;
+}
+
+declare class GlideElementNumeric implements IGlideElement { // sys_dictionary.defaultsort
+    protected constructor();
+    changes(): boolean;
+    changesFrom(o: any): boolean;
+    changesTo(o: any): boolean;
+    dateNumericValue(): number;
+    getBooleanAttribute(attributeName: string): boolean;
+    getChoices(dependent?: string | undefined): any[];
+    getChoiceValue(): string;
+    getDecryptedValue(): string;
+    getDisplayValue(maxCharacters?: number | undefined): string;
+    getGlobalDisplayValue(): string;
+    getHTMLValue(maxChars?: number | undefined): string;
+    getJournalEntry(mostRecent: number): string;
+    getName(): string;
+    nil(): boolean;
+    setDateNumericValue(milliseconds: number): void;
+    setDisplayValue(value: any): void;
+    setError(errorMessage: string): void;
+    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
+    setValue(value: any): void;
+    canCreate(): boolean;
+    canRead(): boolean;
+    canWrite(): boolean;
+    getAttribute(attributeName: string): string;
+    getED(): GlideElementDescriptor;
+    getLabel(): string;
+    getTableName(): string;
+}
+
+declare class GlideElementPassword implements IGlideElement { // sys_user.user_password
+    protected constructor();
+    changes(): boolean;
+    changesFrom(o: any): boolean;
+    changesTo(o: any): boolean;
+    dateNumericValue(): number;
+    getBooleanAttribute(attributeName: string): boolean;
+    getChoices(dependent?: string | undefined): any[];
+    getChoiceValue(): string;
+    getDecryptedValue(): string;
+    getDisplayValue(maxCharacters?: number | undefined): string;
+    getGlobalDisplayValue(): string;
+    getHTMLValue(maxChars?: number | undefined): string;
+    getJournalEntry(mostRecent: number): string;
+    getName(): string;
+    nil(): boolean;
+    setDateNumericValue(milliseconds: number): void;
+    setDisplayValue(value: any): void;
+    setError(errorMessage: string): void;
+    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
+    setValue(value: any): void;
+    canCreate(): boolean;
+    canRead(): boolean;
+    canWrite(): boolean;
+    getAttribute(attributeName: string): string;
+    getED(): GlideElementDescriptor;
+    getLabel(): string;
+    getTableName(): string;
+}
+
+declare class GlideElementPassword2 implements IGlideElement { // sys_data_source.jdbc_password    
+    protected constructor();
+    changes(): boolean;
+    changesFrom(o: any): boolean;
+    changesTo(o: any): boolean;
+    dateNumericValue(): number;
+    getBooleanAttribute(attributeName: string): boolean;
+    getChoices(dependent?: string | undefined): any[];
+    getChoiceValue(): string;
+    getDecryptedValue(): string;
+    getDisplayValue(maxCharacters?: number | undefined): string;
+    getGlobalDisplayValue(): string;
+    getHTMLValue(maxChars?: number | undefined): string;
+    getJournalEntry(mostRecent: number): string;
+    getName(): string;
+    nil(): boolean;
+    setDateNumericValue(milliseconds: number): void;
+    setDisplayValue(value: any): void;
+    setError(errorMessage: string): void;
+    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
+    setValue(value: any): void;
+    canCreate(): boolean;
+    canRead(): boolean;
+    canWrite(): boolean;
+    getAttribute(attributeName: string): string;
+    getED(): GlideElementDescriptor;
+    getLabel(): string;
+    getTableName(): string;
+}
+
+declare class GlideElementPhoneNumber implements IGlideElement {
+    protected constructor();
+    changes(): boolean;
+    changesFrom(o: any): boolean;
+    changesTo(o: any): boolean;
+    dateNumericValue(): number;
+    getBooleanAttribute(attributeName: string): boolean;
+    getChoices(dependent?: string | undefined): any[];
+    getChoiceValue(): string;
+    getDecryptedValue(): string;
+    getDisplayValue(maxCharacters?: number | undefined): string;
+    getGlobalDisplayValue(): string;
+    getHTMLValue(maxChars?: number | undefined): string;
+    getJournalEntry(mostRecent: number): string;
+    getName(): string;
+    nil(): boolean;
+    setDateNumericValue(milliseconds: number): void;
+    setDisplayValue(value: any): void;
+    setError(errorMessage: string): void;
+    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
+    setValue(value: any): void;
+    canCreate(): boolean;
+    canRead(): boolean;
+    canWrite(): boolean;
+    getAttribute(attributeName: string): string;
+    getED(): GlideElementDescriptor;
+    getLabel(): string;
+    getTableName(): string;
+}
+
+declare class GlideElementPrice implements IGlideElement { // sc_cat_item.recurring_price
+    protected constructor();
+    changes(): boolean;
+    changesFrom(o: any): boolean;
+    changesTo(o: any): boolean;
+    dateNumericValue(): number;
+    getBooleanAttribute(attributeName: string): boolean;
+    getChoices(dependent?: string | undefined): any[];
+    getChoiceValue(): string;
+    getDecryptedValue(): string;
+    getDisplayValue(maxCharacters?: number | undefined): string;
+    getGlobalDisplayValue(): string;
+    getHTMLValue(maxChars?: number | undefined): string;
+    getJournalEntry(mostRecent: number): string;
+    getName(): string;
+    nil(): boolean;
+    setDateNumericValue(milliseconds: number): void;
+    setDisplayValue(value: any): void;
+    setError(errorMessage: string): void;
+    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
+    setValue(value: any): void;
+    canCreate(): boolean;
+    canRead(): boolean;
+    canWrite(): boolean;
+    getAttribute(attributeName: string): string;
+    getED(): GlideElementDescriptor;
+    getLabel(): string;
+    getTableName(): string;
+}
+
+/**
+ * A Glide element that references another GlideRecord.
+ * @todo Verify whether Packages.com.glide.script.glide_elements.GlideReference exists
+ */
+declare class GlideElementReference implements IGlideElement { // sys_dictionary.internal_type
+    protected constructor();
+    changes(): boolean;
+    changesFrom(o: any): boolean;
+    changesTo(o: any): boolean;
+    dateNumericValue(): number;
+    getBooleanAttribute(attributeName: string): boolean;
+    getChoices(dependent?: string | undefined): any[];
+    getChoiceValue(): string;
+    getDecryptedValue(): string;
+    getDisplayValue(maxCharacters?: number | undefined): string;
+    getGlobalDisplayValue(): string;
+    getHTMLValue(maxChars?: number | undefined): string;
+    getJournalEntry(mostRecent: number): string;
+    getName(): string;
+    nil(): boolean;
+    setDateNumericValue(milliseconds: number): void;
+    setDisplayValue(value: any): void;
+    setError(errorMessage: string): void;
+    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
+    setValue(value: any): void;
+    canCreate(): boolean;
+    canRead(): boolean;
+    canWrite(): boolean;
+    getAttribute(attributeName: string): string;
+    getED(): GlideElementDescriptor;
+    getLabel(): string;
+    getTableName(): string;
+    /**
+     * Gets the table name for a reference element.
+     * @returns {string} The table name of the reference.
+     */
+    getReferenceTable(): string;
+    /**
+     * Returns a GlideRecord object for a given reference element.
+     * @returns {GlideRecord} A GlideRecord object.
+     */
+    getRefRecord(): GlideRecord | null | undefined;
+}
+
+declare class GlideElementRelatedTags implements IGlideElement { // incident.sys_tags
+    protected constructor();
+    changes(): boolean;
+    changesFrom(o: any): boolean;
+    changesTo(o: any): boolean;
+    dateNumericValue(): number;
+    getBooleanAttribute(attributeName: string): boolean;
+    getChoices(dependent?: string | undefined): any[];
+    getChoiceValue(): string;
+    getDecryptedValue(): string;
+    getDisplayValue(maxCharacters?: number | undefined): string;
+    getGlobalDisplayValue(): string;
+    getHTMLValue(maxChars?: number | undefined): string;
+    getJournalEntry(mostRecent: number): string;
+    getName(): string;
+    nil(): boolean;
+    setDateNumericValue(milliseconds: number): void;
+    setDisplayValue(value: any): void;
+    setError(errorMessage: string): void;
+    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
+    setValue(value: any): void;
+    canCreate(): boolean;
+    canRead(): boolean;
+    canWrite(): boolean;
+    getAttribute(attributeName: string): string;
+    getED(): GlideElementDescriptor;
+    getLabel(): string;
+    getTableName(): string;
+}
+
+declare class GlideElementReplicationPayload implements IGlideElement { // sys_replication_queue1.payload
+    protected constructor();
+    changes(): boolean;
+    changesFrom(o: any): boolean;
+    changesTo(o: any): boolean;
+    dateNumericValue(): number;
+    getBooleanAttribute(attributeName: string): boolean;
+    getChoices(dependent?: string | undefined): any[];
+    getChoiceValue(): string;
+    getDecryptedValue(): string;
+    getDisplayValue(maxCharacters?: number | undefined): string;
+    getGlobalDisplayValue(): string;
+    getHTMLValue(maxChars?: number | undefined): string;
+    getJournalEntry(mostRecent: number): string;
+    getName(): string;
+    nil(): boolean;
+    setDateNumericValue(milliseconds: number): void;
+    setDisplayValue(value: any): void;
+    setError(errorMessage: string): void;
+    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
+    setValue(value: any): void;
+    canCreate(): boolean;
+    canRead(): boolean;
+    canWrite(): boolean;
+    getAttribute(attributeName: string): string;
+    getED(): GlideElementDescriptor;
+    getLabel(): string;
+    getTableName(): string;
+}
+
+declare class GlideElementScript implements IGlideElement { // sys_dictionary.calculation
+    protected constructor();
+    changes(): boolean;
+    changesFrom(o: any): boolean;
+    changesTo(o: any): boolean;
+    dateNumericValue(): number;
+    getBooleanAttribute(attributeName: string): boolean;
+    getChoices(dependent?: string | undefined): any[];
+    getChoiceValue(): string;
+    getDecryptedValue(): string;
+    getDisplayValue(maxCharacters?: number | undefined): string;
+    getGlobalDisplayValue(): string;
+    getHTMLValue(maxChars?: number | undefined): string;
+    getJournalEntry(mostRecent: number): string;
+    getName(): string;
+    nil(): boolean;
+    setDateNumericValue(milliseconds: number): void;
+    setDisplayValue(value: any): void;
+    setError(errorMessage: string): void;
+    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
+    setValue(value: any): void;
+    canCreate(): boolean;
+    canRead(): boolean;
+    canWrite(): boolean;
+    getAttribute(attributeName: string): string;
+    getED(): GlideElementDescriptor;
+    getLabel(): string;
+    getTableName(): string;
+}
+
+declare class GlideElementShortFieldName implements IGlideElement { // sys_history_line.field
+    protected constructor();
+    changes(): boolean;
+    changesFrom(o: any): boolean;
+    changesTo(o: any): boolean;
+    dateNumericValue(): number;
+    getBooleanAttribute(attributeName: string): boolean;
+    getChoices(dependent?: string | undefined): any[];
+    getChoiceValue(): string;
+    getDecryptedValue(): string;
+    getDisplayValue(maxCharacters?: number | undefined): string;
+    getGlobalDisplayValue(): string;
+    getHTMLValue(maxChars?: number | undefined): string;
+    getJournalEntry(mostRecent: number): string;
+    getName(): string;
+    nil(): boolean;
+    setDateNumericValue(milliseconds: number): void;
+    setDisplayValue(value: any): void;
+    setError(errorMessage: string): void;
+    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
+    setValue(value: any): void;
+    canCreate(): boolean;
+    canRead(): boolean;
+    canWrite(): boolean;
+    getAttribute(attributeName: string): string;
+    getED(): GlideElementDescriptor;
+    getLabel(): string;
+    getTableName(): string;
+}
+
+declare class GlideElementShortTableName implements IGlideElement { // sys_email.target_table    
+    protected constructor();
+    changes(): boolean;
+    changesFrom(o: any): boolean;
+    changesTo(o: any): boolean;
+    dateNumericValue(): number;
+    getBooleanAttribute(attributeName: string): boolean;
+    getChoices(dependent?: string | undefined): any[];
+    getChoiceValue(): string;
+    getDecryptedValue(): string;
+    getDisplayValue(maxCharacters?: number | undefined): string;
+    getGlobalDisplayValue(): string;
+    getHTMLValue(maxChars?: number | undefined): string;
+    getJournalEntry(mostRecent: number): string;
+    getName(): string;
+    nil(): boolean;
+    setDateNumericValue(milliseconds: number): void;
+    setDisplayValue(value: any): void;
+    setError(errorMessage: string): void;
+    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
+    setValue(value: any): void;
+    canCreate(): boolean;
+    canRead(): boolean;
+    canWrite(): boolean;
+    getAttribute(attributeName: string): string;
+    getED(): GlideElementDescriptor;
+    getLabel(): string;
+    getTableName(): string;
+}
+
+declare class GlideElementSimpleNameValue implements IGlideElement { // syslog.context_map    
+    protected constructor();
+    changes(): boolean;
+    changesFrom(o: any): boolean;
+    changesTo(o: any): boolean;
+    dateNumericValue(): number;
+    getBooleanAttribute(attributeName: string): boolean;
+    getChoices(dependent?: string | undefined): any[];
+    getChoiceValue(): string;
+    getDecryptedValue(): string;
+    getDisplayValue(maxCharacters?: number | undefined): string;
+    getGlobalDisplayValue(): string;
+    getHTMLValue(maxChars?: number | undefined): string;
+    getJournalEntry(mostRecent: number): string;
+    getName(): string;
+    nil(): boolean;
+    setDateNumericValue(milliseconds: number): void;
+    setDisplayValue(value: any): void;
+    setError(errorMessage: string): void;
+    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
+    setValue(value: any): void;
+    canCreate(): boolean;
+    canRead(): boolean;
+    canWrite(): boolean;
+    getAttribute(attributeName: string): string;
+    getED(): GlideElementDescriptor;
+    getLabel(): string;
+    getTableName(): string;
+}
+
+declare class GlideElementSourceId implements IGlideElement {
     protected constructor();
     changes(): boolean;
     changesFrom(o: any): boolean;
@@ -2333,7 +2200,7 @@ declare class GlideElementSourceTable implements IGlideElement { // sys_update_l
     getTableName(): string;
 }
 
-declare class GlideElementPassword2 implements IGlideElement { // sys_data_source.jdbc_password    
+declare class GlideElementSysClassName implements IGlideElement { // task.sys_class_name
     protected constructor();
     changes(): boolean;
     changesFrom(o: any): boolean;
@@ -2363,51 +2230,7 @@ declare class GlideElementPassword2 implements IGlideElement { // sys_data_sourc
     getTableName(): string;
 }
 
-/**
- * A Glide element that references another GlideRecord.
- * @todo Verify whether Packages.com.glide.script.glide_elements.GlideReference exists
- */
-declare class GlideElementReference implements IGlideElement { // sys_dictionary.internal_type
-    protected constructor();
-    changes(): boolean;
-    changesFrom(o: any): boolean;
-    changesTo(o: any): boolean;
-    dateNumericValue(): number;
-    getBooleanAttribute(attributeName: string): boolean;
-    getChoices(dependent?: string | undefined): any[];
-    getChoiceValue(): string;
-    getDecryptedValue(): string;
-    getDisplayValue(maxCharacters?: number | undefined): string;
-    getGlobalDisplayValue(): string;
-    getHTMLValue(maxChars?: number | undefined): string;
-    getJournalEntry(mostRecent: number): string;
-    getName(): string;
-    nil(): boolean;
-    setDateNumericValue(milliseconds: number): void;
-    setDisplayValue(value: any): void;
-    setError(errorMessage: string): void;
-    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
-    setValue(value: any): void;
-    canCreate(): boolean;
-    canRead(): boolean;
-    canWrite(): boolean;
-    getAttribute(attributeName: string): string;
-    getED(): GlideElementDescriptor;
-    getLabel(): string;
-    getTableName(): string;
-    /**
-     * Gets the table name for a reference element.
-     * @returns {string} The table name of the reference.
-     */
-    getReferenceTable(): string;
-    /**
-     * Returns a GlideRecord object for a given reference element.
-     * @returns {GlideRecord} A GlideRecord object.
-     */
-    getRefRecord(): GlideRecord | null | undefined;
-}
-
-declare class GlideElementWikiText implements IGlideElement { // sys_ui_help.wiki_text    
+declare class GlideElementTranslatedField implements IGlideElement { // sys_glide_object.label
     protected constructor();
     changes(): boolean;
     changesFrom(o: any): boolean;
@@ -2437,7 +2260,7 @@ declare class GlideElementWikiText implements IGlideElement { // sys_ui_help.wik
     getTableName(): string;
 }
 
-declare class GlideElementWorkflow implements IGlideElement { // sc_req_item.stage    
+declare class GlideElementTranslatedHTML implements IGlideElement { // sys_script.message
     protected constructor();
     changes(): boolean;
     changesFrom(o: any): boolean;
@@ -2467,11 +2290,67 @@ declare class GlideElementWorkflow implements IGlideElement { // sc_req_item.sta
     getTableName(): string;
 }
 
-declare interface IGlideElementVariables extends IGlideElement {
-
+declare class GlideElementTranslatedText implements IGlideElement { // sys_ux_event.description
+    protected constructor();
+    changes(): boolean;
+    changesFrom(o: any): boolean;
+    changesTo(o: any): boolean;
+    dateNumericValue(): number;
+    getBooleanAttribute(attributeName: string): boolean;
+    getChoices(dependent?: string | undefined): any[];
+    getChoiceValue(): string;
+    getDecryptedValue(): string;
+    getDisplayValue(maxCharacters?: number | undefined): string;
+    getGlobalDisplayValue(): string;
+    getHTMLValue(maxChars?: number | undefined): string;
+    getJournalEntry(mostRecent: number): string;
+    getName(): string;
+    nil(): boolean;
+    setDateNumericValue(milliseconds: number): void;
+    setDisplayValue(value: any): void;
+    setError(errorMessage: string): void;
+    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
+    setValue(value: any): void;
+    canCreate(): boolean;
+    canRead(): boolean;
+    canWrite(): boolean;
+    getAttribute(attributeName: string): string;
+    getED(): GlideElementDescriptor;
+    getLabel(): string;
+    getTableName(): string;
 }
 
-declare class GlideElementSourceId implements IGlideElement {
+declare class GlideElementUserImage implements IGlideElement { // sys_user.photo
+    protected constructor();
+    changes(): boolean;
+    changesFrom(o: any): boolean;
+    changesTo(o: any): boolean;
+    dateNumericValue(): number;
+    getBooleanAttribute(attributeName: string): boolean;
+    getChoices(dependent?: string | undefined): any[];
+    getChoiceValue(): string;
+    getDecryptedValue(): string;
+    getDisplayValue(maxCharacters?: number | undefined): string;
+    getGlobalDisplayValue(): string;
+    getHTMLValue(maxChars?: number | undefined): string;
+    getJournalEntry(mostRecent: number): string;
+    getName(): string;
+    nil(): boolean;
+    setDateNumericValue(milliseconds: number): void;
+    setDisplayValue(value: any): void;
+    setError(errorMessage: string): void;
+    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
+    setValue(value: any): void;
+    canCreate(): boolean;
+    canRead(): boolean;
+    canWrite(): boolean;
+    getAttribute(attributeName: string): string;
+    getED(): GlideElementDescriptor;
+    getLabel(): string;
+    getTableName(): string;
+}
+
+declare class GlideElementURL implements IGlideElement { // v_plugin.help
     protected constructor();
     changes(): boolean;
     changesFrom(o: any): boolean;
@@ -2561,9 +2440,248 @@ declare class GlideElementVariable implements IGlideElement {
     getTableName(): string;
 }
 
+declare class GlideElementVariables implements IGlideElement { // task.variables
+    protected constructor();
+    changes(): boolean;
+    changesFrom(o: any): boolean;
+    changesTo(o: any): boolean;
+    dateNumericValue(): number;
+    getBooleanAttribute(attributeName: string): boolean;
+    getChoices(dependent?: string | undefined): any[];
+    getChoiceValue(): string;
+    getDecryptedValue(): string;
+    getDisplayValue(maxCharacters?: number | undefined): string;
+    getGlobalDisplayValue(): string;
+    getHTMLValue(maxChars?: number | undefined): string;
+    getJournalEntry(mostRecent: number): string;
+    getName(): string;
+    nil(): boolean;
+    setDateNumericValue(milliseconds: number): void;
+    setDisplayValue(value: any): void;
+    setError(errorMessage: string): void;
+    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
+    setValue(value: any): void;
+    canCreate(): boolean;
+    canRead(): boolean;
+    canWrite(): boolean;
+    getAttribute(attributeName: string): string;
+    getED(): GlideElementDescriptor;
+    getLabel(): string;
+    getTableName(): string;
+}
+
+declare class GlideElementWikiText implements IGlideElement { // sys_ui_help.wiki_text    
+    protected constructor();
+    changes(): boolean;
+    changesFrom(o: any): boolean;
+    changesTo(o: any): boolean;
+    dateNumericValue(): number;
+    getBooleanAttribute(attributeName: string): boolean;
+    getChoices(dependent?: string | undefined): any[];
+    getChoiceValue(): string;
+    getDecryptedValue(): string;
+    getDisplayValue(maxCharacters?: number | undefined): string;
+    getGlobalDisplayValue(): string;
+    getHTMLValue(maxChars?: number | undefined): string;
+    getJournalEntry(mostRecent: number): string;
+    getName(): string;
+    nil(): boolean;
+    setDateNumericValue(milliseconds: number): void;
+    setDisplayValue(value: any): void;
+    setError(errorMessage: string): void;
+    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
+    setValue(value: any): void;
+    canCreate(): boolean;
+    canRead(): boolean;
+    canWrite(): boolean;
+    getAttribute(attributeName: string): string;
+    getED(): GlideElementDescriptor;
+    getLabel(): string;
+    getTableName(): string;
+}
+
+declare class GlideElementWorkflow implements IGlideElement { // sc_req_item.stage    
+    protected constructor();
+    changes(): boolean;
+    changesFrom(o: any): boolean;
+    changesTo(o: any): boolean;
+    dateNumericValue(): number;
+    getBooleanAttribute(attributeName: string): boolean;
+    getChoices(dependent?: string | undefined): any[];
+    getChoiceValue(): string;
+    getDecryptedValue(): string;
+    getDisplayValue(maxCharacters?: number | undefined): string;
+    getGlobalDisplayValue(): string;
+    getHTMLValue(maxChars?: number | undefined): string;
+    getJournalEntry(mostRecent: number): string;
+    getName(): string;
+    nil(): boolean;
+    setDateNumericValue(milliseconds: number): void;
+    setDisplayValue(value: any): void;
+    setError(errorMessage: string): void;
+    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
+    setValue(value: any): void;
+    canCreate(): boolean;
+    canRead(): boolean;
+    canWrite(): boolean;
+    getAttribute(attributeName: string): string;
+    getED(): GlideElementDescriptor;
+    getLabel(): string;
+    getTableName(): string;
+}
+
+declare class GlideElementWorkflowConditions implements IGlideElement { // sys_template.template    
+    protected constructor();
+    changes(): boolean;
+    changesFrom(o: any): boolean;
+    changesTo(o: any): boolean;
+    dateNumericValue(): number;
+    getBooleanAttribute(attributeName: string): boolean;
+    getChoices(dependent?: string | undefined): any[];
+    getChoiceValue(): string;
+    getDecryptedValue(): string;
+    getDisplayValue(maxCharacters?: number | undefined): string;
+    getGlobalDisplayValue(): string;
+    getHTMLValue(maxChars?: number | undefined): string;
+    getJournalEntry(mostRecent: number): string;
+    getName(): string;
+    nil(): boolean;
+    setDateNumericValue(milliseconds: number): void;
+    setDisplayValue(value: any): void;
+    setError(errorMessage: string): void;
+    setPhoneNumber(phoneNumber: any, strict: boolean): boolean;
+    setValue(value: any): void;
+    canCreate(): boolean;
+    canRead(): boolean;
+    canWrite(): boolean;
+    getAttribute(attributeName: string): string;
+    getED(): GlideElementDescriptor;
+    getLabel(): string;
+    getTableName(): string;
+}
+
+declare class GlideEmail {
+    /**
+     * Adds the address to either the cc or bcc list.
+     * @param {"cc"|"bcc"} type - Either cc or bcc, determines the list to which the address is added.
+     * @param {string} address - The recipient's email address.
+     */
+    addAddress(type: string, address: string): void;
+    /**
+     * Adds the recipient to either the cc or bcc list, but uses the display name instead of the address when showing the recipient.
+     * @param {"cc"|"bcc"} type - Either cc or bcc, determines the list to which the address is added.
+     * @param {string} address - The recipient's email address.
+     * @param {string} displayName - The name to be shown instead of the email address.
+     */
+    addAddress(type: string, address: string, displayName: string): void;
+    /**
+     * 
+     * @param address 
+     */
+    addRecipient(address: string): void;
+    /**
+     * Instantiates a GlideEmail object.
+     * @constructor
+     * @param {string} [body] Body of message
+     */
+    constructor(body?: string);
+    getSMSText(): string;
+    /**
+     * Returns the email's subject line.
+     * @returns {string} The email's subject line.
+     */
+    getSubject(): string;
+    getTextBody(): string;
+    /**
+     * Returns the email's watermark.
+     * @returns {string} The email's watermark.
+     */
+    getWatermark(): string;
+    /**
+     * Sets the body of the email.
+     * @param {string} bodyText - The body of the email.
+     */
+    setBody(bodyText: string): void;
+    /**
+     * Sets the sender's address.
+     * @param {string} address - The sender's email address.
+     */
+    setFrom(address: string): void;
+    setRecipients(recipients: string): void;
+    /**
+     * Sets the reply to address.
+     * @param {string} address - The reply to email address.
+     */
+    setReplyTo(address: string): void;
+    /**
+     * Sets the email's subject line.
+     * @param {string} subject - Text for the subject line.
+     */
+    setSubject(subject: string): void;
+}
+
+/**
+ * @todo Add GlideLRUCache members
+ */
+declare class GlideLRUCache {
+}
+
+/**
+ * GlideQueryCondition object.
+ * @see {@link https://docs.servicenow.com/bundle/utah-api-reference/page/app-store/dev_portal/API_reference/GlideQueryCondition/concept/c_GlideQueryConditionAPI.html}
+ * @see {@link https://developer.servicenow.com/dev.do#!/reference/api/utah/server_legacy/c_GlideQueryConditionAPI}
+ */
+declare class GlideQueryCondition {
+    protected constructor();
+    /**
+     * Adds an AND condition to the current condition.
+     * @param {string} name The name of a field.
+     * @param {QueryOperator} oper The operator for the query (=,!=,>,>=,<,<=,IN,NOT IN,STARTSWITH,ENDSWITH,CONTAINS,DOES NOT CONTAIN,INSTANCEOF).
+     * @param {*} value The value to query on.
+     * @returns {GlideQueryCondition} A reference to a GlideQueryConditon that was added to the GlideRecord.
+     */
+    addCondition(name: string, oper: QueryOperator, value: any): GlideQueryCondition;
+    /**
+     * Adds an AND condition to the current condition. Assumes the equals operator.
+     * @param {string} name The name of a field.
+     * @param {*} value The value of a field.
+     * @returns {GlideQueryCondition} A reference to a GlideQueryConditon that was added to the GlideRecord.
+     */
+    addCondition(name: string, value: any): GlideQueryCondition;
+    /**
+     * Adds an AND condition to the current condition.
+     * @param {GlideQueryCondition} queryCondition Condition to add.
+     * @returns {GlideQueryCondition} A reference to a GlideQueryConditon that was added to the GlideRecord.
+     */
+    addCondition(queryCondition: GlideQueryCondition): GlideQueryCondition
+    /**
+     * Adds an OR condition to the current condition.
+     * @param {string} name The name of a field.
+     * @param {QueryOperator} oper The operator for the query (=,!=,>,>=,<,<=,IN,NOT IN,STARTSWITH,ENDSWITH,CONTAINS,DOES NOT CONTAIN,INSTANCEOF).
+     * @param {*} value The value to query on.
+     * @returns {GlideQueryCondition} A reference to a GlideQueryConditon that was added to the GlideRecord.
+     */
+    addOrCondition(name: string, oper: QueryOperator, value: any): GlideQueryCondition;
+    /**
+     * Adds an OR condition to the current condition. Assumes the equals operator.
+     * @param {string} name The name of a field.
+     * @param {*} value The value to query on.
+     * @returns {GlideQueryCondition} A reference to a GlideQueryConditon that was added to the GlideRecord.
+     */
+    addOrCondition(name: string, value: any): GlideQueryCondition;
+    /**
+     * Adds an OR condition to the current condition. Assumes the equals operator.
+     * @param {GlideQueryCondition} queryCondition Condition to add.
+     * @returns {GlideQueryCondition} A reference to a GlideQueryConditon that was added to the GlideRecord.
+     */
+    addOrCondition(queryCondition: GlideQueryCondition): GlideQueryCondition;
+}
+
 /**
  * Scoped GlideRecord is used for database operations.
  * @description A GlideRecord contains both records and fields. For information about GlideRecordSecure, which is a class inherited from GlideRecord that performs the same functions as GlideRecord, and also enforces ACLs, see the GlideServer APIs .Always test queries on a sub-production instance prior to deploying them on a production instance. An incorrectly constructed encoded query, such as including an invalid field name, produces an invalid query. When the invalid query is run, the invalid part of the query condition is dropped, and the results are based on the valid part of the query, which may return all records from the table. Using an insert(), update(), deleteRecord(), or deleteMultiple() method on bad query results can result in data loss.You can set the glide.invalid_query.returns_no_rows system property to true to have queries with invalid encoded queries return no records.
+ * @see {@link https://docs.servicenow.com/bundle/utah-api-reference/page/app-store/dev_portal/API_reference/GlideRecord/concept/c_GlideRecordAPI.html}
+ * @see {@link https://developer.servicenow.com/dev.do#!/reference/api/utah/server_legacy/c_GlideRecordAPI}
  */
 declare class GlideRecord implements IDbObject {
     /**
@@ -2879,540 +2997,25 @@ declare class GlideRecord implements IDbObject {
 }
 
 /**
- * The scoped GlideElementDescriptor API provides information about individual fields.
- * @description There is no constructor for this class. Use the GlideElement getED() method to obtain a ElementDescriptor object.
+ * @todo Add GlideScriptableInputStream members
+ * @see {@link https://docs.servicenow.com/bundle/utah-api-reference/page/app-store/dev_portal/API_reference/GlideScriptableInputStreamScoped/concept/c_GlideScriptableInpStrmScopedAPI.html}
  */
-declare class GlideElementDescriptor {
-    protected constructor();
-    /**
-     * Returns the encryption type used for attachments on the element's table.
-     * @returns {string | Packages.java.lang.String} The encryption type used on attachments. Returns null if attachments on the element's table are not being encrypted.
-     */
-    getAttachmentEncryptionType(): string | Packages.java.lang.String;
-    /**
-     * Returns the element's encryption type.
-     * @returns {string | Packages.java.lang.String} The element's encryption type. Returns null if the element is not encrypted.
-     */
-    getEncryptionType(): string | Packages.java.lang.String;
-    /**
-     * Returns the element's internal data type.
-     * @returns {string | Packages.java.lang.String} The element's internal data type.
-     */
-    getInternalType(): string | Packages.java.lang.String;
-    /**
-     * Returns the element's label.
-     * @returns {string | Packages.java.lang.String} The element's label.
-     */
-    getLabel(): string | Packages.java.lang.String;
-    /**
-     * Returns the element's length.
-     * @returns {number} The element's size.
-     */
-    getLength(): number;
-    /**
-     * Returns the element's name.
-     * @returns {string} The element's name.
-     */
-    getName(): string | Packages.java.lang.String;
-    /**
-     * Returns the element's plural label.
-     * @returns {string} The element's plural label.
-     */
-    getPlural(): string | Packages.java.lang.String;
-    /**
-     * Returns true if an encrypted attachment has been added to the table.
-     * @returns {boolean} Returns true if an encrypted attachment has been added to the table.
-     */
-    hasAttachmentsEncrypted(): boolean;
-    /**
-     * Returns true if the element is an automatically generated or system field.
-     * @returns {boolean} True if the element is automatically generated or a system field.
-     */
-    isAutoOrSysID(): boolean;
-    /**
-     * Returns true if the element is defined as a dropdown choice in its dictionary definition.
-     * @returns {boolean} Returns true if the element is defined as a dropdown choice. Returns true even if there are no entries defined in the choice table. The last choice type, suggestion, does not return true.
-     */
-    isChoiceTable(): boolean;
-    /**
-     * Returns true if an element is encrypted.
-     * @returns {boolean} Returns true if the element is encrypted, false otherwise.
-     */
-    isEdgeEncrypted(): boolean;
-    /**
-     * Returns true if the element is a virtual element.
-     * @returns {boolean} Returns true if the element is a virtual element.
-     */
-    isVirtual(): boolean;
-}
-
-declare class GlideXMLDocument {
-    setNamespaceAware(value: boolean): void;
-    parse(text: string): void;
-    getDocumentElement(): Packages.org.w3c.dom.Element;
-    createElement(name: string, value: any): Packages.org.w3c.dom.Element;
-    createCDATAElement(name: string, value: any): Packages.org.w3c.dom.Element;
-    getDocumentElement(): Packages.org.w3c.dom.Element;
-    selectSingleNodeText(xpath: string): Packages.java.lang.String;
-    load(f: string): void;
-    toIndentedString(): Packages.java.lang.String;
-    toString(): Packages.java.lang.String;
-}
-declare class XMLDocument {
-    constructor(xml: $$rhino.String, nsAware?: $$rhino.Boolean);
-    createElement(name: string, value?: any): Packages.org.w3c.dom.Element;
-    setCurrent(el: Packages.org.w3c.dom.Element): void;
-    setAttribute(name: string, value?: any): void;
-    getChildTextByTagName(parent: Packages.org.w3c.dom.Element, tagName: string): Packages.java.lang.String;
-    getElementByTagName(ptagName: string): Packages.org.w3c.dom.Element;
-    getElementValueByTagName(tagName: string): Packages.java.lang.String;
-    getDocument(): GlideXMLDocument;
-    getDocumentElement(): Packages.org.w3c.dom.Element;
-    getNodeText(xpath: string): Packages.java.lang.String;
-    getNodeInt(xpath: string): Packages.java.lang.Integer;
-    getNode(xpath: string): Packages.org.w3c.dom.Node;
-    getNodeName(xpath: string): Packages.java.lang.String;
-    getNodeType(xpath: string): Packages.java.lang.String;
-    getNodes(xpath): Packages.org.w3c.dom.NodeList;
-    getAttribute(xpath: string, attributeName: string): Packages.java.lang.String;
-    isValid(): Packages.java.lang.Boolean;
-    load(f: string): void;
-    toIndentedString(): Packages.java.lang.String;
-    toString(): Packages.java.lang.String;
-}
-
-declare class GlideEmail {
-    /**
-     * Adds the address to either the cc or bcc list.
-     * @param {"cc"|"bcc"} type - Either cc or bcc, determines the list to which the address is added.
-     * @param {string} address - The recipient's email address.
-     */
-    addAddress(type: string, address: string): void;
-    /**
-     * Adds the recipient to either the cc or bcc list, but uses the display name instead of the address when showing the recipient.
-     * @param {"cc"|"bcc"} type - Either cc or bcc, determines the list to which the address is added.
-     * @param {string} address - The recipient's email address.
-     * @param {string} displayName - The name to be shown instead of the email address.
-     */
-    addAddress(type: string, address: string, displayName: string): void;
-    /**
-     * 
-     * @param address 
-     */
-    addRecipient(address: string): void;
-    /**
-     * Instantiates a scoped GlideEmail object.
-     * @constructor
-     * @param {string} [body] Body of message
-     */
-    constructor(body?: string);
-    /**
-     * 
-     */
-    getSMSText(): string;
-    /**
-     * Returns the email's subject line.
-     * @returns {string} The email's subject line.
-     */
-    getSubject(): string;
-    getTextBody(): string;
-    /**
-     * Returns the email's watermark.
-     * @returns {string} The email's watermark.
-     */
-    getWatermark(): string;
-    /**
-     * Sets the body of the email.
-     * @param {string} bodyText - The body of the email.
-     */
-    setBody(bodyText: string): void;
-    /**
-     * Sets the sender's address.
-     * @param {string} address - The sender's email address.
-     */
-    setFrom(address: string): void;
-    setRecipients(recipients: string): void;
-    /**
-     * Sets the reply to address.
-     * @param {string} address - The reply to email address.
-     */
-    setReplyTo(address: string): void;
-    /**
-     * Sets the email's subject line.
-     * @param {string} subject - Text for the subject line.
-     */
-    setSubject(subject: string): void;
-}
-
-declare class EmailWatermark {
-    getWatermark(): string;
+declare class GlideScriptableInputStream {
 }
 
 /**
- * The scoped GlideEmailOutbound class implements the email object for scoped applications.
-* @description You can use the GlideEmailOutbound methods with the email global object available in mail scripts.The email object behaves identically for global and scoped applications.
+ * @todo Add GlideServletRequest members
+ * @see {@link https://docs.servicenow.com/bundle/utah-api-reference/page/app-store/dev_portal/API_reference/GlideServletRequestScoped/concept/c_GlideServletRequestScopedAPI.html}
+ * @todo See if this exists on global
  */
-declare class EmailOutbound extends GlideEmail {
-    constructor(actionType_OR_action?: string | GlideRecord, m?: EmailWatermark);
-    save(): void;
+declare class GlideServletRequest {
 }
 
 /**
- * The Scoped GlideTableHierarchy API provides methods for handling information about table relationships.
- */
-declare class GlideTableHierarchy {
-    /**
-     * Instantiates a GlideTableHierarchy object.
-     * @constructor
-     * @param {string} tableName - The name of the table.
-     */
-    constructor(tableName: string);
-    /**
-     * Returns an array of strings containing all tables that extend the current table and includes the current table.
-     * @returns {Array<*>} An array of strings containing the tables in the hierarchy that includes the current table.
-     */
-    getAllExtensions(): any[];
-    /**
-     * Returns the parent class.
-     * @returns {string} The parent class.
-     */
-    getBase(): string;
-    /**
-     * Returns an array of strings containing all classes in the hierarchy of the current table.
-     * @returns {Array<*>} An array of strings of the classes in the hierarchy.
-     */
-    getHierarchy(): any[];
-    /**
-     * Returns the table's name.
-     * @returns {string} The table's name.
-     */
-    getName(): string;
-    /**
-     * Returns the top level class in the hierarchy.
-     * @returns {string} The root class.
-     */
-    getRoot(): string;
-    /**
-     * Returns an array of strings containing all tables that extend the current table.
-     * @returns {Array<*>} An array of strings containing the tables that extend the current table.
-     */
-    getTableExtensions(): any[];
-    /**
-     * Returns an array of strings of the table names in the hierarchy.
-     * @returns {Array<*>} An array of strings containing the names of tables in the hierarchy.
-     */
-    getTables(): any[];
-    /**
-     * Returns true of this class has been extended.
-     * @returns {boolean} True if the current table has extensions.
-     */
-    hasExtensions(): boolean;
-    /**
-     * Returns true if this is a base class.
-     * @returns {boolean} True if the current table has no parent and has extensions.
-     */
-    isBaseClass(): boolean;
-    /**
-     * Returns true if this table is not in a hierarchy.
-     * @returns {boolean} True if the current table has no parent and no extensions.
-     */
-    isSoloClass(): boolean;
-}
-
-/**
- * Names of workflow events availablein the base system.
- * 
- * This was created by referencing {@link https://docs.servicenow.com/bundle/rome-servicenow-platform/page/administer/workflow-administration/reference/r_WorkflowEventsInTheBaseSystem.html}
- * @enum {string}
- */
-declare enum BaseSystemWorkflowEventNames {
-    /**
-     * Informs records in the Workflow Executing Activity [wf_executing] table about the completion of other activities in the same workflow context.
-     * If the activity is allowed to set the boolean value for wf_executing.notify_termination, then set the value to true (activity.notify_termination = true) during the onExecute event.
-     * Source: Workflow Engine, Process Terminations; Thread: Current thread, current mutex; Listeners: Join activity
-     * @summary String value used by activity definitions to respond to the onActivityComplete event handler.
-     */
-    activityComplete = "activityComplete",
-    /**
-     * From within activity definitions:
-     * 
-     * Informs all wf_executing records in a context that the workflow is being canceled.
-     * The End activity uses the global workflow.broadcastEvent('cancel') to interrupt the currently running wf_executing records. This changes the state of those records to Cancelled.
-     * Source: End activity; Thread: Current thread, current mutex; Listeners: All activities, onCancel event handler
-     * 
-     * Outside current context:
-     * 
-     * This event is the same as the cancel event above and handled the same. However, the management of this event is subtly different.
-     * This event informs all wf_executing records in a context that the workflow is being canceled.
-     * The event is managed via the onCancel event handler of each executing activity definition, but the event is called differently.
-     * In particular, the call to cancel from outside an activity definition is blocked by the current mutex.
-     * This is a significant difference in that the event does not interrupt a currently executing activity that is still operating within the parameters of the current mutex.
-     * Any script can call cancel on a known executing context via the workflow script include.
-     * Source: Any script include, scheduled job, UI action, or other source; Thread: Current thread, private mutex; Listeners:All activities, onCancel event handler
-     * @summary String value used by workflow activities to respond to a request for cancellation.
-     */
-    cancel = "cancel",
-    /**
-     * Informs wf_executing records for approval activities about an approval that completed and triggered the timer event.
-     * Approval Coordinator both registers for the event and triggers the event. The child approvals have listeners that determine their approval state.
-     * Source: Approval Coordinator triggers the event during its onExecute; Thread: Current thread, current mutex;
-     * Listeners: Approval Coordinator, Approval - User, and Approval - Group all have onDetermineApprovalState event handlers.
-     * If the state is anything but Requested, the activity is considered finished, and the approval state (Approved, Rejected, Cancelled) is set to the wf_executing.result column
-     * @summary String value used by approval activities to respond to a change in the overall approval status of the current record.
-     */
-    determineApprovalState = "determineApprovalState",
-    /**
-     * Informs a record in the wf_executing table with the initial state of Executing to proceed with its primary work.
-     * The workflow engine, for each transition executed, creates an executing record with a state of Executing. Once created, the executing record is put in a queue for processing.
-     * For each item in the queue, the Rhino globals are established, the activity definition that drives the executing record is instantiated, and the run() function is called.
-     * When the state of a record is Executing, this function always calls onExecute.
-     * Source: Workflow engine, via the WFActivity Handler; Thread: Current thread, current mutex; Listeners: All activities, onExecute event handler
-     * 
-     * Lock Activities
-     * 
-     * This is also the string value used by the Lock activity to respond to a waiting lock that is ready to make another attempt to obtain a specific lock.
-     * For Lock activities, this informs a wf_executing record waiting to execute that the specified wait interval has passed and that it should attempt to get the lock again.
-     * The execute event for a Lock activity is different because it is called on a separate thread, at specified intervals, and is treated as an outside event.
-     * Source: Lock activity via a scheduled job; Thread: Worker thread, private mutex; Listeners: Lock activity, onExecute event handler
-     * @summary String value used by workflow activities to respond to a Timer activity that has expired.
-     */
-    execute = "execute",
-    /**
-     * When a main workflow calls a subflow, the workflow keeps the ID of the subflow's context in the scratchpad. When the subflow is complete, it triggers the listener event via a business rule.
-     * The listener event is passed to the parent context on completion of a subflow and is managed by the onListener action of the workflow activity.
-     * Source: Business rule that is triggered by the update of a workflow that has a parent; Thread: Current thread, current mutex;
-     * Listeners: This event is used by a subflow to inform it's parent flow that it is complete. The parent workflow will react to this event and continue.
-     * @summary String value that the workflow (subflow) activity triggers as an event.
-     */
-    listener = "listener",
-    /**
-     * When an SLA is paused, the SLA workflows must be paused if there is a timer running.
-     * Use is exclusive to the SLA timer.
-     * Source: SLA; Thread: Business rule thread, private mutex; Listeners: Timer activity
-     * @summary String value sent to a workflow from an SLA to pause the Timer activity.
-     */
-    pause = "pause",
-    /**
-     * String value triggered in the workflow by an Orchestration activity indicating that the MID Server has completed a task.
-     * The onProbe_complete event handler is in the WebServiceActivityHandler and is used by most Orchestration activities.
-     * Source: Event used to restate a workflow that is waiting for the MID Server to process a task or activity; Thread: Worker thread, private mutex; Listeners: Orchestration activities
-     * @summary String value triggered in the workflow by an Orchestration activity indicating that the MID Server has completed a task.
-     */
-    probe_complete = "probe_complete",
-    /**
-     * When an SLA is resumed, the SLA workflows must be resumed as well.
-     * Use is exclusive to the SLA timer.
-     * Source: SLA; Thread: Business rule thread, private mutex; Listeners: Timer activity
-     * @summary String value used by the Timer activity to resume a paused timer (see {@link BaseSystemWorkflowEventNames#pause}).
-     */
-    resume = "resume",
-    /**
-     * The End activity checks for this event. This is only in the End activity.
-     * Source: Any script can trigger or broadcast the stop event via a script include or workflow Run Script activity; Thread: Current thread, current mutex;
-     * Listeners: This event is used by the End activity to exclude the Cancel activity and allow a workflow to end, even if canceled.
-     * @summary The End activity checks for this event.
-     */
-    stop = "stop",
-    /**
-     * Allows wf_executing records to be informed about a timer activity that has completed and has fired the timer event.
-     * The Timer activity schedules a job that calls a script. The script calls fireEvent (wf_executing, timer).
-     * Source: Timer activity via a scheduled job; Thread: Worker thread, private mutex; Listeners: Timer activity, onTimer event handler
-     * @summary String value used by workflow activities to respond to a Timer activity that has expired.
-     */
-    timer = "timer",
-    /**
-     * Informs records in the Workflow Executing Activity [wf_executing] table about an otherEvent that has completed.
-     * The Join activity transitions from n number of preceding activities. These preceding activities all create a wf_executing record, which causes a check to see if the record already exists.
-     * If the Join already exists, then the Join created by the executing transition sets the wf_executing record for deletion.
-     * Source: Join activity; Thread: Current thread, current mutex; Listeners: Join activity, onOtherEvent event handler
-     * @summary String value used by the Join activity to respond to an otherEvent.
-     */
-    otherEvent = "otherEvent"
-}
-
-type WorkflowOperationType = "insert" | "update" | "delete";
-
-/**
- * Workflow scripts provide an interface with the workflow engine.
- */
-declare class Workflow {
-    /**
-     * Creates an instance of the Workflow class.
-     */
-    public constructor();
-
-    /**
-     * Typical use of this method is to enable activities that wait for some action to occur before proceeding.
-     * For additional information on using broadcastEvent, refer to Workflow event-specific functions ({@link https://docs.servicenow.com/bundle/rome-servicenow-platform/page/administer/workflow-administration/reference/r_WorkflowEventSpecificFunctions.html}).
-     * See {@link BaseSystemWorkflowEventNames} for available OOB events.
-     *
-     * @param {string} contextId - The context ID.
-     * @param {string} eventName - The name of the event.
-     * @summary Sends the specified event (message) into the workflow context to pass along to the executing activities.
-     */
-    broadcastEvent(contextId: string, eventName: string): void;
-
-    /**
-     * Cancels all running workflows on this record by broadcasting the cancel event to activities in all running workflows on this record.
-     * @param {GlideRecord} record - GlideRecord on any table. All workflows running on this record will be cancelled.
-     */
-    cancel(record: GlideRecord): void;
-
-    /**
-     * Cancels this running context by broadcasting a cancel event to activities in this workflow context.
-     * @param {GlideRecord} context - GlideRecord of the running context to cancel.
-     */
-    cancelContext(context: GlideRecord): void;
-
-    /**
-     * Deletes all the workflows on the record.
-     * @param {GlideRecord} current - GlideRecord for which the caller wants to delete all workflows. This can be any record on any table.
-     */
-    deleteWorkflow(current: GlideRecord): void;
-
-    /**
-     * Fires the named event on the input record.
-     *
-     * Used in ActivitiesApproval Coordinator, Timer, Lock, and some others.
-     * @param {GlideRecord} eventRecord - The event record.
-     * @param {string} eventName - The name of the event to send to the executing workflow.
-     */
-    fireEvent(eventRecord: GlideRecord, eventName: string): void;
-
-    /**
-     * Fires the named event on the record specified by record ID.
-     *
-     * Used in Activities Approval Coordinator, Timer, Lock, and some others.
-     * @param {string} eventRecordId - The sys_id of the glide record.
-     * @param {string} eventName - The name of the event to send to the executing workflow.
-     */
-    fireEventById(eventRecordId: string, eventName: string): void;
-
-    /**
-     * Returns all workflow contexts for a specified record.
-     * @param {GlideRecord} record - GlideRecord for which the caller wants a list of all workflow contexts. This can be any record on any table for which the caller wants the running workflow contexts.
-     * @returns {GlideRecord} GlideRecord in the Workflow context [wf_context] table filtered for all workflow contexts for the specified record (in any state, such as running, cancelled, finished).
-     */
-    getContexts(record: GlideRecord): GlideRecord;
-
-    /**
-     * Gets the estimated time for a workflow to complete.
-     * @param {string} workflowId - Sys_id of the workflow (table wf_workflow) to get the estimated run time.
-     * @returns {string} Display value from a GlideDuration (e.g., 3 days), or blank if unknown.
-     */
-    getEstimatedDeliveryTime(workflowId: string): string;
-
-    /**
-     * Get the estimated elapsed execution time for the workflow version.
-     * @param {GlideRecord} wfVersion - GlideRecord on table wf_workflow_version of a specific workflow version for which the caller wants the estimated during of executing.
-     * @returns {string}
-     */
-    getEstimatedDeliveryTimeFromWFVersion(wfVersion: GlideRecord): string;
-
-    /**
-     * Gets the appropriate workflow return value for the input workflow ID.
-     *
-     * This is either the workflow checked out by the current user or the published workflow with the most recent date.
-     * @param {string} workflowID - The sys_id of the workflow (table wf_workflow)
-     * @param {number} amount - amount
-     * @param {boolean} result - True, if true
-     * @returns {*} The return value of the workflow as specified by the Return Value activity. Workflows without a Return Value activity return a null value.
-     */
-    getReturnValue(workflowID: string, amount: number, result: boolean): any;
-
-    /**
-     * Gets all the currently running workflow contexts for the input record.
-     *
-     * The input record is any record on any table for which the caller wants the running workflow contexts.
-     * @param {GlideRecord} record - GlideRecord of the record for which the caller wants a list of all running workflows.
-     * @returns {GlideRecord} GlideRecord on table wf_context and filtered for all executing workflow contexts.
-     */
-    getRunningFlows(record: GlideRecord): GlideRecord;
-
-    /**
-     * Gets the appropriate workflow version for the input workflow ID.
-     * 
-     * This is either the workflow checked out by the current user or the published workflow with the most recent date.
-     * @param {string} workflowID - The sys_id of the workflow (table wf_workflow)
-     * @returns {string} The workflow version.
-     */
-    getVersion(workflowID: string): string;
-
-    /**
-     * Returns the appropriate workflow version for the input workflow name.
-     * @param {string} workflowName - Name of the workflow (table wf_workflow)
-     * @returns {string} The workflow version.
-     */
-    getVersionFromName(workflowName: string): string;
-
-    /**
-     * Returns the sys_id of the workflow associated with the specified workflow name.
-     * @param {string} workflowName - Name of the workflow.
-     * @returns {string}The sys_id of the workflow associated with the passed in name.
-     */
-    getWorkflowFromName(workflowName: string): string;
-
-    /**
-     * Determines if a specified record has any workflow contexts associated to it.
-     *
-     * This includes running and completed workflow contexts.
-     * @param {GlideRecord} record - GlideRecord under scrutiny. This GlideRecord can be from any table.
-     * @returns {boolean} True, if record has associated workflow; otherwise, returns False.
-     */
-    hasWorkflow(record: GlideRecord): boolean;
-
-    /**
-     * Recalculates the approvals and tasks for a workflow by adding new approvals and tasks, while not resetting current approvals and tasks.
-     *
-     * You can use this method to perform such tasks as adding a company to a change request, without resetting the current approvals for companies already in the workflow.
-     * @param {GlideRecord} current - GlideRecord of the record this workflow is executing. This can by any record on any table.
-     * @param {boolean} maintainStateFlag - Flag that indicates whether to maintain all approvals and tasks in their current state.
-     *                                      true: Maintain all approvals and tasks in their current state; false: Update all approval and task states.
-     */
-    restartWorkflow(current: GlideRecord, maintainStateFlag: boolean): void;
-
-    /**
-     * Runs all workflows for a given record in a given table and its descendant tables.
-     * @param {GlideRecord} record - GlideRecord to run workflows against.
-     * @param {WorkflowOperationType} operation - Database operation.
-     */
-    runFlows(record: GlideRecord, operation: WorkflowOperationType): void;
-
-    /**
-     * Starts a specified workflow.
-     * @param {string} workflowId - The sys_id of the workflow to start. This sys_id refers to table wf_workflow.
-     * @param {GlideRecord} current - The record to use as current in this workflow. This is normally from the Table field of the workflow properties for this workflow.
-     * @param {WorkflowOperationType} operation - The operation to perform on current.
-     * @param {Array<any>} vars - Collection of variables to add to the workflow.
-     * @returns {GlideRecord} GlideRecord on table wf_context for the newly created workflow context.
-     */
-    startFlow(workflowId: string, current: GlideRecord, operation: WorkflowOperationType, vars: Array<any>): GlideRecord;
-
-    /**
-     * Helper method for business rule Auto start on context.
-     * @param {GlideRecord} context - GlideRecord on table wf_context of a new record (the "current" record in the business rule).
-     * @param {WorkflowOperationType} operation - Database operation being performed.
-     */
-    startFlowFromContextInsert(context: GlideRecord, operation: WorkflowOperationType): void;
-    
-    /**
-     * Used by business rule Start Workflow on table task_sla.
-     * 
-     * This starts a workflow and the extra arguments to this method are used by activity "Timer" to pause the execution of the workflow for some duration.
-     * @param {string} workflowId - The sys_id of the workflow to start. This sys_id refers to table wf_workflow.
-     * @param {number} retroactiveMSecs - Delay in milliseconds used by Activity Timer.
-     * @param {GlideRecord} current - GlideRecord of the record to use as current in this workflow. This is normally from the Table field of the workflow properties for this workflow.
-     * @param {WorkflowOperationType} operation - Database operation being performed.
-     * @param {Array<any>} vars - Collection of variables to add to the workflow.
-     * @param {*} [withSchedule] - Schedule used by Activity Timer
-     * @returns {GlideRecord}
-     */
-    startFlowRetroactive(workflowId: string, retroactiveMSecs: number, current: GlideRecord, operation: WorkflowOperationType, vars: Array<any>, withSchedule?: any): GlideRecord;
-}
-
-/**
- * The scoped GlideSystem (referred to by the variable name 'gs' in any server-side JavaScript) API provides a number of convenient methods to get information about the system, the current logged in user, etc.
+ * The GlideSystem (referred to by the variable name 'gs' in any server-side JavaScript) API provides a number of convenient methods to get information about the system, the current logged in user, etc.
  * @description Many of the GlideSystem methods facilitate the easy inclusion of dates in query ranges, and are most often used in filters and reporting.
+ * @see {@link https://docs.servicenow.com/bundle/utah-api-reference/page/app-store/dev_portal/API_reference/GlideSystem/concept/c_GlideSystemAPI.html}
+ * @see {@link https://developer.servicenow.com/dev.do#!/reference/api/utah/server_legacy/c_GlideSystemAPI}
  */
 declare class GlideSystem {
     protected constructor();
@@ -3597,7 +3200,7 @@ declare class GlideSystem {
      */
     eventQueueScheduled(name: string, instance: any, parm1?: string, parm2?: string, expiration?: any): void;
     /**
-     * Executes a job for a scoped application.
+     * Executes a job for an application.
      * @param {GlideRecord} job - The job to be run.
      * @returns {string} Returns the sysID of the scheduled job. Returns null if the job is global..
      */
@@ -3679,8 +3282,8 @@ declare class GlideSystem {
      */
     getUrlOnStack(): string;
     /**
-     * Returns a reference to the scoped GlideUser object for the current user.
-     * @returns {GlideUser} Reference to a scoped user object..
+     * Returns a reference to the GlideUser object for the current user.
+     * @returns {GlideUser} Reference to a user object..
      */
     getUser(): GlideUser;
     /**
@@ -3859,6 +3462,174 @@ declare class GlideSystem {
     yesterday(): string;
 }
 
+/**
+ * The Scoped GlideTableHierarchy API provides methods for handling information about table relationships.
+ * @see {@link https://docs.servicenow.com/bundle/utah-api-reference/page/app-store/dev_portal/API_reference/GlideTableHierarchyScoped/concept/c_GlideTableHierarchyScopedAPI.html}
+ * @todo See if this exists on global
+ */
+declare class GlideTableHierarchy {
+    /**
+     * Instantiates a GlideTableHierarchy object.
+     * @constructor
+     * @param {string} tableName - The name of the table.
+     */
+    constructor(tableName: string);
+    /**
+     * Returns an array of strings containing all tables that extend the current table and includes the current table.
+     * @returns {Array<*>} An array of strings containing the tables in the hierarchy that includes the current table.
+     */
+    getAllExtensions(): any[];
+    /**
+     * Returns the parent class.
+     * @returns {string} The parent class.
+     */
+    getBase(): string;
+    /**
+     * Returns an array of strings containing all classes in the hierarchy of the current table.
+     * @returns {Array<*>} An array of strings of the classes in the hierarchy.
+     */
+    getHierarchy(): any[];
+    /**
+     * Returns the table's name.
+     * @returns {string} The table's name.
+     */
+    getName(): string;
+    /**
+     * Returns the top level class in the hierarchy.
+     * @returns {string} The root class.
+     */
+    getRoot(): string;
+    /**
+     * Returns an array of strings containing all tables that extend the current table.
+     * @returns {Array<*>} An array of strings containing the tables that extend the current table.
+     */
+    getTableExtensions(): any[];
+    /**
+     * Returns an array of strings of the table names in the hierarchy.
+     * @returns {Array<*>} An array of strings containing the names of tables in the hierarchy.
+     */
+    getTables(): any[];
+    /**
+     * Returns true of this class has been extended.
+     * @returns {boolean} True if the current table has extensions.
+     */
+    hasExtensions(): boolean;
+    /**
+     * Returns true if this is a base class.
+     * @returns {boolean} True if the current table has no parent and has extensions.
+     */
+    isBaseClass(): boolean;
+    /**
+     * Returns true if this table is not in a hierarchy.
+     * @returns {boolean} True if the current table has no parent and no extensions.
+     */
+    isSoloClass(): boolean;
+}
+
+/**
+ * The GlideTime class provides methods for performing operations on GlideTime objects, such as instantiating GlideTime objects or working with GlideTime fields.
+ * @see {@link https://docs.servicenow.com/bundle/utah-api-reference/page/app-store/dev_portal/API_reference/glideTimeScoped/concept/c_GlideTimeScopedAPI.html}
+ * @todo See if this exists on global
+ */
+declare class GlideTime {
+    /**
+     * Instantiates a GlideTime object with the current time.
+     * @constructor
+     */
+    constructor();
+    /**
+     * Instantiates a GlideTime object with the specified time.
+     * @constructor
+     * @param {number} milliseconds - The datetime in milliseconds.
+     */
+    constructor(milliseconds: number);
+    /**
+     * Gets the time in the specified format.
+     * @param {string} format - The time format.
+     * @returns {string} The time in the specified format.
+     */
+    getByFormat(format: string): string;
+    /**
+     * Gets the time in the current user's display format and time zone.
+     * @returns {string} The time in the user's format and time zone.
+     */
+    getDisplayValue(): string;
+    /**
+     * Gets the display value in the current user's time zone and the internal format (HH:mm:ss).
+     * @returns {string} The time value for the GlideTime object in the current user's time zone and the internal time format of HH:mm:ss.
+     */
+    getDisplayValueInternal(): string;
+    /**
+     * Returns the hours part of the time using the local time zone.
+     * @returns {number} The hours using the local time zone.
+     */
+    getHourLocalTime(): number;
+    /**
+     * Returns the hours part of the time using the local time zone. The number of hours is based on a 24 hour clock.
+     * @returns {number} The hours using the local time zone. The number of hours is based on a 24 hour clock.
+     */
+    getHourOfDayLocalTime(): number;
+    /**
+     * Returns the hours part of the time using the UTC time zone. The number of hours is based on a 24 hour clock.
+     * @returns {number} The hours using the UTC time zone. The number of hours is based on a 24 hour clock.
+     */
+    getHourOfDayUTC(): number;
+    /**
+     * Returns the hours part of the time using the UTC time zone. The number of hours is based on a 12 hour clock. Noon and midnight are represented by 0, not 12.
+     * @returns {number} The hours using the UTC time zone. The number of hours is based on a 12 hour clock. Noon and midnight are represented by 0, not 12.
+     */
+    getHourUTC(): number;
+    /**
+     * Returns the number of minutes using the local time zone.
+     * @returns {number} The number of minutes using the local time zone.
+     */
+    getMinutesLocalTime(): number;
+    /**
+     * Returns the number of minutes in the hour based on the UTC time zone.
+     * @returns {number} The number of minutes in the hour using the UTC time zone.
+     */
+    getMinutesUTC(): number;
+    /**
+     * Returns the number of seconds in the current minute.
+     * @returns {number} The number of seconds in the minute.
+     */
+    getSeconds(): number;
+    /**
+     * Gets the time value stored in the database by the GlideTime object in the internal format, HH:mm:ss, and the system time zone.
+     * @returns {string} The time value in the internal fomat and system time zone.
+     */
+    getValue(): string;
+    /**
+     * Sets a time value using the current user's display format and time zone.
+     * @param {string} asDisplayed - The time in the current user's display format and time zone. The parameter must be formatted using the current user's preferred display format, such as HH:mm:ss.
+     */
+    setDisplayValue(asDisplayed: string): void;
+    /**
+     * Sets the time of the GlideTime object in the internal time zone.
+     * @param {string} o - The time in hh:mm:ss format.
+     */
+    setValue(o: string): void;
+    /**
+     * Gets the duration difference between two GlideTime object values.
+     * @param {GlideTime} startTime - The start value.
+     * @param {GlideTime} endTime - The end value.
+     * @returns {GlideDuration} The duration between the two values.
+     */
+    subtract(startTime: GlideTime, endTime: GlideTime): GlideDuration;
+}
+
+/**
+ * @see {@link https://docs.servicenow.com/bundle/utah-api-reference/page/app-store/dev_portal/API_reference/GlideURIGlobal/concept/GlideURIGlobalAPI.html}
+ * @see {@link https://developer.servicenow.com/dev.do#!/reference/api/utah/server_legacy/GlideURIGlobalAPI}
+ * @todo Add members for GlideURI
+ */
+declare class GlideURI {
+}
+
+/**
+ * @see {@link https://docs.servicenow.com/bundle/utah-api-reference/page/app-store/dev_portal/API_reference/GlideUser_global/concept/GUserAPI.html}
+ * @see {@link https://developer.servicenow.com/dev.do#!/reference/api/utah/server_legacy/GUserAPI}
+ */
 declare class GlideUser {
     /**
      * Returns the current user's company sys_id.
@@ -3933,6 +3704,151 @@ declare class GlideUser {
      * @returns {boolean} True if the user is a member of the group..
      */
     isMemberOf(group: string): boolean;
+}
+
+declare interface IGlideVariableComponent extends IGlideElementGlideObject {
+    isMultiRow(): boolean;
+}
+
+/**
+ * @see {@link https://docs.servicenow.com/bundle/utah-api-reference/page/app-store/dev_portal/API_reference/GlideXMLUtilScoped/concept/GlideXMLUtilScopedAPI.html}
+ * @todo Add members for GlideXMLUtil
+ */
+declare class GlideXMLUtil {
+}
+
+declare class GlideXMLDocument {
+    setNamespaceAware(value: boolean): void;
+    parse(text: string): void;
+    getDocumentElement(): Packages.org.w3c.dom.Element;
+    createElement(name: string, value: any): Packages.org.w3c.dom.Element;
+    createCDATAElement(name: string, value: any): Packages.org.w3c.dom.Element;
+    getDocumentElement(): Packages.org.w3c.dom.Element;
+    selectSingleNodeText(xpath: string): Packages.java.lang.String;
+    load(f: string): void;
+    toIndentedString(): Packages.java.lang.String;
+    toString(): Packages.java.lang.String;
+}
+
+declare interface IItemOptionsQuestionSet extends ISharedItemOptionQuestionSet {
+    getChoices(n: $$rhino.String, bln: $$rhino.Boolean): ChoiceList;
+    getCartItem(): GlideRecord;
+}
+
+declare type QuestionList = Packages.java.util.ArrayList<Question>;
+
+declare interface IQuestionSet {
+    getMandatoryName(): Packages.java.lang.String;
+    getLabelClass(): Packages.java.lang.String;
+    getWidgetClass(): Packages.java.lang.String;
+    getTableClass(): Packages.java.lang.String;
+    isUseSpacers(): $$rhino.Boolean;
+    setUseSpacers(bln: $$rhino.Boolean): void;
+    getMode(): $$rhino.Number;
+    setMode(i: $$rhino.Number): void;
+    getQuestion(): Packages.java.util.List<Question>;
+    setQuestion(list: QuestionList): void;
+}
+
+declare abstract class QuestionSet implements IQuestionSet {
+    getMandatoryName(): Packages.java.lang.String;
+    getLabelClass(): Packages.java.lang.String;
+    getWidgetClass(): Packages.java.lang.String;
+    getTableClass(): Packages.java.lang.String;
+    isUseSpacers(): $$rhino.Boolean;
+    setUseSpacers(bln: $$rhino.Boolean): void;
+    getMode(): $$rhino.Number;
+    setMode(i: $$rhino.Number): void;
+    getQuestion(): Packages.java.util.List<Question>;
+    setQuestion(list: QuestionList): void;
+    isPopup(): $$rhino.Boolean;
+    isPrint(): $$rhino.Boolean;
+    isShowHelpOnLoad(): $$rhino.Boolean;
+}
+
+declare abstract class Question {
+    getColumncount(): $$rhino.Number;
+    setColumncount(i: $$rhino.Number): void;
+    getContainerLayout(): Packages.java.lang.String;
+    setContainerLayout(n: $$rhino.String): void;
+    isValueEmpty(): $$rhino.Boolean;
+    isVariableEditor(): $$rhino.Boolean;
+    getSet(): QuestionSet;
+    setSet(set: QuestionSet);
+    getDisplayValue(): Packages.java.lang.String;
+    setDisplayValue(n: $$rhino.String): void;
+    canRead(): $$rhino.Boolean;
+    canWrite(): $$rhino.Boolean;
+    canCreate(): $$rhino.Boolean;
+    getMode(): $$rhino.Number;
+    getReadOnly(): $$rhino.Boolean;
+    setReadOnly(bln: $$rhino.Boolean): void;
+    isReadOnly(): $$rhino.Boolean;
+    getName(): Packages.java.lang.String;
+    setName(n: $$rhino.String): void;
+    getId(): Packages.java.lang.String;
+    setId(n: $$rhino.String): void;
+    getLabel(): Packages.java.lang.String;
+    setLabel(n: $$rhino.String): void;
+    getMaxLength(): Packages.java.lang.Integer;
+    setMaxLength(n: $$rhino.Number): void;
+    getValue(): Packages.java.lang.String;
+    setValue(n: $$rhino.String): void;
+    getType(): Packages.java.lang.String;
+    setType(n: $$rhino.Number): void;
+    getCategory(): Packages.java.lang.String;
+    setCategory(n: $$rhino.String): void;
+    isMandatory(): $$rhino.Boolean;
+    setMandatory(bln: $$rhino.Boolean): void;
+    isShowHelp(): $$rhino.Boolean;
+    setShowHelp(bln: $$rhino.Boolean): void;
+    isNumeric(): $$rhino.Boolean;
+    isDate(): $$rhino.Boolean;
+    isActive(): $$rhino.Boolean;
+    getCatalogItem(): Packages.java.lang.String;
+    setCatalogItem(n: $$rhino.String): void;
+}
+
+declare interface ISharedItemOptionQuestionSet extends IQuestionSet {
+    getCatalogItemID(): Packages.java.lang.String;
+    setCatalogItemID(n: $$rhino.String): void;
+    getFlatQuestions(): Packages.java.util.List<Question>;
+    getFlatQuestionsAndContainers(): Packages.java.util.List<Question>;
+}
+
+declare interface IVariablePoolQuestionSet extends IItemOptionsQuestionSet {
+    getItemOptionID(qstn: Question): Packages.java.lang.String;
+    getRequestID(): Packages.java.lang.String;
+    getTaskID(): Packages.java.lang.String;
+}
+
+/**
+ * @see {@link https://docs.servicenow.com/bundle/utah-api-reference/page/app-store/dev_portal/API_reference/XMLDocument2ScopedAPI/concept/c_XMLDocument2ScopedAPI.html}
+ * @todo Add XMLDocument2 members
+ */
+declare class XMLDocument2 {
+}
+
+declare namespace sn_kmf_ns {
+    /**
+     * @todo Add KMFCryptoModule members
+     */
+    export class KMFCryptoModule {
+    }
+}
+
+declare namespace Packages {
+    export namespace com {
+        export namespace glide {
+            export namespace script {
+                /**
+                 * @todo Add GlideController members
+                 */
+                export class GlideController {
+                }
+            }
+        }
+    }
 }
 
 declare var gs: GlideSystem;
