@@ -1,20 +1,20 @@
 /// <reference path="../../types/index.d.ts" />
-type CodeGenerationContext = Readonly<{
+declare type CodeGenerationContext = Readonly<{
     fieldInterfaceLines: string[];
     elementLines: string[];
     recordLines: string[];
     isScoped: boolean;
 }>;
-type sys_db_object = $$GlideRecord.sys_db_object | $$GlideElement.sys_db_object;
-type sys_glide_object = $$GlideRecord.sys_glide_object | $$GlideElement.sys_glide_object;
-type sys_dictionary = $$GlideRecord.sys_dictionary | $$GlideElement.sys_dictionary;
-type sys_scope = $$GlideRecord.sys_scope | $$GlideElement.sys_scope;
-type ScopeInfo = Readonly<{
+declare type sys_db_object = $$GlideRecord.sys_db_object | $$GlideElement.sys_db_object;
+declare type sys_glide_object = $$GlideRecord.sys_glide_object | $$GlideElement.sys_glide_object;
+declare type sys_dictionary = $$GlideRecord.sys_dictionary | $$GlideElement.sys_dictionary;
+declare type sys_scope = $$GlideRecord.sys_scope | $$GlideElement.sys_scope;
+declare type ScopeInfo = Readonly<{
     name: string;
     value: string;
     shortDescription?: string;
 }>;
-type TypeInfo = Readonly<{
+declare type TypeInfo = Readonly<{
     name: string;
     label: string;
     scalarType: string;
@@ -69,7 +69,7 @@ interface RecordElementConstructor extends $$class.Constructor3<string, string, 
 /**
  * Defines the"this" object for {@link RecordElement} instance methods.
  */
-type RecordElementThisObj = IRecordElementPrototype & $$class.IPrototype3<string, string, InterfaceInfo>;
+declare type RecordElementThisObj = IRecordElementPrototype & $$class.IPrototype3<string, string, InterfaceInfo>;
 /**
  * Defines the public instance members added by the {@link DeclaredElement} type.
  */
@@ -91,7 +91,7 @@ interface DeclaredElementPublic extends Readonly<{
 /**
  * Defines all public instance members of the {@link DeclaredElement} type.
  */
-type DeclaredElement = DeclaredElementPublic & RecordElement;
+declare type DeclaredElement = DeclaredElementPublic & RecordElement;
 /**
  * Defines the prototype members added for the {@link DeclaredElement} constructor.
  */
@@ -113,7 +113,7 @@ interface DeclaredElementConstructor extends $$class.Constructor5Opt2<string, In
 /**
  * Defines the"this" object for {@link DeclaredElement} instance methods.
  */
-type DeclaredElementThisObj = IDeclaredElementPrototype & DeclaredElement & $$class.IPrototype5Opt2<string, InterfaceInfo, sys_dictionary | string, string, string>;
+declare type DeclaredElementThisObj = IDeclaredElementPrototype & DeclaredElement & $$class.IPrototype5Opt2<string, InterfaceInfo, sys_dictionary | string, string, string>;
 /**
  * Defines the public instance members added by the {@link InheritedElement} type.
  */
@@ -135,7 +135,7 @@ interface InheritedElementPublic extends Readonly<{
 /**
  * Defines all public instance members of the {@link InheritedElement} type.
  */
-type InheritedElement = InheritedElementPublic & RecordElement;
+declare type InheritedElement = InheritedElementPublic & RecordElement;
 /**
  * Defines the prototype members added for the {@link InheritedElement} constructor.
  */
@@ -156,8 +156,8 @@ interface InheritedElementConstructor extends $$class.Constructor3Opt1<DeclaredE
 /**
  * Defines the"this" object for {@link InheritedElement} instance methods.
  */
-type InheritedElementThisObj = IInheritedElementPrototype & InheritedElement & $$class.IPrototype3Opt1<DeclaredElement, InterfaceInfo, sys_dictionary>;
-type Element = InheritedElement | DeclaredElement;
+declare type InheritedElementThisObj = IInheritedElementPrototype & InheritedElement & $$class.IPrototype3Opt1<DeclaredElement, InterfaceInfo, sys_dictionary>;
+declare type Element = InheritedElement | DeclaredElement;
 /**
  * Defines the public instance members of a {@link InterfaceInfo} type.
  */
@@ -201,7 +201,7 @@ interface InterfaceInfoConstructor extends $$class.Constructor1<string, Interfac
 /**
  * Defines the"this" object for {@link InterfaceInfo} instance methods.
  */
-type InterfaceInfoThisObj = IInterfaceInfoPrototype & $$class.IPrototype1<string>;
+declare type InterfaceInfoThisObj = IInterfaceInfoPrototype & $$class.IPrototype1<string>;
 /**
  * Defines the public instance members added by the {@link TableInfo} type.
  */
@@ -216,7 +216,7 @@ interface TableInfoPublic extends Readonly<{
 /**
  * Defines all public instance members of the {@link TableInfo} type.
  */
-type TableInfo = TableInfoPublic & InterfaceInfo;
+declare type TableInfo = TableInfoPublic & InterfaceInfo;
 /**
  * Defines the prototype members added for the {@link TableInfo} constructor.
  */
@@ -238,7 +238,7 @@ interface TableInfoConstructor extends $$class.Constructor2<string, $$GlideRecor
 /**
  * Defines the"this" object for {@link TableInfo} instance methods.
  */
-type TableInfoThisObj = ITableInfoPrototype & TableInfo & $$class.IPrototype2<string, $$GlideRecord.sys_db_object>;
+declare type TableInfoThisObj = ITableInfoPrototype & TableInfo & $$class.IPrototype2<string, $$GlideRecord.sys_db_object>;
 declare const TABLE_NAME_sys_dictionary = "sys_dictionary";
 declare const TABLE_NAME_sys_glide_object = "sys_glide_object";
 declare const TABLE_NAME_sys_db_object = "sys_db_object";
