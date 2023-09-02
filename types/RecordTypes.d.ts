@@ -3619,48 +3619,46 @@ declare namespace $$tableFields {
 
     export interface IBaseRecord {
         /**
-         * "Sys ID" element (sys_id)
-         * Type: "Sys ID (GUID)" (GUID)
-         * Maximum length: 32
+         * "Sys ID" column element.
+         * Type: "Sys ID (GUID)"
+         * Primary: true; Max Length: 32.
          */
         sys_id: GlideElement;
         
         /**
-         * "Created by" element (sys_created_by)
-         * Type: "String" (string)
+         * "Created by" column element.
          * Maximum length: 40
          */
         sys_created_by: GlideElement;
         
         /**
-         * "Created" element (sys_created_on)
+         * "Created" column element.
          * Type: "Date/Time" (glide_date_time)
          * Maximum length: 40
          */
         sys_created_on: GlideElementGlideObject;
         
         /**
-         * "Updates" element (sys_mod_count)
+         * "Updates" column element.
          * Type: "Integer" (integer)
          * Maximum length: 40
          */
         sys_mod_count: GlideElement;
         
         /**
-         * "Updated by" element (sys_updated_by)
-         * Type: "String" (string)
+         * "Updated by" column element.
          * Maximum length: 40
          */
         sys_updated_by: GlideElement;
         
         /**
-         * "Updated" element (sys_updated_on)
+         * "Updated" column element.
          * Type: "Date/Time" (glide_date_time)
          * Maximum length: 40
          */
         sys_updated_on: GlideElementGlideObject;
     }
-    
+
     /**
      * "Business Unit" glide record fields.
      * @see {@link $$GlideElement.business_unit}
