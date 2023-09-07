@@ -477,7 +477,6 @@ declare class Event {
 /**
  * The action API enables handling data for URLs in a UI action script.
  * @see {@link https://docs.servicenow.com/bundle/vancouver-api-reference/page/app-store/dev_portal/API_reference/Action/concept/ActionAPIBoth.html}
- * @todo Add to sn_typings_server_scoped as interface
  */
 declare class GlideActionURL {
     /**

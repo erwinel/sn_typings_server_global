@@ -828,7 +828,6 @@ declare class GlideQueryEvaluator {
 
 /**
  * Utility class for working with GlideRecords.
- * @todo Add this to sn_typings_server_scoped
  * @see {@link https://docs.servicenow.com/bundle/utah-api-reference/page/app-store/dev_portal/API_reference/GlideRecordUtil/concept/c_GlideRecordUtilAPI.html}
  * @see {@link https://developer.servicenow.com/dev.do#!/reference/api/utah/server_legacy/c_GlideRecordUtilAPI}
  */
