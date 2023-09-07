@@ -1,5 +1,6 @@
 Param(
-    [string[]]$TableNames = @('task', 'sc_cat_item'),
+    [string[]]$TableNames = @('ml_solution_parameters', 'ml_stopwords'),
+    #[string[]]$TableNames = @('sys_update_set_source'),
 
     [Uri]$BaseUri = 'https://dev145540.service-now.com',
 
@@ -18,7 +19,7 @@ Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process
 #>
 if ($null -eq $Script:SnCredentials) { $Script:SnCredentials = Get-Credential -Message 'SN Login' }
 $Script:SysDictionaryPath = $PSScriptRoot | Join-Path -ChildPath 'sys_dictionary';
-if (-not ($Script:SysDictionaryPath | Test-Path)) { New-Item -Path $Script:SysDictionaryPath -ItemType Directory -Name 'sys_dictionary' };
+if (-not ($Script:SysDictionaryPath | Test-Path)) { New-Item -Path $PSScriptRoot -ItemType Directory -Name 'sys_dictionary' };
 
 class ProgressInfo {
     [int]$Id = 1;
@@ -509,23 +510,27 @@ class TableInfo {
         $Writer.WriteLine(" */");
         [string[]]$SortedNames = @();
         $ExtendsBaseFields = $false;
-        if ($null -ne $TableFields -and $TableFields.Fields.Count -gt 0) {
+        try {
+        if ($null -ne $TableFields -and $TableFields.Fields.PSBase.Count -gt 0) {
             [FieldInfo]$tf = $null;
             if ([string]::IsNullOrEmpty($this.super_class)) {
-                $ExtendsBaseFields = @($Script:BaseFields.Keys | Where-Object { $TableFields.Fields.TryGetValue($_, [ref]$tf) -and $Script:BaseFields[$_] -eq $tf.type }).Count -eq $Script:BaseFields.Count;
+                $ExtendsBaseFields = @($Script:BaseFields.Keys | Where-Object { $TableFields.Fields.PSBase.TryGetValue($_, [ref]$tf) -and $Script:BaseFields[$_] -eq $tf.type }).Count -eq $Script:BaseFields.Count;
                 if ($ExtendsBaseFields) {
-                    $SortedNames = @($TableFields.Fields.Keys | Sort-Object | Where-Object { -not $Script:BaseFields.ContainsKey($_) });
+                    $SortedNames = @($TableFields.Fields.PSBase.Keys | Sort-Object | Where-Object { -not $Script:BaseFields.ContainsKey($_) });
                 } else {
-                    $SortedNames = @($TableFields.Fields.Keys | Sort-Object);
+                    $SortedNames = @($TableFields.Fields.PSBase.Keys | Sort-Object);
                 }
             } else {
                 [TableFields]$sctf = $TypeDb.GetTableFields($this.super_class);
                 if ($null -ne $sctf) {
-                    $SortedNames = @($TableFields.Fields.Keys | Sort-Object | Where-Object { -not ($sctf.Fields.TryGetValue($_, [ref]$tf) -and $tf.type -eq $TableFields.Fields[$_].type) });
+                    $SortedNames = @($TableFields.Fields.PSBase.Keys | Sort-Object | Where-Object { -not ($sctf.Fields.TryGetValue($_, [ref]$tf) -and $tf.type -eq $TableFields.Fields[$_].type) });
                 } else {
-                    $SortedNames = @($TableFields.Fields.Keys | Sort-Object);
+                    $SortedNames = @($TableFields.Fields.PSBase.Keys | Sort-Object);
                 }
             }
+        }
+        } catch {
+            Write-Error -Message $_;
         }
         if ($SortedNames.Count -gt 0) {
             if ($ExtendsBaseFields) {
@@ -789,7 +794,7 @@ class FieldInfo {
             unique = [GlideType]::IsTrue($JsonObj.unique);
         };
         $TableFields.FieldIdMap.Add($FieldInfo.sys_id, $FieldInfo.name);
-        $TableFields.Fields.Add($FieldInfo.name, $FieldInfo);
+        $TableFields.Fields.PSBase.Add($FieldInfo.name, $FieldInfo);
         if ($null -ne $JsonObj.internal_type -and $null -ne $JsonObj.internal_type.value) {
             $TypeInfo = $TypeDb.FetchType($JsonObj.internal_type.value, [GlideType]::AsAbsoluteUri($JsonObj.internal_type.link));
             if ($null -eq $TypeInfo) { $FieldInfo.type = $JsonObj.internal_type.value } else { $FieldInfo.type = $TypeInfo.name }
@@ -811,7 +816,6 @@ class FieldInfo {
         $Writer.WriteLine(" * $(($this.label | ConvertTo-Json)) column element.");
         [GlideType]$GlideType = $null;
         $jsType = 'GlideElement';
-        $includeScalarType = $false;
         $scalarType = 'string';
         if ($Script:IsScoped) {
             switch ($this.type) {
@@ -1096,7 +1100,7 @@ class FieldInfo {
                     break;
                 }
                 "string" { break; }
-                { $_ -eq "choice" -or $_ -eq "field_name" -or $_ -eq "color" -or $_ -eq "user_roles" -or $_ -eq "image" -or $_ -eq "json" -or $_ -eq "char" -or $_ -eq "email" -or $_ -eq "ph_number" -or $_ -eq "multi_two_lines" -or $_ -eq "table_name" -or $_ -eq "external_names" -or $_ -eq "expression" -or $_ -eq "glyphicon" -or $_ -eq "field_list" -or $_ -eq "datetime" -or $_ -eq "slushbucket" -or $_ -eq "GUID" -or $_ -eq "domain_path" -or $_ -eq "composite_field" -or $_ -eq "radio" -or $_ -eq "script_server" -or $_ -eq "decoration" -or $_ -eq "sys_class_code" -or $_ -eq "wide_text" -or $_ -eq "version" -or $_ -eq "sys_class_path" -or $_ -eq "catalog_preview" -or $_ -eq "properties" -or $_ -eq "bootstrap_color" -or $_ -eq "css" -or $_ -eq "html_template" -or $_ -eq "color_display" -or $_ -eq "composite_name" } {
+                { $_ -eq "choice" -or $_ -eq "field_name" -or $_ -eq "color" -or $_ -eq "user_roles" -or $_ -eq "image" -or $_ -eq "json" -or $_ -eq "char" -or $_ -eq "email" -or $_ -eq "ph_number" -or $_ -eq "multi_two_lines" -or $_ -eq "table_name" -or $_ -eq "external_names" -or $_ -eq "expression" -or $_ -eq "glyphicon" -or $_ -eq "field_list" -or $_ -eq "datetime" -or $_ -eq "slushbucket" -or $_ -eq "GUID" -or $_ -eq "domain_path" -or $_ -eq "composite_field" -or $_ -eq "radio" -or $_ -eq "script_server" -or $_ -eq "decoration" -or $_ -eq "sys_class_code" -or $_ -eq "wide_text" -or $_ -eq "version" -or $_ -eq "sys_class_path" -or $_ -eq "catalog_preview" -or $_ -eq "properties" -or $_ -eq "bootstrap_color" -or $_ -eq "css" -or $_ -eq "html_template" -or $_ -eq "color_display" -or $_ -eq "composite_name" -or $_ -eq "condtion_string" } {
                     if ($TypeDb.Types.TryGetValue($this.type, [ref]$GlideType)) {
                         $scalarType = $GlideType.scalar_type;
                         $Writer.Write(' * Type: ');
@@ -1111,7 +1115,7 @@ class FieldInfo {
                     if ($TypeDb.Types.TryGetValue($this.type, [ref]$GlideType)) {
                         $scalarType = $GlideType.scalar_type;
                         $Writer.Write(' * Type: ');
-                        $GlideType.WriteLine($Writer, ($scalarType -ne 'string'), ($null -eq $this.max_length));
+                        $GlideType.Write($Writer, ($scalarType -ne 'string'), ($null -eq $this.max_length));
                         $Writer.WriteLine('.');
                     } else {
                         $Writer.WriteLine(" * Type: $($this.type).");
@@ -1951,4 +1955,4 @@ if ($TableInfos.Count -gt 0) {
     $Writer.WriteLine("}");
 }
 $Writer.Flush();
-$StringWriter.ToString();
+[System.Windows.Clipboard]::SetText($StringWriter.ToString());
