@@ -828,10 +828,60 @@ declare class GlideQueryEvaluator {
 
 /**
  * Utility class for working with GlideRecords.
+ * @todo Add this to sn_typings_server_scoped
  * @see {@link https://docs.servicenow.com/bundle/utah-api-reference/page/app-store/dev_portal/API_reference/GlideRecordUtil/concept/c_GlideRecordUtilAPI.html}
  * @see {@link https://developer.servicenow.com/dev.do#!/reference/api/utah/server_legacy/c_GlideRecordUtilAPI}
  */
 declare class GlideRecordUtil {
+    /**
+     * Returns the GlideRecord object for the specified configuration item (CI) using just the sys_id of the CI.
+     * Use this method to quickly obtain a specific CI without knowing its associated class/table.
+     * @param {string} sys_id - Sys_id of the desired CI.
+     * @return {(GlideRecord | undefined)} GlideRecord object of the specified CI.
+     */
+    getCIGR(sys_id: string): GlideRecord | undefined;
+
+    /**
+     * Returns an array of all the fields in the specified GlideRecord.
+     * Note: If there is a field name which is the same as the table name, the getFields() method does not return the value of the field.
+     * @param {GlideRecord} gr - GlideRecord instance positioned to a valid record.
+     * @return {string[]} Field names for the specified GlideRecord.
+     */
+    getFields(gr: GlideRecord): string[];
+
+    /**
+     * Returns a GlideRecord instance for the given table, positioned to the given sys_id, and of the right class (table).
+     * This method is useful when you need to load a GlideRecord from a sys_id, but you don't know what the actual table is (because it may be extended from the base table).
+     * This method always returns a GlideRecord of the correct type base_table: the name of the base table that the specified sys_id is in.
+     * @param {string} baseTable - The name of the base table containing the sys_id.
+     * @param {string} sys_id - The sys_id of the desired record.
+     * @return {(GlideRecord | null)} The GlideRecord for the specified sys_id or null it not found.
+     */
+    getGR(baseTable: string, sys_id: string): GlideRecord | null;
+
+    /**
+     * Returns a Java ArrayList of the ancestors of the specified table name.
+     * @param {string} tableName - Name of the table.
+     * @return {Packages.java.util.ArrayList<Packages.java.lang.String>} List of ancestors of the specified table.
+     */
+    getTables(tableName: string): Packages.java.util.ArrayList<Packages.java.lang.String>;
+
+    /**
+     * Sets the fields in the specified GlideRecord with the field values contained in the specified hashmap, unless that field name is in the ignore hashmap.
+     * @param {{ [key: string]: string; }} hashMap - An Object instance (being used as a hashmap), with properties named for fields and containing the fields' value.
+     * @param {GlideRecord} now_GR - The GlideRecord instance to receive the field values.
+     * @param {{ [key: string]: boolean; }} [ignore] - An optional hashmap of field names to ignore.
+     */
+    mergeToGR(hashMap: { [key: string]: string; }, now_GR: GlideRecord, ignore?: { [key: string]: boolean; }): void;
+    
+    /**
+     * Populates the given hashmap from the given GlideRecord instance. Each field in the GlideRecord becomes a property in the hashmap.
+     * @param {{ [key: string]: string }} hashMap - An object being used as a hashmap.
+     * @param {GlideRecord} now_GR - A GlideRecord instance positioned to a valid record.
+     * @param {{ [key: string]: boolean; }} [ignore] - An optional hashmap of file names not to populate.
+     */
+    populateFromGR(hashMap: { [key: string]: string }, now_GR: GlideRecord, ignore?: { [key: string]: boolean; }): void;
+
     type: "GlideRecordUtil";
 }
 

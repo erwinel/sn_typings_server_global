@@ -276,9 +276,9 @@ interface IDbObject {
     /**
      * Returns the value of the specified attribute from the dictionary.
      * @param {string} attributeName - Attribute name
-     * @returns {string} Attribute value.
+     * @returns {string} Attribute value or null if attribute is not found.
      */
-    getAttribute(attributeName: string): string;
+    getAttribute(attributeName: string): string | null;
     /**
      * Returns the element's descriptor.
      * @returns {GlideElementDescriptor} Element's descriptor.
@@ -475,6 +475,67 @@ declare class Event {
 }
 
 /**
+ * The action API enables handling data for URLs in a UI action script.
+ * @see {@link https://docs.servicenow.com/bundle/vancouver-api-reference/page/app-store/dev_portal/API_reference/Action/concept/ActionAPIBoth.html}
+ * @todo Add to sn_typings_server_scoped as interface
+ */
+declare class GlideActionURL {
+    /**
+     * Gets a GlideURI object to determine the user view.
+     * @return {GlideURI} GlideURI object representing the URI parameter of the user view.
+     */
+    getGlideURI(): GlideURI;
+
+    /**
+     * Gets the URL of the return page in view after a UI action is complete.
+     * @return {string} URL of the return page in view after a UI action is complete.
+     */
+    getReturnURL(): string;
+
+    /**
+     * Gets the value of a URL parameter.
+     * @param {string} parameterName - Name of the URL parameter name to be queried for the URL parameter value.
+     * @return {string} URL parameter value or undefined if not found.
+     * @example
+     * action.getURLParameter('sysparm_query');
+     */
+    getURLParameter(parameterName: string): string | undefined;
+
+    /**
+     * Opens a page with a GlideRecord in the user view.
+     * @param {GlideRecord} gr - GlideRecord of the page to be opened in the user view.
+     */
+    openGlideRecord(gr: GlideRecord): void;
+
+    /**
+     * Indicates whether to enable or disable pop-up windows on the page in the current view.
+     * @param {boolean} noPop - Flag indicating whether to enable or disable pop-up windows on the page, where true disables pop-up windows.
+     */
+    setNoPop(noPop: boolean): void;
+
+    /**
+     * Sets the redirect URI for this transaction, which determines the next page the user sees.
+     * @param {(string | GlideRecord)} url - URL or GlideRecord to set as the redirect.
+     */
+    setRedirectURL(url: string | GlideRecord): void;
+
+    /**
+     * Sets the return URI for this transaction after a UI action is complete. You can use this method to determine what page the user has in view when they return from submit.
+     * @param {(string | GlideRecord)} url - URI to set as the return location after a UI action is complete.
+     */
+    setReturnURL(url: string | GlideRecord): void;
+
+    /**
+     * Sets a URL parameter name and value.
+     * @param {string} parameterName - Name of the URL parameter.
+     * @param {string} parameterValue - Value of the parameter.
+     * @example
+     * action.setURLParameter('sysparm_query', 'priority=2^active=true');
+     */
+    setURLParameter(parameterName: string, parameterValue: string): void;
+}
+
+/**
  * GlideAggregate enables you to easily create database aggregation queries.
  * @description The GlideAggregate class is an extension of GlideRecord and provides database aggregation (COUNT, SUM, MIN, MAX, AVG) queries. This functionality can be helpful when creating customized reports or in calculations for calculated fields. The GlideAggregate class works only on number fields.When you use GlideAggregate on currency or price fields, you are working with the reference currency value. Be sure to convert the aggregate values to the user's session currency for display. Because the conversion rate between the currency or price value (displayed value) and its reference currency value (aggregation value) might change, the result may not be what the user expects.
  * @see {@link https://docs.servicenow.com/bundle/utah-api-reference/page/app-store/dev_portal/API_reference/GlideAggregate/concept/c_GlideAggregateAPI.html}
@@ -574,6 +635,16 @@ declare class GlideChoiceList implements Packages.java.util.ArrayList<Choice> {
     isReferenceList(): $$rhino.Boolean;
     getSize(): Packages.java.lang.Integer;
     static getChoiceList(tableName: $$rhino.String, fieldName: $$rhino.String): ChoiceList;
+}
+
+declare class GlideChoiceListSet {
+    constructor();
+    getColumns(): GlideChoiceList;
+    getSelected(): GlideChoiceList;
+    setColumns(clColumns: GlideChoiceList): void;
+    setSelected(clSelected: GlideChoiceList): void;
+    sortColumns(): void;
+    toXML(): any;
 }
 
 /**
@@ -2802,9 +2873,9 @@ declare class GlideRecord implements IDbObject {
     /**
      * Returns the dictionary attributes for the specified field.
      * @param {string} fieldName - Field name for which to return the dictionary attributes
-     * @returns {string} Dictionary attributes.
+     * @returns {(string | null)} Dictionary attributes or null if field is not found.
      */
-    getAttribute(fieldName: string): string;
+    getAttribute(fieldName: string): string | null;
     /**
      * Returns the table's label.
      * @returns {string} Table's label.
@@ -2823,9 +2894,9 @@ declare class GlideRecord implements IDbObject {
     /**
      * Retrieves the GlideElement object for the specified field.
      * @param {string} columnName - Name of the column to get the element from.
-     * @returns {GlideElement} The GlideElement for the specified column of the current record.
+     * @returns {GlideElement} The GlideElement for the specified column of the current record or null if column is not found.
      */
-    getElement(columnName: string): GlideElement;
+    getElement(columnName: string): GlideElement | null;
     /**
      * Retrieves the query condition of the current result set as an encoded query string.
      * @returns {string} The encoded query as a string.
@@ -2843,10 +2914,10 @@ declare class GlideRecord implements IDbObject {
     getLastErrorMessage(): string;
     /**
      * Retrieves a link to the current record.
-     * @param {boolean} noStack - If true, the sysparm_stack parameter is not appended to the link. The parameter sysparm_stack specifies the page to visit after closing the current link.
+     * @param {boolean} [noStack] - If true, the sysparm_stack parameter is not appended to the link. The parameter sysparm_stack specifies the page to visit after closing the current link.
      * @returns {string} A link to the current record as a string.
      */
-    getLink(noStack: boolean): string;
+    getLink(noStack?: boolean): string;
     /**
      * Retrieves the class name for the current record.
      * @returns {string} The class name.
@@ -2870,9 +2941,9 @@ declare class GlideRecord implements IDbObject {
     /**
      * Retrieves the string value of an underlying element in a field.
      * @param {string} name - The name of the field to get the value from.
-     * @returns {string} The value of the field.
+     * @returns {string} The value of the field or null if field is not found.
      */
-    getValue(name: string): string;
+    getValue(name: string): string | null;
     /**
      * Determines if there are any more records in the GlideRecord object.
      * @returns {boolean} True if there are more records in the query result set.
@@ -3011,6 +3082,55 @@ declare class GlideScriptableInputStream {
 declare class GlideServletRequest {
 }
 
+declare class GlideSysForm {
+    // constructor(tableName: string);
+    // constructor(tableName: string, viewName: string);
+    // constructor();
+    constructor(tableName?: string, viewName?: string);
+    createDefaultBaselineVersion(record: GlideRecord): void;
+    static generateDefaultForm(tableName: string): string;
+    static getRelatedTables(tableName: string): GlideChoiceList;
+    getSuggestedFields(): Array<string>;
+    getTableName(): string;
+    save(): void;
+    setAvailable(available: string): void;
+    setCollection(s: string): void;
+    setForm(form: string): void;
+    setName(name: string): void;
+    setPackageID(packageID: string): void;
+    setScopeID(scopeID: string): void;
+    setSelected(selected: string): void;
+    setTablePackageID(): void;
+    setTableScopeID(): void;
+    setView(viewName: string): void;
+    setViewName(viewName: string): void;
+}
+
+declare class GlideSysList extends GlideSysForm {
+    InsertListElements(fields: Array<any>): void;
+    // constructor(tableName: string);
+    // constructor(tableName: string, parentName: string);
+    constructor(tableName: string, parentName?: string);
+    createDefaultBaseline(): void;
+    getAccessList(collectionKey: string): Array<string>;
+    getListColumns(): GlideChoiceList;
+    getListRecords(): Array<string>;
+    getListSet(): GlideChoiceListSet;
+    getRecordSet(): GlideRecord;
+    getStandardListID(): string;
+    isUserList(): boolean;
+    // save(): void;
+    // save(fields: string): void;
+    save(fields?: string): void;
+    saveForUser(fields: string): void;
+    setIncludeFormatting(b: boolean): void;
+    setReconcileList(b: boolean): void;
+    setRelatedParentID(parentID: string): void;
+    setRelatedParentName(parentName: string): void;
+    setRelationshipID(relationshipID: string): void;
+    setUserApplies(b: boolean): void;
+}
+
 /**
  * The GlideSystem (referred to by the variable name 'gs' in any server-side JavaScript) API provides a number of convenient methods to get information about the system, the current logged in user, etc.
  * @description Many of the GlideSystem methods facilitate the easy inclusion of dates in query ranges, and are most often used in filters and reporting.
@@ -3024,68 +3144,81 @@ declare class GlideSystem {
      * @param {*} message - The message to add.
      */
     addErrorMessage(message: any): void;
+    
     /**
      * Adds an info message for the current session. This method is not supported for asynchronous business rules.
      * @param {*} message - An info message object.
      */
     addInfoMessage(message: any): void;
+    
     /**
      * Returns an ASCII string from the specified base64 string.
      * @param {string} source - A base64 encoded string.
      * @returns {string} The decoded string..
      */
     base64Decode(source: string): string;
+    
     /**
      * Creates a base64 string from the specified string.
      * @param {string} source - The string to be encoded.
      * @returns {string} The base64 string..
      */
     base64Encode(source: string): string;
+    
     /**
      * Returns the date and time for the beginning of last month in GMT.
      * @returns {string} GMT beginning of last month, in the format yyyy-mm-dd hh:mm:ss.
      */
     beginningOfLastMonth(): string;
+    
     /**
      * Returns the date and time for the beginning of last week in GMT.
      * @returns {string} GMT beginning of last week, in the format yyyy-mm-dd hh:mm:ss.
      */
     beginningOfLastWeek(): string;
+    
     /**
      * Returns the date and time for the beginning of next month in GMT.
      * @returns {string} GMT beginning of next month, in the format yyyy-mm-dd hh:mm:ss.
      */
     beginningOfNextMonth(): string;
+    
     /**
      * Returns the date and time for the beginning of next week in GMT.
      * @returns {string} The GMT beginning of next week, in the format yyyy-mm-dd hh:mm:ss..
      */
     beginningOfNextWeek(): string;
+    
     /**
      * Returns the date and time for the beginning of next year in GMT.
      * @returns {string} GMT beginning of next year, in the format yyyy-mm-dd hh:mm:ss.
      */
     beginningOfNextYear(): string;
+    
     /**
      * Returns the date and time for the beginning of this month in GMT.
      * @returns {string} GMT beginning of this month, in the format yyyy-mm-dd hh:mm:ss.
      */
     beginningOfThisMonth(): string;
+    
     /**
      * Returns the date and time for the beginning of this quarter in GMT.
      * @returns {string} GMT beginning of this quarter, in the format yyyy-mm-dd hh:mm:ss.
      */
     beginningOfThisQuarter(): string;
+    
     /**
      * Returns the date and time for the beginning of this week in GMT.
      * @returns {string} GMT beginning of this week, in the format yyyy-mm-dd hh:mm:ss.
      */
     beginningOfThisWeek(): string;
+    
     /**
      * Returns the date and time for the beginning of this year in GMT.
      * @returns {string} GMT beginning of this year, in the format yyyy-mm-dd hh:mm:ss.
      */
     beginningOfThisYear(): string;
+    
     /**
      * Generates a date and time for the specified date in GMT.
      * @param {string} date - Format: yyyy-mm-dd
@@ -3093,24 +3226,29 @@ declare class GlideSystem {
      * @returns {string} A date and time in the format yyyy-mm-dd hh:mm:ss. If range is start, the returned value is yyyy-mm-dd 00:00:00; If range is end the return value is yyyy-mm-dd 23:59:59..
      */
     dateGenerate(date: string, range: string): string;
+    
     /**
      * Returns the date and time for a specified number of days ago.
      * @param {number} days - Integer number of days
      * @returns {string} GMT in the format yyyy-mm-dd hh:mm:ss.
      */
     daysAgo(days: number): string;
+    
     /**
      * Returns the date and time for the end of the day a specified number of days ago.
      * @param {number} days - Integer number of days
      * @returns {string} GMT end of the day in the format yyyy-mm-dd hh:mm:ss.
      */
     daysAgoEnd(days: number): string;
+    
     /**
      * Returns the date and time for the beginning of the day a specified number of days ago.
      * @param {string} days - Integer number of days
      * @returns {string} GMT start of the day in the format yyyy-mm-dd hh:mm:ss.
      */
+    
     daysAgoStart(days: string): string;
+    
     /**
      * Writes a debug message to the system log.
      * @param {string} message - The log message with place holders for any variable arguments.
@@ -3121,56 +3259,68 @@ declare class GlideSystem {
      * @param {*} [param5] - Fifth variable argument.
      */
     debug(message: string, param1?: any, param2?: any, param3?: any, param4?: any, param5?: any): void;
+    
     /**
      * Returns the date and time for the end of last month in GMT.
      * @returns {string} GMT end of last month, in the format yyyy-mm-dd hh:mm:ss.
      */
     endOfLastMonth(): string;
+    
     /**
      * Returns the date and time for the end of last week in GMT.
      * @returns {string} GMT end of last week, in the format yyyy-mm-dd hh:mm:ss.
      */
     endOfLastWeek(): string;
+    
     /**
      * Returns the date and time for the end of last year in GMT.
      * @returns {string} GMT in format yyyy-mm-dd hh:mm:ss.
      */
     endOfLastYear(): string;
+    
     /**
      * Returns the date and time for the end of next month in GMT.
      * @returns {string} GMT in the format yyyy-mm-dd hh:mm:ss.
      */
     endOfNextMonth(): string;
+    
     /**
      * Returns the date and time for the end of next week in GMT.
      * @returns {string} GMT in the format yyyy-mm-dd hh:mm:ss.
      */
     endOfNextWeek(): string;
+    
     /**
      * Returns the date and time for the end of next year in GMT.
      * @returns {string} GMT in the format yyyy-mm-dd hh:mm:ss.
      */
     endOfNextYear(): string;
+    
     /**
      * Returns the date and time for the end of this month in GMT.
      * @returns {string} GMT in the format yyyy-mm-dd hh:mm:ss.
      */
     endOfThisMonth(): string;
+    
     /**
      * Returns the date and time for the end of this quarter in GMT.
      * @returns {string} GMT in the format yyyy-mm-dd hh:mm:ss.
      */
     endOfThisQuarter(): string;
+    
     /**
      * Returns the date and time for the end of this week in GMT.
      * @returns {string} GMT in the format yyyy-mm-dd hh:mm:ss.
      */
+    
     endOfThisWeek(): string;
     /**
      * Returns the date and time for the end of this year in GMT.
      * @returns {string} GMT in the format yyyy-mm-dd hh:mm:ss.
      */
+    
     endOfThisYear(): string;
+    
     /**
      * Writes an error message to the system log.
      * @param {string} message - The log message with place holders for any variable arguments.
@@ -3181,6 +3331,7 @@ declare class GlideSystem {
      * @param {*} [param5] - Fifth variable argument.
      */
     error(message: string, param1?: any, param2?: any, param3?: any, param4?: any, param5?: any): void;
+    
     /**
      * Queues an event for the event manager.
      * @param {string} name - Name of the event being queued.
@@ -3190,6 +3341,7 @@ declare class GlideSystem {
      * @param {string} [queue] - Name of the queue.
      */
     eventQueue(name: string, instance: any, parm1?: string, parm2?: string, queue?: string): void;
+    
     /**
      * Queues an event for the event manager at a specified date and time.
      * @param {string} name - Name of the event being queued.
@@ -3199,42 +3351,50 @@ declare class GlideSystem {
      * @param {*} [expiration] - Date and time to process this event..
      */
     eventQueueScheduled(name: string, instance: any, parm1?: string, parm2?: string, expiration?: any): void;
+    
     /**
      * Executes a job for an application.
      * @param {GlideRecord} job - The job to be run.
      * @returns {string} Returns the sysID of the scheduled job. Returns null if the job is global..
      */
     executeNow(job: GlideRecord): string;
+    
     /**
      * Generates a GUID that can be used when a unique identifier is required.
      * @returns {string} A 32-character hexadecimal GUID..
      */
     generateGUID(): string;
+    
     /**
      * Gets the caller scope name; returns null if there is no caller.
      * @returns {string} The caller's scope name, or null if there is no caller..
      */
     getCallerScopeName(): string;
+    
     /**
      * Gets a string representing the cache version for a CSS file.
      * @returns {string} The CSS cache version..
      */
     getCssCacheVersionString(): string;
+    
     /**
      * Gets the ID of the current application as set using the Application Picker.
      * @returns {string} The current application's sys_id, or global in none is set..
      */
     getCurrentApplicationId(): string;
+    
     /**
      * Gets the name of the current scope.
      * @returns {string} The current scope name..
      */
     getCurrentScopeName(): string;
+    
     /**
      * Returns the list of error messages for the session that were added by�addErrorMessage().
      * @returns {string} List of error messages.
      */
     getErrorMessages(): string;
+    
     /**
      * Retrieves a message from UI messages that has HTML special characters, and replaces them with escape sequences. For example,�&amp;�becomes�&amp;amp;.
      * @param {string} id - ID of the message.
@@ -3242,6 +3402,7 @@ declare class GlideSystem {
      * @returns {string} The UI message with HTML special characters replaced with escape sequences..
      */
     getEscapedMessage(id: string, args?: any[]): string;
+    
     /**
      * Retrieves a message from UI messages.
      * @param {string} id - The ID of the message.
@@ -3249,88 +3410,127 @@ declare class GlideSystem {
      * @returns {string} The UI message..
      */
     getMessage(id: string, args?: any[]): string;
+    
     /**
-     * Gets the value of a Glide property. If the property is not found, returns an alternate value.
-     * @param {string} key - The key for the property whose value should be returned.
-     * @param {*} [alt] -  Alternate object to return if the property is not found.
-     * @returns {string} The value of the Glide property, or the alternate object defined above..
+     * Returns the specified user preference.
+     * @param {string} key - Key for the preference.
+     * @return {(string | null)} The preference value or null if the preference is not found.
      */
-    getProperty(key: string, alt?: any): string;
+    getPreference(key: string): string | null;
+
+    /**
+     * Returns the specified user preference.
+     * @template T - The default value type.
+     * @param {string} key - Key for the preference.
+     * @param {T} defaultValue - Default value to use if the specified preference is not found.
+     */
+    getPreference<T>(key: string, defaultValue: T): string | T;
+
+    /**
+     * Gets the value of a Glide property.
+     * @param {string} key - The key for the property.
+     * @return {(string | undefined)} The property value or undefined if the property is not found.
+     */
+    getProperty(key: string): string | undefined;
+
+    /**
+     * Gets the value of a Glide property.
+     * @template T - The default avlue type.
+     * @param {string} key - The key for the property.
+     * @param {T} alt - Default value to use if the specified property is not found.
+     * @return {(string | T)} The Property value or the specified default value if the property is not found.
+     */
+    getProperty<T>(key: string, alt: T): string | T;
+    
     /**
      * Gets a reference to the current Glide session.
      * @returns {string} A reference for the current session..
      */
     getSession(): string;
+    
     /**
      * Retrieves the GlideSession session ID.
      * @returns {string} The session ID..
      */
     getSessionID(): string;
+    
     /**
      * This method is no longer available. Instead, use�gs.getSession().getSessionToken().
      * @returns {string} The session token..
      */
     getSessionToken(): string;
+    
     /**
      * Returns the name of the time zone associated with the current user.
      * @returns {string} The time zone name..
      */
     getTimeZoneName(): string;
+    
     /**
      * Gets the current URI for the session.
      * @returns {string} The URI..
      */
     getUrlOnStack(): string;
+    
     /**
      * Returns a reference to the GlideUser object for the current user.
      * @returns {GlideUser} Reference to a user object..
      */
     getUser(): GlideUser;
+    
     /**
      * Gets the display name of the current user.
      * @returns {string} The name field of the current user. Returns Abel Tuter, as opposed to abel.tuter..
      */
     getUserDisplayName(): string;
+    
     /**
      * Gets the sys_id of the current user.
      * @returns {string} The sys_id of the current user..
      */
     getUserID(): string;
+    
     /**
      * Gets the user name, or user id, of the current user.
      * @returns {string} The user name of the current user..
      */
     getUserName(): string;
+    
     /**
      * Determines if the current user has the specified role.
      * @param {*} role - The role to check.
      * @returns {boolean} True if the user had the role. Returns true for users with the administrator role..
      */
     hasRole(role: any): boolean;
+    
     /**
      * Returns the date and time for a specified number of hours ago.
      * @param {number} hours - Integer number of hours
      * @returns {string} GMT in the format yyyy-mm-dd hh:mm:ss.
      */
     hoursAgo(hours: number): string;
+    
     /**
      * Returns the date and time for the end of the hour a specified number of hours ago.
      * @param {number} hours - Integer number of hours
      * @returns {string} GMT in the format yyyy-mm-dd hh:mm:ss.
      */
     hoursAgoEnd(hours: number): string;
+    
     /**
      * Returns the date and time for the start of the hour a specified number of hours ago.
      * @param {number} hours - Integer number of hours
      * @returns {string} GMT in the format yyyy-mm-dd hh:mm:ss.
      */
     hoursAgoStart(hours: number): string;
+    
     /**
      * Provides a safe way to call from the sandbox, allowing only trusted scripts to be included.
      * @param {string} name - The name fo the script to include.
      * @returns {boolean} True if the include worked..
      */
     include(name: string): boolean;
+    
     /**
      * Writes an info message to the system log.
      * @param {string} message - The log message with place holders for any variable arguments.
@@ -3341,68 +3541,80 @@ declare class GlideSystem {
      * @param {*} [param5] - Fifth variable argument.
      */
     info(message: string, param1?: any, param2?: any, param3?: any, param4?: any, param5?: any): void;
+    
     /**
      * Determines if debugging is active for a specific scope.
      * @returns {boolean} True if either session debugging is active or the log level is set to debug for the specified scope..
      */
     isDebugging(): boolean;
+    
     /**
      * Checks if the current session is interactive. An example of an interactive session is when a user logs in normally. An example of a non-interactive session is using a SOAP request to retrieve data.
      * @returns {boolean} True if the session is interactive..
      */
     isInteractive(): boolean;
+    
     /**
      * Determines if the current user is currently logged in.
      * @returns {boolean} True if the current user is logged in..
      */
     isLoggedIn(): boolean;
+    
     /**
      * You can determine if a request comes from a mobile device.
      * @returns {boolean} True if the request comes from a mobile device; otherwise, false..
      */
     isMobile(): boolean;
+    
     /**
      * Returns the date and time for the end of the minute a specified number of minutes ago.
      * @param {number} minutes - Integer number of minutes
      * @returns {string} GMT in the format yyyy-mm-dd hh:mm:ss.
      */
     minutesAgoEnd(minutes: number): string;
+    
     /**
      * Returns the date and time for the start of the minute a specified number of minutes ago.
      * @param {number} minutes - Integer number of minutes
      * @returns {string} GMT in the format yyyy-mm-dd hh:mm:ss.
      */
     minutesAgoStart(minutes: number): string;
+    
     /**
      * Returns the date and time for a specified number of months ago.
      * @param {number} months - Integer number of months
      * @returns {string} GMT on today's date of the specified month, in the format yyyy-mm-dd hh:mm:ss.
      */
     monthsAgo(months: number): string;
+    
     /**
      * Returns the date and time for the start of the month a specified number of months ago.
      * @param {number} months - Integer number of months
      * @returns {string} GMT start of the month the specified number of months ago, in the format yyyy-mm-dd hh:mm:ss.
      */
     monthsAgoStart(months: number): string;
+    
     /**
      * Queries an object and returns true if the object is null, undefined, or contains an empty string.
      * @param {*} o - The object to be checked.
      * @returns {boolean} True if the object is null, undefined, or contains an empty string; otherwise, returns false..
      */
     nil(o: any): boolean;
+    
     /**
      * Returns the date and time for the last day of the quarter for a specified number of quarters ago.
      * @param {number} quarters - Integer number of quarters
      * @returns {string} GMT end of the quarter that was the specified number of quarters ago, in the format yyyy-mm-dd hh:mm:ss.
      */
     quartersAgoEnd(quarters: number): string;
+    
     /**
      * Returns the date and time for the first day of the quarter for a specified number of quarters ago.
      * @param {number} quarters - Integer number of quarters
      * @returns {string} GMT end of the month that was the specified number of quarters ago, in the format yyyy-mm-dd hh:mm:ss.
      */
     quartersAgoStart(quarters: number): string;
+    
     /**
      * Sets the specified key to the specified value if the property is within the script's scope.
      * @param {string} key - The key for the property to be set.
@@ -3410,29 +3622,34 @@ declare class GlideSystem {
      * @param {string} description - A description of the property.
      */
     setProperty(key: string, value: string, description: string): void;
+    
     /**
      * Sets the redirect URI for this transaction, which then determines the next page the user will see.
      * @param {*} o - URI object or URI string to set as the redirect
      */
     setRedirect(o: any): void;
+    
     /**
      * Determines if a database table exists.
      * @param {string} name - Name of the table to check for existence.
      * @returns {boolean} True if the table exists. False if the table was not found..
      */
     tableExists(name: string): boolean;
+    
     /**
      * Replaces UTF-8 encoded characters with ASCII characters.
      * @param {string} url - A string with UTF-8 percent (%) encoded characters.
      * @returns {string} A string with encoded characters replaced with ASCII characters..
      */
     urlDecode(url: string): string;
+    
     /**
      * Encodes non-ASCII characters, unsafe ASCII characters, and spaces so the returned string can be used on the Internet. Uses UTF-8 encoding. Uses percent (%) encoding.
      * @param {string} url - The string to be encoded.
      * @returns {string} A string with non-ASCII characters, unsafe ASCII characters, and spaces encoded..
      */
     urlEncode(url: string): string;
+    
     /**
      * Writes a warning message to the system log.
      * @param {string} message - The log message with place holders for any variable arguments.
@@ -3443,18 +3660,21 @@ declare class GlideSystem {
      * @param {*} [param5] - Fifth variable argument.
      */
     warn(message: string, param1?: any, param2?: any, param3?: any, param4?: any, param5?: any): void;
+    
     /**
      * Takes an XML string and returns a JSON object.
      * @param {string} xmlString - The XML string to be converted.
      * @returns {*} A JSON object representing the XML string. Null if unable to process the XML string..
      */
     xmlToJSON(xmlString: string): any;
+    
     /**
      * Returns a date and time for a certain number of years ago.
      * @param {number} years - An integer number of years
      * @returns {string} GMT beginning of the year that is the specified number of years ago, in the format yyyy-mm-dd hh:mm:ss..
      */
     yearsAgo(years: number): string;
+    
     /**
      * Returns yesterday's time (24 hours ago).
      * @returns {string} GMT for 24 hours ago, in the format yyyy-mm-dd hh:mm:ss.
@@ -3616,6 +3836,32 @@ declare class GlideTime {
      * @returns {GlideDuration} The duration between the two values.
      */
     subtract(startTime: GlideTime, endTime: GlideTime): GlideDuration;
+}
+
+declare class GlideUpdateManager2 {
+    allowBackout(sysId: string): boolean;
+    allowVersionBackout(sysId: string): boolean;
+    constructor(updateSetId?: string);
+    getDefaultUpdateName(tableName: string, uniqueValue: string): string;
+    getUpdateName(gr: GlideRecord): string;
+    // load(updateName: string): void;
+    // load(updateName: string, directory: string): void;
+    load(updateName: string, directory?: string): void;
+    loadFile(filePath: string): void;
+    // loadFixes(updateName: string, before: boolean): void;
+    // loadFixes(updateName: string): void;
+    loadFixes(updateName: string, before?: boolean): void;
+    loadFromDatabase(category: string): void;
+    loadIntoDatabase(category: string): boolean;
+    // loadXML(xml: string): void;
+    // loadXML(xml: string, writeVersion: boolean, revertedFrom: string, sourceTable: string, sourceId: string): void;
+    loadXML(xml: string, writeVersion?: boolean, revertedFrom?: string, sourceTable?: string, sourceId?: string): void;
+    removeUpdateSet(setID: string): void;
+    saveBaselineChoiceListElements(tableName: string, fieldName: string): void;
+    saveChoiceListElements(tableName: string, fieldName: string): void;
+    saveListElements(sl: GlideSysList): void;
+    saveRecord(gr: GlideRecord): boolean;
+    setInstalling(b: boolean): void;
 }
 
 /**
