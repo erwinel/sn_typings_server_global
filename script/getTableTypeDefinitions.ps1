@@ -1,6 +1,7 @@
 Param(
-    [string[]]$TableNames = @('ml_solution_parameters', 'ml_stopwords'),
-    #[string[]]$TableNames = @('sys_update_set_source'),
+    [string[]]$TableNames = @('ts_configuration', 'sp_column', 'sp_row', 'sp_container', 'ais_search_profile', 'sys_script_include', 'sys_data_policy2', 'stage_state', 'alm_stockroom_type', 'sc_category', 'sys_app_module',
+        'cmn_timeline_page', 'sc_renderer', 'sc_homepage_renderer', 'sys_report'),
+    #[string[]]$TableNames = @('task'),
 
     [Uri]$BaseUri = 'https://dev145540.service-now.com',
 
@@ -10,7 +11,7 @@ Param(
 
     [string]$FieldsNamespace = '$$tableFields',
 
-    [bool]$IsScoped = $false,
+    [bool]$IsScoped = $true,
 
     [string]$OutputScope = 'global'
 )
@@ -19,7 +20,7 @@ Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process
 #>
 if ($null -eq $Script:SnCredentials) { $Script:SnCredentials = Get-Credential -Message 'SN Login' }
 $Script:SysDictionaryPath = $PSScriptRoot | Join-Path -ChildPath 'sys_dictionary';
-if (-not ($Script:SysDictionaryPath | Test-Path)) { New-Item -Path $PSScriptRoot -ItemType Directory -Name 'sys_dictionary' };
+if (-not ($Script:SysDictionaryPath | Test-Path)) { New-Item -Path $Script:SysDictionaryPath -ItemType Directory -Name 'sys_dictionary' };
 
 class ProgressInfo {
     [int]$Id = 1;
