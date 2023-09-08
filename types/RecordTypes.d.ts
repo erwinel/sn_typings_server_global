@@ -11,10 +11,10 @@ declare namespace $$GlideRecord {
     export type business_unit = $$tableFields.business_unit & GlideRecord;
  
     /**
-     * Task glide record.
-     * Auto-number Prefix: TASK
+     * "Guided Setup Content" glide record.
+     * Scope: "Guided Setup - Legacy" (sn_guided_setup)
      */
-    export type task = $$tableFields.task & GlideRecord;
+    export type gsw_content = $$tableFields.gsw_content & sys_metadata;
  
     /**
      * "Application File" glide record.
@@ -32,10 +32,10 @@ declare namespace $$GlideRecord {
     export type sys_scope = $$tableFields.sys_scope & sys_package;
  
     /**
-     * "Guided Setup Content" glide record.
-     * Scope: "Guided Setup - Legacy" (sn_guided_setup)
+     * Task glide record.
+     * Auto-number Prefix: TASK
      */
-    export type gsw_content = $$tableFields.gsw_content & sys_metadata;
+    export type task = $$tableFields.task & GlideRecord;
  
     /**
      * Subscription glide record.
