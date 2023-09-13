@@ -75,3 +75,15 @@ declare namespace $$rhino {
      */
     export type Array<E> = Packages.Array<E> | E[];
 }
+
+interface ArrayConstructor {
+    /**
+     * @deprecated DO NOT USE - does not exist in server script.
+     */
+    from<T>(iterable: Iterable<T> | ArrayLike<T>): T[];
+
+    /**
+     * @deprecated DO NOT USE - does not exist in server script.
+     */
+    from<T, U>(iterable: Iterable<T> | ArrayLike<T>, mapfn: (v: T, k: number) => U, thisArg?: any): U[];
+}
