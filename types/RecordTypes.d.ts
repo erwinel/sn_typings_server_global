@@ -15003,7 +15003,6 @@ declare namespace $$tableFields {
         /**
          * "Class" column element.
          * Max Length: 80.
-         * Default Value: "javascript:current.getTableName();".
          */
         sys_class_name: GlideElementSysClassName;
         
@@ -15036,7 +15035,6 @@ declare namespace $$tableFields {
         /**
          * "Application" column element.
          * Mandatory: true; Max Length: 32.
-         * Default Value: "javascript:(function() {if (gs.isCurrentApplicationInGlobalScope()) return gs.getCurrentApplicationScope(); else return gs.getCurrentApplicationId();})()".
          */
         application: $$GlideElement.sys_scope;
         
@@ -15056,7 +15054,6 @@ declare namespace $$tableFields {
          * "Completed on" column element.
          * Type: "Date/Time" (glide_date_time).
          * Max Length: 40.
-         * Default Value: "javascript:gs.nowDateTime()".
          */
         completed_on: GlideElementGlideObject;
         
@@ -15762,7 +15759,6 @@ this variable \r // - actual_result: the script sets the actual value for this m
         /**
          * "Type" column element.
          * Mandatory: true; Max Length: 32.
-         * Default Value: "javascript:if(typeof parent != \u0027undefined\u0027 \u0026\u0026 !parent.nil()) parent.metric_type".
          */
         metric_type: $$GlideElement.asmt_metric_type;
         
@@ -16238,7 +16234,6 @@ this variable \r // - actual_result: the script sets the actual value for this m
         /**
          * "Number" column element.
          * Unique: true; Display: true; Max Length: 40.
-         * Default Value: "javascript:getNextObjNumberPadded();".
          */
         number: GlideElement;
         
@@ -16759,7 +16754,6 @@ this variable \r // - actual_result: the script sets the actual value for this m
         /**
          * "List v3 Compatible" column element.
          * Max Length: 40.
-         * Default Value: "javascript:gs.getProperty(\u0027glide.ui.list_v3.enable\u0027, \u0027false\u0027)".
          */
         ui16_compatible: GlideElementBoolean;
     }
@@ -17259,7 +17253,6 @@ this variable \r // - actual_result: the script sets the actual value for this m
         /**
          * "Client ID" column element.
          * Mandatory: true; Max Length: 100.
-         * Default Value: "javascript:GlideGuid.generateSecureRand();".
          */
         client_id: GlideElement;
         
@@ -17272,7 +17265,6 @@ this variable \r // - actual_result: the script sets the actual value for this m
         /**
          * "OAuth Application UUID" column element.
          * Max Length: 256.
-         * Default Value: "javascript:GlideGuid.generate(null);".
          */
         client_uuid: GlideElement;
         
@@ -18941,7 +18933,6 @@ this variable \r // - actual_result: the script sets the actual value for this m
         /**
          * "Owner" column element.
          * Max Length: 32.
-         * Default Value: "javascript:gs.getUserID();".
          */
         owner: $$GlideElement.sys_user;
         
@@ -19179,7 +19170,6 @@ this variable \r // - actual_result: the script sets the actual value for this m
         /**
          * "Sys class name" column element.
          * Max Length: 40.
-         * Default Value: "javascript:current.getTableName();".
          */
         sys_class_name: GlideElementSysClassName;
         
@@ -19276,7 +19266,6 @@ this variable \r // - actual_result: the script sets the actual value for this m
         /**
          * "Number" column element.
          * Max Length: 40.
-         * Default Value: "javascript:getNextObjNumberPadded();".
          */
         number: GlideElement;
         
@@ -19295,7 +19284,6 @@ this variable \r // - actual_result: the script sets the actual value for this m
         /**
          * "Sys class name" column element.
          * Max Length: 40.
-         * Default Value: "javascript:current.getTableName();".
          */
         sys_class_name: GlideElementSysClassName;
         
@@ -19579,7 +19567,6 @@ this variable \r // - actual_result: the script sets the actual value for this m
         /**
          * "Number" column element.
          * Read-only: true; Max Length: 40.
-         * Default Value: "javascript:getNextObjNumberPadded();".
          */
         number: GlideElement;
         
@@ -19989,7 +19976,6 @@ this variable \r // - actual_result: the script sets the actual value for this m
         /**
          * "Number" column element.
          * Read-only: true; Max Length: 80.
-         * Default Value: "javascript:getNextObjNumberPadded();".
          */
         number: GlideElement;
         
@@ -20030,7 +20016,6 @@ this variable \r // - actual_result: the script sets the actual value for this m
         /**
          * "Sys class name" column element.
          * Max Length: 40.
-         * Default Value: "javascript:current.getTableName();".
          */
         sys_class_name: GlideElementSysClassName;
         
@@ -20924,7 +20909,6 @@ this variable \r // - actual_result: the script sets the actual value for this m
         /**
          * "Discover" column element.
          * Max Length: 40.
-         * Default Value: "javascript:new DiscoverChoiceList().getDefaultValue(\u0027discovery_status\u0027);".
          */
         discover: GlideElement;
         
@@ -20973,7 +20957,6 @@ this variable \r // - actual_result: the script sets the actual value for this m
         /**
          * "Number" column element.
          * Display: true; Max Length: 40.
-         * Default Value: "javascript:getNextObjNumberPadded();".
          */
         number: GlideElement;
         
@@ -21029,7 +21012,6 @@ this variable \r // - actual_result: the script sets the actual value for this m
         /**
          * "Status type" column element.
          * Max Length: 80.
-         * Default Value: "javascript:current.getTableName();".
          */
         sys_class_name: GlideElementSysClassName;
         
@@ -21126,7 +21108,6 @@ this variable \r // - actual_result: the script sets the actual value for this m
         /**
          * "Run as" column element.
          * Max Length: 32.
-         * Default Value: "javascript:gs.getUserID()".
          */
         run_as: $$GlideElement.sys_user;
         
@@ -21162,7 +21143,6 @@ this variable \r // - actual_result: the script sets the actual value for this m
          * "Starting" column element.
          * Type: "Date/Time" (glide_date_time).
          * Max Length: 40.
-         * Default Value: "javascript:gs.nowDateTime()".
          */
         run_start: GlideElementGlideObject;
         
@@ -21583,7 +21563,6 @@ this variable \r // - actual_result: the script sets the actual value for this m
         /**
          * "Discover" column element.
          * Max Length: 40.
-         * Default Value: "javascript:new DiscoverChoiceList().getDefaultValue(\u0027discovery_schedule\u0027);".
          */
         discover: GlideElement;
         
@@ -21938,7 +21917,6 @@ this variable \r // - actual_result: the script sets the actual value for this m
         /**
          * "Class" column element.
          * Max Length: 80.
-         * Default Value: "javascript:current.getTableName();".
          */
         sys_class_name: GlideElementSysClassName;
         
@@ -22651,7 +22629,6 @@ this variable \r // - actual_result: the script sets the actual value for this m
         /**
          * "Class" column element.
          * Max Length: 80.
-         * Default Value: "javascript:current.getTableName();".
          */
         sys_class_name: GlideElementSysClassName;
         
@@ -23402,7 +23379,6 @@ this variable \r // - actual_result: the script sets the actual value for this m
          * "Starting" column element.
          * Type: "Date/Time" (glide_date_time).
          * Max Length: 40.
-         * Default Value: "javascript:gs.nowDateTime()".
          */
         run_start: GlideElementGlideObject;
         
@@ -25215,7 +25191,6 @@ this variable \r // - actual_result: the script sets the actual value for this m
         /**
          * "Do not select the first choice" column element.
          * Max Length: 40.
-         * Default Value: "javascript:gs.getProperty(\u0027glide.questionset.radio.start.selected\u0027, \u0027true\u0027) == \u0027false\u0027 ? \u0027true\u0027 : \u0027false\u0027".
          */
         do_not_select_first: GlideElementBoolean;
         
@@ -25420,7 +25395,6 @@ this variable \r // - actual_result: the script sets the actual value for this m
         /**
          * "Record producer table" column element.
          * Max Length: 80.
-         * Default Value: "javascript:getRecordProducerParent()".
          */
         record_producer_table: GlideElement;
         
@@ -25963,7 +25937,6 @@ this variable \r // - actual_result: the script sets the actual value for this m
         /**
          * "Schema version" column element.
          * Mandatory: true; Max Length: 40.
-         * Default Value: "javascript:gs.getProperty(\u0027com.glide.uxf.schema.version\u0027, \u00271.0.0\u0027)".
          */
         schema_version: GlideElement;
         
@@ -26222,7 +26195,6 @@ this variable \r // - actual_result: the script sets the actual value for this m
         /**
          * "Schema version" column element.
          * Mandatory: true; Max Length: 40.
-         * Default Value: "javascript:gs.getProperty(\u0027com.glide.uxf.schema.version\u0027, \u00271.0.0\u0027)".
          */
         schema_version: GlideElement;
     }
@@ -26273,7 +26245,6 @@ this variable \r // - actual_result: the script sets the actual value for this m
         /**
          * "Schema version" column element.
          * Mandatory: true; Max Length: 40.
-         * Default Value: "javascript:gs.getProperty(\u0027com.glide.uxf.schema.version\u0027, \u00271.0.0\u0027)".
          */
         schema_version: GlideElement;
     }
@@ -27019,7 +26990,6 @@ this variable \r // - actual_result: the script sets the actual value for this m
         /**
          * "Version" column element.
          * Max Length: 40.
-         * Default Value: "javascript:new SNHelpUtil().getCurrentVersion()".
          */
         version: GlideElement;
         
@@ -27082,7 +27052,6 @@ this variable \r // - actual_result: the script sets the actual value for this m
         /**
          * "Schema version" column element.
          * Mandatory: true; Max Length: 40.
-         * Default Value: "javascript:gs.getProperty(\u0027com.glide.uxf.schema.version\u0027, \u00271.0.0\u0027)".
          */
         schema_version: GlideElement;
     }
@@ -27382,7 +27351,6 @@ this variable \r // - actual_result: the script sets the actual value for this m
         /**
          * "Version" column element.
          * Max Length: 40.
-         * Default Value: "javascript:new SNHelpUtil().getCurrentVersion()".
          */
         version: GlideElement;
     }
@@ -27442,7 +27410,6 @@ this variable \r // - actual_result: the script sets the actual value for this m
          * "Product" column element.
          * Type: "Integer" (integer).
          * Max Length: 40.
-         * Default Value: "javascript:(!GlideUtil.isExpressInstance()) ? 1 : 2;".
          */
         product: GlideElementNumeric;
         
@@ -28474,7 +28441,6 @@ this variable \r // - actual_result: the script sets the actual value for this m
         /**
          * "Number" column element.
          * Max Length: 40.
-         * Default Value: "javascript:getNextObjNumberPadded();".
          */
         number: GlideElement;
         
@@ -28770,7 +28736,6 @@ this variable \r // - actual_result: the script sets the actual value for this m
         /**
          * "Number" column element.
          * Read-only: true; Max Length: 40.
-         * Default Value: "javascript:getNextObjNumberPadded();".
          */
         number: GlideElement;
         
@@ -28921,7 +28886,6 @@ this variable \r // - actual_result: the script sets the actual value for this m
         /**
          * "Group Type" column element.
          * Max Length: 80.
-         * Default Value: "javascript:current.getTableName();".
          */
         sys_class_name: GlideElementSysClassName;
         
@@ -29272,7 +29236,6 @@ this variable \r // - actual_result: the script sets the actual value for this m
         /**
          * "Requested for" column element.
          * Max Length: 32.
-         * Default Value: "javascript:gs.getUserID()".
          */
         requested_for: $$GlideElement.sys_user;
         
@@ -29298,7 +29261,6 @@ this variable \r // - actual_result: the script sets the actual value for this m
         /**
          * "User" column element.
          * Max Length: 32.
-         * Default Value: "javascript:gs.getUserID()".
          */
         user: $$GlideElement.sys_user;
     }
@@ -29325,7 +29287,6 @@ this variable \r // - actual_result: the script sets the actual value for this m
         /**
          * "Class" column element.
          * Max Length: 80.
-         * Default Value: "javascript:current.getTableName();".
          */
         sys_class_name: GlideElementSysClassName;
         
@@ -29432,7 +29393,6 @@ this variable \r // - actual_result: the script sets the actual value for this m
         /**
          * "Language" column element.
          * Max Length: 40.
-         * Default Value: "javascript:gs.getSession().getLanguage()".
          * Scope: "Social Knowledge" (sn_kb_social_qa)
          */
         language: GlideElement;
@@ -29441,7 +29401,6 @@ this variable \r // - actual_result: the script sets the actual value for this m
          * "Last activity" column element.
          * Type: "Date/Time" (glide_date_time).
          * Max Length: 40.
-         * Default Value: "javascript:new GlideDateTime()".
          * Scope: "Social Knowledge" (sn_kb_social_qa)
          */
         last_activity: GlideElementGlideObject;
@@ -29449,7 +29408,6 @@ this variable \r // - actual_result: the script sets the actual value for this m
         /**
          * "Profile" column element.
          * Mandatory: true; Max Length: 32.
-         * Default Value: "javascript: new global.GlobalKnowledgeUtil().getSessionProfile();".
          * Scope: "Social Knowledge" (sn_kb_social_qa)
          */
         profile: $$GlideElement.live_profile;
@@ -29564,7 +29522,6 @@ this variable \r // - actual_result: the script sets the actual value for this m
         /**
          * "Profile" column element.
          * Mandatory: true; Max Length: 32.
-         * Default Value: "javascript: new global.GlobalKnowledgeUtil().getSessionProfile();".
          * Scope: "Social Knowledge" (sn_kb_social_qa)
          */
         profile: $$GlideElement.live_profile;
@@ -30458,7 +30415,6 @@ this variable \r // - actual_result: the script sets the actual value for this m
         /**
          * "Author" column element.
          * Max Length: 32.
-         * Default Value: "javascript:gs.getUserID()".
          */
         author: $$GlideElement.sys_user;
         
@@ -30552,7 +30508,6 @@ this variable \r // - actual_result: the script sets the actual value for this m
         /**
          * "Knowledge base" column element.
          * Mandatory: true; Max Length: 32.
-         * Default Value: "javascript:getDefaultKB()".
          */
         kb_knowledge_base: $$GlideElement.kb_knowledge_base;
         
@@ -30571,7 +30526,6 @@ this variable \r // - actual_result: the script sets the actual value for this m
         /**
          * "Number" column element.
          * Read-only: true; Display: true; Max Length: 40.
-         * Default Value: "javascript:getNextObjNumberPadded();".
          */
         number: GlideElement;
         
@@ -30624,7 +30578,6 @@ this variable \r // - actual_result: the script sets the actual value for this m
         /**
          * "Class" column element.
          * Max Length: 80.
-         * Default Value: "javascript:current.getTableName();".
          */
         sys_class_name: GlideElementSysClassName;
         
@@ -30682,7 +30635,6 @@ this variable \r // - actual_result: the script sets the actual value for this m
          * "Valid to" column element.
          * Type: "Date" (glide_date); Scalar type: date.
          * Max Length: 40.
-         * Default Value: "javascript: current.kb_knowledge_base ? new global.KBCommon().getDefaultValidToDateFromCurrentDate(current.kb_knowledge_base) : \u0027\u0027;".
          */
         valid_to: GlideElementGlideObject;
         
@@ -30873,7 +30825,6 @@ this variable \r // - actual_result: the script sets the actual value for this m
         /**
          * "Caller" column element.
          * Max Length: 32.
-         * Default Value: "javascript:incidentGetCaller();".
          */
         caller_id: $$GlideElement.sys_user;
         
@@ -31269,7 +31220,6 @@ this variable \r // - actual_result: the script sets the actual value for this m
         /**
          * "Model" column element.
          * Max Length: 32.
-         * Default Value: "javascript:ChangeModel.getDefaultModelValue(current);".
          */
         chg_model: $$GlideElement.chg_model;
         
@@ -31367,7 +31317,6 @@ this variable \r // - actual_result: the script sets the actual value for this m
         /**
          * "Requested by" column element.
          * Max Length: 32.
-         * Default Value: "javascript:gs.getUserID()".
          */
         requested_by: $$GlideElement.sys_user;
         
@@ -31442,7 +31391,6 @@ this variable \r // - actual_result: the script sets the actual value for this m
         /**
          * "Type" column element.
          * Max Length: 40.
-         * Default Value: "javascript:ChangeModel.getDefaultTypeValue();".
          */
         type: GlideElement;
         
@@ -31854,7 +31802,6 @@ this variable \r // - actual_result: the script sets the actual value for this m
         /**
          * "Catalog" column element.
          * Max Length: 32.
-         * Default Value: "javascript: new StdChangeUtils().getValue(\u0027catalog\u0027);".
          */
         catalog: $$GlideElement.sc_catalog;
         
@@ -31906,7 +31853,6 @@ this variable \r // - actual_result: the script sets the actual value for this m
         /**
          * "Change Request values" column element.
          * Mandatory: true; Max Length: 65000.
-         * Default Value: "javascript: new StdChangeUtils().getValue(\u0027default_values\u0027);".
          */
         template_value: GlideElementWorkflowConditions;
     }
@@ -31941,7 +31887,6 @@ this variable \r // - actual_result: the script sets the actual value for this m
         /**
          * "Redirect to" column element.
          * Max Length: 40.
-         * Default Value: "javascript: gs.getProperty(\u0027glide.sc.producer.redirect_url\u0027, \u0027generated_record\u0027)".
          */
         redirect_url: GlideElement;
         
@@ -32289,7 +32234,6 @@ this variable \r // - actual_result: the script sets the actual value for this m
          * "Start time" column element.
          * Type: "Date/Time" (glide_date_time).
          * Max Length: 40.
-         * Default Value: "javascript:gs.nowDateTime()".
          */
         start_time: GlideElementGlideObject;
         
@@ -32647,7 +32591,6 @@ this variable \r // - actual_result: the script sets the actual value for this m
          * "Table" column element.
          * Type: "Table Name" (table_name).
          * Read-only: true; Max Length: 80.
-         * Default Value: "javascript:parent.table".
          */
         table: GlideElement;
         
@@ -32695,7 +32638,6 @@ this variable \r // - actual_result: the script sets the actual value for this m
          * "Table" column element.
          * Type: "Table Name" (table_name).
          * Read-only: true; Max Length: 80.
-         * Default Value: "javascript:if (typeof parent != \u0027undefined\u0027 \u0026\u0026 parent \u0026\u0026 parent.table) parent.table; else current.ui_policy.table;".
          */
         table: GlideElement;
         
@@ -32722,7 +32664,6 @@ this variable \r // - actual_result: the script sets the actual value for this m
         /**
          * "Catalog Item" column element.
          * Read-only: true; Max Length: 32.
-         * Default Value: "javascript:if (typeof parent != \u0027undefined\u0027 \u0026\u0026 parent \u0026\u0026 parent.catalog_item) parent.catalog_item".
          */
         catalog_item: $$GlideElement.sc_cat_item;
         
@@ -32749,7 +32690,6 @@ this variable \r // - actual_result: the script sets the actual value for this m
         /**
          * "Variable Set" column element.
          * Read-only: true; Max Length: 32.
-         * Default Value: "javascript:if (typeof parent != \u0027undefined\u0027 \u0026\u0026 parent \u0026\u0026 parent.variable_set) parent.variable_set".
          */
         variable_set: $$GlideElement.item_option_new_set;
     }
@@ -32851,7 +32791,6 @@ this variable \r // - actual_result: the script sets the actual value for this m
         /**
          * "Number" column element.
          * Read-only: true; Max Length: 40.
-         * Default Value: "javascript:getNextObjNumberPadded();".
          */
         number: GlideElement;
         
@@ -33159,7 +33098,6 @@ this variable \r // - actual_result: the script sets the actual value for this m
         /**
          * "Item" column element.
          * Read-only: true; Max Length: 32.
-         * Default Value: "javascript: new global.SNCCatalogUtil().getCatItemSCTask(current);".
          */
         cat_item: $$GlideElement.sc_cat_item;
         
