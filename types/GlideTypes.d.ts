@@ -360,6 +360,7 @@ declare interface IGlideElement extends IDbObject {
      * @returns {string} The display value of the field.
      */
     getDisplayValue(maxCharacters?: number): string;
+    getError(): string;
     /**
      * Returns the phone number in international format.
      * @returns {string} The phone number in international format.
@@ -1561,6 +1562,7 @@ declare class GlideElement implements IGlideElement { // sys_dictionary.comments
     getChoiceValue(): string;
     getDecryptedValue(): string;
     getDisplayValue(maxCharacters?: number | undefined): string;
+    getError(): string;
     getGlobalDisplayValue(): string;
     getHTMLValue(maxChars?: number | undefined): string;
     getJournalEntry(mostRecent: number): string;
@@ -1591,6 +1593,7 @@ declare class GlideElementAudio implements IGlideElement { // db_audio.audio
     getChoiceValue(): string;
     getDecryptedValue(): string;
     getDisplayValue(maxCharacters?: number | undefined): string;
+    getError(): string;
     getGlobalDisplayValue(): string;
     getHTMLValue(maxChars?: number | undefined): string;
     getJournalEntry(mostRecent: number): string;
@@ -1621,6 +1624,7 @@ declare class GlideElementBoolean implements IGlideElement { // sys_dictionary.a
     getChoiceValue(): string;
     getDecryptedValue(): string;
     getDisplayValue(maxCharacters?: number | undefined): string;
+    getError(): string;
     getGlobalDisplayValue(): string;
     getHTMLValue(maxChars?: number | undefined): string;
     getJournalEntry(mostRecent: number): string;
@@ -1651,6 +1655,7 @@ declare class GlideElementBreakdownElement implements IGlideElement { // pa_widg
     getChoiceValue(): string;
     getDecryptedValue(): string;
     getDisplayValue(maxCharacters?: number | undefined): string;
+    getError(): string;
     getGlobalDisplayValue(): string;
     getHTMLValue(maxChars?: number | undefined): string;
     getJournalEntry(mostRecent: number): string;
@@ -1681,6 +1686,7 @@ declare class GlideElementCompressed implements IGlideElement { // wf_workflow_v
     getChoiceValue(): string;
     getDecryptedValue(): string;
     getDisplayValue(maxCharacters?: number | undefined): string;
+    getError(): string;
     getGlobalDisplayValue(): string;
     getHTMLValue(maxChars?: number | undefined): string;
     getJournalEntry(mostRecent: number): string;
@@ -1711,6 +1717,7 @@ declare class GlideElementConditions implements IGlideElement { // sys_dictionar
     getChoiceValue(): string;
     getDecryptedValue(): string;
     getDisplayValue(maxCharacters?: number | undefined): string;
+    getError(): string;
     getGlobalDisplayValue(): string;
     getHTMLValue(maxChars?: number | undefined): string;
     getJournalEntry(mostRecent: number): string;
@@ -1741,6 +1748,7 @@ declare class GlideElementCounter implements IGlideElement { // sys_update_xml.s
     getChoiceValue(): string;
     getDecryptedValue(): string;
     getDisplayValue(maxCharacters?: number | undefined): string;
+    getError(): string;
     getGlobalDisplayValue(): string;
     getHTMLValue(maxChars?: number | undefined): string;
     getJournalEntry(mostRecent: number): string;
@@ -1771,6 +1779,7 @@ declare class GlideElementCurrency implements IGlideElement { // sc_cat_item.lis
     getChoiceValue(): string;
     getDecryptedValue(): string;
     getDisplayValue(maxCharacters?: number | undefined): string;
+    getError(): string;
     getGlobalDisplayValue(): string;
     getHTMLValue(maxChars?: number | undefined): string;
     getJournalEntry(mostRecent: number): string;
@@ -1801,6 +1810,7 @@ declare class GlideElementDataObject implements IGlideElement { // wf_activity.i
     getChoiceValue(): string;
     getDecryptedValue(): string;
     getDisplayValue(maxCharacters?: number | undefined): string;
+    getError(): string;
     getGlobalDisplayValue(): string;
     getHTMLValue(maxChars?: number | undefined): string;
     getJournalEntry(mostRecent: number): string;
@@ -1900,6 +1910,7 @@ declare class GlideElementDocumentation implements IGlideElement { // sys_dictio
     getChoiceValue(): string;
     getDecryptedValue(): string;
     getDisplayValue(maxCharacters?: number | undefined): string;
+    getError(): string;
     getGlobalDisplayValue(): string;
     getHTMLValue(maxChars?: number | undefined): string;
     getJournalEntry(mostRecent: number): string;
@@ -1930,6 +1941,7 @@ declare class GlideElementDocumentId implements IGlideElement { // incident.orig
     getChoiceValue(): string;
     getDecryptedValue(): string;
     getDisplayValue(maxCharacters?: number | undefined): string;
+    getError(): string;
     getGlobalDisplayValue(): string;
     getHTMLValue(maxChars?: number | undefined): string;
     getJournalEntry(mostRecent: number): string;
@@ -1960,6 +1972,7 @@ declare class GlideElementDomainId implements IGlideElement { // task.sys_domain
     getChoiceValue(): string;
     getDecryptedValue(): string;
     getDisplayValue(maxCharacters?: number | undefined): string;
+    getError(): string;
     getGlobalDisplayValue(): string;
     getHTMLValue(maxChars?: number | undefined): string;
     getJournalEntry(mostRecent: number): string;
@@ -1990,6 +2003,7 @@ declare class GlideElementFullUTF8 implements IGlideElement { // sys_email.subje
     getChoiceValue(): string;
     getDecryptedValue(): string;
     getDisplayValue(maxCharacters?: number | undefined): string;
+    getError(): string;
     getGlobalDisplayValue(): string;
     getHTMLValue(maxChars?: number | undefined): string;
     getJournalEntry(mostRecent: number): string;
@@ -2020,6 +2034,7 @@ declare class GlideElementGlideObject implements IGlideElement { // incident.sys
     getChoiceValue(): string;
     getDecryptedValue(): string;
     getDisplayValue(maxCharacters?: number | undefined): string;
+    getError(): string;
     getGlobalDisplayValue(): string;
     getHTMLValue(maxChars?: number | undefined): string;
     getJournalEntry(mostRecent: number): string;
@@ -2061,6 +2076,7 @@ declare class GlideElementGlideVar implements IGlideElement { // wf_activity.var
     getChoiceValue(): string;
     getDecryptedValue(): string;
     getDisplayValue(maxCharacters?: number | undefined): string;
+    getError(): string;
     getGlobalDisplayValue(): string;
     getHTMLValue(maxChars?: number | undefined): string;
     getJournalEntry(mostRecent: number): string;
@@ -2093,6 +2109,7 @@ declare class GlideElementIcon implements IGlideElement { // sys_run_level.icon
     getChoiceValue(): string;
     getDecryptedValue(): string;
     getDisplayValue(maxCharacters?: number | undefined): string;
+    getError(): string;
     getGlobalDisplayValue(): string;
     getHTMLValue(maxChars?: number | undefined): string;
     getJournalEntry(mostRecent: number): string;
@@ -2123,6 +2140,7 @@ declare class GlideElementInternalType implements IGlideElement { // sys_script_
     getChoiceValue(): string;
     getDecryptedValue(): string;
     getDisplayValue(maxCharacters?: number | undefined): string;
+    getError(): string;
     getGlobalDisplayValue(): string;
     getHTMLValue(maxChars?: number | undefined): string;
     getJournalEntry(mostRecent: number): string;
@@ -2153,6 +2171,7 @@ declare class GlideElementIPAddress implements IGlideElement {
     getChoiceValue(): string;
     getDecryptedValue(): string;
     getDisplayValue(maxCharacters?: number | undefined): string;
+    getError(): string;
     getGlobalDisplayValue(): string;
     getHTMLValue(maxChars?: number | undefined): string;
     getJournalEntry(mostRecent: number): string;
@@ -2183,6 +2202,7 @@ declare class GlideElementNameValue implements IGlideElement { // wf_context.ret
     getChoiceValue(): string;
     getDecryptedValue(): string;
     getDisplayValue(maxCharacters?: number | undefined): string;
+    getError(): string;
     getGlobalDisplayValue(): string;
     getHTMLValue(maxChars?: number | undefined): string;
     getJournalEntry(mostRecent: number): string;
@@ -2213,6 +2233,7 @@ declare class GlideElementNumeric implements IGlideElement { // sys_dictionary.d
     getChoiceValue(): string;
     getDecryptedValue(): string;
     getDisplayValue(maxCharacters?: number | undefined): string;
+    getError(): string;
     getGlobalDisplayValue(): string;
     getHTMLValue(maxChars?: number | undefined): string;
     getJournalEntry(mostRecent: number): string;
@@ -2243,6 +2264,7 @@ declare class GlideElementPassword implements IGlideElement { // sys_user.user_p
     getChoiceValue(): string;
     getDecryptedValue(): string;
     getDisplayValue(maxCharacters?: number | undefined): string;
+    getError(): string;
     getGlobalDisplayValue(): string;
     getHTMLValue(maxChars?: number | undefined): string;
     getJournalEntry(mostRecent: number): string;
@@ -2273,6 +2295,7 @@ declare class GlideElementPassword2 implements IGlideElement { // sys_data_sourc
     getChoiceValue(): string;
     getDecryptedValue(): string;
     getDisplayValue(maxCharacters?: number | undefined): string;
+    getError(): string;
     getGlobalDisplayValue(): string;
     getHTMLValue(maxChars?: number | undefined): string;
     getJournalEntry(mostRecent: number): string;
@@ -2303,6 +2326,7 @@ declare class GlideElementPhoneNumber implements IGlideElement {
     getChoiceValue(): string;
     getDecryptedValue(): string;
     getDisplayValue(maxCharacters?: number | undefined): string;
+    getError(): string;
     getGlobalDisplayValue(): string;
     getHTMLValue(maxChars?: number | undefined): string;
     getJournalEntry(mostRecent: number): string;
@@ -2333,6 +2357,7 @@ declare class GlideElementPrice implements IGlideElement { // sc_cat_item.recurr
     getChoiceValue(): string;
     getDecryptedValue(): string;
     getDisplayValue(maxCharacters?: number | undefined): string;
+    getError(): string;
     getGlobalDisplayValue(): string;
     getHTMLValue(maxChars?: number | undefined): string;
     getJournalEntry(mostRecent: number): string;
@@ -2367,6 +2392,8 @@ declare class GlideElementReference implements IGlideElement { // sys_dictionary
     getChoiceValue(): string;
     getDecryptedValue(): string;
     getDisplayValue(maxCharacters?: number | undefined): string;
+    getError(): string;
+    getError(): string;
     getGlobalDisplayValue(): string;
     getHTMLValue(maxChars?: number | undefined): string;
     getJournalEntry(mostRecent: number): string;
@@ -2407,6 +2434,7 @@ declare class GlideElementRelatedTags implements IGlideElement { // incident.sys
     getChoiceValue(): string;
     getDecryptedValue(): string;
     getDisplayValue(maxCharacters?: number | undefined): string;
+    getError(): string;
     getGlobalDisplayValue(): string;
     getHTMLValue(maxChars?: number | undefined): string;
     getJournalEntry(mostRecent: number): string;
@@ -2437,6 +2465,7 @@ declare class GlideElementReplicationPayload implements IGlideElement { // sys_r
     getChoiceValue(): string;
     getDecryptedValue(): string;
     getDisplayValue(maxCharacters?: number | undefined): string;
+    getError(): string;
     getGlobalDisplayValue(): string;
     getHTMLValue(maxChars?: number | undefined): string;
     getJournalEntry(mostRecent: number): string;
@@ -2467,6 +2496,7 @@ declare class GlideElementScript implements IGlideElement { // sys_dictionary.ca
     getChoiceValue(): string;
     getDecryptedValue(): string;
     getDisplayValue(maxCharacters?: number | undefined): string;
+    getError(): string;
     getGlobalDisplayValue(): string;
     getHTMLValue(maxChars?: number | undefined): string;
     getJournalEntry(mostRecent: number): string;
@@ -2497,6 +2527,7 @@ declare class GlideElementShortFieldName implements IGlideElement { // sys_histo
     getChoiceValue(): string;
     getDecryptedValue(): string;
     getDisplayValue(maxCharacters?: number | undefined): string;
+    getError(): string;
     getGlobalDisplayValue(): string;
     getHTMLValue(maxChars?: number | undefined): string;
     getJournalEntry(mostRecent: number): string;
@@ -2527,6 +2558,7 @@ declare class GlideElementShortTableName implements IGlideElement { // sys_email
     getChoiceValue(): string;
     getDecryptedValue(): string;
     getDisplayValue(maxCharacters?: number | undefined): string;
+    getError(): string;
     getGlobalDisplayValue(): string;
     getHTMLValue(maxChars?: number | undefined): string;
     getJournalEntry(mostRecent: number): string;
@@ -2557,6 +2589,7 @@ declare class GlideElementSimpleNameValue implements IGlideElement { // syslog.c
     getChoiceValue(): string;
     getDecryptedValue(): string;
     getDisplayValue(maxCharacters?: number | undefined): string;
+    getError(): string;
     getGlobalDisplayValue(): string;
     getHTMLValue(maxChars?: number | undefined): string;
     getJournalEntry(mostRecent: number): string;
@@ -2587,6 +2620,7 @@ declare class GlideElementSourceId implements IGlideElement {
     getChoiceValue(): string;
     getDecryptedValue(): string;
     getDisplayValue(maxCharacters?: number | undefined): string;
+    getError(): string;
     getGlobalDisplayValue(): string;
     getHTMLValue(maxChars?: number | undefined): string;
     getJournalEntry(mostRecent: number): string;
@@ -2617,6 +2651,7 @@ declare class GlideElementSourceName implements IGlideElement { // sys_update_ve
     getChoiceValue(): string;
     getDecryptedValue(): string;
     getDisplayValue(maxCharacters?: number | undefined): string;
+    getError(): string;
     getGlobalDisplayValue(): string;
     getHTMLValue(maxChars?: number | undefined): string;
     getJournalEntry(mostRecent: number): string;
@@ -2647,6 +2682,7 @@ declare class GlideElementSourceTable implements IGlideElement { // sys_update_l
     getChoiceValue(): string;
     getDecryptedValue(): string;
     getDisplayValue(maxCharacters?: number | undefined): string;
+    getError(): string;
     getGlobalDisplayValue(): string;
     getHTMLValue(maxChars?: number | undefined): string;
     getJournalEntry(mostRecent: number): string;
@@ -2677,6 +2713,7 @@ declare class GlideElementSysClassName implements IGlideElement { // task.sys_cl
     getChoiceValue(): string;
     getDecryptedValue(): string;
     getDisplayValue(maxCharacters?: number | undefined): string;
+    getError(): string;
     getGlobalDisplayValue(): string;
     getHTMLValue(maxChars?: number | undefined): string;
     getJournalEntry(mostRecent: number): string;
@@ -2707,6 +2744,7 @@ declare class GlideElementTranslatedField implements IGlideElement { // sys_glid
     getChoiceValue(): string;
     getDecryptedValue(): string;
     getDisplayValue(maxCharacters?: number | undefined): string;
+    getError(): string;
     getGlobalDisplayValue(): string;
     getHTMLValue(maxChars?: number | undefined): string;
     getJournalEntry(mostRecent: number): string;
@@ -2737,6 +2775,7 @@ declare class GlideElementTranslatedHTML implements IGlideElement { // sys_scrip
     getChoiceValue(): string;
     getDecryptedValue(): string;
     getDisplayValue(maxCharacters?: number | undefined): string;
+    getError(): string;
     getGlobalDisplayValue(): string;
     getHTMLValue(maxChars?: number | undefined): string;
     getJournalEntry(mostRecent: number): string;
@@ -2767,6 +2806,7 @@ declare class GlideElementTranslatedText implements IGlideElement { // sys_ux_ev
     getChoiceValue(): string;
     getDecryptedValue(): string;
     getDisplayValue(maxCharacters?: number | undefined): string;
+    getError(): string;
     getGlobalDisplayValue(): string;
     getHTMLValue(maxChars?: number | undefined): string;
     getJournalEntry(mostRecent: number): string;
@@ -2797,6 +2837,7 @@ declare class GlideElementUserImage implements IGlideElement { // sys_user.photo
     getChoiceValue(): string;
     getDecryptedValue(): string;
     getDisplayValue(maxCharacters?: number | undefined): string;
+    getError(): string;
     getGlobalDisplayValue(): string;
     getHTMLValue(maxChars?: number | undefined): string;
     getJournalEntry(mostRecent: number): string;
@@ -2827,6 +2868,7 @@ declare class GlideElementURL implements IGlideElement { // v_plugin.help
     getChoiceValue(): string;
     getDecryptedValue(): string;
     getDisplayValue(maxCharacters?: number | undefined): string;
+    getError(): string;
     getGlobalDisplayValue(): string;
     getHTMLValue(maxChars?: number | undefined): string;
     getJournalEntry(mostRecent: number): string;
@@ -2857,6 +2899,7 @@ declare class GlideElementVariableConditions implements IGlideElement {
     getChoiceValue(): string;
     getDecryptedValue(): string;
     getDisplayValue(maxCharacters?: number | undefined): string;
+    getError(): string;
     getGlobalDisplayValue(): string;
     getHTMLValue(maxChars?: number | undefined): string;
     getJournalEntry(mostRecent: number): string;
@@ -2887,6 +2930,7 @@ declare class GlideElementVariable implements IGlideElement {
     getChoiceValue(): string;
     getDecryptedValue(): string;
     getDisplayValue(maxCharacters?: number | undefined): string;
+    getError(): string;
     getGlobalDisplayValue(): string;
     getHTMLValue(maxChars?: number | undefined): string;
     getJournalEntry(mostRecent: number): string;
@@ -2917,6 +2961,7 @@ declare class GlideElementVariables implements IGlideElement { // task.variables
     getChoiceValue(): string;
     getDecryptedValue(): string;
     getDisplayValue(maxCharacters?: number | undefined): string;
+    getError(): string;
     getGlobalDisplayValue(): string;
     getHTMLValue(maxChars?: number | undefined): string;
     getJournalEntry(mostRecent: number): string;
@@ -2947,6 +2992,7 @@ declare class GlideElementWikiText implements IGlideElement { // sys_ui_help.wik
     getChoiceValue(): string;
     getDecryptedValue(): string;
     getDisplayValue(maxCharacters?: number | undefined): string;
+    getError(): string;
     getGlobalDisplayValue(): string;
     getHTMLValue(maxChars?: number | undefined): string;
     getJournalEntry(mostRecent: number): string;
@@ -2977,6 +3023,7 @@ declare class GlideElementWorkflow implements IGlideElement { // sc_req_item.sta
     getChoiceValue(): string;
     getDecryptedValue(): string;
     getDisplayValue(maxCharacters?: number | undefined): string;
+    getError(): string;
     getGlobalDisplayValue(): string;
     getHTMLValue(maxChars?: number | undefined): string;
     getJournalEntry(mostRecent: number): string;
@@ -3007,6 +3054,7 @@ declare class GlideElementWorkflowConditions implements IGlideElement { // sys_t
     getChoiceValue(): string;
     getDecryptedValue(): string;
     getDisplayValue(maxCharacters?: number | undefined): string;
+    getError(): string;
     getGlobalDisplayValue(): string;
     getHTMLValue(maxChars?: number | undefined): string;
     getJournalEntry(mostRecent: number): string;
