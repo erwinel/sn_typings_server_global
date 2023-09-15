@@ -1,6 +1,8 @@
 # sn_typings_server_global
 
-TypeScript definitions for globally-scoped ServiceNow server-side development
+TypeScript definitions for globally-scoped ServiceNow server-side development.
+
+See [Using Class.create with TypeScript](./dist/$$class.md) for API class creation.
 
 ## Dev Setup
 
