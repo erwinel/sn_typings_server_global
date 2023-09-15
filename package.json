@@ -23,6 +23,9 @@
     "url": "https://github.com/erwinel/sn_typings_server_global/issues"
   },
   "homepage": "https://github.com/erwinel/sn_typings_server_global#readme",
+  "dependencies": {
+    "@types/jasmine": "^4.3.5"
+  },
   "devDependencies": {
     "gulp": "^4.0.2",
     "typescript": "^5.1.6"
