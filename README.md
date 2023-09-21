@@ -26,7 +26,7 @@ This is intended to be developed using VS Code. See [/.vscode/extensions.json](.
 ## TODO
 
 - [ ] Make sure code from `script` and `src` folders has been implemented in the [usms-global](https://github.com/erwinel/usms-global) repository.
-- [ ] Mmove `*.json` to the [usms-global](https://github.com/erwinel/usms-global) repository.
+- [X] Move `*.json` to the [usms-global](https://github.com/erwinel/usms-global) repository.
 - [ ] Move contents of `types` folder to root of repository.
 - [ ] Remove `.vscode/tasks.json`, `dist/js`, `dist/types`, `src`, `types` and `script`.
 - [ ] Move `.vscode/ServiceNow.code-snippets` to `dist` folder.
