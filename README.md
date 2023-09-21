@@ -31,4 +31,4 @@ This is intended to be developed using VS Code. See [/.vscode/extensions.json](.
 - [ ] Remove `.vscode/tasks.json`, `dist/js`, `dist/types`, `src`, `types` and `script`.
 - [ ] Move `.vscode/ServiceNow.code-snippets` to `dist` folder.
 - [ ] Add documentation for ServiceNow.code-snippets.
-- [ ] Replace `compilerOptions.lib` settings of tsconfig with equivalent of `es3` and perhaps update `compilerOptions.target` setting.
+- [ ] Change tsconfig `compilerOptions.lib` setting to `["ES2021"]` and change `compilerOptions.target` to `"ES2021"`.
