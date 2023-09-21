@@ -2,7 +2,7 @@
 
 TypeScript definitions for globally-scoped ServiceNow server-side development.
 
-See [Using Class.create with TypeScript](./dist/$$class.md) for API class creation.
+See [Using Class.create with TypeScript](./$$class.md) for API class creation.
 
 ## Usage
 
@@ -27,8 +27,8 @@ This is intended to be developed using VS Code. See [/.vscode/extensions.json](.
 
 - [X] Make sure code from `script` and `src` folders has been implemented in the [usms-global](https://github.com/erwinel/usms-global) repository.
 - [X] Move `*.json` to the [usms-global](https://github.com/erwinel/usms-global) repository.
-- [ ] Move contents of `types` folder to root of repository.
+- [X] Move contents of `types` folder to root of repository.
 - [ ] Remove `.vscode/tasks.json`, `dist/js`, `dist/types`, `src`, `types` and `script`.
 - [ ] Move `.vscode/ServiceNow.code-snippets` to `dist` folder.
 - [ ] Add documentation for ServiceNow.code-snippets.
-- [ ] Change tsconfig `compilerOptions.lib` setting to `["ES2021"]` and change `compilerOptions.target` to `"ES2021"`.
+- [X] Change tsconfig `compilerOptions.lib` setting to `["ES2021"]` and change `compilerOptions.target` to `"ES2021"`.
