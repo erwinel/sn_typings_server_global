@@ -17,18 +17,10 @@ git commit -m "Added global-scoped SNC typings"
 
 To update submodules, use `submodule update --init --recursive`.
 
+[dist/ServiceNow.code-snippets](./dist/ServiceNow.code-snippets) contains VS Code snippets to assist with class creation.
+
 ## Dev Setup
 
 This is intended to be developed using VS Code.
 
 This is intended to be developed using VS Code. See [/.vscode/extensions.json](./.vscode/extensions.json) for a list of recommended extensions. Dependencies are mananged using [npm](https://www.npmjs.com/).
-
-## TODO
-
-- [X] Make sure code from `script` and `src` folders has been implemented in the [usms-global](https://github.com/erwinel/usms-global) repository.
-- [X] Move `*.json` to the [usms-global](https://github.com/erwinel/usms-global) repository.
-- [X] Move contents of `types` folder to root of repository.
-- [ ] Remove `.vscode/tasks.json`, `dist/js`, `dist/types`, `src`, `types` and `script`.
-- [ ] Move `.vscode/ServiceNow.code-snippets` to `dist` folder.
-- [ ] Add documentation for ServiceNow.code-snippets.
-- [X] Change tsconfig `compilerOptions.lib` setting to `["ES2021"]` and change `compilerOptions.target` to `"ES2021"`.
