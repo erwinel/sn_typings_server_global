@@ -6,6 +6,8 @@ See [Using Class.create with TypeScript](./$$class.md) for API class creation.
 
 [dist/ServiceNow.code-snippets](./dist/ServiceNow.code-snippets) contains VS Code snippets to assist with class creation.
 
+Refer to the [sn_typings_server_scoped](https://github.com/erwinel/sn_typings_server_scoped) repository for scoped type definitions.
+
 ## Usage
 
 Until the first version is published, you can reference these types using git submodules.
