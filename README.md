@@ -16,17 +16,67 @@ Refer to the following repositories for other ServiceNow type definitions:
 
 Until the first version is published, you can reference these types using git submodules.
 
-Example:
+### Adding Typings to Another Repository
 
-```powershell
+#### Add submodule
+
+In this example, the submodule will be added at `./types/snc`:
+
+```bash
+mkdir types
 git submodule add https://github.com/erwinel/sn_typings_server_global.git types/snc
 git commit -m "Added global-scoped SNC typings"
 ```
 
-To update submodules, use `git submodule update --init --recursive`.
+#### TypeScript Configuration
+
+In this example, the tsconfig.json file is located in the `./src` subdirectory, and we'll use the base path of the previous example for the `typeRoots` setting:
+
+```json
+{
+  "compilerOptions": {
+    "noImplicitAny": false,
+    "module": "none",
+    "target": "ES2015",
+    "lib": ["ES2021"],
+    "removeComments": false,
+    "sourceMap": false,
+    "strict": true,
+    "typeRoots": ["../types"],
+    "declaration": true,
+    "declarationDir": "../dist/types",
+    "outDir": "../dist/js",
+    "noEmitHelpers": true
+  }
+}
+```
+
+### Initialize Submodule After Repository Cloning
+
+If the submodules aren't cloned at the same time as the repository is cloned, you will need to initialize them using the following command:
+
+```bash
+git submodule update --init --recursive
+```
+
+#### DevContainer Configuration
+
+For the `.devcontainer/devcontainer.json` file, you will need to include the aforementioned git command in the `postCreateCommand` setting. Following is an example:
+
+```json
+{
+  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {},
+    "ghcr.io/devcontainers-contrib/features/typescript:2": {}
+  },
+  "postCreateCommand": [
+    "git submodule update --init --recursive",
+    "npm install"
+  ]
+}
+```
 
 ## Dev Setup
-
-This is intended to be developed using VS Code.
 
 This is intended to be developed using VS Code. See [/.vscode/extensions.json](./.vscode/extensions.json) for a list of recommended extensions. Dependencies are mananged using [npm](https://www.npmjs.com/).
