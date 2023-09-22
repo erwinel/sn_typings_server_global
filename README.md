@@ -22,7 +22,7 @@ Until the first version is published, you can reference these types using git su
 
 In this example, the submodule will be added at `./types/snc`:
 
-```bash
+```sh
 mkdir types
 git submodule add https://github.com/erwinel/sn_typings_server_global.git types/snc
 git commit -m "Added global-scoped SNC typings"
@@ -55,7 +55,7 @@ In this example, the tsconfig.json file is located in the `./src` subdirectory, 
 
 If the submodules aren't cloned at the same time as the repository is cloned, you will need to initialize them using the following command:
 
-```bash
+```sh
 git submodule update --init --recursive
 ```
 
@@ -71,10 +71,34 @@ For the `.devcontainer/devcontainer.json` file, you will need to include the afo
     "ghcr.io/devcontainers-contrib/features/typescript:2": {}
   },
   "postCreateCommand": [
+    "npm install",
     "git submodule update --init --recursive",
-    "npm install"
+    "cd types/snc; git checkout master"
   ]
 }
+```
+
+### Update Submodule from Origin
+
+In the following examples, the submodule exists at `./types/snc`.
+
+```sh
+cd types/snc
+git pull --rebase
+cd ../..
+git commit -am "Updated types/snc submodule to latest revision"
+```
+
+## Push Submodule Updates to Origin
+
+In the following examples, the submodule exists at `./types/snc`.
+
+```sh
+cd types/snc
+git add -A
+git commit -am "[Your message here]"
+cd ../..
+git commit -am "[Your message here]"
 ```
 
 ## Dev Setup
