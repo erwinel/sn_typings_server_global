@@ -25,6 +25,9 @@ In this example, the submodule will be added at `./types/snc`:
 ```sh
 mkdir types
 git submodule add https://github.com/erwinel/sn_typings_server_global.git types/snc
+cd types/snc
+git checkout master
+cd ../..
 git commit -m "Added global-scoped SNC typings"
 ```
 
@@ -57,6 +60,8 @@ If the submodules aren't cloned at the same time as the repository is cloned, yo
 
 ```sh
 git submodule update --init --recursive
+cd types/snc
+git checkout master
 ```
 
 #### DevContainer Configuration
