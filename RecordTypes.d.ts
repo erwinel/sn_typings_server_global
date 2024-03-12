@@ -7674,86 +7674,113 @@ declare namespace $$tableFields {
      */
     export interface pc_vendor_cat_item extends sys_metadata {
         /**
-         * "Active" element.
-         * Default value: true.
+         * "Active" column element.
+         * Type: True/False (boolean).
+         * Default Value: true
          */
         active: GlideElementBoolean;
 
         /**
-         * "Description" element.
-         * Type: Translated HTML (translated_html)
-         * Max Length: 8000.
+         * "Description" column element.
+         * Type: Translated HTML (translated_html).
+         * Max Length: 8000
          */
-        description: GlideElement;
- 
+        description: GlideElementTranslatedHTML;
+
         /**
-         * "Features" element.
-         * Max Length: 4000.
+         * "Features" column element.
+         * Max Length: 4000
          */
         features: GlideElement;
- 
+
         /**
-         * "List Price" element.
+         * "List Price" column element.
+         * Type: Currency (currency).
          */
         list_price: GlideElementCurrency;
- 
+
         /**
-         * "Product Model" element.
+         * "Product Model" column element.
+         * References: Product Model
+         * @see {@link $$GlideRecord.cmdb_model}
          */
         model: $$GlideElement.cmdb_model;
- 
+
         /**
-         * Name element.
-         * Max Length: 100.
+         * "Name" column element.
+         * Max Length: 100; Mandatory: true
          */
         name: GlideElement;
-        
+
         /**
-         * "Out of Stock" element.
+         * "Out of Stock" column element.
+         * Type: True/False (boolean).
          */
         out_of_stock: GlideElementBoolean;
-        
+
         /**
-         * "Picture" element.
+         * "Picture" column element.
+         * Type: Image (user_image).
          */
         picture: GlideElementUserImage;
- 
+
         /**
-         * "Vendor Price" element.
+         * "Vendor Price" column element.
+         * Type: Currency (currency).
          */
         price: GlideElementCurrency;
- 
+
         /**
-         * "Product Catalog Item" element.
+         * "Product Catalog Item" column element.
+         * References: Catalog Item
+         * @see {@link $$GlideRecord.sc_cat_item}
          */
         product_catalog_item: $$GlideElement.sc_cat_item;
- 
+
         /**
-         * "Product ID" element.
-         * Max Length: 40.
+         * "Product ID" column element.
+         * Max Length: 40; Mandatory: true
          */
         product_id: GlideElement;
- 
+
         /**
-         * "Short Description" element.
-         * Max Length: 100.
+         * "Short Description" column element.
+         * Max Length: 100
          */
         short_description: GlideElement;
- 
+
         /**
-         * "Specifications" element.
-         * Max Length: 4000.
+         * "Specifications" column element.
+         * Max Length: 4000
          */
         specs: GlideElement;
- 
+
         /**
-         * "UPC" element.
-         * Max Length: 40.
+         * "Domain" column element.
+         * Type: Domain ID (domain_id).
+         * Default Value: global
+         */
+        sys_domain: GlideElementDomainId;
+
+        /**
+         * "Domain Path" column element.
+         * Type: "Domain Path" (domain_path).
+         * Max Length: 255
+         * Default Value: /
+         */
+        sys_domain_path: GlideElement;
+
+        /**
+         * "UPC" column element.
+         * Max Length: 40
          */
         upc: GlideElement;
- 
+
         /**
-         * "Vendor" element.
+         * "Vendor" column element.
+         * References: Company
+         * Mandatory: true
+         * @see {@link $$GlideRecord.core_company}
          */
         vendor: $$GlideElement.core_company;
     }
@@ -7765,57 +7792,72 @@ declare namespace $$tableFields {
      */
     export interface sc_cat_item_guide_items extends sys_metadata {
         /**
-         * "If this condition is true" element.
+         * "If this condition is true" column element.
+         * Type: "Variable Conditions" (variable_conditions).
+         * Max Length: 4000
          */
-        condition: GlideElementVariableConditions;
-        
+        condition: GlideElement;
+
         /**
-         * "Guide" element.
+         * "Guide" column element.
+         * References: Order guide
+         * @see {@link $$GlideRecord.sc_cat_item_guide}
          */
         guide: $$GlideElement.sc_cat_item_guide;
-        
+
         /**
-         * "Ignore Mandatory Evaluation" element.
-         * Default value: false.
+         * "Ignore Mandatory Evaluation" column element.
+         * Type: True/False (boolean).
+         * Default Value: false
          */
         ignore_mandatory_eval: GlideElementBoolean;
-        
+
         /**
-         * "Include this item" element.
+         * "Include this item" column element.
+         * References: Catalog Item
+         * @see {@link $$GlideRecord.sc_cat_item}
          */
         item: $$GlideElement.sc_cat_item;
-        
+
         /**
-         * "At this position" element.
-         * Type: Integer (integer)
+         * "At this position" column element.
+         * Type: Integer (integer).
          */
         order: GlideElementNumeric;
-        
+
         /**
-         * "Quantity" element.
-         * Type: Choice (choice)
+         * "Quantity" column element.
+         * Type: "Choice" (choice).
+         * Max Length: 40
+         * Default Value: 1
          */
         quantity: GlideElement;
-        
+
         /**
-         * "Requested by" element.
+         * "Requested by" column element.
+         * References: User
+         * @see {@link $$GlideRecord.sys_user}
          */
         requested_by: $$GlideElement.sys_user;
-        
+
         /**
-         * "Requested for" element.
+         * "Requested for" column element.
+         * References: User
+         * @see {@link $$GlideRecord.sys_user}
          */
         requested_for: $$GlideElement.sys_user;
-        
+
         /**
-         * "Show quantity" element.
-         * Default value: false.
+         * "Show quantity" column element.
+         * Type: True/False (boolean).
+         * Default Value: false
          */
         show_quantity: GlideElementBoolean;
-        
+
         /**
-         * "Use cart layout" element.
-         * Default value: true.
+         * "Use cart layout" column element.
+         * Type: True/False (boolean).
+         * Default Value: true
          */
         use_sc_layout: GlideElementBoolean;
     }
@@ -7826,7 +7868,19 @@ declare namespace $$tableFields {
      * @see {@link $$GlideRecord.sc_cat_item_dt_mtom}
      */
     export interface sc_cat_item_dt_mtom extends sys_metadata {
-        // TODO: Add fields from https://dev203287.service-now.com/now/nav/ui/classic/params/target/sys_dictionary_list.do%3Fsysparm_query%3Dname%253Dsc_cat_item_dt_mtom%255EORDERBYelement
+        /**
+         * "Dependent Item" column element.
+         * References: Execution Plan Task
+         * @see {@link $$GlideRecord.sc_cat_item_delivery_task}
+         */
+        dt_child: $$GlideElement.sc_cat_item_delivery_task;
+
+        /**
+         * "Parent Item" column element.
+         * References: Execution Plan Task
+         * @see {@link $$GlideRecord.sc_cat_item_delivery_task}
+         */
+        dt_parent: $$GlideElement.sc_cat_item_delivery_task;
     }
 
     /**
@@ -7835,7 +7889,19 @@ declare namespace $$tableFields {
      * @see {@link $$GlideRecord.sc_cat_item_user_no_mtom}
      */
     export interface sc_cat_item_user_no_mtom extends sys_metadata {
-        // TODO: Add fields from https://dev203287.service-now.com/now/nav/ui/classic/params/target/sys_dictionary_list.do%3Fsysparm_query%3Dname%253Dsc_cat_item_user_no_mtom%255EORDERBYelement
+        /**
+         * "Dependent Item" column element.
+         * References: User
+         * @see {@link $$GlideRecord.sys_user}
+         */
+        sc_avail_user: $$GlideElement.sys_user;
+
+        /**
+         * "Parent Item" column element.
+         * References: Catalog Item
+         * @see {@link $$GlideRecord.sc_cat_item}
+         */
+        sc_cat_item: $$GlideElement.sc_cat_item;
     }
 
     /**
@@ -7844,7 +7910,19 @@ declare namespace $$tableFields {
      * @see {@link $$GlideRecord.sc_cat_item_subscribe_no_mtom}
      */
     export interface sc_cat_item_subscribe_no_mtom extends sys_metadata {
-        // TODO: Add fields from https://dev203287.service-now.com/now/nav/ui/classic/params/target/sys_dictionary_list.do%3Fsysparm_query%3Dname%253Dsc_cat_item_subscribe_no_mtom%255EORDERBYelement
+        /**
+         * "Parent Item" column element.
+         * References: Catalog Item
+         * @see {@link $$GlideRecord.sc_cat_item}
+         */
+        sc_cat_item: $$GlideElement.sc_cat_item;
+
+        /**
+         * "Dependent Item" column element.
+         * References: Offering
+         * @see {@link $$GlideRecord.service_offering}
+         */
+        service_offering: $$GlideElement.service_offering;
     }
 
     /**
@@ -7853,7 +7931,19 @@ declare namespace $$tableFields {
      * @see {@link $$GlideRecord.sc_cat_item_group_no_mtom}
      */
     export interface sc_cat_item_group_no_mtom extends sys_metadata {
-        // TODO: Add fields from https://dev203287.service-now.com/now/nav/ui/classic/params/target/sys_dictionary_list.do%3Fsysparm_query%3Dname%253Dsc_cat_item_group_no_mtom%255EORDERBYelement
+        /**
+         * "Dependent Item" column element.
+         * References: Group
+         * @see {@link $$GlideRecord.sys_user_group}
+         */
+        sc_avail_group: $$GlideElement.sys_user_group;
+
+        /**
+         * "Parent Item" column element.
+         * References: Catalog Item
+         * @see {@link $$GlideRecord.sc_cat_item}
+         */
+        sc_cat_item: $$GlideElement.sc_cat_item;
     }
 
     /**
@@ -7862,7 +7952,19 @@ declare namespace $$tableFields {
      * @see {@link $$GlideRecord.sc_cat_item_company_no_mtom}
      */
     export interface sc_cat_item_company_no_mtom extends sys_metadata {
-        // TODO: Add fields from https://dev203287.service-now.com/now/nav/ui/classic/params/target/sys_dictionary_list.do%3Fsysparm_query%3Dname%253Dsc_cat_item_company_no_mtom%255EORDERBYelement
+        /**
+         * "Dependent Item" column element.
+         * References: Company
+         * @see {@link $$GlideRecord.core_company}
+         */
+        sc_avail_company: $$GlideElement.core_company;
+
+        /**
+         * "Parent Item" column element.
+         * References: Catalog Item
+         * @see {@link $$GlideRecord.sc_cat_item}
+         */
+        sc_cat_item: $$GlideElement.sc_cat_item;
     }
 
     /**
@@ -7871,7 +7973,19 @@ declare namespace $$tableFields {
      * @see {@link $$GlideRecord.sc_cat_item_location_no_mtom}
      */
     export interface sc_cat_item_location_no_mtom extends sys_metadata {
-        // TODO: Add fields from https://dev203287.service-now.com/now/nav/ui/classic/params/target/sys_dictionary_list.do%3Fsysparm_query%3Dname%253Dsc_cat_item_location_no_mtom%255EORDERBYelement
+        /**
+         * "Dependent Item" column element.
+         * References: Location
+         * @see {@link $$GlideRecord.cmn_location}
+         */
+        sc_avail_location: $$GlideElement.cmn_location;
+
+        /**
+         * "Parent Item" column element.
+         * References: Catalog Item
+         * @see {@link $$GlideRecord.sc_cat_item}
+         */
+        sc_cat_item: $$GlideElement.sc_cat_item;
     }
 
     /**
@@ -7880,7 +7994,19 @@ declare namespace $$tableFields {
      * @see {@link $$GlideRecord.sc_cat_item_dt_ext_mtom}
      */
     export interface sc_cat_item_dt_ext_mtom extends sys_metadata {
-        // TODO: Add fields from https://dev203287.service-now.com/now/nav/ui/classic/params/target/sys_dictionary_list.do%3Fsysparm_query%3Dname%253Dsc_cat_item_dt_ext_mtom%255EORDERBYelement
+        /**
+         * "Waits on me" column element.
+         * References: Execution Plan Task
+         * @see {@link $$GlideRecord.sc_cat_item_delivery_task}
+         */
+        dt_child: $$GlideElement.sc_cat_item_delivery_task;
+
+        /**
+         * "Waits for" column element.
+         * References: Execution Plan Task
+         * @see {@link $$GlideRecord.sc_cat_item_delivery_task}
+         */
+        dt_parent: $$GlideElement.sc_cat_item_delivery_task;
     }
 
     /**
@@ -7889,7 +8015,39 @@ declare namespace $$tableFields {
      * @see {@link $$GlideRecord.sc_cat_item_dt_approval}
      */
     export interface sc_cat_item_dt_approval extends sc_cat_item_delivery_task {
-        // TODO: Add fields from https://dev203287.service-now.com/now/nav/ui/classic/params/target/sys_dictionary_list.do%3Fsysparm_query%3Dname%253Dsc_cat_item_dt_approval%255EORDERBYelement
+        /**
+         * "Approval script" column element.
+         * Type: "Script (Plain)" (script_plain).
+         * Max Length: 4000
+         */
+        approval_script: GlideElementScript;
+
+        /**
+         * "Description" column element.
+         * Max Length: 4000
+         */
+        description: GlideElement;
+
+        /**
+         * "Rejection goto" column element.
+         * References: Execution Plan Task
+         * @see {@link $$GlideRecord.sc_cat_item_delivery_task}
+         */
+        rejection_goto: $$GlideElement.sc_cat_item_delivery_task;
+
+        /**
+         * "Upon approval" column element.
+         * Max Length: 40
+         * Default Value: proceed
+         */
+        upon_approval: GlideElement;
+
+        /**
+         * "Upon reject" column element.
+         * Max Length: 40
+         * Default Value: cancel
+         */
+        upon_reject: GlideElement;
     }
 
     /**
@@ -7898,7 +8056,33 @@ declare namespace $$tableFields {
      * @see {@link $$GlideRecord.sc_cat_item_children}
      */
     export interface sc_cat_item_children extends sys_metadata {
-        // TODO: Add fields from https://dev203287.service-now.com/now/nav/ui/classic/params/target/sys_dictionary_list.do%3Fsysparm_query%3Dname%253Dsc_cat_item_children%255EORDERBYelement
+        /**
+         * "Included by" column element.
+         * References: Catalog Item
+         * @see {@link $$GlideRecord.sc_cat_item}
+         */
+        child: $$GlideElement.sc_cat_item;
+
+        /**
+         * "Order" column element.
+         * Type: Integer (integer).
+         * Default Value: 100
+         */
+        order: GlideElementNumeric;
+
+        /**
+         * "Requested Item" column element.
+         * References: Catalog Item
+         * @see {@link $$GlideRecord.sc_cat_item}
+         */
+        parent: $$GlideElement.sc_cat_item;
+
+        /**
+         * "Quantity" column element.
+         * Type: Integer (integer).
+         * Default Value: 1
+         */
+        quantity: GlideElementNumeric;
     }
 
     /**
@@ -7907,7 +8091,19 @@ declare namespace $$tableFields {
      * @see {@link $$GlideRecord.sc_cat_item_user_criteria_no_mtom}
      */
     export interface sc_cat_item_user_criteria_no_mtom extends sys_metadata {
-        // TODO: Add fields from https://dev203287.service-now.com/now/nav/ui/classic/params/target/sys_dictionary_list.do%3Fsysparm_query%3Dname%253Dsc_cat_item_user_criteria_no_mtom%255EORDERBYelement
+        /**
+         * "Catalog Item" column element.
+         * References: Catalog Item
+         * @see {@link $$GlideRecord.sc_cat_item}
+         */
+        sc_cat_item: $$GlideElement.sc_cat_item;
+
+        /**
+         * "Not Available for" column element.
+         * References: User Criteria
+         * @see {@link $$GlideRecord.user_criteria}
+         */
+        user_criteria: $$GlideElement.user_criteria;
     }
 
     /**
@@ -7916,7 +8112,19 @@ declare namespace $$tableFields {
      * @see {@link $$GlideRecord.sc_cat_item_user_criteria_mtom}
      */
     export interface sc_cat_item_user_criteria_mtom extends sys_metadata {
-        // TODO: Add fields from https://dev203287.service-now.com/now/nav/ui/classic/params/target/sys_dictionary_list.do%3Fsysparm_query%3Dname%253Dsc_cat_item_user_criteria_mtom%255EORDERBYelement
+        /**
+         * "Catalog Item" column element.
+         * References: Catalog Item
+         * @see {@link $$GlideRecord.sc_cat_item}
+         */
+        sc_cat_item: $$GlideElement.sc_cat_item;
+
+        /**
+         * "Available for" column element.
+         * References: User Criteria
+         * @see {@link $$GlideRecord.user_criteria}
+         */
+        user_criteria: $$GlideElement.user_criteria;
     }
 
     /**
@@ -7925,7 +8133,19 @@ declare namespace $$tableFields {
      * @see {@link $$GlideRecord.sc_cat_item_user_mtom}
      */
     export interface sc_cat_item_user_mtom extends sys_metadata {
-        // TODO: Add fields from https://dev203287.service-now.com/now/nav/ui/classic/params/target/sys_dictionary_list.do%3Fsysparm_query%3Dname%253Dsc_cat_item_user_mtom%255EORDERBYelement
+        /**
+         * "Dependent Item" column element.
+         * References: User
+         * @see {@link $$GlideRecord.sys_user}
+         */
+        sc_avail_user: $$GlideElement.sys_user;
+
+        /**
+         * "Parent Item" column element.
+         * References: Catalog Item
+         * @see {@link $$GlideRecord.sc_cat_item}
+         */
+        sc_cat_item: $$GlideElement.sc_cat_item;
     }
 
     /**
@@ -7934,7 +8154,19 @@ declare namespace $$tableFields {
      * @see {@link $$GlideRecord.sc_cat_item_subscribe_mtom}
      */
     export interface sc_cat_item_subscribe_mtom extends sys_metadata {
-        // TODO: Add fields from https://dev203287.service-now.com/now/nav/ui/classic/params/target/sys_dictionary_list.do%3Fsysparm_query%3Dname%253Dsc_cat_item_subscribe_mtom%255EORDERBYelement
+        /**
+         * "Catalog Item" column element.
+         * References: Catalog Item
+         * @see {@link $$GlideRecord.sc_cat_item}
+         */
+        sc_cat_item: $$GlideElement.sc_cat_item;
+
+        /**
+         * "Service Offering" column element.
+         * References: Offering
+         * @see {@link $$GlideRecord.service_offering}
+         */
+        service_offering: $$GlideElement.service_offering;
     }
 
     /**
@@ -7943,7 +8175,19 @@ declare namespace $$tableFields {
      * @see {@link $$GlideRecord.sc_cat_item_dept_mtom}
      */
     export interface sc_cat_item_dept_mtom extends sys_metadata {
-        // TODO: Add fields from https://dev203287.service-now.com/now/nav/ui/classic/params/target/sys_dictionary_list.do%3Fsysparm_query%3Dname%253Dsc_cat_item_dept_mtom%255EORDERBYelement
+        /**
+         * "Dependent Item" column element.
+         * References: Department
+         * @see {@link $$GlideRecord.cmn_department}
+         */
+        sc_avail_dept: $$GlideElement.cmn_department;
+
+        /**
+         * "Parent Item" column element.
+         * References: Catalog Item
+         * @see {@link $$GlideRecord.sc_cat_item}
+         */
+        sc_cat_item: $$GlideElement.sc_cat_item
     }
 
     /**
@@ -7952,7 +8196,19 @@ declare namespace $$tableFields {
      * @see {@link $$GlideRecord.sc_cat_item_company_mtom}
      */
     export interface sc_cat_item_company_mtom extends sys_metadata {
-        // TODO: Add fields from https://dev203287.service-now.com/now/nav/ui/classic/params/target/sys_dictionary_list.do%3Fsysparm_query%3Dname%253Dsc_cat_item_company_mtom%255EORDERBYelement
+        /**
+         * "Dependent Item" column element.
+         * References: Company
+         * @see {@link $$GlideRecord.core_company}
+         */
+        sc_avail_company: $$GlideElement.core_company;
+
+        /**
+         * "Parent Item" column element.
+         * References: Catalog Item
+         * @see {@link $$GlideRecord.sc_cat_item}
+         */
+        sc_cat_item: $$GlideElement.sc_cat_item;
     }
 
     /**
@@ -7961,7 +8217,19 @@ declare namespace $$tableFields {
      * @see {@link $$GlideRecord.sc_cat_item_location_mtom}
      */
     export interface sc_cat_item_location_mtom extends sys_metadata {
-        // TODO: Add fields from https://dev203287.service-now.com/now/nav/ui/classic/params/target/sys_dictionary_list.do%3Fsysparm_query%3Dname%253Dsc_cat_item_location_mtom%255EORDERBYelement
+        /**
+         * "Dependent Item" column element.
+         * References: Location
+         * @see {@link $$GlideRecord.cmn_location}
+         */
+        sc_avail_location: $$GlideElement.cmn_location;
+
+        /**
+         * "Parent Item" column element.
+         * References: Catalog Item
+         * @see {@link $$GlideRecord.sc_cat_item}
+         */
+        sc_cat_item: $$GlideElement.sc_cat_item;
     }
 
     /**
@@ -8351,38 +8619,41 @@ declare namespace $$tableFields {
      * @see {@link $$GlideRecord.pc_product_cat_item}
      * @see {@link $$GlideElement.pc_product_cat_item}
      */
-    export interface pc_product_cat_item extends sc_cat_item  {
+    export interface pc_product_cat_item extends sc_cat_item {
         /**
-         * "Auto Created" element.
+         * "Auto Created" column element.
+         * Type: True/False (boolean).
          */
         auto_created: GlideElementBoolean;
- 
+
         /**
-         * "Features" element.
-         * Max Length: 4000.
+         * "Features" column element.
+         * Max Length: 4000
          */
         features: GlideElement;
- 
+
         /**
-         * "Product ID" element.
-         * Max Length: 40.
+         * "Product ID" column element.
+         * Max Length: 40
          */
         product_id: GlideElement;
- 
+
         /**
-         * "Specifications" element.
-         * Max Length: 4000.
+         * "Specifications" column element.
+         * Max Length: 4000
          */
         specs: GlideElement;
- 
+
         /**
-         * "UPC" element.
-         * Max Length: 40.
+         * "UPC" column element.
+         * Max Length: 40
          */
         upc: GlideElement;
- 
+
         /**
-         * "Vendor Catalog Item" element.
+         * "Vendor Catalog Item" column element.
+         * References: Vendor Catalog Item
+         * @see {@link $$GlideRecord.pc_vendor_cat_item}
          */
         vendor_catalog_item: $$GlideElement.pc_vendor_cat_item;
     }
@@ -8392,14 +8663,14 @@ declare namespace $$tableFields {
      * @see {@link $$GlideRecord.pc_software_cat_item}
      * @see {@link $$GlideElement.pc_software_cat_item}
      */
-    export interface pc_software_cat_item extends pc_product_cat_item  { }
+    export interface pc_software_cat_item extends pc_product_cat_item { }
     
     /**
      * "Hardware Catalog" GlideRecord fields.
      * @see {@link $$GlideRecord.pc_hardware_cat_item}
      * @see {@link $$GlideElement.pc_hardware_cat_item}
      */
-    export interface pc_hardware_cat_item extends pc_product_cat_item  { }
+    export interface pc_hardware_cat_item extends pc_product_cat_item { }
     
     /**
      * "Record Producer" GlideRecord fields.
@@ -8409,61 +8680,77 @@ declare namespace $$tableFields {
     export interface sc_cat_item_producer extends sc_cat_item {
         /**
          * "Allow edit" column element.
-         * Max Length: 40.
-         * Default Value: false.
+         * Type: True/False (boolean).
+         * Default Value: false
          */
         allow_edit: GlideElementBoolean;
-        
+
         /**
          * "Can cancel" column element.
-         * Max Length: 40.
-         * Default Value: false.
+         * Type: True/False (boolean).
+         * Default Value: false
          */
         can_cancel: GlideElementBoolean;
-        
+
         /**
          * "Post insert script" column element.
+         * This script is executed after the record is generated.
+         * `current` Is the GlideRecord produced by Record Producer. Use `current.update()` to update the record
+         * To access the variables, use `producer.var1` where var1 is the name of the variable
+         * To access the Record Producer use `cat_item`
          * Type: "Script (Plain)" (script_plain).
-         * Max Length: 8000.
+         * Max Length: 8000
          */
         post_insert_script: GlideElementScript;
-        
+
         /**
          * "Redirect to" column element.
-         * Max Length: 40.
+         * Max Length: 40
+         * Default Value: javascript: gs.getProperty('glide.sc.producer.redirect_url', 'generated_record')
          */
         redirect_url: GlideElement;
-        
+
         /**
          * "Save options" column element.
-         * Max Length: 40.
+         * Max Length: 40
          */
         save_options: GlideElement;
-        
+
         /**
          * "Save script" column element.
+         * This script is executed at every step save in Catalog Builder.
+         * This script is executed before `Script` is executed.
+         * `current` Is the GlideRecord produced by Record Producer.
+         * To access the variables, use `producer.var1` where var1 is the name of the variable
+         * To access the Record Producer use `cat_item`
          * Type: "Script (Plain)" (script_plain).
-         * Max Length: 8000.
+         * Max Length: 8000
          */
         save_script: GlideElementScript;
-        
+
         /**
          * "Script" column element.
+         * This script is executed before the Record is generated
+         * `current`- GlideRecord produced by Record Producer
+         * Don't use `current.update()` or `current.insert()` as the record is generated by Record Producer
+         * Don't use `current.setValue('sys_class_name', 'xxx')` as this will trigger reparent flow and can cause data loss
+         * Avoid `current.setAbortAction()` and generate a separate record
+         * Use `producer.var1` to access variables
          * Type: "Script (Plain)" (script_plain).
-         * Max Length: 8000.
+         * Max Length: 8000
          */
         script: GlideElementScript;
-        
+
         /**
          * "Table name" column element.
          * Type: "Table Name" (table_name).
-         * Mandatory: true; Max Length: 80.
+         * Max Length: 80; Mandatory: true
          */
         table_name: GlideElement;
-        
+
         /**
          * "View" column element.
-         * Max Length: 40.
+         * Max Length: 40
          */
         view: GlideElement;
     }
@@ -8473,22 +8760,24 @@ declare namespace $$tableFields {
      * @see {@link $$GlideRecord.sc_cat_item_producer_service}
      * @see {@link $$GlideElement.sc_cat_item_producer_service}
      */
-    export interface sc_cat_item_producer_service extends sc_cat_item_producer  {
-
+    export interface sc_cat_item_producer_service extends sc_cat_item_producer {
         /**
-         * "Fulfillment user" element.
+         * "Fulfillment user" column element.
+         * References: User
+         * @see {@link $$GlideRecord.sys_user}
          */
         fulfillment_user: $$GlideElement.sys_user;
- 
+
         /**
-         * "Processing workflow" element.
-         * Max Length: 4000.
+         * "Processing workflow" column element.
+         * Max Length: 4000
          */
         processing_workflow: GlideElement;
- 
+
         /**
-         * "Submission message" element.
-         * Max Length: 1000.
+         * "Submission message" column element.
+         * Type: Translated Text (translated_text).
+         * Max Length: 1000
          */
         submission_message: GlideElementTranslatedText;
     }
@@ -8507,54 +8796,52 @@ declare namespace $$tableFields {
      */
     export interface std_change_record_producer extends sc_cat_item_producer {
         /**
-         * "Available in \u0027Create New\u0027" column element.
-         * Max Length: 40.
-         * Default Value: true.
+         * "Available in 'Create New'" column element.
+         * Type: True/False (boolean).
+         * Default Value: true
          */
         available_in_ui: GlideElementBoolean;
-        
+
         /**
          * "Closed Change count" column element.
-         * Type: "Integer" (integer).
-         * Max Length: 40.
-         * Default Value: 0.
+         * Type: Integer (integer).
+         * Default Value: 0
          */
         closed_change_count: GlideElementNumeric;
-        
+
         /**
          * "Color" column element.
          * Type: "Color" (color).
-         * Max Length: 40.
-         * Default Value: "#cbcbcb".
+         * Max Length: 40
+         * Default Value: #cbcbcb
          */
         color: GlideElement;
-        
+
         /**
          * "Current version" column element.
-         * Max Length: 32.
+         * References: Standard Change Template Version
+         * @see {@link $$GlideRecord.std_change_producer_version}
          */
         current_version: $$GlideElement.std_change_producer_version;
-        
+
         /**
          * "Percent successful" column element.
-         * Type: "Floating Point Number" (float).
-         * Max Length: 40.
-         * Default Value: 0.
+         * Type: Floating Point Number (float).
+         * Default Value: 0
          */
         percent_successful: GlideElementNumeric;
-        
+
         /**
          * "Retired" column element.
-         * Max Length: 40.
-         * Default Value: false.
+         * Type: True/False (boolean).
+         * Default Value: false
          */
         retired: GlideElementBoolean;
-        
+
         /**
          * "Unsuccessful Change count" column element.
-         * Type: "Integer" (integer).
-         * Max Length: 40.
-         * Default Value: 0.
+         * Type: Integer (integer).
+         * Default Value: 0
          */
         unsuccessful_change_count: GlideElementNumeric;
     }
@@ -8566,30 +8853,36 @@ declare namespace $$tableFields {
      */
     export interface sc_cat_item_content extends sc_cat_item {
         /**
-         * "Content type" element.
-         * Max Length: 40.
+         * "Content type" column element.
+         * Max Length: 40
+         * Default Value: kb
          */
         content_type: GlideElement;
-        
+
         /**
          * "KB article" column element.
+         * References: Knowledge
+         * @see {@link $$GlideRecord.kb_knowledge}
          */
         kb_article: $$GlideElement.kb_knowledge;
-        
+
         /**
          * "Module" column element.
+         * References: Module
+         * @see {@link $$GlideRecord.sys_app_module}
          */
         module: $$GlideElement.sys_app_module;
-        
+
         /**
-         * "Target" element.
-         * Max Length: 40.
+         * "Target" column element.
+         * Max Length: 40
+         * Default Value: internal
          */
         target: GlideElement;
-        
+
         /**
-         * "URL" element.
-         * Max Length: 255.
+         * "URL" column element.
+         * Max Length: 255
          */
         url: GlideElement;
     }
@@ -8602,12 +8895,15 @@ declare namespace $$tableFields {
     export interface sc_cat_item_service extends sc_cat_item {
         /**
          * "Service" column element.
+         * References: Service
+         * @see {@link $$GlideRecord.cmdb_ci_service}
          */
         cmdb_ci_service: $$GlideElement.cmdb_ci_service;
-        
+
         /**
-         * "Number" element.
-         * Max Length: 40.
+         * "Number" column element.
+         * Max Length: 40
+         * Default Value: javascript:getNextObjNumber();
          */
         number: GlideElement;
     }
@@ -8620,6 +8916,8 @@ declare namespace $$tableFields {
     export interface sc_cat_item_wizard extends sc_cat_item {
         /**
          * "Wizard" column element.
+         * References: Wizard
+         * @see {@link $$GlideRecord.expert}
          */
         expert: $$GlideElement.expert;
     }
@@ -8631,32 +8929,44 @@ declare namespace $$tableFields {
      */
     export interface sc_cat_item_guide extends sc_cat_item {
         /**
-         * "Cascade Variables" element.
+         * "Cascade Variables" column element.
+         * Type: True/False (boolean).
+         * Default Value: false
          */
         cascade: GlideElementBoolean;
- 
+
         /**
-         * "Show Include Toggle" element.
+         * "Show Include Toggle" column element.
+         * Type: True/False (boolean).
+         * Default Value: true
          */
         include_items: GlideElementBoolean;
- 
+
         /**
-         * "Order to cart" element.
+         * "Order to cart" column element.
+         * Type: True/False (boolean).
+         * Default Value: false
          */
         order_to_cart: GlideElementBoolean;
- 
+
         /**
-         * Script element.
+         * "Script" column element.
+         * Type: "Script (Plain)" (script_plain).
+         * Max Length: 8000
          */
         script: GlideElementScript;
- 
+
         /**
-         * "Two step" element.
+         * "Two step" column element.
+         * Type: True/False (boolean).
+         * Default Value: false
          */
         two_step: GlideElementBoolean;
- 
+
         /**
-         * Validator element.
+         * "Validator" column element.
+         * Type: "Script (Plain)" (script_plain).
+         * Max Length: 8000
          */
         validator: GlideElementScript;
     }
@@ -8668,59 +8978,76 @@ declare namespace $$tableFields {
      */
     export interface sc_cat_item_delivery_plan extends sys_metadata {
         /**
-         * Active element.
+         * "Active" column element.
+         * Type: True/False (boolean).
+         * Default Value: true
          */
         active: GlideElementBoolean;
- 
+
         /**
-         * Advanced element.
+         * "Advanced" column element.
+         * Type: True/False (boolean).
+         * Default Value: false
          */
         advanced: GlideElementBoolean;
- 
+
         /**
-         * "On Calendar" element.
+         * "On Calendar" column element.
+         * References: Calendar
          * @see {@link $$GlideRecord.sys_calendar}
          */
         calendar: $$GlideElement.sys_calendar;
- 
+
         /**
-         * Conditions element.
+         * "Conditions" column element.
+         * Type: Conditions (conditions).
          */
         condition: GlideElementConditions;
- 
+
         /**
-         * Name element.
+         * "Name" column element.
+         * Max Length: 100
          */
         name: GlideElement;
- 
+
         /**
-         * Order element.
+         * "Order" column element.
+         * Type: Integer (integer).
+         * Default Value: 100
          */
         order: GlideElementNumeric;
- 
+
         /**
-         * "Parent table" element.
+         * "Parent table" column element.
+         * Type: "Table Name" (table_name).
+         * Max Length: 80
+         * Default Value: sc_req_item
          */
         parent_table: GlideElement;
- 
+
         /**
-         * Script element.
+         * "Script" column element.
+         * Max Length: 8000
          */
         script: GlideElement;
- 
+
         /**
-         * "Short description" element.
+         * "Short description" column element.
+         * Max Length: 120
          */
         short_description: GlideElement;
- 
+
         /**
-         * "Task table" element.
+         * "Task table" column element.
+         * Type: "Table Name" (table_name).
+         * Max Length: 80
+         * Default Value: sc_task
          */
         task_table: GlideElement;
- 
+
         /**
-         * "Total delivery time" element.
-         * Type: Duration (glide_duration); scalar type: datetime
+         * "Total delivery time" column element.
+         * Type: Type: Duration (glide_duration); scalar type: date
          */
         total_delivery_time: GlideElementGlideObject;
     }
@@ -8732,72 +9059,87 @@ declare namespace $$tableFields {
      */
     export interface sc_cat_item_delivery_task extends sys_metadata {
         /**
-         * "Assigned to" element.
+         * "Assigned to" column element.
+         * References: User
          * @see {@link $$GlideRecord.sys_user}
          */
         assigned_to: $$GlideElement.sys_user;
- 
+
         /**
-         * Condition element.
+         * "Condition" column element.
+         * Type: Conditions (conditions).
          */
         condition: GlideElementConditions;
- 
+
         /**
-         * "Condition script" element.
+         * "Condition script" column element.
+         * Type: Script (Plain) (script_plain).
+         * Max Length: 4000
          */
         condition_script: GlideElementScript;
- 
+
         /**
-         * "Delivery plan" element.
+         * "Delivery plan" column element.
+         * References: Execution Plan
          * @see {@link $$GlideRecord.sc_cat_item_delivery_plan}
          */
         delivery_plan: $$GlideElement.sc_cat_item_delivery_plan;
- 
+
         /**
-         * "Delivery time" element.
-         * Type: Duration (glide_duration); scalar type: datetime
+         * "Delivery time" column element.
+         * Type: Type: Duration (glide_duration); scalar type: date
          */
         delivery_time: GlideElementGlideObject;
- 
+
         /**
-         * "Generation script" element.
+         * "Generation script" column element.
+         * Type: Script (Plain) (script_plain).
+         * Max Length: 4000
          */
         generation_script: GlideElementScript;
- 
+
         /**
-         * "Fulfillment group" element.
+         * "Fulfillment group" column element.
+         * References: Group
          * @see {@link $$GlideRecord.sys_user_group}
          */
         group: $$GlideElement.sys_user_group;
- 
+
         /**
-         * Instructions element.
+         * "Instructions" column element.
+         * Max Length: 4000
          */
         instructions: GlideElement;
- 
+
         /**
-         * Name element.
+         * "Name" column element.
+         * Max Length: 100
          */
         name: GlideElement;
- 
+
         /**
-         * Order element.
+         * "Order" column element.
+         * Type: Decimal (decimal).
+         * Default Value: 100
          */
         order: GlideElementNumeric;
- 
+
         /**
-         * "Short description" element.
+         * "Short description" column element.
+         * Max Length: 120
          */
         short_description: GlideElement;
- 
+
         /**
-         * SLA element.
+         * "SLA" column element.
+         * References: Service Level Agreement
          * @see {@link $$GlideRecord.sysrule_escalate}
          */
         sla: $$GlideElement.sysrule_escalate;
- 
+
         /**
-         * "Work notes" element.
+         * "Work notes" column element.
+         * Max Length: 4000
          */
         work_notes: GlideElement;
     }
@@ -8810,51 +9152,55 @@ declare namespace $$tableFields {
     export interface sc_multi_row_question_answer extends IBaseRecord {
         /**
          * "Question" column element.
-         * Max Length: 32.
+         * References: Variable
+         * @see {@link $$GlideRecord.item_option_new}
          */
         item_option_new: $$GlideElement.item_option_new;
-        
+
         /**
          * "Parent ID" column element.
-         * Max Length: 32.
+         * Type: Document ID (document_id).
          */
         parent_id: GlideElementDocumentId;
-        
+
         /**
          * "Parent table name" column element.
          * Type: "Table Name" (table_name).
-         * Max Length: 80.
+         * Max Length: 80
          */
         parent_table_name: GlideElement;
-        
+
         /**
          * "Question Answer" column element.
-         * Max Length: 32.
+         * References: Question Answer
+         * @see {@link $$GlideRecord.question_answer}
          */
         question_answer: $$GlideElement.question_answer;
-        
+
         /**
          * "Row index" column element.
          * Type: "Long Integer String" (long).
-         * Max Length: 40.
+         * Max Length: 40
          */
         row_index: GlideElement;
-        
+
         /**
          * "SC Item Option" column element.
-         * Max Length: 32.
+         * References: Options
+         * @see {@link $$GlideRecord.sc_item_option}
          */
         sc_item_option: $$GlideElement.sc_item_option;
-        
+
         /**
          * "Value" column element.
-         * Max Length: 4000.
+         * Max Length: 4000
          */
         value: GlideElement;
-        
+
         /**
          * "Multi Row Set" column element.
-         * Max Length: 32.
+         * References: Variable Set
+         * @see {@link $$GlideRecord.item_option_new_set}
          */
         variable_set: $$GlideElement.item_option_new_set;
     }
@@ -8866,36 +9212,58 @@ declare namespace $$tableFields {
      */
     export interface sc_item_option extends IBaseRecord {
         /**
-         * "Cart item" column element.
-         * Max Length: 32.
-         */
-        cart_item: $$GlideElement.sc_cart_item;
-        
-        /**
          * "Question" column element.
-         * Max Length: 32.
+         * References: Variable
+         * @see {@link $$GlideRecord.item_option_new}
          */
         item_option_new: $$GlideElement.item_option_new;
-        
+
         /**
-         * "Order" column element.
-         * Type: "Integer" (integer).
-         * Max Length: 40.
-         * Default Value: 1000000.
+         * "Parent ID" column element.
+         * Type: Document ID (document_id).
          */
-        order: GlideElementNumeric;
-        
+        parent_id: GlideElementDocumentId;
+
         /**
-         * "Sc cat item option" column element.
-         * Max Length: 32.
+         * "Parent table name" column element.
+         * Type: "Table Name" (table_name).
+         * Max Length: 80
          */
-        sc_cat_item_option: $$GlideElement.sc_cat_item_option;
-        
+        parent_table_name: GlideElement;
+
+        /**
+         * "Question Answer" column element.
+         * References: Question Answer
+         * @see {@link $$GlideRecord.question_answer}
+         */
+        question_answer: $$GlideElement.question_answer;
+
+        /**
+         * "Row index" column element.
+         * Type: "Long Integer String" (long).
+         * Max Length: 40
+         */
+        row_index: GlideElement;
+
+        /**
+         * "SC Item Option" column element.
+         * References: Options
+         * @see {@link $$GlideRecord.sc_item_option}
+         */
+        sc_item_option: $$GlideElement.sc_item_option;
+
         /**
          * "Value" column element.
-         * Max Length: 4000.
+         * Max Length: 4000
          */
         value: GlideElement;
+
+        /**
+         * "Multi Row Set" column element.
+         * References: Variable Set
+         * @see {@link $$GlideRecord.item_option_new_set}
+         */
+        variable_set: $$GlideElement.item_option_new_set;
     }
     
     /**
@@ -8906,59 +9274,59 @@ declare namespace $$tableFields {
     export interface sc_cat_item_option extends sys_metadata {
         /**
          * "Cat item" column element.
-         * Max Length: 32.
+         * References: Catalog Item
+         * @see {@link $$GlideRecord.sc_cat_item}
          */
         cat_item: $$GlideElement.sc_cat_item;
-        
+
         /**
          * "Choice prices" column element.
-         * Max Length: 200.
+         * Max Length: 200
          */
         choice_prices: GlideElement;
-        
+
         /**
          * "Default value" column element.
-         * Max Length: 512.
+         * Max Length: 512
          */
         default_value: GlideElement;
-        
+
         /**
          * "Description" column element.
-         * Type: "HTML" (html); Scalar type: string.
-         * Max Length: 8000.
+         * Type: HTML (html)
+         * Max Length: 8000
          */
         description: GlideElementGlideObject;
-        
+
         /**
          * "Mandatory" column element.
-         * Max Length: 40.
-         * Default Value: false.
+         * Type: True/False (boolean).
+         * Default Value: false
          */
         mandatory: GlideElementBoolean;
-        
+
         /**
          * "Multiple choices" column element.
-         * Max Length: 200.
+         * Max Length: 200
          */
         multiple_choices: GlideElement;
-        
+
         /**
          * "Name or Question" column element.
-         * Max Length: 100.
+         * Max Length: 100
          */
         name: GlideElement;
-        
+
         /**
          * "Order" column element.
-         * Type: "Integer" (integer).
-         * Max Length: 40.
+         * Type: Integer (integer).
          */
         order: GlideElementNumeric;
-        
+
         /**
          * "Type" column element.
-         * Max Length: 40.
-         * Default Value: "short_text".
+         * Max Length: 40
+         * Default Value: short_text
          */
         type: GlideElement;
     }
@@ -8971,20 +9339,21 @@ declare namespace $$tableFields {
     export interface io_set_item extends sys_metadata {
         /**
          * "Order" column element.
-         * Type: "Integer" (integer).
-         * Max Length: 40.
+         * Type: Integer (integer).
          */
         order: GlideElementNumeric;
-        
+
         /**
          * "Catalog Item" column element.
-         * Max Length: 32.
+         * References: Catalog Item
+         * @see {@link $$GlideRecord.sc_cat_item}
          */
         sc_cat_item: $$GlideElement.sc_cat_item;
-        
+
         /**
          * "Variable set" column element.
-         * Max Length: 32.
+         * References: Variable Set
+         * @see {@link $$GlideRecord.item_option_new_set}
          */
         variable_set: $$GlideElement.item_option_new_set;
     }
@@ -8996,16 +9365,18 @@ declare namespace $$tableFields {
      */
     export interface sc_cat_item_catalog extends sys_metadata {
         /**
-         * "Catalog item" column element.
-         * Max Length: 32.
-         */
-        sc_cat_item: $$GlideElement.sc_cat_item;
-        
-        /**
          * "Catalog" column element.
-         * Max Length: 32.
+         * References: Catalog
+         * @see {@link $$GlideRecord.sc_catalog}
          */
         sc_catalog: $$GlideElement.sc_catalog;
+
+        /**
+         * "Catalog item" column element.
+         * References: Catalog Item
+         * @see {@link $$GlideRecord.sc_cat_item}
+         */
+        sc_cat_item: $$GlideElement.sc_cat_item;
     }
     
     /**
@@ -9015,16 +9386,18 @@ declare namespace $$tableFields {
      */
     export interface sc_cat_item_category extends sys_metadata {
         /**
-         * "Catalog item" column element.
-         * Max Length: 32.
-         */
-        sc_cat_item: $$GlideElement.sc_cat_item;
-        
-        /**
          * "Catalog category" column element.
-         * Max Length: 32.
+         * References: Category
+         * @see {@link $$GlideRecord.sc_category}
          */
         sc_category: $$GlideElement.sc_category;
+
+        /**
+         * "Catalog item" column element.
+         * References: Catalog Item
+         * @see {@link $$GlideRecord.sc_cat_item}
+         */
+        sc_cat_item: $$GlideElement.sc_cat_item;
     }
 
     /**
@@ -9034,270 +9407,342 @@ declare namespace $$tableFields {
      */
     export interface planned_task extends task {
         /**
-         * "Allow dates outside schedule" element.
+         * "Allow dates outside schedule" column element.
+         * Type: True/False (boolean).
+         * Default Value: false
          */
         allow_dates_outside_schedule: GlideElementBoolean;
- 
+
         /**
-         * "Budget cost" element.
+         * "Budget cost" column element.
+         * Type: Currency (currency).
          */
         budget_cost: GlideElementCurrency;
- 
+
         /**
-         * Calculation element.
+         * "Calculation" column element.
+         * Max Length: 40
+         * Default Value: automatic
          */
         calculation_type: GlideElement;
- 
+
         /**
-         * "Planned capital" element.
+         * "Planned capital" column element.
+         * Type: Currency (currency).
          */
         capex_cost: GlideElementCurrency;
- 
+
         /**
-         * "Constraint date" element.
-         * Type: "Date/Time" (glide_date_time); scalar type: datetime
+         * "Constraint date" column element.
+         * Type: Date/Time (glide_date_time); scalar type: datetime
          */
         constraint_date: GlideElementGlideObject;
- 
+
         /**
-         * "Planned cost" element.
+         * "Planned cost" column element.
+         * Type: Currency (currency).
          */
         cost: GlideElementCurrency;
- 
+
         /**
-         * "Critical path" element.
+         * "Critical path" column element.
+         * Type: True/False (boolean).
+         * Default Value: false
          */
         critical_path: GlideElementBoolean;
- 
+
         /**
-         * Dependency element.
+         * "Dependency" column element.
+         * Type: decoration.
+         * Max Length: 40; Read-Only: true
          */
         dependency: GlideElement;
- 
+
         /**
-         * "Planned duration" element.
-         * Type: Duration (glide_duration); scalar type: datetime
+         * "Planned duration" column element.
+         * Type: Type: Duration (glide_duration); scalar type: date
+         * Default Value: 01 00:00:00
          */
         duration: GlideElementGlideObject;
- 
+
         /**
-         * "Planned effort" element.
-         * Type: Duration (glide_duration); scalar type: datetime
+         * "Planned effort" column element.
+         * Type: Type: Duration (glide_duration); scalar type: date
          */
         effort: GlideElementGlideObject;
- 
+
         /**
-         * "end date" element.
-         * Type: Date (glide_date); scalar type: date
+         * "end date" column element.
+         * Type: Type: Date (glide_date); scalar type: date
+         * Default Value: javascript:new GlideDate().getDisplayValue()
          */
         end: GlideElementGlideObject;
- 
+
         /**
-         * "Planned end date" element.
-         * Type: "Date/Time" (glide_date_time); scalar type: datetime
+         * "Planned end date" column element.
+         * Type: Date/Time (glide_date_time); scalar type: datetime
+         * Default Value: javascript:new GlideDateTime().getDisplayValue()
          */
         end_date: GlideElementGlideObject;
- 
+
         /**
-         * "End date derived from" element.
+         * "End date derived from" column element.
+         * References: Planned task
+         * Read-Only: true
          * @see {@link $$GlideRecord.planned_task}
          */
         end_date_derived_from: $$GlideElement.planned_task;
- 
+
         /**
-         * "Has Issue" element.
+         * "Has Issue" column element.
+         * Type: True/False (boolean).
+         * Read-Only: true
+         * Default Value: false
          */
         has_conflict: GlideElementBoolean;
- 
+
         /**
-         * "HTML description" element.
-         * Type: HTML (html); Scalar length: undefined
+         * "HTML description" column element.
+         * Type: HTML (html)
+         * Max Length: 8000
          */
         html_description: GlideElementGlideObject;
- 
+
         /**
-         * "Key milestone" element.
+         * "Key milestone" column element.
+         * Type: True/False (boolean).
          */
         key_milestone: GlideElementBoolean;
- 
+
         /**
-         * Level element.
+         * "Level" column element.
+         * Type: Integer (integer).
+         * Read-Only: true
          */
         level: GlideElementNumeric;
- 
+
         /**
-         * Milestone element.
+         * "Milestone" column element.
+         * Type: True/False (boolean).
          */
         milestone: GlideElementBoolean;
- 
+
         /**
-         * "Model ID" element.
+         * "Model ID" column element.
+         * References: Product Model
          * @see {@link $$GlideRecord.cmdb_model}
          */
         model_id: $$GlideElement.cmdb_model;
- 
+
         /**
-         * "MPP task id" element.
+         * "MPP task id" column element.
+         * Type: Integer (integer).
+         * Read-Only: true
          */
         mpp_task_id: GlideElementNumeric;
- 
+
         /**
-         * "Planned operating" element.
+         * "Planned operating" column element.
+         * Type: Currency (currency).
          */
         opex_cost: GlideElementCurrency;
- 
+
         /**
-         * "Orig sys ID" element.
+         * "Orig sys ID" column element.
+         * References: Planned task
+         * Read-Only: true
          * @see {@link $$GlideRecord.planned_task}
          */
         orig_sys_id: $$GlideElement.planned_task;
- 
+
         /**
-         * "Orig top task ID" element.
+         * "Orig top task ID" column element.
+         * References: Planned task
+         * Read-Only: true
          * @see {@link $$GlideRecord.planned_task}
          */
         orig_top_task_id: $$GlideElement.planned_task;
- 
+
         /**
-         * "Override status" element.
+         * "Override status" column element.
+         * Type: True/False (boolean).
+         * Default Value: false
          */
         override_status: GlideElementBoolean;
- 
+
         /**
-         * "Percent complete" element.
+         * "Percent complete" column element.
+         * Type: Percent Complete (percent_complete).
+         * Default Value: 0
          */
         percent_complete: GlideElementNumeric;
- 
+
         /**
-         * "Relation applied" element.
+         * "Relation applied" column element.
+         * References: Planned Task Relationship
+         * Read-Only: true
          * @see {@link $$GlideRecord.planned_task_rel_planned_task}
          */
         relation_applied: $$GlideElement.planned_task_rel_planned_task;
- 
+
         /**
-         * "Remaining duration" element.
-         * Type: Duration (glide_duration); scalar type: datetime
+         * "Remaining duration" column element.
+         * Type: Type: Duration (glide_duration); scalar type: date
          */
         remaining_duration: GlideElementGlideObject;
- 
+
         /**
-         * "Remaining effort" element.
-         * Type: Duration (glide_duration); scalar type: datetime
+         * "Remaining effort" column element.
+         * Type: Type: Duration (glide_duration); scalar type: date
          */
         remaining_effort: GlideElementGlideObject;
- 
+
         /**
-         * Rollup element.
+         * "Rollup" column element.
+         * Type: True/False (boolean).
+         * Read-Only: true
          */
         rollup: GlideElementBoolean;
- 
+
         /**
-         * "Run calculation brs" element.
+         * "Run calculation brs" column element.
+         * Type: True/False (boolean).
+         * Read-Only: true
+         * Default Value: true
          */
         run_calc_brs: GlideElementBoolean;
- 
+
         /**
-         * "Original end date" element.
-         * Type: "Date/Time" (glide_date_time); scalar type: datetime
+         * "Original end date" column element.
+         * Type: Date/Time (glide_date_time); scalar type: datetime
+         * Read-Only: true
+         * Default Value: javascript:new GlideDateTime().getDisplayValue()
          */
         schedule_end_date: GlideElementGlideObject;
- 
+
         /**
-         * "Original start date" element.
-         * Type: "Date/Time" (glide_date_time); scalar type: datetime
+         * "Original start date" column element.
+         * Type: Date/Time (glide_date_time); scalar type: datetime
+         * Read-Only: true
+         * Default Value: javascript:new GlideDateTime().getDisplayValue()
          */
         schedule_start_date: GlideElementGlideObject;
- 
+
         /**
-         * Shadow element.
+         * "Shadow" column element.
+         * Type: True/False (boolean).
+         * Read-Only: true
+         * Default Value: false
          */
         shadow: GlideElementBoolean;
- 
+
         /**
-         * "Software Model" element.
+         * "Software Model" column element.
+         * References: Software Model
          * @see {@link $$GlideRecord.cmdb_software_product_model}
          */
         software_model: $$GlideElement.cmdb_software_product_model;
- 
+
         /**
-         * "start date" element.
-         * Type: Date (glide_date); scalar type: date
+         * "start date" column element.
+         * Type: Type: Date (glide_date); scalar type: date
+         * Default Value: javascript:new GlideDate().getDisplayValue()
          */
         start: GlideElementGlideObject;
- 
+
         /**
-         * "Planned start date" element.
-         * Type: "Date/Time" (glide_date_time); scalar type: datetime
+         * "Planned start date" column element.
+         * Type: Date/Time (glide_date_time); scalar type: datetime
+         * Default Value: javascript:new GlideDateTime().getDisplayValue()
          */
         start_date: GlideElementGlideObject;
- 
+
         /**
-         * "Start date derived from" element.
+         * "Start date derived from" column element.
+         * References: Planned task
+         * Read-Only: true
          * @see {@link $$GlideRecord.planned_task}
          */
         start_date_derived_from: $$GlideElement.planned_task;
- 
+
         /**
-         * Status element.
+         * "Status" column element.
+         * Max Length: 40
+         * Default Value: green
          */
         status: GlideElement;
- 
+
         /**
-         * "Sub tree root" element.
+         * "Sub tree root" column element.
+         * References: Planned task
+         * Read-Only: true
          * @see {@link $$GlideRecord.planned_task}
          */
         sub_tree_root: $$GlideElement.planned_task;
- 
+
         /**
-         * Task element.
+         * "Task" column element.
+         * Type: "Composite Field" (composite_field).
+         * Max Length: 300
          */
         task: GlideElement;
- 
+
         /**
-         * "Time constraint" element.
+         * "Time constraint" column element.
+         * Max Length: 40
+         * Default Value: asap
          */
         time_constraint: GlideElement;
- 
+
         /**
-         * "Time Zone" element.
+         * "Time Zone" column element.
+         * Max Length: 40; Read-Only: true
          */
         time_zone: GlideElement;
- 
+
         /**
-         * "Top task" element.
+         * "Top task" column element.
+         * References: Planned task
+         * Read-Only: true
+         * Default Value: javascript:if (current.parent) {current.parent.top_task} else {current.sys_id}
          * @see {@link $$GlideRecord.planned_task}
          */
         top_task: $$GlideElement.planned_task;
- 
+
         /**
-         * Version element.
+         * "Version" column element.
+         * Type: Integer (integer).
+         * Read-Only: true
          */
         version: GlideElementNumeric;
- 
+
         /**
-         * WBS element.
+         * "WBS" column element.
+         * Max Length: 80; Read-Only: true
          */
         wbs: GlideElement;
- 
+
         /**
-         * "WBS Order" element.
+         * "WBS Order" column element.
+         * Type: Integer (integer).
          */
         wbs_order: GlideElementNumeric;
- 
+
         /**
-         * "Actual cost" element.
+         * "Actual cost" column element.
+         * Type: Currency (currency).
          */
         work_cost: GlideElementCurrency;
- 
+
         /**
-         * "Actual duration" element.
-         * Type: Duration (glide_duration); scalar type: datetime
+         * "Actual duration" column element.
+         * Type: Type: Duration (glide_duration); scalar type: date
          */
         work_duration: GlideElementGlideObject;
- 
+
         /**
-         * "Actual effort" element.
-         * Type: Duration (glide_duration); scalar type: datetime
+         * "Actual effort" column element.
+         * Type: Type: Duration (glide_duration); scalar type: date
          */
         work_effort: GlideElementGlideObject;
     }
@@ -9309,19 +9754,23 @@ declare namespace $$tableFields {
      */
     export interface task_rel_task extends IBaseRecord {
         /**
-         * Child element.
+         * "Child" column element.
+         * References: Task
          * @see {@link $$GlideRecord.task}
          */
         child: $$GlideElement.task;
- 
+
         /**
-         * Parent element.
+         * "Parent" column element.
+         * References: Task
          * @see {@link $$GlideRecord.task}
          */
         parent: $$GlideElement.task;
- 
+
         /**
-         * Type element.
+         * "Type" column element.
+         * References: Task Relationship Type
+         * Default Value: T1
          * @see {@link $$GlideRecord.task_rel_type}
          */
         type: $$GlideElement.task_rel_type;
@@ -9334,56 +9783,76 @@ declare namespace $$tableFields {
      */
     export interface planned_task_rel_planned_task extends task_rel_task {
         /**
-         * "Child top task" element.
+         * "Child top task" column element.
+         * References: Planned task
+         * Read-Only: true
          * @see {@link $$GlideRecord.planned_task}
          */
         child_top_task: $$GlideElement.planned_task;
- 
+
         /**
-         * "External Relation" element.
+         * "External Relation" column element.
+         * Type: True/False (boolean).
+         * Read-Only: true
          */
         external: GlideElementBoolean;
- 
+
         /**
-         * "Inter Task Dependency Type" element.
+         * "Inter Task Dependency Type" column element.
+         * Max Length: 40
+         * Default Value: soft
          */
         inter_task_dependency_type: GlideElement;
- 
+
         /**
-         * Lag element.
-         * Type: Duration (glide_duration); scalar type: datetime
+         * "Lag" column element.
+         * Type: Type: Duration (glide_duration); scalar type: date
+         * Default Value: 0 00:00:00
          */
         lag: GlideElementGlideObject;
- 
+
         /**
-         * "External Relation Id" element.
+         * "External Relation Id" column element.
+         * References: Planned Task Relationship
+         * Read-Only: true
          * @see {@link $$GlideRecord.planned_task_rel_planned_task}
          */
         orig_sys_id: $$GlideElement.planned_task_rel_planned_task;
- 
+
         /**
-         * "Parent top task" element.
+         * "Parent top task" column element.
+         * References: Planned task
+         * Read-Only: true
          * @see {@link $$GlideRecord.planned_task}
          */
         parent_top_task: $$GlideElement.planned_task;
- 
+
         /**
-         * "Process Flag" element.
+         * "Process Flag" column element.
+         * Type: True/False (boolean).
+         * Read-Only: true
          */
         process_flag: GlideElementBoolean;
- 
+
         /**
-         * "Run calculation brs" element.
+         * "Run calculation brs" column element.
+         * Type: True/False (boolean).
+         * Read-Only: true
+         * Default Value: true
          */
         run_calc_brs: GlideElementBoolean;
- 
+
         /**
-         * "Sub Type" element.
+         * "Sub Type" column element.
+         * Max Length: 40
+         * Default Value: fs
          */
         sub_type: GlideElement;
- 
+
         /**
-         * Domain element.
+         * "Domain" column element.
+         * Type: Domain ID (domain_id).
+         * Default Value: global
          */
         sys_domain: GlideElementDomainId;
     }
