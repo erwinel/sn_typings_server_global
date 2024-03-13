@@ -1920,6 +1920,11 @@ declare namespace $$GlideRecord {
     export type std_change_record_producer = $$tableFields.std_change_record_producer & sc_cat_item_producer;
     
     /**
+     * "Service" GlideRecord.
+     */
+    export type sc_cat_item_producer_service = $$tableFields.sc_cat_item_producer_service & sc_cat_item_producer;
+    
+    /**
      * "Change Model" GlideRecord.
      */
     export type chg_model = $$tableFields.chg_model & sttrm_model;
@@ -3987,6 +3992,11 @@ declare namespace $$GlideElement {
      * Reference element for the "Standard Change Template" record type.
      */
     export type std_change_record_producer = Reference<$$tableFields.std_change_record_producer, $$GlideRecord.std_change_record_producer> & sc_cat_item_producer;
+    
+    /**
+     * Reference element for the "Service" record type.
+     */
+    export type sc_cat_item_producer_service = Reference<$$tableFields.sc_cat_item_producer_service, $$GlideRecord.sc_cat_item_producer_service> & sc_cat_item_producer;
     
     /**
      * Reference element for the "Change Model" record type.
@@ -8787,7 +8797,7 @@ declare namespace $$tableFields {
      * @see {@link $$GlideRecord.sc_cat_item_composite_producer}
      * @see {@link $$GlideElement.sc_cat_item_composite_producer}
      */
-    export interface sc_cat_item_composite_producer extends sc_cat_item_producer  { }
+    export interface sc_cat_item_composite_producer extends sc_cat_item_producer { }
     
     /**
      * "Standard Change Template" GlideRecord fields.
