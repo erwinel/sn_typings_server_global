@@ -1,7 +1,7 @@
 /// <reference path="./Packages.d.ts" />
 /// <reference path="./$$rhino.d.ts" />
 /// <reference path="./GlideTypes.d.ts" />
-/// <reference path="./RecordTypes.d.ts" />
+/// <reference path="./$$tableFields.d.ts" />
 
 declare namespace $$GlideRecord {
     /**
