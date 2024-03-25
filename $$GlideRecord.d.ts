@@ -822,6 +822,71 @@ declare namespace $$GlideRecord {
     export type sc_cat_item_category = $$tableFields.sc_cat_item_category & sys_metadata;
 
     /**
+     * "Taxonomy Content Configuration" GlideRecord.
+     */
+    export type taxonomy_content_configuration = $$tableFields.taxonomy_content_configuration & sys_metadata;
+
+    /**
+     * "External Link" GlideRecord.
+     */
+    export type sn_ex_sp_external_link = $$tableFields.sn_ex_sp_external_link & GlideRecord;
+
+    /**
+     * "Quick Link" GlideRecord.
+     */
+    export type sn_ex_sp_quick_link = $$tableFields.sn_ex_sp_quick_link & GlideRecord;
+
+    /**
+     * "Connected Content" GlideRecord.
+     */
+    export type m2m_connected_content = $$tableFields.m2m_connected_content & GlideRecord;
+
+    /**
+     * "Not Available for Departments" GlideRecord.
+     */
+    export type sc_cat_item_dept_no_mtom = $$tableFields.sc_cat_item_dept_no_mtom & sys_metadata;
+
+    /**
+     * "Available for Groups" GlideRecord.
+     */
+    export type sc_cat_item_group_mtom = $$tableFields.sc_cat_item_group_mtom & sys_metadata;
+
+    /**
+     * "Approval Type Definition" GlideRecord.
+     */
+    export type sc_ic_aprvl_type_defn = $$tableFields.sc_ic_aprvl_type_defn & sys_metadata;
+
+    /**
+     * "Task Assignment Definition" GlideRecord.
+     */
+    export type sc_ic_task_assign_defn = $$tableFields.sc_ic_task_assign_defn & sys_metadata;
+
+    /**
+     * "Approval Type" GlideRecord.
+     */
+    export type sc_ic_aprvl_type_defn_staging = $$tableFields.sc_ic_aprvl_type_defn_staging & sys_metadata;
+
+    /**
+     * "Approval Definition" GlideRecord.
+     */
+    export type sc_ic_aprvl_defn = $$tableFields.sc_ic_aprvl_defn & sys_metadata;
+
+    /**
+     * "Task Assignment" GlideRecord.
+     */
+    export type sc_ic_task_assign_defn_staging = $$tableFields.sc_ic_task_assign_defn_staging & sys_metadata;
+
+    /**
+     * "Task" GlideRecord.
+     */
+    export type sc_ic_task_defn_staging = $$tableFields.sc_ic_task_defn_staging & sys_metadata;
+
+    /**
+     * "Task Definition" GlideRecord.
+     */
+    export type sc_ic_task_defn = $$tableFields.sc_ic_task_defn & sys_metadata;
+
+    /**
      * "Remote Instance" GlideRecord.
      */
     export type sys_update_set_source = $$tableFields.sys_update_set_source & GlideRecord;
@@ -1594,6 +1659,31 @@ declare namespace $$GlideRecord {
     export type item_option_category = $$tableFields.item_option_category & sys_metadata;
 
     /**
+     * "Data Lookup Definitions" GlideRecord.
+     */
+    export type dl_definition = $$tableFields.dl_definition & sys_metadata;
+
+    /**
+     * "Catalog Data Lookup Definitions" GlideRecord.
+     */
+    export type catalog_dl_definition = $$tableFields.catalog_dl_definition & dl_definition;
+
+    /**
+     * "Client Script" GlideRecord.
+     */
+    export type sys_script_client = $$tableFields.sys_script_client & sys_metadata;
+
+    /**
+     * "Catalog Client Scripts" GlideRecord.
+     */
+    export type catalog_script_client = $$tableFields.catalog_script_client & sys_script_client;
+
+    /**
+     * "" GlideRecord.
+     */
+    export type expert_script_client = $$tableFields.expert_script_client & sys_script_client
+
+    /**
      * "Variable Set" GlideRecord.
      * Extendable: true
      */
@@ -2278,6 +2368,31 @@ declare namespace $$GlideRecord {
      * Extendable: true
      */
     export type sys_ui_policy_action = $$tableFields.sys_ui_policy_action & sys_metadata;
+
+    /**
+     * "Wizard UI Policy Action" GlideRecord.
+     */
+    export type expert_ui_policy_action = $$tableFields.expert_ui_policy_action & sys_ui_policy_action;
+
+    /**
+     * "Wizard UI Policy" GlideRecord.
+     */
+    export type expert_ui_policy = $$tableFields.expert_ui_policy & sys_ui_policy;
+
+    /**
+     * "Workflow UI Policy" GlideRecord.
+     */
+    export type wf_ui_policy = $$tableFields.wf_ui_policy & sys_ui_policy;
+
+    /**
+     * "Workflow UI Policy Action" GlideRecord.
+     */
+    export type wf_ui_policy_action = $$tableFields.wf_ui_policy_action & sys_ui_policy_action;
+
+    /**
+     * "UI Policy Related List Action" GlideRecord.
+     */
+    export type sys_ui_policy_rl_action = $$tableFields.sys_ui_policy_rl_action & sys_metadata;
 
     /**
      * "Catalog UI Policy Action" GlideRecord.

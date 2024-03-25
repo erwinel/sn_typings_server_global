@@ -4008,7 +4008,6 @@ declare namespace $$tableFields {
 
     /**
      * "Available for Departments" glide record fields.
-     * @see {@link $$GlideElement.sc_cat_item_dept_mtom}
      * @see {@link $$GlideRecord.sc_cat_item_dept_mtom}
      */
     export interface sc_cat_item_dept_mtom extends sys_metadata {
@@ -5235,6 +5234,919 @@ declare namespace $$tableFields {
          * @see {@link $$GlideRecord.sc_cat_item}
          */
         sc_cat_item: $$GlideElement.sc_cat_item;
+    }
+
+    /**
+     * "Taxonomy Content Configuration" GlideRecord fields.
+     * @see {@link $$GlideRecord.taxonomy_content_configuration}
+     * @see {@link $$GlideElement.taxonomy_content_configuration}
+     */
+    export interface taxonomy_content_configuration extends sys_metadata {
+        /**
+         * "Active" column element.
+         * Type: True/False (boolean).
+         * Default Value: true
+         */
+        active: GlideElementBoolean;
+
+        /**
+         * "Category reference field" column element.
+         * Type: Field Name (field_name)
+         */
+        category_reference_field: GlideElement;
+
+        /**
+         * "Category table" column element.
+         * Type: "Table Name" (table_name).
+         * Max Length: 80
+         */
+        category_table: GlideElement;
+
+        /**
+         * "Connected category table" column element.
+         * Type: "Table Name" (table_name).
+         * Max Length: 80
+         * Default Value: m2m_connected_category
+         */
+        connected_category_table: GlideElement;
+
+        /**
+         * "Connected content table" column element.
+         * Type: "Table Name" (table_name).
+         * Max Length: 80; Mandatory: true
+         * Default Value: m2m_connected_content
+         */
+        connected_content_table: GlideElement;
+
+        /**
+         * "Display filter" column element.
+         * Type: Conditions (conditions).
+         */
+        content_filter: GlideElementConditions;
+
+        /**
+         * "Content reference field" column element.
+         * Type: Field Name (field_name)
+         * Mandatory: true
+         */
+        content_reference_field: GlideElement;
+
+        /**
+         * "Content table" column element.
+         * Type: "Table Name" (table_name).
+         * Max Length: 80; Mandatory: true
+         */
+        content_table: GlideElement;
+
+        /**
+         * "Content table category field" column element.
+         * Type: Field Name (field_name)
+         */
+        content_table_category_field: GlideElement;
+
+        /**
+         * "Name" column element.
+         * Type: Translated Text (translated_text).
+         * Max Length: 60; Mandatory: true
+         */
+        name: GlideElementTranslatedText;
+
+        /**
+         * "Sort field" column element.
+         * Type: Field Name (field_name)
+         * Mandatory: true
+         */
+        sort_field: GlideElement;
+    }
+
+    /**
+     * "External Link" GlideRecord fields.
+     * @see {@link $$GlideRecord.sn_ex_sp_external_link}
+     * @see {@link $$GlideElement.sn_ex_sp_external_link}
+     */
+    export interface sn_ex_sp_external_link extends IBaseRecord {
+        /**
+         * "Short description" column element.
+         * Type: Translated Text (translated_text).
+         * Max Length: 100
+         */
+        short_description: GlideElementTranslatedText;
+
+        /**
+         * "Domain" column element.
+         * Type: Domain ID (domain_id).
+         * Default Value: global
+         */
+        sys_domain: GlideElementDomainId;
+
+        /**
+         * "Title" column element.
+         * Type: Translated Text (translated_text).
+         * Max Length: 100; Mandatory: true
+         */
+        title: GlideElementTranslatedText;
+
+        /**
+         * "URL" column element.
+         * Type: URL (url).
+         * Mandatory: true
+         */
+        url: GlideElement;
+    }
+
+    /**
+     * "Quick Link" GlideRecord fields.
+     * @see {@link $$GlideRecord.sn_ex_sp_quick_link}
+     * @see {@link $$GlideElement.sn_ex_sp_quick_link}
+     */
+    export interface sn_ex_sp_quick_link extends IBaseRecord {
+        /**
+         * "Active" column element.
+         * Type: True/False (boolean).
+         * Default Value: true
+         */
+        active: GlideElementBoolean;
+
+        /**
+         * "Page query parameters" column element.
+         * Type: Name-Value Pairs (simple_name_values)
+         */
+        additional_query_params: GlideElement;
+
+        /**
+         * "Background image" column element.
+         * Type: Image (user_image).
+         */
+        background_image: GlideElementUserImage;
+
+        /**
+         * "Background image URL" column element.
+         * Type: URL (url).
+         */
+        background_image_url: GlideElement;
+
+        /**
+         * "Catalog item" column element.
+         * References: Catalog Item
+         */
+        catalog_item: $$GlideElement.sc_cat_item;
+
+        /**
+         * "Content type" column element.
+         * Max Length: 40; Mandatory: true
+         */
+        content_type: GlideElement;
+
+        /**
+         * "External link" column element.
+         * References: External Link
+         */
+        external_link: $$GlideElement.sn_ex_sp_external_link;
+
+        /**
+         * "Icon" column element.
+         * Type: Image (user_image).
+         */
+        icon: GlideElementUserImage;
+
+        /**
+         * "Icon URL" column element.
+         * Type: URL (url).
+         */
+        icon_url: GlideElement;
+
+        /**
+         * "Knowledge article" column element.
+         * References: Knowledge
+         */
+        knowledge: $$GlideElement.kb_knowledge;
+
+        /**
+         * "Quick link name" column element.
+         * Max Length: 40; Mandatory: true
+         */
+        name: GlideElement;
+
+        /**
+         * "Short description" column element.
+         * Type: Translated Text (translated_text).
+         * Max Length: 100
+         */
+        override_short_desc: GlideElementTranslatedText;
+
+        /**
+         * "Title" column element.
+         * Type: Translated Text (translated_text).
+         * Max Length: 100
+         */
+        override_title: GlideElementTranslatedText;
+
+        /**
+         * "Page" column element.
+         * References: Page
+         */
+        page: $$GlideElement.sp_page;
+
+        /**
+         * "Domain" column element.
+         * Type: Domain ID (domain_id).
+         * Default Value: global
+         */
+        sys_domain: GlideElementDomainId;
+    }
+
+    /**
+     * "Connected Content" GlideRecord fields.
+     * @see {@link $$GlideRecord.m2m_connected_content}
+     * @see {@link $$GlideElement.m2m_connected_content}
+     */
+    export interface m2m_connected_content extends IBaseRecord {
+        /**
+         * "Alphabetical order" column element.
+         * Type: Integer (integer).
+         */
+        alphabetical_order: GlideElementNumeric;
+
+        /**
+         * "Catalog item" column element.
+         * References: Catalog Item
+         */
+        catalog_item: $$GlideElement.sc_cat_item;
+
+        /**
+         * "Connected Content" column element.
+         * Type: Translated Text (translated_text).
+         * Max Length: 120
+         */
+        content_display_value: GlideElementTranslatedText;
+
+        /**
+         * "Content type" column element.
+         * References: Taxonomy Content Configuration
+         * Mandatory: true
+         */
+        content_type: $$GlideElement.taxonomy_content_configuration;
+
+        /**
+         * "Knowledge" column element.
+         * References: Knowledge
+         */
+        knowledge: $$GlideElement.kb_knowledge;
+
+        /**
+         * "Order" column element.
+         * Type: Integer (integer).
+         * Default Value: 100
+         */
+        order: GlideElementNumeric;
+
+        /**
+         * "Popularity" column element.
+         * Type: Decimal (decimal).
+         */
+        popularity: GlideElementNumeric;
+
+        /**
+         * "Quick link" column element.
+         * References: Quick Link
+         */
+        quick_link: $$GlideElement.sn_ex_sp_quick_link;
+
+        /**
+         * "Created by" column element.
+         * Max Length: 40
+         */
+        sys_created_by: GlideElement;
+
+        /**
+         * "Created" column element.
+         * Type: Date/Time (glide_date_time); scalar type: datetime
+         */
+        sys_created_on: GlideElementGlideObject;
+
+        /**
+         * "Domain" column element.
+         * Type: Domain ID (domain_id).
+         * Default Value: global
+         */
+        sys_domain: GlideElementDomainId;
+
+        /**
+         * "Domain Path" column element.
+         * Type: "Domain Path" (domain_path).
+         * Max Length: 255
+         * Default Value: /
+         */
+        sys_domain_path: GlideElement;
+
+        /**
+         * "Updates" column element.
+         * Type: Integer (integer).
+         */
+        sys_mod_count: GlideElementNumeric;
+
+        /**
+         * "Updated by" column element.
+         * Max Length: 40
+         */
+        sys_updated_by: GlideElement;
+
+        /**
+         * "Updated" column element.
+         * Type: Date/Time (glide_date_time); scalar type: datetime
+         */
+        sys_updated_on: GlideElementGlideObject;
+
+        /**
+         * "Topic" column element.
+         * References: Topic
+         * Mandatory: true
+         */
+        topic: $$GlideElement.topic;
+    }
+    /**
+     * "Not Available for Departments" GlideRecord fields.
+     * @see {@link $$GlideRecord.sc_cat_item_dept_no_mtom}
+     * @see {@link $$GlideElement.sc_cat_item_dept_no_mtom}
+     */
+    export interface sc_cat_item_dept_no_mtom extends sys_metadata {
+        /**
+         * "Dependent Item" column element.
+         * References: Department
+         */
+        sc_avail_dept: $$GlideElement.cmn_department;
+
+        /**
+         * "Parent Item" column element.
+         * References: Catalog Item
+         */
+        sc_cat_item: $$GlideElement.sc_cat_item;
+    }
+
+    /**
+     * "Available for Groups" GlideRecord fields.
+     * @see {@link $$GlideRecord.sc_cat_item_group_mtom}
+     * @see {@link $$GlideElement.sc_cat_item_group_mtom}
+     */
+    export interface sc_cat_item_group_mtom extends sys_metadata {
+        /**
+         * "Dependent Item" column element.
+         * References: Group
+         */
+        sc_avail_group: $$GlideElement.sys_user_group;
+
+        /**
+         * "Parent Item" column element.
+         * References: Catalog Item
+         */
+        sc_cat_item: $$GlideElement.sc_cat_item;
+    }
+
+    /**
+     * "Approval Type Definition" GlideRecord fields.
+     * @see {@link $$GlideRecord.sc_ic_aprvl_type_defn}
+     * @see {@link $$GlideElement.sc_ic_aprvl_type_defn}
+     */
+    export interface sc_ic_aprvl_type_defn extends sys_metadata {
+        /**
+         * "Active" column element.
+         * Type: True/False (boolean).
+         * Read-Only: true
+         * Default Value: true
+         */
+        active: GlideElementBoolean;
+
+        /**
+         * "Approver Script" column element.
+         * Type: Script (Plain) (script_plain).
+         * Read-Only: true
+         */
+        approver_script: GlideElementScript;
+
+        /**
+         * "Description" column element.
+         * Type: Translated Text (translated_text).
+         * Max Length: 1000; Read-Only: true
+         */
+        description: GlideElementTranslatedText;
+
+        /**
+         * "Group(s)" column element.
+         * Type: List (glide_list)
+         * References: Group {@link $$GlideRecord.sys_user_group}
+         * Read-Only: true
+         */
+        groups: GlideElement;
+
+        /**
+         * "Name" column element.
+         * Type: Translated Text (translated_text).
+         * Max Length: 40; Mandatory: true
+         * Read-Only: true
+         */
+        name: GlideElementTranslatedText;
+
+        /**
+         * "Script Output" column element.
+         * Max Length: 40; Read-Only: true
+         */
+        script_output: GlideElement;
+
+        /**
+         * "Created from" column element.
+         * References: Approval Type
+         * Read-Only: true
+         */
+        sc_ic_aprvl_type_defn_staging: $$GlideElement.sc_ic_aprvl_type_defn_staging;
+
+        /**
+         * "Published Version" column element.
+         * Type: Integer (integer).
+         * Read-Only: true
+         */
+        sc_ic_version: GlideElementNumeric;
+
+        /**
+         * "Type" column element.
+         * Max Length: 40; Mandatory: true
+         * Read-Only: true
+         */
+        type: GlideElement;
+
+        /**
+         * "User(s)" column element.
+         * Type: List (glide_list)
+         * References: User {@link $$GlideRecord.sys_user}
+         * Read-Only: true
+         */
+        users: GlideElement;
+    }
+
+    /**
+     * "Approval Type" GlideRecord fields.
+     * @see {@link $$GlideRecord.sc_ic_aprvl_type_defn_staging}
+     * @see {@link $$GlideElement.sc_ic_aprvl_type_defn_staging}
+     */
+    export interface sc_ic_aprvl_type_defn_staging extends sys_metadata {
+        /**
+         * "Active" column element.
+         * Type: True/False (boolean).
+         * Read-Only: true
+         * Default Value: true
+         */
+        active: GlideElementBoolean;
+
+        /**
+         * "Approver script" column element.
+         * Type: Script (Plain) (script_plain).
+         * Default Value: (function(){    var approversList = [];    return approversList;})();
+         */
+        approver_script: GlideElementScript;
+
+        /**
+         * "Description" column element.
+         * Type: Translated Text (translated_text).
+         * Max Length: 1000
+         */
+        description: GlideElementTranslatedText;
+
+        /**
+         * "Group(s)" column element.
+         * Type: List (glide_list)
+         * References: Group {@link $$GlideRecord.sys_user_group}
+         */
+        groups: GlideElement;
+
+        /**
+         * "Name" column element.
+         * Type: Translated Text (translated_text).
+         * Max Length: 40; Mandatory: true
+         */
+        name: GlideElementTranslatedText;
+
+        /**
+         * "Script output" column element.
+         * Max Length: 40
+         */
+        script_output: GlideElement;
+
+        /**
+         * "Published definition" column element.
+         * References: Approval Type Definition
+         * Read-Only: true
+         */
+        sc_ic_aprvl_type_defn: $$GlideElement.sc_ic_aprvl_type_defn;
+
+        /**
+         * "State" column element.
+         * Max Length: 40; Read-Only: true
+         * Default Value: draft
+         */
+        state: GlideElement;
+
+        /**
+         * "Type" column element.
+         * Max Length: 40; Mandatory: true
+         */
+        type: GlideElement;
+
+        /**
+         * "User(s)" column element.
+         * Type: List (glide_list)
+         * References: User {@link $$GlideRecord.sys_user}
+         */
+        users: GlideElement;
+
+        /**
+         * "Version" column element.
+         * Type: Integer (integer).
+         * Read-Only: true
+         * Default Value: 1
+         */
+        version: GlideElementNumeric;
+    }
+
+    /**
+     * "Approval Definition" GlideRecord fields.
+     * @see {@link $$GlideRecord.sc_ic_aprvl_defn}
+     * @see {@link $$GlideElement.sc_ic_aprvl_defn}
+     */
+    export interface sc_ic_aprvl_defn extends sys_metadata {
+        /**
+         * "Active" column element.
+         * Type: True/False (boolean).
+         * Mandatory: true; Read-Only: true
+         * Default Value: true
+         */
+        active: GlideElementBoolean;
+
+        /**
+         * "Detail" column element.
+         * Max Length: 255; Read-Only: true
+         */
+        detail: GlideElement;
+
+        /**
+         * "Group" column element.
+         * References: Group
+         * Read-Only: true
+         */
+        group: $$GlideElement.sys_user_group;
+
+        /**
+         * "Order" column element.
+         * Type: Integer (integer).
+         * Read-Only: true
+         * Default Value: 100
+         */
+        order: GlideElementNumeric;
+
+        /**
+         * "Catalog item" column element.
+         * References: Catalog Item
+         * Mandatory: true; Read-Only: true
+         */
+        sc_cat_item: $$GlideElement.sc_cat_item;
+
+        /**
+         * "Predefined approval" column element.
+         * References: Approval Type
+         * Read-Only: true
+         */
+        sc_ic_aprvl_type_defn_staging: $$GlideElement.sc_ic_aprvl_type_defn_staging;
+
+        /**
+         * "Type" column element.
+         * Max Length: 40; Mandatory: true
+         * Read-Only: true
+         */
+        type: GlideElement;
+
+        /**
+         * "User" column element.
+         * References: User
+         * Read-Only: true
+         */
+        user: $$GlideElement.sys_user;
+    }
+
+    /**
+     * "Task Assignment Definition" GlideRecord fields.
+     * @see {@link $$GlideRecord.sc_ic_task_assign_defn}
+     * @see {@link $$GlideElement.sc_ic_task_assign_defn}
+     */
+    export interface sc_ic_task_assign_defn extends sys_metadata {
+        /**
+         * "Active" column element.
+         * Type: True/False (boolean).
+         * Read-Only: true
+         * Default Value: true
+         */
+        active: GlideElementBoolean;
+
+        /**
+         * "Assignment details" column element.
+         * Max Length: 255; Read-Only: true
+         */
+        assignment_details: GlideElement;
+
+        /**
+         * "Group" column element.
+         * References: Group
+         * Read-Only: true
+         */
+        assignment_group: $$GlideElement.sys_user_group;
+
+        /**
+         * "Assignment script" column element.
+         * Type: Script (Plain) (script_plain).
+         * Read-Only: true
+         */
+        assignment_script: GlideElementScript;
+
+        /**
+         * "Assignment type" column element.
+         * Max Length: 40; Read-Only: true
+         * Default Value: direct
+         */
+        assignment_type: GlideElement;
+
+        /**
+         * "User" column element.
+         * References: User
+         * Read-Only: true
+         */
+        assignment_user: $$GlideElement.sys_user;
+
+        /**
+         * "Description" column element.
+         * Type: Translated Text (translated_text).
+         * Max Length: 1000; Read-Only: true
+         */
+        description: GlideElementTranslatedText;
+
+        /**
+         * "Created from" column element.
+         * References: Task Assignment
+         * Read-Only: true
+         */
+        sc_ic_task_assign_defn_staging: $$GlideElement.sc_ic_task_assign_defn_staging;
+
+        /**
+         * "Published Version" column element.
+         * Type: Integer (integer).
+         * Read-Only: true
+         */
+        sc_ic_version: GlideElementNumeric;
+
+        /**
+         * "Short description" column element.
+         * Type: Translated Text (translated_text).
+         * Max Length: 255; Read-Only: true
+         */
+        short_description: GlideElementTranslatedText;
+    }
+
+    /**
+     * "Task Assignment" GlideRecord fields.
+     * @see {@link $$GlideRecord.sc_ic_task_assign_defn_staging}
+     * @see {@link $$GlideElement.sc_ic_task_assign_defn_staging}
+     */
+    export interface sc_ic_task_assign_defn_staging extends sys_metadata {
+        /**
+         * "Active" column element.
+         * Type: True/False (boolean).
+         * Read-Only: true
+         * Default Value: true
+         */
+        active: GlideElementBoolean;
+
+        /**
+         * "Assignment details" column element.
+         * Max Length: 255; Read-Only: true
+         */
+        assignment_details: GlideElement;
+
+        /**
+         * "Group" column element.
+         * References: Group
+         */
+        assignment_group: $$GlideElement.sys_user_group;
+
+        /**
+         * "Assignment script" column element.
+         * Type: Script (Plain) (script_plain).
+         * Default Value: (function(){    var assignment = {'user': '', 'group':''};    return assignment;})();
+         */
+        assignment_script: GlideElementScript;
+
+        /**
+         * "Assignment type" column element.
+         * Max Length: 40; Mandatory: true
+         * Default Value: direct
+         */
+        assignment_type: GlideElement;
+
+        /**
+         * "User" column element.
+         * References: User
+         */
+        assignment_user: $$GlideElement.sys_user;
+
+        /**
+         * "Description" column element.
+         * Type: Translated Text (translated_text).
+         * Max Length: 1000
+         */
+        description: GlideElementTranslatedText;
+
+        /**
+         * "Published definition" column element.
+         * References: Task Assignment Definition
+         * Read-Only: true
+         */
+        sc_ic_task_assign_defn: $$GlideElement.sc_ic_task_assign_defn;
+
+        /**
+         * "Short description" column element.
+         * Type: Translated Text (translated_text).
+         * Max Length: 80; Mandatory: true
+         */
+        short_description: GlideElementTranslatedText;
+
+        /**
+         * "State" column element.
+         * Max Length: 40; Read-Only: true
+         * Default Value: draft
+         */
+        state: GlideElement;
+
+        /**
+         * "Version" column element.
+         * Type: Integer (integer).
+         * Read-Only: true
+         * Default Value: 1
+         */
+        version: GlideElementNumeric;
+    }
+
+    /**
+     * "Task" GlideRecord fields.
+     * @see {@link $$GlideRecord.sc_ic_task_defn_staging}
+     * @see {@link $$GlideElement.sc_ic_task_defn_staging}
+     */
+    export interface sc_ic_task_defn_staging extends sys_metadata {
+        /**
+         * "Active" column element.
+         * Type: True/False (boolean).
+         * Mandatory: true
+         * Default Value: true
+         */
+        active: GlideElementBoolean;
+
+        /**
+         * "Assignment details" column element.
+         * Max Length: 255; Read-Only: true
+         */
+        assignment_details: GlideElement;
+
+        /**
+         * "Group" column element.
+         * References: Group
+         */
+        assignment_group: $$GlideElement.sys_user_group;
+
+        /**
+         * "Assignment" column element.
+         * Max Length: 40; Mandatory: true
+         * Default Value: custom_assignment
+         */
+        assignment_type: GlideElement;
+
+        /**
+         * "User" column element.
+         * References: User
+         */
+        assignment_user: $$GlideElement.sys_user;
+
+        /**
+         * "Description" column element.
+         * Type: Translated Text (translated_text).
+         * Max Length: 1000
+         */
+        description: GlideElementTranslatedText;
+
+        /**
+         * "Order" column element.
+         * Type: Integer (integer).
+         * Default Value: 100
+         */
+        order: GlideElementNumeric;
+
+        /**
+         * "Item" column element.
+         * References: Item
+         * Mandatory: true; Read-Only: true
+         */
+        sc_ic_item_staging: $$GlideElement.sc_ic_item_staging;
+
+        /**
+         * "Assign to" column element.
+         * References: Task Assignment
+         */
+        sc_ic_task_assign_defn_staging: $$GlideElement.sc_ic_task_assign_defn_staging;
+
+        /**
+         * "Short description" column element.
+         * Type: Translated Text (translated_text).
+         * Max Length: 80; Mandatory: true
+         */
+        short_description: GlideElementTranslatedText;
+    }
+
+    /**
+     * "Task Definition" GlideRecord fields.
+     * @see {@link $$GlideRecord.sc_ic_task_defn}
+     * @see {@link $$GlideElement.sc_ic_task_defn}
+     */
+    export interface sc_ic_task_defn extends sys_metadata {
+        /**
+         * "Active" column element.
+         * Type: True/False (boolean).
+         * Read-Only: true
+         * Default Value: true
+         */
+        active: GlideElementBoolean;
+
+        /**
+         * "Assignment details" column element.
+         * Max Length: 255; Read-Only: true
+         */
+        assignment_details: GlideElement;
+
+        /**
+         * "Group" column element.
+         * References: Group
+         * Read-Only: true
+         */
+        assignment_group: $$GlideElement.sys_user_group;
+
+        /**
+         * "Assignment type" column element.
+         * Max Length: 40; Read-Only: true
+         * Default Value: custom_assignment
+         */
+        assignment_type: GlideElement;
+
+        /**
+         * "User" column element.
+         * References: User
+         * Read-Only: true
+         */
+        assignment_user: $$GlideElement.sys_user;
+
+        /**
+         * "Description" column element.
+         * Type: Translated Text (translated_text).
+         * Max Length: 1000; Read-Only: true
+         */
+        description: GlideElementTranslatedText;
+
+        /**
+         * "Order" column element.
+         * Type: Integer (integer).
+         * Read-Only: true
+         * Default Value: 100
+         */
+        order: GlideElementNumeric;
+
+        /**
+         * "Catalog item" column element.
+         * References: Catalog Item
+         * Read-Only: true
+         */
+        sc_cat_item: $$GlideElement.sc_cat_item;
+
+        /**
+         * "Predefined assignment" column element.
+         * References: Task Assignment
+         * Read-Only: true
+         */
+        sc_ic_task_assign_defn_staging: $$GlideElement.sc_ic_task_assign_defn_staging;
+
+        /**
+         * "Created from" column element.
+         * References: Task
+         * Read-Only: true
+         */
+        sc_ic_task_defn_staging: $$GlideElement.sc_ic_task_defn_staging;
+
+        /**
+         * "Short description" column element.
+         * Type: Translated Text (translated_text).
+         * Max Length: 80; Read-Only: true
+         */
+        short_description: GlideElementTranslatedText;
     }
 
     /**
@@ -24907,6 +25819,306 @@ this variable \r // - actual_result: the script sets the actual value for this m
     }
 
     /**
+     * "Data Lookup Definitions" GlideRecord fields.
+     * @see {@link $$GlideRecord.dl_definition}
+     * @see {@link $$GlideElement.dl_definition}
+     */
+    export interface dl_definition extends sys_metadata {
+        /**
+         * "Active" column element.
+         * Type: True/False (boolean).
+         * Default Value: true
+         */
+        active: GlideElementBoolean;
+
+        /**
+         * "Matcher Table" column element.
+         * Type: "Table Name" (table_name).
+         * Max Length: 80; Mandatory: true
+         */
+        matcher_table: GlideElement;
+
+        /**
+         * "Name" column element.
+         * Max Length: 40; Mandatory: true
+         */
+        name: GlideElement;
+
+        /**
+         * "Run on form change" column element.
+         * Type: True/False (boolean).
+         * Default Value: true
+         */
+        run_on_form_change: GlideElementBoolean;
+
+        /**
+         * "Run on insert" column element.
+         * Type: True/False (boolean).
+         * Default Value: true
+         */
+        run_on_insert: GlideElementBoolean;
+
+        /**
+         * "Run on update" column element.
+         * Type: True/False (boolean).
+         * Default Value: false
+         */
+        run_on_update: GlideElementBoolean;
+
+        /**
+         * "Source Table" column element.
+         * Type: "Table Name" (table_name).
+         * Max Length: 80; Mandatory: true
+         */
+        source_table: GlideElement;
+    }
+
+    /**
+     * "Catalog Data Lookup Definitions" GlideRecord fields.
+     * @see {@link $$GlideRecord.catalog_dl_definition}
+     * @see {@link $$GlideElement.catalog_dl_definition}
+     */
+    export interface catalog_dl_definition extends dl_definition {
+        /**
+         * "Applies to" column element.
+         * Max Length: 40
+         * Default Value: item
+         */
+        applies_to: GlideElement;
+
+        /**
+         * "Catalog item" column element.
+         * References: Catalog Item
+         */
+        catalog_item: $$GlideElement.sc_cat_item;
+
+        /**
+         * "Variable set" column element.
+         * References: Variable Set
+         */
+        variable_set: $$GlideElement.item_option_new_set;
+    }
+
+    /**
+     * "Client Script" GlideRecord fields.
+     * @see {@link $$GlideRecord.sys_script_client}
+     * @see {@link $$GlideElement.sys_script_client}
+     */
+    export interface sys_script_client extends sys_metadata {
+        /**
+         * "Active" column element.
+         * Type: True/False (boolean).
+         * Default Value: true
+         */
+        active: GlideElementBoolean;
+
+        /**
+         * "Inherited" column element.
+         * Type: True/False (boolean).
+         * Default Value: false
+         */
+        applies_extended: GlideElementBoolean;
+
+        /**
+         * "Condition / onClick" column element.
+         * Max Length: 254
+         */
+        condition: GlideElement;
+
+        /**
+         * "Description" column element.
+         * Max Length: 4000
+         */
+        description: GlideElement;
+
+        /**
+         * "Field name" column element.
+         * Type: Field Name (field_name)
+         */
+        field: GlideElement;
+
+        /**
+         * "Global" column element.
+         * Type: True/False (boolean).
+         * Default Value: true
+         */
+        global: GlideElementBoolean;
+
+        /**
+         * "Isolate script" column element.
+         * Type: True/False (boolean).
+         * Default Value: false
+         */
+        isolate_script: GlideElementBoolean;
+
+        /**
+         * "Messages" column element.
+         * Max Length: 4000
+         */
+        messages: GlideElement;
+
+        /**
+         * "Name" column element.
+         * Max Length: 40
+         */
+        name: GlideElement;
+
+        /**
+         * "Order" column element.
+         * Type: Integer (integer).
+         */
+        order: GlideElementNumeric;
+
+        /**
+         * "Script" column element.
+         * Type: Script (Plain) (script_plain).
+         * Max Length: 8000
+         */
+        script: GlideElementScript;
+
+        /**
+         * "Domain" column element.
+         * Type: Domain ID (domain_id).
+         * Default Value: global
+         */
+        sys_domain: GlideElementDomainId;
+
+        /**
+         * "Domain Path" column element.
+         * Type: "Domain Path" (domain_path).
+         * Max Length: 255
+         * Default Value: /
+         */
+        sys_domain_path: GlideElement;
+
+        /**
+         * "Overrides" column element.
+         * References: Client Script
+         */
+        sys_overrides: $$GlideElement.sys_script_client;
+
+        /**
+         * "Table" column element.
+         * Type: "Table Name" (table_name).
+         * Max Length: 80
+         */
+        table: GlideElement;
+
+        /**
+         * "Type" column element.
+         * Max Length: 40
+         */
+        type: GlideElement;
+
+        /**
+         * "UI Type" column element.
+         * Type: Integer (integer).
+         * Default Value: 0
+         */
+        ui_type: GlideElementNumeric;
+
+        /**
+         * "View" column element.
+         * Max Length: 40
+         */
+        view: GlideElement;
+    }
+
+    /**
+     * "" GlideRecord fields.
+     * @see {@link $$GlideRecord.expert_script_client}
+     * @see {@link $$GlideElement.expert_script_client}
+     */
+    export interface expert_script_client extends sys_script_client {
+        /**
+         * "Wizard" column element.
+         * References: Wizard
+         * Mandatory: true
+         */
+        expert: $$GlideElement.expert;
+
+        /**
+         * "Wizard Panel" column element.
+         * References: Wizard Panel
+         * Mandatory: true
+         */
+        expert_panel: $$GlideElement.expert_panel;
+
+        /**
+         * "Wizard Panel Variable" column element.
+         * Max Length: 40
+         */
+        expert_panel_variable: GlideElement;
+    }
+
+    /**
+     * "Catalog Client Scripts" GlideRecord fields.
+     * @see {@link $$GlideRecord.catalog_script_client}
+     * @see {@link $$GlideElement.catalog_script_client}
+     */
+    export interface catalog_script_client extends sys_script_client {
+        /**
+         * "Applies on a Catalog Item view" column element.
+         * Type: True/False (boolean).
+         * Default Value: true
+         */
+        applies_catalog: GlideElementBoolean;
+
+        /**
+         * "Applies on Requested Items" column element.
+         * Type: True/False (boolean).
+         * Default Value: false
+         */
+        applies_req_item: GlideElementBoolean;
+
+        /**
+         * "Applies on Catalog Tasks" column element.
+         * Type: True/False (boolean).
+         * Default Value: false
+         */
+        applies_sc_task: GlideElementBoolean;
+
+        /**
+         * "Applies on Target Record" column element.
+         * Type: True/False (boolean).
+         * Default Value: false
+         */
+        applies_target_record: GlideElementBoolean;
+
+        /**
+         * "Applies to" column element.
+         * Max Length: 40
+         * Default Value: item
+         */
+        applies_to: GlideElement;
+
+        /**
+         * "Catalog item" column element.
+         * References: Catalog Item
+         */
+        cat_item: $$GlideElement.sc_cat_item;
+
+        /**
+         * "Variable name" column element.
+         * Max Length: 40
+         */
+        cat_variable: GlideElement;
+
+        /**
+         * "Published Catalog Client Script" column element.
+         * References: Catalog Client Scripts
+         * Read-Only: true
+         */
+        published_ref: $$GlideElement.catalog_script_client;
+
+        /**
+         * "Variable set" column element.
+         * References: Variable Set
+         */
+        variable_set: $$GlideElement.item_option_new_set;
+    }
+
+    /**
      * "Variable Set" GlideRecord fields.
      * @see {@link $$GlideRecord.item_option_new_set}
      * @see {@link $$GlideElement.item_option_new_set}
@@ -34079,6 +35291,119 @@ this variable \r // - actual_result: the script sets the actual value for this m
     }
 
     /**
+     * "Wizard UI Policy" GlideRecord fields.
+     * @see {@link $$GlideRecord.expert_ui_policy}
+     * @see {@link $$GlideElement.expert_ui_policy}
+     */
+    export interface expert_ui_policy extends sys_ui_policy {
+        /**
+         * "Applies to" column element.
+         * Max Length: 40
+         * Default Value: expert
+         */
+        applies_to: GlideElement;
+
+        /**
+         * "Wizard" column element.
+         * References: Wizard
+         */
+        expert: $$GlideElement.expert;
+
+        /**
+         * "Wizard Conditions" column element.
+         * Type: "Variable Conditions" (variable_conditions).
+         * Max Length: 4000
+         */
+        expert_conditions: GlideElement;
+
+        /**
+         * "Variable set" column element.
+         * References: Variable Set
+         */
+        variable_set: $$GlideElement.item_option_new_set;
+    }
+
+    /**
+     * "Workflow UI Policy" GlideRecord fields.
+     * @see {@link $$GlideRecord.wf_ui_policy}
+     * @see {@link $$GlideElement.wf_ui_policy}
+     */
+    export interface wf_ui_policy extends sys_ui_policy {
+        /**
+         * "Activity definition" column element.
+         * References: Workflow Activity Definition
+         */
+        activity_definition: $$GlideElement.wf_activity_definition;
+
+        /**
+         * "Workflow conditions" column element.
+         * Type: "Workflow Conditions" (workflow_conditions).
+         * Max Length: 4000
+         */
+        workflow_conditions: GlideElement;
+    }
+
+    /**
+     * "Wizard UI Policy Action" GlideRecord fields.
+     * @see {@link $$GlideRecord.expert_ui_policy_action}
+     * @see {@link $$GlideElement.expert_ui_policy_action}
+     */
+    export interface expert_ui_policy_action extends sys_ui_policy_action {
+        /**
+         * "Wizard" column element.
+         * References: Wizard
+         * Read-Only: true
+         * Default Value: javascript:parent.expert
+         */
+        expert: $$GlideElement.expert;
+
+        /**
+         * "Variable name" column element.
+         * Max Length: 40
+         */
+        expert_variable: GlideElement;
+
+        /**
+         * "Name" column element.
+         * Max Length: 40; Read-Only: true
+         */
+        variable: GlideElement;
+
+        /**
+         * "Variable Set" column element.
+         * References: Variable Set
+         * Read-Only: true
+         * Default Value: javascript:parent.variable_set
+         */
+        variable_set: $$GlideElement.item_option_new_set;
+    }
+
+    /**
+     * "Workflow UI Policy Action" GlideRecord fields.
+     * @see {@link $$GlideRecord.wf_ui_policy_action}
+     * @see {@link $$GlideElement.wf_ui_policy_action}
+     */
+    export interface wf_ui_policy_action extends sys_ui_policy_action {
+        /**
+         * "Activity definition" column element.
+         * References: Workflow Activity Definition
+         * Read-Only: true
+         * Default Value: javascript:if (typeof parent != 'undefined' && parent && parent.activity_definition) parent.activity_definition
+         */
+        activity_definition: $$GlideElement.wf_activity_definition;
+
+        /**
+         * "Variable" column element.
+         * Max Length: 40
+         */
+        variable: GlideElement;
+        // TODO: Check related lists
+        // https://dev203287.service-now.com/sys_ui_related_list_entry_list.do?sysparm_query=related_listENDSWITH.wf_ui_policy_action
+        // TODO: Check extending tables
+        // https://dev203287.service-now.com/sys_db_object_list.do?sysparm_query=super_class.name%3Dwf_ui_policy_action
+    }
+
+    /**
      * "Catalog UI Policy Action" GlideRecord fields.
      * @see {@link $$GlideRecord.catalog_ui_policy_action}
      * @see {@link $$GlideElement.catalog_ui_policy_action}
@@ -34442,6 +35767,33 @@ this variable \r // - actual_result: the script sets the actual value for this m
          * Max Length: 80.
          */
         view: $$GlideElement.sys_ui_view;
+    }
+
+    /**
+     * "UI Policy Related List Action" GlideRecord fields.
+     * @see {@link $$GlideRecord.sys_ui_policy_rl_action}
+     * @see {@link $$GlideElement.sys_ui_policy_rl_action}
+     */
+    export interface sys_ui_policy_rl_action extends sys_metadata {
+        /**
+         * "List name" column element.
+         * Type: "Choice" (choice).
+         * Max Length: 200
+         */
+        list: GlideElement;
+
+        /**
+         * "UI policy" column element.
+         * References: UI Policy
+         */
+        ui_policy: $$GlideElement.sys_ui_policy;
+
+        /**
+         * "Visible" column element.
+         * Max Length: 40
+         * Default Value: ignore
+         */
+        visible: GlideElement;
     }
 
     /**

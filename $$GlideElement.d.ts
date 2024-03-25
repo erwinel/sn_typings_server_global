@@ -838,6 +838,71 @@ declare namespace $$GlideElement {
     export type sc_cat_item_category = Reference<$$tableFields.sc_cat_item_category, $$GlideRecord.sc_cat_item_category> & sys_metadata;
 
     /**
+     * Reference element for the "Taxonomy Content Configuration" record type.
+     */
+    export type taxonomy_content_configuration = Reference<$$tableFields.taxonomy_content_configuration, $$GlideRecord.taxonomy_content_configuration> & sys_metadata;
+
+    /**
+     * Reference element for the "External Link" record type.
+     */
+    export type sn_ex_sp_external_link = Reference<$$tableFields.sn_ex_sp_external_link, $$GlideRecord.sn_ex_sp_external_link>;
+
+    /**
+     * Reference element for the "Quick Link" record type.
+     */
+    export type sn_ex_sp_quick_link = Reference<$$tableFields.sn_ex_sp_quick_link, $$GlideRecord.sn_ex_sp_quick_link>;
+
+    /**
+     * Reference element for the "Connected Content" record type.
+     */
+    export type m2m_connected_content = Reference<$$tableFields.m2m_connected_content, $$GlideRecord.m2m_connected_content>;
+
+    /**
+     * Reference element for the "Not Available for Departments" record type.
+     */
+    export type sc_cat_item_dept_no_mtom = Reference<$$tableFields.sc_cat_item_dept_no_mtom, $$GlideRecord.sc_cat_item_dept_no_mtom> & sys_metadata;
+
+    /**
+     * Reference element for the "Available for Groups" record type.
+     */
+    export type sc_cat_item_group_mtom = Reference<$$tableFields.sc_cat_item_group_mtom, $$GlideRecord.sc_cat_item_group_mtom> & sys_metadata;
+
+    /**
+     * Reference element for the "Approval Type Definition" record type.
+     */
+    export type sc_ic_aprvl_type_defn = Reference<$$tableFields.sc_ic_aprvl_type_defn, $$GlideRecord.sc_ic_aprvl_type_defn> & sys_metadata;
+
+    /**
+     * Reference element for the "Approval Type" record type.
+     */
+    export type sc_ic_aprvl_type_defn_staging = Reference<$$tableFields.sc_ic_aprvl_type_defn_staging, $$GlideRecord.sc_ic_aprvl_type_defn_staging> & sys_metadata;
+
+    /**
+     * Reference element for the "Approval Definition" record type.
+     */
+    export type sc_ic_aprvl_defn = Reference<$$tableFields.sc_ic_aprvl_defn, $$GlideRecord.sc_ic_aprvl_defn> & sys_metadata;
+
+    /**
+     * Reference element for the "Task Assignment" record type.
+     */
+    export type sc_ic_task_assign_defn_staging = Reference<$$tableFields.sc_ic_task_assign_defn_staging, $$GlideRecord.sc_ic_task_assign_defn_staging> & sys_metadata;
+
+    /**
+     * Reference element for the "Task Assignment Definition" record type.
+     */
+    export type sc_ic_task_assign_defn = Reference<$$tableFields.sc_ic_task_assign_defn, $$GlideRecord.sc_ic_task_assign_defn> & sys_metadata;
+
+    /**
+     * Reference element for the "Task" record type.
+     */
+    export type sc_ic_task_defn_staging = Reference<$$tableFields.sc_ic_task_defn_staging, $$GlideRecord.sc_ic_task_defn_staging> & sys_metadata;
+
+    /**
+     * Reference element for the "Task Definition" record type.
+     */
+    export type sc_ic_task_defn = Reference<$$tableFields.sc_ic_task_defn, $$GlideRecord.sc_ic_task_defn> & sys_metadata;
+
+    /**
      * Reference element for the "Remote Instance" record type.
      */
     export type sys_update_set_source = Reference<$$tableFields.sys_update_set_source, $$GlideRecord.sys_update_set_source>;
@@ -1578,6 +1643,31 @@ declare namespace $$GlideElement {
     export type item_option_category = Reference<$$tableFields.item_option_category, $$GlideRecord.item_option_category> & sys_metadata;
 
     /**
+     * Reference element for the "Data Lookup Definitions" record type.
+     */
+    export type dl_definition = Reference<$$tableFields.dl_definition, $$GlideRecord.dl_definition> & sys_metadata;
+
+    /**
+     * Reference element for the "Catalog Data Lookup Definitions" record type.
+     */
+    export type catalog_dl_definition = Reference<$$tableFields.catalog_dl_definition, $$GlideRecord.catalog_dl_definition> & dl_definition;
+
+    /**
+     * Reference element for the "Client Script" record type.
+     */
+    export type sys_script_client = Reference<$$tableFields.sys_script_client, $$GlideRecord.sys_script_client> & sys_metadata;
+
+    /**
+     * Reference element for the "Catalog Client Scripts" record type.
+     */
+    export type catalog_script_client = Reference<$$tableFields.catalog_script_client, $$GlideRecord.catalog_script_client> & sys_script_client;
+
+    /**
+     * Reference element for the "" record type.
+     */
+    export type expert_script_client = Reference<$$tableFields.expert_script_client, $$GlideRecord.expert_script_client> & sys_script_client;
+
+    /**
      * Reference element for the "Variable Set" record type.
      */
     export type item_option_new_set = Reference<$$tableFields.item_option_new_set, $$GlideRecord.item_option_new_set> & sys_metadata;
@@ -2230,6 +2320,31 @@ declare namespace $$GlideElement {
      * Reference element for the "UI Policy Action" record type.
      */
     export type sys_ui_policy_action = Reference<$$tableFields.sys_ui_policy_action, $$GlideRecord.sys_ui_policy_action> & sys_metadata;
+    
+    /**
+     * Reference element for the "Wizard UI Policy Action" record type.
+     */
+    export type expert_ui_policy_action = Reference<$$tableFields.expert_ui_policy_action, $$GlideRecord.expert_ui_policy_action> & sys_ui_policy_action;
+
+    /**
+     * Reference element for the "Wizard UI Policy" record type.
+     */
+    export type expert_ui_policy = Reference<$$tableFields.expert_ui_policy, $$GlideRecord.expert_ui_policy> & sys_ui_policy;
+
+    /**
+     * Reference element for the "Workflow UI Policy" record type.
+     */
+    export type wf_ui_policy = Reference<$$tableFields.wf_ui_policy, $$GlideRecord.wf_ui_policy> & sys_ui_policy;
+
+    /**
+     * Reference element for the "Workflow UI Policy Action" record type.
+     */
+    export type wf_ui_policy_action = Reference<$$tableFields.wf_ui_policy_action, $$GlideRecord.wf_ui_policy_action> & sys_ui_policy_action;
+
+    /**
+     * Reference element for the "UI Policy Related List Action" record type.
+     */
+    export type sys_ui_policy_rl_action = Reference<$$tableFields.sys_ui_policy_rl_action, $$GlideRecord.sys_ui_policy_rl_action> & sys_metadata;
 
     /**
      * Reference element for the "Catalog UI Policy Action" record type.
